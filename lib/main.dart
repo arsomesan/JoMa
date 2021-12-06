@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:joma/screens/Einstellungen.dart';
 import 'package:joma/screens/joblist_search_screen.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_job_details.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const SelectView(),
+      home: const Einstellungen(),
     );
   }
 }
