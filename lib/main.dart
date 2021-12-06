@@ -3,6 +3,7 @@ import 'package:joma/screens/Einstellungen.dart';
 import 'package:joma/screens/joblist_search_screen.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_job_details.dart';
+import 'package:joma/screens/screen_login.dart';
 import 'package:joma/screens/screen_select_view.dart';
 
 void main() {
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const Einstellungen(),
+      home: const ScreenLogin(),
     );
   }
 }

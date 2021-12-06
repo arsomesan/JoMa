@@ -1,0 +1,16 @@
+{
+  "user": [
+    {
+      "name": "Max Mustermann",
+      "age": 29,
+      "email": "max@mustermann.de",
+      "pwd": "123456789"
+    },
+    {
+      "name": "Max Musterfrau",
+      "age": 39,
+      "email": "max@musterfrau.de",
+      "pwd": "123456789"
+    }
+  ]
+}

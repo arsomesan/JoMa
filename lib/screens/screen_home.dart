@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+
+import 'joblist_topic_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -25,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                   Flexible(
                       child: GestureDetector(
                         onTap: () {
-                          print("yellow Container clicked");
+                          Get.to(JobListTopicScreen());
                         },
                         child: Container(
                           color: const Color.fromRGBO(236, 234, 149, 1),
