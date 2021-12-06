@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:joma/screens/Einstellungen.dart';
-import 'package:joma/screens/joblist_search_screen.dart';
-import 'package:joma/screens/screen_home.dart';
-import 'package:joma/screens/screen_job_details.dart';
 import 'package:joma/screens/screen_login.dart';
-import 'package:joma/screens/screen_select_view.dart';
 
 void main() {
   runApp(const MyApp());
