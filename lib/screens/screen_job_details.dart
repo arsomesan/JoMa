@@ -1,6 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:joma/screens/screen_home.dart';
+
+import 'joblist_search_screen.dart';
 
 class ScreenJobDetails extends StatelessWidget {
   const ScreenJobDetails({Key? key}) : super(key: key);
@@ -17,9 +20,18 @@ class ScreenJobDetails extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.black,
           child: Icon(Icons.home),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()),);
+          },
         ),
         bottomNavigationBar: BottomNavigationBar(
+            currentIndex: 0,
+            onTap: (value) {
+              if (value == 0) Navigator.push(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
+              );
+              //if (value == 1) Navigator.of(context).push(...);
+              //if (value == 2) Navigator.of(context).push(...);
+            },
             backgroundColor: Colors.grey,
             selectedItemColor: Colors.white,
             items: const <BottomNavigationBarItem>[
@@ -31,8 +43,10 @@ class ScreenJobDetails extends StatelessWidget {
                 icon: Icon(Icons.person),
                 label: 'Profil',
               ),
-            ]),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            ]
+        ),
+        floatingActionButtonLocation:
+        FloatingActionButtonLocation.centerDocked,
         body: ListView(
           children: [
             Image.network(

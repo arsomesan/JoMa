@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-
+import 'package:joma/screens/joblist_search_screen.dart';
 import 'joblist_topic_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,6 +9,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -44,6 +47,10 @@ class HomeScreen extends StatelessWidget {
                       ),
                       flex: 1),
                   Flexible(
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(JobListTopicScreen());
+                      },
                       child: Container(
                         color: const Color.fromRGBO(96, 158, 120, 1),
                         margin: const EdgeInsets.fromLTRB(5, 10, 20, 5),
@@ -54,6 +61,7 @@ class HomeScreen extends StatelessWidget {
                                 )),
                             constraints: const BoxConstraints.expand()),
                       ),
+                    ),
                       flex: 1),
                 ],
               ),
@@ -63,6 +71,10 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Flexible(
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(JobListTopicScreen());
+                      },
                       child: Container(
                         color: const Color.fromRGBO(176, 73, 75, 1),
                         margin: const EdgeInsets.fromLTRB(20, 5, 5, 10),
@@ -73,8 +85,13 @@ class HomeScreen extends StatelessWidget {
                                 )),
                             constraints: const BoxConstraints.expand()),
                       ),
+                    ),
                       flex: 1),
                   Flexible(
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(JobListTopicScreen());
+                      },
                       child: Container(
                         color: const Color.fromRGBO(87, 126, 154, 1),
                         margin: const EdgeInsets.fromLTRB(5, 5, 20, 10),
@@ -85,6 +102,7 @@ class HomeScreen extends StatelessWidget {
                                 )),
                             constraints: const BoxConstraints.expand()),
                       ),
+                    ),
                       flex: 1),
                 ],
               ),
@@ -98,11 +116,20 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         child: Icon(Icons.home),
-        onPressed: () {},
+        onPressed: () {
+          //Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()),);
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 0,
+          onTap: (value) {
+            if (value == 0) Navigator.push(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
+            );
+            //if (value == 1) Navigator.of(context).push(...);
+            //if (value == 2) Navigator.of(context).push(...);
+          },
           backgroundColor: Colors.grey,
-          selectedItemColor: Colors.white,
+          selectedItemColor: Colors.black54,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.search),
