@@ -34,3 +34,11 @@ samples, guidance on mobile development, and a full API reference.
 - OpenStreetMap eingebaut (flutter_map)
     - jetzt auch mit Suche über https://nominatim.openstreetmap.org/
     - Home eingebaut
+  
+# Tools
+- https://app.quicktype.io/
+- https://rive.app/
+
+# Was fehlt noch:
+
+- lokales Speichern (shared_preferences)

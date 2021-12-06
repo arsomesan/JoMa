@@ -2,6 +2,7 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:joma/screens/screen_login.dart';
 
 void main() {
   runApp(MyApp());
