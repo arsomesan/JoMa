@@ -7,6 +7,7 @@ IP Webserver: 193.174.29.16
 
 ## Überblick
 
+Hier kommt die Beschreibung hin :)
 
 ## Mögliche Elemente/Erweiterungen aus dem Technologieprototypen
 
