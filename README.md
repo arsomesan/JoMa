@@ -1,6 +1,9 @@
 # joma
 
 Joma - Job app
+DNS Name: joma.informatik.hs-fulda.de
+IP Webserver: 193.174.29.16
+
 
 ## Getting Started
 
