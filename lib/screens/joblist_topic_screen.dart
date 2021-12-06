@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:joma/screens/screen_home.dart';
+import 'package:joma/screens/screen_job_details.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+
+import 'joblist_search_screen.dart';
 
 class JobListTopicScreen extends StatelessWidget {
   const JobListTopicScreen({Key? key}) : super(key: key);
@@ -81,7 +87,9 @@ class JobListTopicScreen extends StatelessWidget {
                       child: IconButton(
                         icon: const Icon(Icons.arrow_forward_ios),
                         tooltip: '',
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(ScreenJobDetails());
+                        },
                       ),
                     ),
                   ],
@@ -92,23 +100,36 @@ class JobListTopicScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Suche',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Startseite',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-        ],
-        selectedItemColor: Colors.black,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
+        child: Icon(Icons.home),
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()),);
+        },
       ),
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 0,
+          onTap: (value) {
+            if (value == 0) Navigator.push(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
+            );
+            //if (value == 1) Navigator.of(context).push(...);
+            //if (value == 2) Navigator.of(context).push(...);
+          },
+          backgroundColor: Colors.grey,
+          selectedItemColor: Colors.white,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: 'Suchen',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profil',
+            ),
+          ]
+      ),
+      floatingActionButtonLocation:
+      FloatingActionButtonLocation.centerDocked,
     );
   }
 }
@@ -160,7 +181,9 @@ Widget generateSingleJobCard(List<Color> _jobColors) {
                 child: IconButton(
                   icon: const Icon(Icons.arrow_forward_ios),
                   tooltip: '',
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(ScreenJobDetails());
+                  },
                 ),
               ),
             ],
