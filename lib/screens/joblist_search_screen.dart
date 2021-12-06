@@ -1,6 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:joma/screens/screen_job_details.dart';
 
 class JobListSearchScreen extends StatelessWidget {
   const JobListSearchScreen({Key? key}) : super(key: key);
@@ -104,7 +107,9 @@ Widget generateSingleJobCard(List<Color> _jobColors) {
                 child: IconButton(
                   icon: const Icon(Icons.arrow_forward_ios),
                   tooltip: '',
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(ScreenJobDetails());
+                  },
                 ),
               ),
             ],

@@ -10,7 +10,7 @@ class JobListTopicScreen extends StatelessWidget {
     const _colorGreen = Color.fromRGBO(96, 158, 119, 1);
     const _colorYellow = Color.fromRGBO(239, 243, 130, 1);
     final List<Color> _jobColors = [
-      _colorBlue,4
+      _colorBlue,
       _colorGreen,
       _colorYellow,
       _colorRed

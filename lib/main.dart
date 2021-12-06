@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:joma/screens/joblist_search_screen.dart';
+import 'package:joma/screens/screen_home.dart';
+import 'package:joma/screens/screen_job_details.dart';
+import 'package:joma/screens/screen_select_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const JobListSearchScreen(),
+      home: const SelectView(),
     );
   }
 }
