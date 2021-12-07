@@ -29,6 +29,9 @@ Hier kommt die Beschreibung hin :)
 # Tools
 - https://app.quicktype.io/
 - https://rive.app/
+- https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html
+- https://icon.kitchen/
+
 
 # Was fehlt noch:
 
