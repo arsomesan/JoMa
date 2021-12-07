@@ -260,7 +260,6 @@ class ScreenProfil extends StatelessWidget {
                       style: TextStyle(fontSize: 20),
                     ),
                     onPressed: () {
-                      Get.to(ScreenProfilSettings());
                     },
                     style: TextButton.styleFrom(
                       primary: Glovar.white,
