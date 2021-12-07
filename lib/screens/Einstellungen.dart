@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:joma/screens/screen_home.dart';
+import 'package:joma/screens/screen_profil.dart';
+
+import 'joblist_search_screen.dart';
 
 class Einstellungen extends StatelessWidget {
   const Einstellungen({Key? key}) : super(key: key);
@@ -218,46 +222,42 @@ class Einstellungen extends StatelessWidget {
                 ),
               ),
               Spacer(flex: 111),
-              SizedBox(
-                width: 390.0,
-                height: 95.0,
-                child: Stack(
-                  alignment: Alignment.topCenter,
-                  children: <Widget>[
-                    Positioned(
-                      bottom: 0,
-                      child: Container(
-                        width: 390.0,
-                        height: 61.0,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF818181),
-                          border: Border.all(
-                            width: 1.0,
-                            color: const Color(0xFF707070),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 68.0,
-                      height: 67.0,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.all(Radius.elliptical(34.0, 33.5)),
-                        color: const Color(0xFF434343),
-                        border: Border.all(
-                          width: 1.0,
-                          color: const Color(0xFF707070),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+
             ],
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
+        child: Icon(Icons.home),
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()),);
+        },
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 1,
+          onTap: (value) {
+            if (value == 0) Navigator.push(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
+            );
+            if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context) => const ScreenProfil()),
+            );
+            //if (value == 2) Navigator.of(context).push(...);
+          },
+          backgroundColor: Colors.grey,
+          selectedItemColor: Colors.white,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: 'Suchen',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profil',
+            ),
+          ]
+      ),
+      floatingActionButtonLocation:
+      FloatingActionButtonLocation.centerDocked,
     );
   }
 }

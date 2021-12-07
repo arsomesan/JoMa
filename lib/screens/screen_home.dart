@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/screens/joblist_search_screen.dart';
+import 'package:joma/screens/screen_profil.dart';
 import 'joblist_topic_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -125,7 +126,8 @@ class HomeScreen extends StatelessWidget {
           onTap: (value) {
             if (value == 0) Navigator.push(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
             );
-            //if (value == 1) Navigator.of(context).push(...);
+            if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context) => const ScreenProfil()),
+            );
             //if (value == 2) Navigator.of(context).push(...);
           },
           backgroundColor: Colors.grey,

@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_job_details.dart';
+import 'package:joma/screens/screen_profil.dart';
 
 class JobListSearchScreen extends StatelessWidget {
   const JobListSearchScreen({Key? key}) : super(key: key);
@@ -51,7 +52,8 @@ class JobListSearchScreen extends StatelessWidget {
           onTap: (value) {
             if (value == 0) Navigator.push(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
             );
-            //if (value == 1) Navigator.of(context).push(...);
+            if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context) => const ScreenProfil()),
+            );
             //if (value == 2) Navigator.of(context).push(...);
           },
           backgroundColor: Colors.grey,

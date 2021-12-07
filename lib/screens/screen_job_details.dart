@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:joma/screens/screen_home.dart';
+import 'package:joma/screens/screen_profil.dart';
 
 import 'joblist_search_screen.dart';
 
@@ -29,7 +30,8 @@ class ScreenJobDetails extends StatelessWidget {
             onTap: (value) {
               if (value == 0) Navigator.push(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
               );
-              //if (value == 1) Navigator.of(context).push(...);
+              if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context) => const ScreenProfil()),
+              );
               //if (value == 2) Navigator.of(context).push(...);
             },
             backgroundColor: Colors.grey,

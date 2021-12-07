@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
 
 void main() {
@@ -26,8 +27,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const ScreenLogin(),
-      //home: const HomeScreen(),
+      //home: const ScreenLogin(),
+      home: const HomeScreen(),
     );
   }
 }
