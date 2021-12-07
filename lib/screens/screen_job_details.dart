@@ -138,7 +138,7 @@ class ScreenJobDetails extends StatelessWidget {
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
                               child: Image(
-                                image: AssetImage('icons/comments-solid.png'),
+                                image: AssetImage('assets/icons/comments-solid.png'),
                               ),
                             ),
                           ),
@@ -162,7 +162,7 @@ class ScreenJobDetails extends StatelessWidget {
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
                               child: Image(
-                                image: AssetImage('icons/walking-solid.png'),
+                                image: AssetImage('assets/icons/walking-solid.png'),
                               ),
                             ),
                           ),
@@ -186,7 +186,7 @@ class ScreenJobDetails extends StatelessWidget {
                               backgroundColor: Colors.white,
                               child: Image(
                                 image: AssetImage(
-                                    'icons/assistive-listening-systems-solid.png'),
+                                    'assets/icons/assistive-listening-systems-solid.png'),
                               ),
                             ),
                           ),
@@ -209,7 +209,7 @@ class ScreenJobDetails extends StatelessWidget {
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
                               child: Image(
-                                image: AssetImage('icons/swimmer-solid.png'),
+                                image: AssetImage('assets/icons/swimmer-solid.png'),
                               ),
                             ),
                           ),
@@ -247,7 +247,7 @@ class ScreenJobDetails extends StatelessWidget {
                       minRadius: 50,
                       maxRadius: 50,
                       child: Image(
-                        image: AssetImage('icons/user-graduate-solid.png'),
+                        image: AssetImage('assets/icons/user-graduate-solid.png'),
                       ),
                     ),
                   ),
@@ -285,7 +285,7 @@ class ScreenJobDetails extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
               child: Image(
-                image: AssetImage('images/maps.PNG'),
+                image: AssetImage('assets/images/maps.PNG'),
               ),
             ),
             Row(
@@ -296,7 +296,7 @@ class ScreenJobDetails extends StatelessWidget {
                     backgroundColor: Colors.blueGrey,
                     minRadius: 25,
                     maxRadius: 25,
-                    child: Image(image: AssetImage('icons/google-brands.png')),
+                    child: Image(image: AssetImage('assets/icons/google-brands.png')),
                   ),
                 ),
                 Padding(

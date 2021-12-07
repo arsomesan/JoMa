@@ -59,7 +59,7 @@ class _ScreenLogin extends State<ScreenLogin> {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(10),
               child: const Image(
-                image: AssetImage('assets/Logo.png'),
+                image: AssetImage('assets/images/Logo.png'),
               ),
             ),
             Container(

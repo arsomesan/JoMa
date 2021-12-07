@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:joma/screens/screen_home.dart';
@@ -27,8 +28,19 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      //home: const ScreenLogin(),
-      home: const HomeScreen(),
+      home:Center(
+      child: AnimatedSplashScreen(
+      splash: Image.asset(
+      'assets/images/Logo.png',
+      ),
+      nextScreen: ScreenLogin(),
+      splashTransition: SplashTransition.rotationTransition,
+      backgroundColor: Colors.amber,
+      ),
+
+    //home: const ScreenLogin(),
+      //home: const HomeScreen(),
+    ),
     );
   }
 }
