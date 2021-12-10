@@ -4,6 +4,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert'; //Json
 import 'package:flutter/services.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_test.dart'; //Json
 
@@ -150,6 +152,7 @@ class _ScreenLogin extends State<ScreenLogin> {
                     ),
                     onPressed: () {
                       print('Überspringen');
+                      Get.to(SelectView());
                     }))
           ])),
     );
