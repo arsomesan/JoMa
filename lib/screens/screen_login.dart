@@ -152,7 +152,8 @@ class _ScreenLogin extends State<ScreenLogin> {
                     ),
                     onPressed: () {
                       print('Überspringen');
-                      Get.to(SelectView());
+                      //Get.to(SelectView());
+                      Get.to(() => SelectView());
                     }))
           ])),
     );

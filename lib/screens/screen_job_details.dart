@@ -129,7 +129,7 @@ class ScreenJobDetails extends StatelessWidget {
                 child: Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(27, 10, 15, 15),
+                      padding: const EdgeInsets.fromLTRB(15, 10, 15, 15),
                       child: Column(
                         children: [
                           Container(
@@ -200,7 +200,7 @@ class ScreenJobDetails extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(15, 10, 17, 15),
+                      padding: const EdgeInsets.fromLTRB(15, 10, 15, 15),
                       child: Column(
                         children: [
                           Container(
@@ -241,7 +241,7 @@ class ScreenJobDetails extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(65, 0, 40, 0),
+                    padding: const EdgeInsets.fromLTRB(50, 0, 40, 0),
                     child: CircleAvatar(
                       backgroundColor: Colors.blueGrey,
                       minRadius: 50,

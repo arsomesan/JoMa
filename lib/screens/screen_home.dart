@@ -33,7 +33,8 @@ class HomeScreen extends StatelessWidget {
                   Flexible(
                       child: GestureDetector(
                         onTap: () {
-                          Get.to(JobListTopicScreen());
+                          //Get.to(JobListTopicScreen());
+                          Get.to(() => JobListTopicScreen());
                         },
                         child: Container(
                           color: const Color.fromRGBO(236, 234, 149, 1),
@@ -50,7 +51,9 @@ class HomeScreen extends StatelessWidget {
                   Flexible(
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(JobListTopicScreen());
+                        //Get.to(JobListTopicScreen());
+                        Get.to(() => JobListTopicScreen());
+
                       },
                       child: Container(
                         color: const Color.fromRGBO(96, 158, 120, 1),
@@ -74,7 +77,9 @@ class HomeScreen extends StatelessWidget {
                   Flexible(
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(JobListTopicScreen());
+                        //Get.to(JobListTopicScreen());
+                        Get.to(() => JobListTopicScreen());
+
                       },
                       child: Container(
                         color: const Color.fromRGBO(176, 73, 75, 1),
@@ -91,7 +96,9 @@ class HomeScreen extends StatelessWidget {
                   Flexible(
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(JobListTopicScreen());
+                        //Get.to(JobListTopicScreen());
+                        Get.to(() => JobListTopicScreen());
+
                       },
                       child: Container(
                         color: const Color.fromRGBO(87, 126, 154, 1),

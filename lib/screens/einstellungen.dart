@@ -4,8 +4,8 @@ import 'package:joma/screens/screen_profil.dart';
 
 import 'joblist_search_screen.dart';
 
-class Einstellungen extends StatelessWidget {
-  const Einstellungen({Key? key}) : super(key: key);
+class einstellungen extends StatelessWidget {
+  const einstellungen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

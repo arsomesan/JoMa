@@ -89,7 +89,8 @@ class JobListTopicScreen extends StatelessWidget {
                         icon: const Icon(Icons.arrow_forward_ios),
                         tooltip: '',
                         onPressed: () {
-                          Get.to(ScreenJobDetails());
+                          //Get.to(ScreenJobDetails());
+                          Get.to(() => ScreenJobDetails());
                         },
                       ),
                     ),
@@ -184,7 +185,8 @@ Widget generateSingleJobCard(List<Color> _jobColors) {
                   icon: const Icon(Icons.arrow_forward_ios),
                   tooltip: '',
                   onPressed: () {
-                    Get.to(ScreenJobDetails());
+                    //Get.to(ScreenJobDetails());
+                    Get.to(() => ScreenJobDetails());
                   },
                 ),
               ),

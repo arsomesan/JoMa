@@ -7,8 +7,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/global/glovar.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_settings.dart';
-
-import 'Einstellungen.dart';
+import 'einstellungen.dart';
 import 'joblist_search_screen.dart';
 
 class ScreenProfil extends StatelessWidget {
@@ -43,7 +42,8 @@ class ScreenProfil extends StatelessWidget {
             IconButton(
                 icon: Icon(Icons.settings),
                 onPressed: () {
-                  Get.to(Einstellungen());
+                  //Get.to(Einstellungen());
+                  Get.to(() => einstellungen());
                 }),
           ]),
       body: SingleChildScrollView(
@@ -282,7 +282,8 @@ class ScreenProfil extends StatelessWidget {
                   child: TextButton(
                     child: Text('Profil bearbeiten'),
                     onPressed: () {
-                      Get.to(ScreenProfilSettings());
+                      //Get.to(ScreenProfilSettings());
+                      Get.to(() => ScreenProfilSettings());
                     },
                     style: TextButton.styleFrom(
                         primary: Glovar.white,
