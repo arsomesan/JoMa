@@ -1,13 +1,19 @@
-# joma
+# JoMa
 
-Joma - Job app
-DNS Name: joma.informatik.hs-fulda.de
-IP Webserver: 193.174.29.16
+JoMa - Jobs maßgeschneidert -------
+DNS Name: joma.informatik.hs-fulda.de -------
+IP Webserver: 193.174.29.16 -------
 
 
 ## Überblick
 
-Hier kommt die Beschreibung hin :)
+Hallo! Wir sind ein junges Team, bestehend aus 15 Digitale Medien Studenten, das in Begleitung mit Prof. Jan-Torsten Milde und in Kooperation mit Startbahn/Perspektiva Fulda eine Jobbörsen-App, zugeschnitten auf die Schüler des Antoniusheims Fulda, entwickelt.
+Ziel ist es, bis Ende des Wintersemester 2021/22 eine funktionierende App für unsere Kooperationspartner aufgestellt zu haben.
+Dabei wird asynchron von Zuhause aus über Github & Discord gearbeitet und jeden Montag im Seminar der aktuelle Stand präsentiert.
+
+Die App soll alle Jobangebote aus der Region, eingestellt von den jeweiligen Unternehmen, die barrierefrei für Menschen mit geistigen/körperlichen Einschränkungen sind, beinhalten. Dabei können die Schüler sowohl alle Angebote, als auch nach ihren bereits aus der Schule bekannten vier Kategorien einsehen. Ein Wahl-O-Mat soll bereits zu Beginn durch die Erfassung der Fähigkeiten und Interessen Jobs entsprechend filtern. Um den Bewerbungsprozess möglichst einfach zu halten, soll die App eine entsprechende Bewerbung im PDF-Format generieren und diese automatisiert an das jeweilige Unternehmen per E-Mail zusenden. Um möglichst barrierefrei zu bleiben, kann die App in drei verschiedenen Text- und Bildumfangsmodi benutzt werden. Im Profil werden die personenbezogenen, für eine Bewerbung relevanten Daten erhoben.
+
+Wir sind ergeizig an der Sache dran und hoffen, mit dieser App Menschen mit besonderen Herausforderungen einen erleichterten Zugang in die Berufswelt zu verschaffen!
 
 ## Mögliche Elemente/Erweiterungen aus dem Technologieprototypen
 
@@ -25,6 +31,9 @@ Hier kommt die Beschreibung hin :)
 - OpenStreetMap eingebaut (flutter_map)
     - jetzt auch mit Suche über https://nominatim.openstreetmap.org/
     - Home eingebaut
+
+## Dependencies
+... folgt sogleich
   
 # Tools
 - https://app.quicktype.io/
