@@ -4,6 +4,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/screens/joblist_search_screen.dart';
 import 'package:joma/screens/screen_profil.dart';
 import 'joblist_topic_screen.dart';
+import 'package:joma/assets/assets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           child: Text(
             'BEREICH WÄHLEN',
             textAlign: TextAlign.center,
-            style: TextStyle(fontFamily: 'Marcellus', fontSize: 20),
+            style: AppTextStyles.appBar,
           ),
         ),
         backgroundColor: const Color.fromRGBO(129, 129, 129, 1),
