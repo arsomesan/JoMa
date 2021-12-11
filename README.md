@@ -33,7 +33,23 @@ Wir sind ergeizig an der Sache dran und hoffen, mit dieser App Menschen mit beso
     - Home eingebaut
 
 ## Dependencies
-... folgt sogleich
+- cupertino_icons: ^1.0.2
+- get: ^4.5.1
+- carousel_slider: ^4.0.0
+- latlong2: ^0.8.0
+- latlng: any
+- animated_splash_screen: ^1.1.0
+- json_annotation: ^4.3.0
+
+## Assets
+- assets/
+- assets/fonts/
+- assets/icons/
+- assets/images/
+- assets/users.json
+
+## Fonts
+Raleway
   
 # Tools
 - https://app.quicktype.io/
