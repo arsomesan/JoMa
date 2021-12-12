@@ -1,41 +1,15 @@
+import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:joma/controllers/view_controller.dart';
 import 'package:joma/screens/screen_home.dart';
 
-class SelectView extends StatefulWidget {
-  const SelectView({Key? key}) : super(key: key);
+class SelectView extends StatelessWidget {
 
-  @override
-  State<SelectView> createState() => _UserViewState();
-}
-
-class _UserViewState extends State<SelectView> {
-  var _state1 = false;
-  var _state2 = false;
-  var _state3 = false;
-
-  void _handleTap1(){
-    setState(() {
-      _state1 = true;
-      _state2 = false;
-      _state3 = false;
-    });
-  }
-
-  void _handleTap2(){
-    setState(() {
-      _state1 = false;
-      _state2 = true;
-      _state3 = false;
-    });
-  }
-
-  void _handleTap3(){
-    setState(() {
-      _state1 = false;
-      _state2 = false;
-      _state3 = true;
-    });
-  }
+  final ViewController viewController = Get.put(ViewController());
 
   @override
   Widget build(BuildContext context) {
@@ -53,136 +27,140 @@ class _UserViewState extends State<SelectView> {
       body: Center(
         child: Column(
           children: [
-
-            Flexible(
-              child: GestureDetector(
-                onTap: _handleTap1,
-                child: Card(
-                  clipBehavior: Clip.antiAlias,
-                  child: Column(
-                    children: [
-                      Flexible(
-                        child: Ink.image(
-                          image: const NetworkImage(
-                              'https://source.unsplash.com/random/800x600?house'),
-                          fit: BoxFit.cover,
+            //Card1: Nur Bilder
+            GetBuilder<ViewController>(builder: (_) {
+              return Flexible(
+                child: GestureDetector(
+                  onTap: () {viewController.setView(0);},
+                  child: Card(
+                    clipBehavior: Clip.antiAlias,
+                    child: Column(
+                      children: [
+                        Flexible(
+                          child: Ink.image(
+                            image: const NetworkImage(
+                                'https://source.unsplash.com/random/800x600?house'),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16.0),
-                        child: const Text("Nur Bilder"),
-                      ),
-                    ],
-                  ),
-                  color: ((){
-                    if(_state1) {
-                      return const Color.fromRGBO(184, 219, 255, 1.0);
-                    } else {
-                      return Colors.white;
-                    }
-                  }()),
-                  shape: Border.all(
-                    color: ((){
-                      if(_state1) {
-                        return Colors.blue;
+                        Container(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text("Nur Bilder"),
+                        ),
+                      ],
+                    ),
+                    color: (() {
+                      if (_.state == 0) {
+                        return const Color.fromRGBO(184, 219, 255, 1.0);
                       } else {
-                        return Colors.black;
+                        return Colors.white;
                       }
                     }()),
-                  ),
+                    shape: Border.all(
+                      color: (() {
+                        if (_.state == 0) {
+                          return Colors.blue;
+                        } else {
+                          return Colors.black;
+                        }
+                      }()),
+                    ),
 
+                  ),
                 ),
-              ),
-              flex: 1,
-            ),
+                flex: 1,
+              );
+            },),
 
-            const SizedBox(height: 15), // Für Abstand zwischen boxen
-            Flexible(
-              child: GestureDetector(
-                onTap: _handleTap2,
-                child: Card(
-                  clipBehavior: Clip.antiAlias,
-                  child: Column(
-                    children: [
-                      Flexible(
-                        child: Ink.image(
-                          image: const NetworkImage(
-                              'https://source.unsplash.com/random/800x600?house'),
-                          fit: BoxFit.cover,
+            //Card2: Leichte Sprache
+            GetBuilder<ViewController>(builder: (_) {
+              return Flexible(
+                child: GestureDetector(
+                  onTap: () {viewController.setView(1);},
+                  child: Card(
+                    clipBehavior: Clip.antiAlias,
+                    child: Column(
+                      children: [
+                        Flexible(
+                          child: Ink.image(
+                            image: const NetworkImage(
+                                'https://source.unsplash.com/random/800x600?house'),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      Container(
-
-                        padding: EdgeInsets.all(16.0),
-                        child: const Text("Leichte Sprache"),
-                      ),
-                    ],
-                  ),
-                  color: ((){
-                    if(_state2) {
-                      return const Color.fromRGBO(184, 219, 255, 1.0);
-                    } else {
-                      return Colors.white;
-                    }
-                  }()),
-                  shape: Border.all(
-                    color: ((){
-                      if(_state2) {
-                        return Colors.blue;
+                        Container(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text("Leichte Sprache"),
+                        ),
+                      ],
+                    ),
+                    color: (() {
+                      if (viewController.state == 1) {
+                        return const Color.fromRGBO(184, 219, 255, 1.0);
                       } else {
-                        return Colors.black;
+                        return Colors.white;
                       }
                     }()),
-                  ),
+                    shape: Border.all(
+                      color: (() {
+                        if (_.state == 1) {
+                          return Colors.blue;
+                        } else {
+                          return Colors.black;
+                        }
+                      }()),
+                    ),
 
+                  ),
                 ),
-              ),
-              flex: 1,
-            ),
+                flex: 1,
+              );
+            },),
 
-
-            const SizedBox(height: 15),
-            Flexible(
-              child: GestureDetector(
-                onTap: _handleTap3,
-                child: Card(
-                  clipBehavior: Clip.antiAlias,
-                  child: Column(
-                    children: [
-                      Flexible(
-                        child: Ink.image(
-                          image: const NetworkImage(
-                              'https://source.unsplash.com/random/800x600?house'),
-                          fit: BoxFit.cover,
+            //Card3: Volltext
+            GetBuilder<ViewController>(builder: (_) {
+              return Flexible(
+                child: GestureDetector(
+                  onTap: () {viewController.setView(2);},
+                  child: Card(
+                    clipBehavior: Clip.antiAlias,
+                    child: Column(
+                      children: [
+                        Flexible(
+                          child: Ink.image(
+                            image: const NetworkImage(
+                                'https://source.unsplash.com/random/800x600?house'),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(16.0),
-                        child: const Center(child: Text("Volltext",)),
-                      ),
-                    ],
-                  ),
-                  color: ((){
-                    if(_state3) {
-                      return const Color.fromRGBO(184, 219, 255, 1.0);
-                    } else {
-                      return Colors.white;
-                    }
-                  }()),
-                  shape: Border.all(
-                    color: ((){
-                      if(_state3) {
-                        return Colors.blue;
+                        Container(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text("Volltext"),
+                        ),
+                      ],
+                    ),
+                    color: (() {
+                      if (_.state == 2) {
+                        return const Color.fromRGBO(184, 219, 255, 1.0);
                       } else {
-                        return Colors.black;
+                        return Colors.white;
                       }
                     }()),
-                  ),
+                    shape: Border.all(
+                      color: (() {
+                        if (_.state == 2) {
+                          return Colors.blue;
+                        } else {
+                          return Colors.black;
+                        }
+                      }()),
+                    ),
 
+                  ),
                 ),
-              ),
-              flex: 1,
-            ),
+                flex: 1,
+              );
+            },),
 
           ],
         ),
@@ -194,7 +172,7 @@ class _UserViewState extends State<SelectView> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
+              MaterialPageRoute(builder: (context) => HomeScreen()),
             );
           },
           child: Column(

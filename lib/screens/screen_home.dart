@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/controllers/view_controller.dart';
 import 'package:joma/screens/joblist_search_screen.dart';
@@ -8,11 +10,9 @@ import 'joblist_topic_screen.dart';
 import 'package:joma/assets/assets.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final ViewController viewController = Get.put(ViewController());
   @override
   Widget build(BuildContext context) {
-
-
 
     return Scaffold(
       appBar: AppBar(
@@ -27,6 +27,9 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
+          GetBuilder<ViewController>(builder: (_){
+            return Text("Der aktuelle State ist ${_.state}");
+          },),
           Flexible(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

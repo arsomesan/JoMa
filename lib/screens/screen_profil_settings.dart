@@ -298,7 +298,7 @@ class ScreenProfilSettings extends StatelessWidget {
         backgroundColor: Colors.black,
         child: Icon(Icons.home),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()),);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
