@@ -6,7 +6,9 @@ class AppFont {
 
 class AppTextStyles {
   static const appBar = TextStyle(fontFamily: AppFont.mainFont, fontSize: 20);
+  static const titleText = TextStyle(fontFamily: AppFont.mainFont, fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white);
   static const mainText = TextStyle(fontFamily: AppFont.mainFont, fontSize: 15);
+  static const imageText = TextStyle(fontFamily: AppFont.mainFont, fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white);
 } // zum Einbinden:
   // - ein Text()-Widget eröffnen
   // - das style:-Attribut öffnen

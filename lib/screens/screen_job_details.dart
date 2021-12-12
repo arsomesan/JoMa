@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil.dart';
-
+import 'package:joma/assets/assets.dart';
 import 'joblist_search_screen.dart';
 
 class ScreenJobDetails extends StatelessWidget {
@@ -14,59 +14,24 @@ class ScreenJobDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: Text('Soziales & Hauswirtschaft'),
+          backgroundColor: AppColors().green,
+          title: Text(
+            'Gärtnerei & Landwirtschaft',
+            style: AppTextStyles.appBar,
+          ),
           centerTitle: true,
         ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.black,
-          child: Icon(Icons.home),
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
-          },
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-            currentIndex: 0,
-            onTap: (value) {
-              if (value == 0) Navigator.push(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
-              );
-              if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context) => const ScreenProfil()),
-              );
-              //if (value == 2) Navigator.of(context).push(...);
-            },
-            backgroundColor: Colors.grey,
-            selectedItemColor: Colors.white,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Suchen',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: 'Profil',
-              ),
-            ]
-        ),
+        floatingActionButton: button_home(),
         floatingActionButtonLocation:
         FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: nav_bar(),
         body: ListView(
           children: [
-            Image.network(
-              'https://www.rose-galabau.de/wp-content/uploads/2021/10/Rose-landschaftsbau-gruenflaechenpflege-gewerbliche-landschaftsgaertner-pflasterarbeiten.jp_.jpg',
-            ),
             Padding(
-              padding: EdgeInsets.fromLTRB(44, 10, 0, 0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Pflege der Grünflächen",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+              padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
+              child: title_image(),
             ),
+            title(),
             CarouselSlider(
               options: CarouselOptions(
                 height: 200.0,
@@ -91,16 +56,20 @@ class ScreenJobDetails extends StatelessWidget {
                       margin:
                       EdgeInsets.symmetric(horizontal: 3.0, vertical: 15.0),
                       decoration: BoxDecoration(color: Colors.black),
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                          child: Text(
-                            'Tätigkeit $i',
-                            style:
-                            TextStyle(fontSize: 16.0, color: Colors.white),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                              child: Text(
+                                'Tätigkeit $i',
+                                style:
+                                AppTextStyles.imageText,
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     );
                   },
@@ -334,5 +303,100 @@ class ScreenJobDetails extends StatelessWidget {
             )
           ],
         ));
+  }
+}
+
+class title extends StatelessWidget {
+  const title({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(50, 10, 50, 0),
+      child: Align(
+        alignment: Alignment.center,
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors().green,
+            borderRadius: BorderRadius.all(Radius.circular(10.0))
+            ),
+          child: new Center(
+            child: new Text(
+              "Pflege der Grünflächen",
+              style: AppTextStyles.titleText,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class nav_bar extends StatelessWidget {
+  const nav_bar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+        currentIndex: 0,
+        onTap: (value) {
+          if (value == 0) Navigator.push(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
+          );
+          if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context) => const ScreenProfil()),
+          );
+          //if (value == 2) Navigator.of(context).push(...);
+        },
+        backgroundColor: AppColors().green,
+        selectedItemColor: Colors.white,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Suchen',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profil',
+          ),
+        ]
+    );
+  }
+}
+
+class button_home extends StatelessWidget {
+  const button_home({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      backgroundColor: Colors.black,
+      child: Icon(Icons.home),
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
+      },
+    );
+  }
+}
+
+class title_image extends StatelessWidget {
+  const title_image({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Image(
+        image: NetworkImage(
+          'https://www.rose-galabau.de/wp-content/uploads/2021/10/Rose-landschaftsbau-gruenflaechenpflege-gewerbliche-landschaftsgaertner-pflasterarbeiten.jp_.jpg',
+        ),
+      ),
+    );
   }
 }
