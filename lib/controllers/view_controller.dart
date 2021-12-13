@@ -22,8 +22,8 @@ class ViewController extends GetxController {
 * Um den Controller zu nutzen, muss dieser erst in das gewünschte Widget hinzugefügt werden.
 * final ViewController viewController = Get.put(ViewController()); -> In die erste Zeile nach dem definieren der Klasse
 *
-* ggf. müsst ihr noch einen Konstruktor löschen (Fragt mich nicht warum, muss ich Prof. Milde mal fragen)
-* Nach dem Löschen der Konstruktors müssen dann noch die MaterialPageRoutes auf den anderen Seiten angepasst werden. (das const entfernen. bekommt ihr aber angezeigt)
+* ggf. müsst ihr noch euren Konstruktor anpassen.(Das const entfernen.)
+* * Nach dem anpassen des Konstruktors müssen dann noch die MaterialPageRoutes auf den anderen Seiten angepasst werden. (das const entfernen. bekommt ihr aber angezeigt)
 *
 * Die Komponenten, welche auf den Controller zugreifen sollen, müssen in einem GetBuilder Widget liegen: (Hier mal ein einfacher Text.)
 *

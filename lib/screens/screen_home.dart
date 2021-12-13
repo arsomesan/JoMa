@@ -27,9 +27,21 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
+          
           GetBuilder<ViewController>(builder: (_){
-            return Text("Der aktuelle State ist ${_.state}");
+            if(_.state == 1){
+              return const Text("Mangopudding");
+            }
+            else {
+              return Text("Der aktuelle State ist ${_.state}");
+            }
+
           },),
+
+
+
+
+
           Flexible(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
