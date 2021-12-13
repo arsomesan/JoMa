@@ -35,9 +35,11 @@ Wir sind ergeizig an der Sache dran und hoffen, mit dieser App Menschen mit beso
 ## Dependencies
 - cupertino_icons: ^1.0.2
 - get: ^4.5.1
+- font_awesome_flutter: ^8.2.0  
 - carousel_slider: ^4.0.0
 - latlong2: ^0.8.0
 - latlng: any
+- flutter_map: any  
 - animated_splash_screen: ^1.1.0
 - json_annotation: ^4.3.0
 

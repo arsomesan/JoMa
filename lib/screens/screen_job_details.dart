@@ -17,6 +17,8 @@ import 'package:latlong2/latlong.dart';
 // Asset-Imports
 import 'package:joma/assets/assets.dart';
 
+// FontAwesome-Import (not working atm)
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ScreenJobDetails extends StatelessWidget {
   const ScreenJobDetails({Key? key}) : super(key: key);
@@ -37,49 +39,10 @@ class ScreenJobDetails extends StatelessWidget {
             skillBackgroundBuilder(),
             graduationBuilder(),
             mapBuilder(),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(115, 30, 0, 0),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.blueGrey,
-                    minRadius: 25,
-                    maxRadius: 25,
-                    child: Image(
-                        image: AssetImage('assets/icons/google-brands.png')),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(15, 30, 0, 0),
-                  child: Column(
-                    children: [
-                      Text("Hochschule Fulda",
-                          style: TextStyle(
-                            fontStyle: FontStyle.italic,
-                          )),
-                      Text("Leipziger Str. 123",
-                          style: TextStyle(
-                            fontStyle: FontStyle.italic,
-                          )),
-                      Text("36037 Fulda",
-                          style: TextStyle(
-                            fontStyle: FontStyle.italic,
-                          )),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(45, 30, 45, 0),
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text("Bewerben"),
-              ),
-            ),
-            SizedBox(
-              height: 100,
-            )
+            adressBuilder(),
+            buildHorizontalDivider(),
+            buildDistanceText(),
+            buildApplyButton(),
           ],
         ));
   }
@@ -105,12 +68,12 @@ class ScreenJobDetails extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
-    child: Image(
-    image: NetworkImage(
-    'https://www.rose-galabau.de/wp-content/uploads/2021/10/Rose-landschaftsbau-gruenflaechenpflege-gewerbliche-landschaftsgaertner-pflasterarbeiten.jp_.jpg',
-    ),
-    ),
-    ),
+        child: Image(
+          image: NetworkImage(
+            'https://www.rose-galabau.de/wp-content/uploads/2021/10/Rose-landschaftsbau-gruenflaechenpflege-gewerbliche-landschaftsgaertner-pflasterarbeiten.jp_.jpg',
+          ),
+        ),
+      ),
     );
   }
 
@@ -149,20 +112,19 @@ class ScreenJobDetails extends StatelessWidget {
 
   // Dieses Widget baut eine einzelne Fähigkeit auf
   Widget buildSkill() => Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      buildBox(child: Icon(Icons.build)),
-      const SizedBox(height: 5),
-      Text(
-        'Fähigkeit',
-        style: AppTextStyles.mainText,
-      )
-    ],
-  );
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          buildBox(child: Icon(Icons.build)),
+          const SizedBox(height: 5),
+          Text(
+            'Fähigkeit',
+            style: AppTextStyles.mainText,
+          )
+        ],
+      );
 
   // Dieses Widget baut einen Kreis als Hintergrund um das Fähigkeits-Icon auf
-  Widget buildBox({required Widget child}) =>
-      Container(
+  Widget buildBox({required Widget child}) => Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.white,
@@ -183,8 +145,7 @@ class ScreenJobDetails extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              buildSchoolBox(child:
-              Icon(Icons.school, size: 50)),
+              buildSchoolBox(child: Icon(Icons.school, size: 50)),
               const SizedBox(height: 10),
               Text(
                 'Hauptschulabschluss',
@@ -198,8 +159,7 @@ class ScreenJobDetails extends StatelessWidget {
   }
 
   // Dieses Widget baut einen Kreis als Hintergrund um das Schulabschluss-Icon auf
-  Widget buildSchoolBox({required Widget child}) =>
-      Container(
+  Widget buildSchoolBox({required Widget child}) => Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: AppColors().green,
@@ -220,6 +180,99 @@ class ScreenJobDetails extends StatelessWidget {
     );
   }
 
+// ---------- ADRESSE ----------
+
+  // Dieses Widget baut die Adresszeile auf
+  Widget adressBuilder() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              buildAdressBox(child: Icon(Icons.euro_symbol, size: 70)),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Hochschule Fulda',
+                style: AppTextStyles.mainText,
+              ),
+              Text(
+                'Leipziger Straße 123',
+                style: AppTextStyles.mainText,
+              ),
+              Text(
+                '36037 Fulda',
+                style: AppTextStyles.mainText,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Dieses Widget baut einen Kreis um das Logo des Unternehmens in der Adresszeile auf
+  Widget buildAdressBox({required Widget child}) => Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppColors().green,
+        ),
+        padding: EdgeInsets.all(20),
+        child: child,
+      );
+
+// ---------- DIVIDER ----------
+
+  // Dieses Widget baut einen horizontalen Divider auf
+  Widget buildHorizontalDivider() {
+    return Row(
+      children: [
+        Expanded(
+          child: Divider(
+            color: Colors.black,
+            height: 35,
+          ),
+        )
+      ],
+    );
+  }
+
+// ---------- ENTFERNUNG ----------
+
+  // Dieses Widget baut den Text für die Entfernung auf
+  Widget buildDistanceText() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            '10 km entfernt!',
+            style: AppTextStyles.distanceText,
+          )
+        ],
+      ),
+    );
+  }
+
+// ---------- BEWERBEN-BUTTON ----------
+
+  // Dieses Widget baut den Bewerben-Button auf
+  Widget buildApplyButton() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(100, 20, 100, 50),
+      child: ElevatedButton(
+        onPressed: () {},
+        child: Text("Bewerben"),
+      ),
+    );
+  }
 }
 
 // ---------- TITEL ----------

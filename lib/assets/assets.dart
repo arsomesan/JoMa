@@ -10,6 +10,7 @@ class AppTextStyles {
   static const mainText = TextStyle(fontFamily: AppFont.mainFont, fontSize: 15, fontWeight: FontWeight.bold);
   static const imageText = TextStyle(fontFamily: AppFont.mainFont, fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white);
   static const graduationText = TextStyle(fontFamily: AppFont.mainFont, fontSize: 20, fontWeight: FontWeight.bold);
+  static const distanceText = TextStyle(fontFamily: AppFont.mainFont, fontSize: 23, fontWeight: FontWeight.bold, color: Colors.redAccent);
 } // zum Einbinden:
   // - ein Text()-Widget eröffnen
   // - das style:-Attribut öffnen
