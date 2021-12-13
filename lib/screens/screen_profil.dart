@@ -7,7 +7,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/global/glovar.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_settings.dart';
-import 'einstellungen.dart';
+import 'package:joma/screens/screen_settings.dart';
 import 'joblist_search_screen.dart';
 
 class ScreenProfil extends StatelessWidget {
@@ -43,7 +43,7 @@ class ScreenProfil extends StatelessWidget {
                 icon: Icon(Icons.settings),
                 onPressed: () {
                   //Get.to(Einstellungen());
-                  Get.to(() => einstellungen());
+                  Get.to(() => Einstellungen());
                 }),
           ]),
       body: SingleChildScrollView(
