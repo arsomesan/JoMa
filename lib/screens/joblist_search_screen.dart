@@ -44,16 +44,20 @@ class JobListSearchScreen extends StatelessWidget {
         backgroundColor: Colors.black,
         child: Icon(Icons.home),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: 0,
           onTap: (value) {
-            if (value == 0) Navigator.push(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
+            if (value == 0) {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
             );
-            if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context) => const ScreenProfil()),
+            }
+            if (value == 1) {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ScreenProfil()),
             );
+            }
             //if (value == 2) Navigator.of(context).push(...);
           },
           backgroundColor: Colors.grey,
@@ -125,7 +129,7 @@ Widget generateSingleJobCard(List<Color> _jobColors) {
                   tooltip: '',
                   onPressed: () {
                     //Get.to(ScreenJobDetails());
-                    Get.to(() => ScreenJobDetails());
+                    Get.off(() => ScreenJobDetails());
                   },
                 ),
               ),

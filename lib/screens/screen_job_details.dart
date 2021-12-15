@@ -397,13 +397,13 @@ class navBarBuilder extends StatelessWidget {
         currentIndex: 0,
         onTap: (value) {
           if (value == 0)
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                   builder: (context) => const JobListSearchScreen()),
             );
           if (value == 1)
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const ScreenProfil()),
             );
@@ -438,7 +438,7 @@ class homeButtonBuilder extends StatelessWidget {
       backgroundColor: Colors.black,
       child: Icon(Icons.home),
       onPressed: () {
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen()),
         );

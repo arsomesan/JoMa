@@ -33,12 +33,6 @@ class ScreenProfilSettings extends StatelessWidget {
       appBar: AppBar(
           title: Text("Profil bearbeiten"),
           centerTitle: true,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_sharp),
-            onPressed: () {
-              Get.back();
-            },
-          ),
           backgroundColor: Glovar.white,
           foregroundColor: Glovar.blackvar,
           ),
@@ -298,16 +292,20 @@ class ScreenProfilSettings extends StatelessWidget {
         backgroundColor: Colors.black,
         child: Icon(Icons.home),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: 1,
           onTap: (value) {
-            if (value == 0) Navigator.push(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
+            if (value == 0) {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
             );
-            if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context) => const ScreenProfil()),
+            }
+            if (value == 1) {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ScreenProfil()),
             );
+            }
             //if (value == 2) Navigator.of(context).push(...);
           },
           backgroundColor: Colors.grey,

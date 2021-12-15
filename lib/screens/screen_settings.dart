@@ -72,7 +72,7 @@ class Einstellungen extends StatelessWidget {
                     Spacer(flex: 19),
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => SelectView()));
                         print('onTap Ansicht waehlen');
                       },
