@@ -129,7 +129,8 @@ Widget generateSingleJobCard(List<Color> _jobColors) {
                   tooltip: '',
                   onPressed: () {
                     //Get.to(ScreenJobDetails());
-                    Get.off(() => ScreenJobDetails());
+                    //Get.off(() => ScreenJobDetails());
+                    Get.to(() => ScreenJobDetails());
                   },
                 ),
               ),
