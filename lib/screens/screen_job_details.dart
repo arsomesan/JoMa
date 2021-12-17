@@ -52,10 +52,10 @@ class ScreenJobDetails extends StatelessWidget {
   // Dieses Widget baut die App-Bar auf
   PreferredSizeWidget appBarBuilder() {
     return AppBar(
-      backgroundColor: AppColors().green,
+      backgroundColor: AppColors().darkGreen,
       title: Text(
         'Gärtnerei & Landwirtschaft',
-        style: AppTextStyles.appBar,
+        style: AppTextStyles.darkH1,
       ),
       centerTitle: true,
     );
@@ -86,7 +86,7 @@ class ScreenJobDetails extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-          style: AppTextStyles.mainText,
+          style: AppTextStyles.darkMainText,
         ),
       ),
     );
@@ -118,7 +118,7 @@ class ScreenJobDetails extends StatelessWidget {
           const SizedBox(height: 5),
           Text(
             'Fähigkeit',
-            style: AppTextStyles.mainText,
+            style: AppTextStyles.darkMainText,
           )
         ],
       );
@@ -149,7 +149,7 @@ class ScreenJobDetails extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 'Hauptschulabschluss',
-                style: AppTextStyles.graduationText,
+                style: AppTextStyles.darkH1,
               )
             ],
           ),
@@ -162,7 +162,7 @@ class ScreenJobDetails extends StatelessWidget {
   Widget buildSchoolBox({required Widget child}) => Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: AppColors().green,
+          color: AppColors().darkGreen,
         ),
         padding: EdgeInsets.all(15),
         child: child,
@@ -192,7 +192,7 @@ class ScreenJobDetails extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              buildAdressBox(child: Icon(Icons.euro_symbol, size: 70)),
+              buildAdressBox(child: AppIcons().nurBilder),
             ],
           ),
           Column(
@@ -200,15 +200,15 @@ class ScreenJobDetails extends StatelessWidget {
             children: [
               Text(
                 'Hochschule Fulda',
-                style: AppTextStyles.mainText,
+                style: AppTextStyles.darkMainText,
               ),
               Text(
                 'Leipziger Straße 123',
-                style: AppTextStyles.mainText,
+                style: AppTextStyles.darkMainText,
               ),
               Text(
                 '36037 Fulda',
-                style: AppTextStyles.mainText,
+                style: AppTextStyles.darkMainText,
               ),
             ],
           ),
@@ -221,7 +221,7 @@ class ScreenJobDetails extends StatelessWidget {
   Widget buildAdressBox({required Widget child}) => Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: AppColors().green,
+          color: AppColors().darkGreen,
         ),
         padding: EdgeInsets.all(20),
         child: child,
@@ -254,7 +254,7 @@ class ScreenJobDetails extends StatelessWidget {
         children: [
           Text(
             '10 km entfernt!',
-            style: AppTextStyles.distanceText,
+            style: AppTextStyles.darkH1,
           )
         ],
       ),
@@ -298,7 +298,7 @@ class titleTextBuilder extends StatelessWidget {
           child: new Center(
             child: new Text(
               "Pflege der Grünflächen",
-              style: AppTextStyles.titleText,
+              style: AppTextStyles.darkH2,
             ),
           ),
         ),
@@ -348,7 +348,7 @@ class carouselSliderBuilder extends StatelessWidget {
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                       child: Text(
                         'Tätigkeit $i',
-                        style: AppTextStyles.imageText,
+                        style: AppTextStyles.darkInfoText,
                       ),
                     ),
                   ),
@@ -376,7 +376,7 @@ class skillBackgroundBuilder extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        color: AppColors().green,
+        color: AppColors().darkGreen,
         child: ScreenJobDetails().buildSkillCards(),
       ),
     );
@@ -409,7 +409,7 @@ class navBarBuilder extends StatelessWidget {
             );
           //if (value == 2) Navigator.of(context).push(...);
         },
-        backgroundColor: AppColors().green,
+        backgroundColor: AppColors().darkGreen,
         selectedItemColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

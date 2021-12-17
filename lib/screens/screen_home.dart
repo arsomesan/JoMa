@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           child: Text(
             'BEREICH WÄHLEN',
             textAlign: TextAlign.center,
-            style: AppTextStyles.appBar,
+            style: AppTextStyles.darkH1,
           ),
         ),
         backgroundColor: const Color.fromRGBO(129, 129, 129, 1),
