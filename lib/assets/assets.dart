@@ -35,11 +35,21 @@ zum Einbinden:
   - im style:-Attribut AppTextStyles.darkH1
 */
 class AppTextStyles {
-  static const darkH1 = TextStyle(fontFamily: AppFont.mainFont, fontSize: 35, fontWeight: FontWeight.bold);
-  static const darkH2 = TextStyle(fontFamily: AppFont.mainFont, fontSize: 23, fontWeight: FontWeight.bold);
-  static const darkH3 = TextStyle(fontFamily: AppFont.mainFont, fontSize: 21, fontWeight: FontWeight.bold);
-  static const darkMainText = TextStyle(fontFamily: AppFont.mainFont, fontSize: 16);
-  static const darkInfoText = TextStyle(fontFamily: AppFont.mainFont, fontSize: 14);
+  static const darkH1 = TextStyle(
+      fontFamily: AppFont.mainFont, fontSize: 35, fontWeight: FontWeight.bold);
+  static const darkH2 = TextStyle(
+      fontFamily: AppFont.mainFont, fontSize: 23, fontWeight: FontWeight.bold);
+  static const darkH3 = TextStyle(
+      fontFamily: AppFont.mainFont, fontSize: 21, fontWeight: FontWeight.bold);
+  static const darkMainText =
+      TextStyle(fontFamily: AppFont.mainFont, fontSize: 16);
+  static const darkInfoText =
+      TextStyle(fontFamily: AppFont.mainFont, fontSize: 14);
+  static const darkButtonText = TextStyle(
+      fontFamily: AppFont.mainFont,
+      fontSize: 14,
+      fontWeight: FontWeight.bold,
+      color: Colors.white);
 }
 
 // ---------- FARBEN ----------
@@ -52,7 +62,7 @@ class AppColors {
   Color darkPrimaryColor = const Color.fromRGBO(48, 69, 155, 1);
   Color darkSecondaryColor = const Color.fromRGBO(239, 157, 15, 1);
   Color darkRed = const Color.fromRGBO(177, 44, 51, 1);
-  Color darkGreen = const Color.fromRGBO(38, 127, 106, 1);
+  Color darkGreen = const Color.fromRGBO(38, 127, 106, 1.0);
   Color darkBlue = const Color.fromRGBO(33, 89, 127, 1);
   Color darkYellow = const Color.fromRGBO(226, 199, 10, 1);
   Color white = const Color.fromRGBO(255, 255, 255, 1);
@@ -78,7 +88,6 @@ zum Einbinden:
   - AppIcons().zurueckPfeil
 */
 class AppIcons {
-
   // generelle, (fast) auf jeder Seite zu findende Icons
   Icon zurueckPfeil = Icon(Icons.arrow_back, color: AppColors().white);
   Icon settingsWheel = Icon(Icons.settings, color: AppColors().white);
@@ -88,19 +97,27 @@ class AppIcons {
   Icon profile = Icon(Icons.person, color: AppColors().white);
 
   // Ansicht wählen
-  Icon nurBilder = Icon(Icons.photo_library, color: AppBackgroundColors().darkBackground);
-  Icon einfacheSprache = Icon(Icons.tag_faces, color: AppBackgroundColors().darkBackground);
+  Icon nurBilder =
+      Icon(Icons.photo_library, color: AppBackgroundColors().darkBackground);
+  Icon einfacheSprache =
+      Icon(Icons.tag_faces, color: AppBackgroundColors().darkBackground);
   Icon vollText = Icon(Icons.chat, color: AppBackgroundColors().darkBackground);
 
   // Home-Screen
-  Icon homeRedSection = Icon(Icons.build, color: AppBackgroundColors().darkBackground);
-  Icon homeGreenSection = Icon(Icons.local_florist, color: AppBackgroundColors().darkBackground); // Icons.goat würde auch gehen
-  Icon homeBlueSection = Icon(Icons.people, color: AppBackgroundColors().darkBackground);
-  Icon homeYellowSection = Icon(Icons.local_dining, color: AppBackgroundColors().darkBackground);
+  Icon homeRedSection =
+      Icon(Icons.build, color: AppBackgroundColors().darkBackground);
+  Icon homeGreenSection = Icon(Icons.local_florist,
+      color:
+          AppBackgroundColors().darkBackground); // Icons.goat würde auch gehen
+  Icon homeBlueSection =
+      Icon(Icons.people, color: AppBackgroundColors().darkBackground);
+  Icon homeYellowSection =
+      Icon(Icons.local_dining, color: AppBackgroundColors().darkBackground);
 
   // auf der jeweiligen Jobbereichsseite
   Icon redSection = Icon(Icons.build, color: AppColors().white);
-  Icon greenSection = Icon(Icons.local_florist, color: AppColors().white); // Icons.goat würde auch gehen
+  Icon greenSection = Icon(Icons.local_florist,
+      color: AppColors().white); // Icons.goat würde auch gehen
   Icon blueSection = Icon(Icons.people, color: AppColors().white);
   Icon yellowSection = Icon(Icons.local_dining, color: AppColors().white);
 
@@ -110,5 +127,47 @@ class AppIcons {
   Icon notifications = Icon(Icons.notifications_active);
   Icon imprint = Icon(Icons.speaker_notes);
   Icon privacy = Icon(Icons.security);
+}
 
+// ---------- BUTTONS ----------
+
+/* Diese Klasse beinhaltet einen standardisierten Button, der sich durch unsere App zieht (wie z.B. im Login-Screen)
+zum Einbinden:
+  - AppButton(text: [ hier den Text einfügen, der auf dem Button angezeigt werden soll ],
+              color: [ hier die Farbe einfügen, entweder AppColors().darkPrimaryColor oder AppColors().darkSecondaryColor ],
+              onPressed: [ hier die Callback-Routine einfügen, bspw. für den HomeScreen ->
+              () {Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));} ]
+              )
+*/
+class AppButton extends StatelessWidget {
+
+  final String text;
+  final Color color;
+  final VoidCallback onPressed;
+
+  AppButton(
+      {required this.text, required this.color, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(85, 10, 85, 10),
+      child: ElevatedButton(
+          onPressed: onPressed,
+          child: Text(
+            text,
+          ),
+          style: ButtonStyle(
+            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.fromLTRB(0, 20, 0, 20)),
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  color),
+              textStyle: MaterialStateProperty.all<TextStyle>(
+                  AppTextStyles.darkButtonText),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                      side:
+                          BorderSide(color: color))))),
+    );
+  }
 }

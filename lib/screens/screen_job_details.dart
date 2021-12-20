@@ -42,7 +42,13 @@ class ScreenJobDetails extends StatelessWidget {
             adressBuilder(),
             buildHorizontalDivider(),
             buildDistanceText(),
-            buildApplyButton(),
+            //buildApplyButton(),
+            AppButton(text: 'Bewerben', color: AppColors().darkSecondaryColor, onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+              }),
+            SizedBox(
+              height: 50.0,
+            ),
           ],
         ));
   }
