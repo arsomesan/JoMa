@@ -50,6 +50,7 @@ Wir sind ergeizig an der Sache dran und hoffen, mit dieser App Menschen mit beso
 - assets/icons/
 - assets/images/
 - assets/users.json
+- assets/profil.json
 
 ## Fonts
 Raleway
@@ -63,4 +64,4 @@ Raleway
 
 # Was fehlt noch:
 
-- lokales Speichern (shared_preferences)
+- Volle Implementierung von lokalem Speichern (shared_preferences)
