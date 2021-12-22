@@ -28,6 +28,7 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: [
           
+          /*
           GetBuilder<ViewController>(builder: (_){
             if(_.state == 1){
               return const Text("Mangopudding");
@@ -37,105 +38,121 @@ class HomeScreen extends StatelessWidget {
             }
 
           },),
+           */
+          RotationTransition(
+            turns: const AlwaysStoppedAnimation(45 / 360),
+            alignment: Alignment(-0.5, 1.5),
+            child: Flexible(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Flexible(
+                        child: GestureDetector(
+                          onTap: () {
+                            //Get.to(JobListTopicScreen());
+                            Get.to(() => JobListTopicScreen());
 
+                          },
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: AppColors().darkRed,
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(32.0),
+                              child: Container(
+                                width: 60.0,
+                                height: 60.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                        flex: 1),
+                    Flexible(
+                        child: GestureDetector(
+                          onTap: () {
+                            //Get.to(JobListTopicScreen());
+                            Get.to(() => JobListTopicScreen());
+                          },
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: AppColors().darkGreen,
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(32.0),
+                              child: Container(
+                                width: 60.0,
+                                height: 60.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                        flex: 1),
+                  ],
+                ),
+                flex: 1),
+          ),
 
-
-
-
-          Flexible(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Flexible(
+          RotationTransition(
+            turns:  const AlwaysStoppedAnimation(45 / 360),
+            alignment: Alignment(-0.5, -0.5),
+            child: Flexible(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Flexible(
                       child: GestureDetector(
                         onTap: () {
                           //Get.to(JobListTopicScreen());
                           Get.to(() => JobListTopicScreen());
+
                         },
-                        child: Container(
-                          color: const Color.fromRGBO(236, 234, 149, 1),
-                          margin: const EdgeInsets.fromLTRB(20, 10, 5, 5),
-                          child: Container(
-                              child: const Center(
-                                  child: Text(
-                                    "Lebensmittel & Service",
-                                  )),
-                              constraints: const BoxConstraints.expand()),
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: AppColors().darkBlue,
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(32.0),
+                            child: Container(
+                              width: 60.0,
+                              height: 60.0,
+                            ),
+                          ),
                         ),
                       ),
-                      flex: 1),
-                  Flexible(
-                    child: GestureDetector(
-                      onTap: () {
-                        //Get.to(JobListTopicScreen());
-                        Get.to(() => JobListTopicScreen());
-
-                      },
-                      child: Container(
-                        color: const Color.fromRGBO(96, 158, 120, 1),
-                        margin: const EdgeInsets.fromLTRB(5, 10, 20, 5),
-                        child: Container(
-                            child: const Center(
-                                child: Text(
-                                  "Gärtnerei & Landwirtschaft",
-                                )),
-                            constraints: const BoxConstraints.expand()),
-                      ),
-                    ),
-                      flex: 1),
-                ],
-              ),
-              flex: 1),
-          Flexible(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                    child: GestureDetector(
-                      onTap: () {
-                        //Get.to(JobListTopicScreen());
-                        Get.to(() => JobListTopicScreen());
-
-                      },
-                      child: Container(
-                        color: const Color.fromRGBO(176, 73, 75, 1),
-                        margin: const EdgeInsets.fromLTRB(20, 5, 5, 10),
-                        child: Container(
-                            child: const Center(
-                                child: Text(
-                                  "Handwerk und Technik",
-                                )),
-                            constraints: const BoxConstraints.expand()),
-                      ),
-                    ),
-                      flex: 1),
-                  Flexible(
-                    child: GestureDetector(
-                      onTap: () {
-                        //Get.to(JobListTopicScreen());
-                        Get.to(() => JobListTopicScreen());
-
-                      },
-                      child: Container(
-                        color: const Color.fromRGBO(87, 126, 154, 1),
-                        margin: const EdgeInsets.fromLTRB(5, 5, 20, 10),
-                        child: Container(
-                            child: const Center(
-                                child: Text(
-                                  "Soziales & Hauswirtschaft",
-                                )),
-                            constraints: const BoxConstraints.expand()),
-                      ),
-                    ),
-                      flex: 1),
-                ],
-              ),
-              flex: 1),
-
-
-
+                        flex: 1),
+                    Flexible(
+                        child: GestureDetector(
+                          onTap: () {
+                            //Get.to(JobListTopicScreen());
+                            Get.to(() => JobListTopicScreen());
+                          },
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: AppColors().darkYellow,
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(32.0),
+                              child: Container(
+                                width: 60.0,
+                                height: 60.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                        flex: 1),
+                  ],
+                ),
+                flex: 1),
+          ),
         ],
-
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
