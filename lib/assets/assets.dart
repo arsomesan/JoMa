@@ -85,7 +85,7 @@ class AppBackgroundColors {
 
 /* Diese Klasse beinhaltet die verwendeten Icons, z.B. für die jeweiligen Bereiche
 zum Einbinden:
-  - AppIcons().zurueckPfeil
+  - AppIcons().backArrow
 */
 class AppIcons {
   // generelle, (fast) auf jeder Seite zu findende Icons
