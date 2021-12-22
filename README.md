@@ -42,6 +42,7 @@ Wir sind ergeizig an der Sache dran und hoffen, mit dieser App Menschen mit beso
 - flutter_map: any  
 - animated_splash_screen: ^1.1.0
 - json_annotation: ^4.3.0
+- shared_preferences: ^2.0.9
 
 ## Assets
 - assets/

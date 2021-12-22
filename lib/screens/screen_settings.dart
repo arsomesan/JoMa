@@ -1,6 +1,6 @@
 import 'package:joma/screens//screen_settings_datenschutz.dart';
 import 'package:joma/screens/screen_login.dart';
-import 'package:joma/screens/screen_profil_settings.dart';
+import 'package:joma/screens/screen_profil_settings_loader.dart';
 import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_settings_impressum.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +41,7 @@ class Einstellungen extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ScreenProfilSettings()));
+                            builder: (context) => ProfilSettingsLoader()));
                         print('onTap Profil bearbeiten');
                       },
                       child: Container(

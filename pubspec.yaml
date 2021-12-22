@@ -51,6 +51,7 @@ dependencies:
 
   animated_splash_screen: ^1.1.0
   json_annotation: ^4.3.0
+  shared_preferences: ^2.0.9
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +82,7 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/users.json
+    - assets/profil.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

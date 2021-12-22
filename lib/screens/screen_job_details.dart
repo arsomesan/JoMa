@@ -1,6 +1,6 @@
 // Page-Imports
 import 'package:joma/screens/screen_home.dart';
-import 'package:joma/screens/screen_profil.dart';
+import 'package:joma/screens/screen_profil_loader.dart';
 import 'joblist_search_screen.dart';
 
 // Material-Imports
@@ -411,7 +411,7 @@ class navBarBuilder extends StatelessWidget {
           if (value == 1)
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const ScreenProfil()),
+              MaterialPageRoute(builder: (context) => const ProfilLoader()),
             );
           //if (value == 2) Navigator.of(context).push(...);
         },

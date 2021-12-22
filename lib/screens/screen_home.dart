@@ -5,7 +5,7 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/controllers/view_controller.dart';
 import 'package:joma/screens/joblist_search_screen.dart';
-import 'package:joma/screens/screen_profil.dart';
+import 'package:joma/screens/screen_profil_loader.dart';
 import 'joblist_topic_screen.dart';
 import 'package:joma/assets/assets.dart';
 
@@ -149,7 +149,7 @@ class HomeScreen extends StatelessWidget {
           onTap: (value) {
             if (value == 0) Navigator.push(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
             );
-            if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context) => const ScreenProfil()),
+            if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilLoader()),
             );
             //if (value == 2) Navigator.of(context).push(...);
           },

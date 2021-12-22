@@ -3,7 +3,7 @@ import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_job_details.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:joma/screens/screen_profil.dart';
+import 'package:joma/screens/screen_profil_loader.dart';
 
 import 'joblist_search_screen.dart';
 
@@ -118,7 +118,7 @@ class JobListTopicScreen extends StatelessWidget {
             );
             }
             if (value == 1) {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ScreenProfil()),
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilLoader()),
             );
             }
             //if (value == 2) Navigator.of(context).push(...);
