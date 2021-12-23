@@ -217,7 +217,7 @@ class HomeScreen extends StatelessWidget {
                 "UNSICHER?",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 25,
+                  fontSize: 27,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -235,7 +235,7 @@ class HomeScreen extends StatelessWidget {
                     "Wahl-O-Mat",
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: 16,
+                      fontSize: 17,
                   ),)),
             ],
           ),
