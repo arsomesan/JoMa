@@ -1,0 +1,61 @@
+[
+  {   "id":"000001",
+    "information": {
+      "category":"1",
+      "type":"Ausbildung",
+      "insertion_date":"2021-12-20T13:18:09.109Z",
+      "title":"Pflege der Grünflächen",
+      "description":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+      "graduation":"Hauptschulabschluss",
+      "abilities":[
+        {
+          "icon":"./public/icons/wrench.svg",
+          "title":"Handwerklichkeit"
+        },
+        {
+          "icon":"./public/icons/flower.svg",
+          "title":"Naturliebe"
+        },
+        {
+          "icon":"./public/icons/bulb.svg",
+          "title":"Kreativität"
+        }
+      ],
+      "images" : {
+        "banner":"https://www.pexels.com/de-de/foto/natur-mann-frau-feld-5231143/",
+        "work" : [
+          "https://www.pexels.com/de-de/foto/gesund-frau-arbeiten-landwirtschaft-5231216/",
+          "https://www.pexels.com/de-de/foto/lebensmittel-holz-kaffee-tasse-4750383/",
+          "https://www.pexels.com/de-de/foto/lebensmittel-mann-person-paar-5027619/",
+          "https://www.pexels.com/de-de/foto/mann-im-weissen-tragershirt-und-in-den-blauen-jeanshosen-mit-blattgeblase-im-freien-wahrend-des-tages-162564/",
+          "https://www.pexels.com/de-de/foto/hochwinkelansicht-des-liegens-auf-gras-258330/"
+        ]
+
+      }
+
+    },
+    "location": {
+      "adress": {
+        "name":"Gemeinnützige Perspektiva GmbH Fördergemeinschaft Theresienhof für Arbeit und Leben",
+        "street": {
+          "name":"Maberzeller Straße",
+          "number":"75"
+        },
+        "zip":"36041",
+        "city":"Fulda"
+      },
+      "coords" : {
+        "long":"9.649080",
+        "lat":"50.559500"
+      }
+    },
+    "contact": {
+      "name":"Maria Musterfrau",
+      "organization":"Gemeinnützige Perspektiva GmbH Fördergemeinschaft Theresienhof für Arbeit und Leben",
+      "phone":"+4966196893330",
+      "mail":"info@perspektiva-fulda.de",
+      "web":"https://perspektiva-fulda.de/"
+    }
+  }
+]
+
