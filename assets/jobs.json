@@ -7,19 +7,11 @@
       "title":"Pflege der Grünflächen",
       "description":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
       "graduation":"Hauptschulabschluss",
-      "abilities":[
-        {
-          "icon":"./public/icons/wrench.svg",
-          "title":"Handwerklichkeit"
-        },
-        {
-          "icon":"./public/icons/flower.svg",
-          "title":"Naturliebe"
-        },
-        {
-          "icon":"./public/icons/bulb.svg",
-          "title":"Kreativität"
-        }
+      "skills":[
+        100,
+        107,
+        153,
+        146
       ],
       "images" : {
         "banner":"https://www.pexels.com/de-de/foto/natur-mann-frau-feld-5231143/",
