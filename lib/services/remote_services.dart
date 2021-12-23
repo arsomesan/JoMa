@@ -7,7 +7,7 @@ class RemoteServices {
   static var client = http.Client();
   static Future<List<Profil>> fetchProfil() async {
     http.Response response =
-    await client.get(Uri.https("testerinooooo.bplaced.net", "/profil.json"));
+    await client.get(Uri.http("testerinooooo.bplaced.net", "/profil.json"));
 
     if (response.statusCode == 200) {
       var result = profilFromJson(response.body);
