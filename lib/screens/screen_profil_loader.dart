@@ -32,7 +32,7 @@ class _ProfilLoaderState extends State<ProfilLoader> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<List<Profil>>(
-          future: RemoteServices.fetchProfileFromAssets(),
+          future: RemoteServices.fetchProfil(),
 
           builder: (BuildContext context,
               AsyncSnapshot<List<Profil>> snapshot) {

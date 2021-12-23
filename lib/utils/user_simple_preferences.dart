@@ -42,7 +42,7 @@ class UserSimplePreferences {
 
   static Future init() async {
     _preferences = await SharedPreferences.getInstance();
-    _preferences.clear();
+    //_preferences.clear();
      //setVars(0);
   }
 
