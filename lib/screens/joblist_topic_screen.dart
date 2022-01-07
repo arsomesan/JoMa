@@ -1,4 +1,9 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
+import 'package:joma/controllers/jobs_controller.dart';
+import 'package:get/get.dart';
+import 'package:joma/model/job_model.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_job_details.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -8,7 +13,9 @@ import 'package:joma/screens/screen_profil_loader.dart';
 import 'joblist_search_screen.dart';
 
 class JobListTopicScreen extends StatelessWidget {
-  const JobListTopicScreen({Key? key}) : super(key: key);
+  final JobsController jobsController = Get.find();
+
+  JobListTopicScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +106,18 @@ class JobListTopicScreen extends StatelessWidget {
                 ),
               ),
             ),
-            for (int i = 0; i < 7; i++) generateSingleJobCard(_jobColors)
+
+            Obx(
+                  () {
+                var result = <Widget>[];
+
+                for (var job in jobsController.jobList) {
+                  result.add(generateSingleJobCard(_jobColors, job));
+                }
+
+                return Column(children: result);
+              },
+            ),
           ],
         ),
       ),
@@ -107,19 +125,27 @@ class JobListTopicScreen extends StatelessWidget {
         backgroundColor: Colors.black,
         child: Icon(Icons.home),
         onPressed: () {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+          );
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: 0,
           onTap: (value) {
             if (value == 0) {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
-            );
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const JobListSearchScreen()),
+              );
             }
             if (value == 1) {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilLoader()),
-            );
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilLoader()),
+              );
             }
             //if (value == 2) Navigator.of(context).push(...);
           },
@@ -134,15 +160,13 @@ class JobListTopicScreen extends StatelessWidget {
               icon: Icon(Icons.person),
               label: 'Profil',
             ),
-          ]
-      ),
-      floatingActionButtonLocation:
-      FloatingActionButtonLocation.centerDocked,
+          ]),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
 
-Widget generateSingleJobCard(List<Color> _jobColors) {
+Widget generateSingleJobCard(List<Color> _jobColors, Job job) {
   Color _color = _jobColors[0];
 
   return (Center(
@@ -163,7 +187,7 @@ Widget generateSingleJobCard(List<Color> _jobColors) {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Jobtitel',
+                      Text(job.title.toString(),
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
@@ -171,8 +195,7 @@ Widget generateSingleJobCard(List<Color> _jobColors) {
                       Container(height: 10),
                       Container(
                         width: 200,
-                        child: Text(
-                            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.'),
+                        child: Text(job.description.toString()),
                       ),
                     ],
                   )),
