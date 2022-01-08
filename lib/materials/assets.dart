@@ -22,8 +22,8 @@ zum Einbinden
   - z.B. als child-Attribut
 */
 class AppLogo {
-  Image darkLogo = Image.asset('materials/images/darkJomaLogo.png');
-  Image lightLogo = Image.asset('materials/images/lightJomaLogo.png');
+  Image darkLogo = Image.asset('assets/images/darkJomaLogo.png');
+  Image lightLogo = Image.asset('assets/images/lightJomaLogo.png');
 }
 
 // ---------- TEXT ----------

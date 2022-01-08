@@ -6,9 +6,11 @@ import 'dart:convert'; //Json
 import 'package:flutter/services.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:joma/screens/screen_login.dart';
+import 'package:joma/screens/screen_register.dart';
 import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_test.dart'; //Json
-import 'package:joma/assets/assets.dart';
+import 'package:joma/materials/assets.dart';
 
 class ScreenWelcome extends StatefulWidget {
   const ScreenWelcome({Key? key}) : super(key: key);
@@ -85,7 +87,7 @@ class _ScreenWelcome extends State<ScreenWelcome> {
         
             Container(
                 height: 50,
-                margin: const EdgeInsets.fromLTRB(15, 80, 15, 10),
+                margin: const EdgeInsets.fromLTRB(15, 350, 15, 10),
                 child: ElevatedButton(
                   child: Text('Registrieren'),
                   style: ElevatedButton.styleFrom(
@@ -102,7 +104,7 @@ class _ScreenWelcome extends State<ScreenWelcome> {
                         emailController.text, passwordController.text)) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SelectView()),
+                        MaterialPageRoute(builder: (context) => ScreenRegister()),
                       );
                     }
                   },
@@ -126,7 +128,7 @@ class _ScreenWelcome extends State<ScreenWelcome> {
                         emailController.text, passwordController.text)) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SelectView()),
+                        MaterialPageRoute(builder: (context) => ScreenLogin()),
                       );
                     }
                   },
