@@ -8,7 +8,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_test.dart'; //Json
-import 'package:joma/assets/assets.dart';
+import 'package:joma/materials/assets.dart';
 
 class ScreenLogin extends StatefulWidget {
   const ScreenLogin({Key? key}) : super(key: key);

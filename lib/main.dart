@@ -5,7 +5,7 @@ import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
 import 'package:joma/screens/screen_register.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
-import 'package:joma/assets/assets.dart';
+import 'package:joma/materials/assets.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

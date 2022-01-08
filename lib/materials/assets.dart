@@ -1,7 +1,7 @@
 /*
 Hellou zusammen! Diese Assets-Datei beinhaltet generische Elemente, die ihr problemlos in eure Seite einbauen könnt.
 Diese Datei müsst ihr lediglich mit der Codezeile
-  import 'package:joma/assets/assets.dart';
+  import 'package:joma/materials/assets.dart';
 importieren und könnt alles hieraus verwenden, so, wie wir es in Adobe XD vorgestaltet haben. Viel Spaß!
 */
 
@@ -22,8 +22,8 @@ zum Einbinden
   - z.B. als child-Attribut
 */
 class AppLogo {
-  Image darkLogo = Image.asset('assets/images/darkJomaLogo.png');
-  Image lightLogo = Image.asset('assets/images/lightJomaLogo.png');
+  Image darkLogo = Image.asset('materials/images/darkJomaLogo.png');
+  Image lightLogo = Image.asset('materials/images/lightJomaLogo.png');
 }
 
 // ---------- TEXT ----------
