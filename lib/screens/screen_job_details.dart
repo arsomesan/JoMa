@@ -14,8 +14,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
-// Asset-Imports
-import 'package:joma/assets/assets.dart';
+// Asset-Imports & Buttons
+import 'package:joma/materials/assets.dart';
+import 'package:joma/materials/button.dart';
 
 // FontAwesome-Import (not working atm)
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';

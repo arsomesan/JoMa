@@ -8,7 +8,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_test.dart'; //Json
-import 'package:joma/assets/assets.dart';
+import 'package:joma/materials/assets.dart';
 
 class ScreenLogin extends StatefulWidget {
   const ScreenLogin({Key? key}) : super(key: key);
@@ -20,8 +20,8 @@ class ScreenLogin extends StatefulWidget {
 class _ScreenLogin extends State<ScreenLogin> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  Color loginButtonColor = const Color(0xFF434343);
-  Color skipButtonColor = const Color(0xFFA1A1A1);
+  Color loginButtonColor = AppColors().darkPrimaryColor;
+  //Color skipButtonColor = const Color(0xFFA1A1A1);
   bool _obscurePwd = true;
 
   List _items = [];
@@ -54,29 +54,44 @@ class _ScreenLogin extends State<ScreenLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppBackgroundColors().darkBackground,
       body: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
+          padding: const EdgeInsets.all(15),
           child: ListView(children: <Widget>[
+          Container(
+            
+            height: 130,
+            color: AppColors().darkPrimaryColor,
+            child: Text('Anmelden'.toUpperCase(),
+            style:AppTextStyles.darkH1,
+              ),
+          ),
+           
             Container(
               alignment: Alignment.center,
-              padding: const EdgeInsets.all(10),
-              child: const Image(
-                image: AssetImage('assets/images/Logo.png'),
-              ),
+              padding: const EdgeInsets.all(5),
+              child: Padding (
+                padding: EdgeInsets.fromLTRB(100, 50, 100, 0),
+                child: AppLogo().darkLogo),
+              
             ),
             Container(
-                padding: const EdgeInsets.fromLTRB(30, 50, 30, 10),
-                child: TextField(
+               color: AppColors().white,
+               margin: const EdgeInsets.fromLTRB(10,50,10,10),
+                child: Padding( padding: EdgeInsets.all(0),
+                  child:TextField(
+                  style: TextStyle(backgroundColor: AppColors().white,),
                   controller: emailController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'E-Mail',
                   ),
-                )),
+                ))),
             Container(
-                padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
-                child: TextField(
+                margin: const EdgeInsets.all(10),
+                color: AppColors().white,
+                child: Padding( padding: EdgeInsets.all(0),
+                  child:TextField(
                   obscureText: _obscurePwd,
                   controller: passwordController,
                   decoration: InputDecoration(
@@ -92,18 +107,19 @@ class _ScreenLogin extends State<ScreenLogin> {
                           });
                         }),
                   ),
-                )),
+                ))),
             Container(
-                height: 60,
-                padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
+                height: 50,
+                margin: const EdgeInsets.fromLTRB(15, 140, 15, 0),
                 child: ElevatedButton(
-                  child: Text('Einloggen'.toUpperCase()),
+                  child: Text('Anmelden'),
                   style: ElevatedButton.styleFrom(
-                    primary: loginButtonColor,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+                    primary: AppColors().darkPrimaryColor,
                     onPrimary: Colors.white,
                     textStyle: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                         fontFamily: 'Raleway'),
                   ),
                   onPressed: () {
@@ -111,8 +127,7 @@ class _ScreenLogin extends State<ScreenLogin> {
                         emailController.text, passwordController.text)) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => SelectView()),
+                        MaterialPageRoute(builder: (context) => SelectView()),
                       );
                     }
                   },
@@ -123,39 +138,15 @@ class _ScreenLogin extends State<ScreenLogin> {
                 child: RichText(
                   text: TextSpan(children: [
                     TextSpan(
-                      text: 'Du hast keinen Account? ',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Raleway',
-                          fontWeight: FontWeight.bold),
-                    ),
-                    TextSpan(
-                        text: 'Hier Registrieren',
-                        style: TextStyle(color: Colors.blue),
+                        text: 'Passwort vergessen?',
+                        style: TextStyle(color: Colors.white),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             print('Account erstellen.');
                           })
                   ]),
                 )),
-            Container(
-                height: 100,
-                padding: EdgeInsets.fromLTRB(30, 40, 30, 10),
-                child: ElevatedButton(
-                    child: Text('Überspringen'.toUpperCase()),
-                    style: ElevatedButton.styleFrom(
-                      primary: skipButtonColor,
-                      onPrimary: Colors.black,
-                      textStyle: TextStyle(
-                          fontSize: 24,
-                          fontFamily: 'Raleway',
-                          fontWeight: FontWeight.bold),
-                    ),
-                    onPressed: () {
-                      print('Überspringen');
-                      //Get.to(SelectView());
-                      Get.to(() => SelectView());
-                    }))
+            
           ])),
     );
   }

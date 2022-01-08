@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
+import 'package:joma/screens/screen_register.dart';
+import 'package:joma/screens/screen_welcome.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
+import 'package:joma/materials/assets.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,31 +24,45 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
+        //------------ APP BAR THEME ---------------//
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          titleTextStyle:  TextStyle(
+          color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700,),
+          backgroundColor: Color(0xFF30459B),
+          toolbarHeight: 50,
+          // shape: RoundedRectangleBorder(
+          // side: BorderSide(width: 3, color: Colors.orange),
+          //       borderRadius: BorderRadius.vertical(
+          //       bottom: Radius.elliptical(850, 100),
+          //       ),
+          // ),
+        ),
       ),
+    
+      
+
+
       home:Center(
       child: AnimatedSplashScreen(
       splash: Image.asset(
-      'assets/images/Logo.png',
+      'assets/images/darkJomaLogo.png',
       ),
-      nextScreen: ScreenLogin(),
+      nextScreen: ScreenWelcome(),
       splashTransition: SplashTransition.rotationTransition,
-      backgroundColor: Colors.amber,
+      backgroundColor: AppColors().darkSecondaryColor,
       ),
+      
 
     //home: const ScreenLogin(),
-      //home: const HomeScreen(),
-    ),
+    //home: const HomeScreen(),
+      ),
     );
+    
+  
+
+
+ 
   }
 }
-
