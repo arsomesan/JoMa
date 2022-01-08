@@ -40,7 +40,7 @@ class AppTextStyles {
   static const darkH2 = TextStyle(
       fontFamily: AppFont.mainFont, fontSize: 23, fontWeight: FontWeight.bold);
   static const darkH3 = TextStyle(
-      fontFamily: AppFont.mainFont, fontSize: 21, fontWeight: FontWeight.bold);
+      fontFamily: AppFont.mainFont, fontSize: 21, fontWeight: FontWeight.bold, color: Colors.white);
   static const darkMainText = TextStyle(
       fontFamily: AppFont.mainFont, fontSize: 16);
   static const darkInfoText = TextStyle(
@@ -155,5 +155,4 @@ class AppIcons {
   Icon privacy = Icon(
       Icons.security);
 }
-
-
+//

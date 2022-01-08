@@ -4,6 +4,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
 import 'package:joma/screens/screen_register.dart';
+import 'package:joma/screens/screen_welcome.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
 import 'package:joma/assets/assets.dart';
 
@@ -23,21 +24,44 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        //------------ APP BAR THEME ---------------//
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          titleTextStyle:  TextStyle(
+          color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700,),
+          backgroundColor: Color(0xFF30459B),
+          toolbarHeight: 50,
+          // shape: RoundedRectangleBorder(
+          // side: BorderSide(width: 3, color: Colors.orange),
+          //       borderRadius: BorderRadius.vertical(
+          //       bottom: Radius.elliptical(850, 100),
+          //       ),
+          // ),
+        ),
       ),
+    
+      
+
+
       home:Center(
       child: AnimatedSplashScreen(
       splash: Image.asset(
       'assets/images/darkJomaLogo.png',
       ),
-      nextScreen: ScreenRegister(),
+      nextScreen: ScreenWelcome(),
       splashTransition: SplashTransition.rotationTransition,
       backgroundColor: AppColors().darkSecondaryColor,
       ),
+      
 
     //home: const ScreenLogin(),
-      //home: const HomeScreen(),
-    ),
+    //home: const HomeScreen(),
+      ),
     );
+    
+  
+
+
+ 
   }
 }
-

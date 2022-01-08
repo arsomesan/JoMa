@@ -21,8 +21,8 @@ class _ScreenWelcome extends State<ScreenWelcome> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   Color loginButtonColor = AppColors().darkPrimaryColor;
-  //Color skipButtonColor = const Color(0xFFA1A1A1);
-  bool _obscurePwd = true;
+  Color registerButtonColor = AppColors().darkSecondaryColor;
+  //bool _obscurePwd = true;
 
   List _items = [];
 
@@ -54,58 +54,62 @@ class _ScreenWelcome extends State<ScreenWelcome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+                appBar: AppBar(
+                  title: Text('Willkommen \nbei Joma'.toUpperCase(),
+                          style: AppTextStyles.darkH1,
+                          textAlign: TextAlign.left,
+                          ),
+                ),
       backgroundColor: AppBackgroundColors().darkBackground,
       body: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(0),
           child: ListView(children: <Widget>[
-            Text('Willkommen \nbei Joma'.toUpperCase()
-            ),
-
             Container(
               alignment: Alignment.center,
-              padding: const EdgeInsets.all(5),
-              child: Padding (
-                padding: EdgeInsets.fromLTRB(100, 50, 100, 0),
-                child: AppLogo().darkLogo),
+              padding: const EdgeInsets.all(0),
+              decoration: BoxDecoration(
+                color: Color(0xFF30459B),
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.zero, 
+                  bottom: Radius.elliptical(850, 200),
+                  ),
+              ),
+
               
+              child: Padding (
+                padding: EdgeInsets.fromLTRB(150, 40, 150, 0),
+                child: AppLogo().darkLogo),
             ),
-            Container(
-               color: AppColors().white,
-               margin: const EdgeInsets.fromLTRB(10,50,10,10),
-                child: Padding( padding: EdgeInsets.all(0),
-                  child:TextField(
-                  style: TextStyle(backgroundColor: AppColors().white,),
-                  controller: emailController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'E-Mail',
-                  ),
-                ))),
-            Container(
-                margin: const EdgeInsets.all(10),
-                color: AppColors().white,
-                child: Padding( padding: EdgeInsets.all(0),
-                  child:TextField(
-                  obscureText: _obscurePwd,
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    labelText: 'Passwort',
-                    suffixIcon: IconButton(
-                        icon: Icon(_obscurePwd
-                            ? Icons.visibility
-                            : Icons.visibility_off),
-                        onPressed: () {
-                          setState(() {
-                            _obscurePwd = !_obscurePwd;
-                          });
-                        }),
-                  ),
-                ))),
+            
+            
+        
             Container(
                 height: 50,
-                margin: const EdgeInsets.fromLTRB(15, 140, 15, 0),
+                margin: const EdgeInsets.fromLTRB(15, 80, 15, 10),
+                child: ElevatedButton(
+                  child: Text('Registrieren'),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+                    primary: AppColors().darkSecondaryColor,
+                    onPrimary: Colors.white,
+                    textStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Raleway'),
+                  ),
+                  onPressed: () {
+                    if (validate(
+                        emailController.text, passwordController.text)) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SelectView()),
+                      );
+                    }
+                  },
+                )),
+                Container(
+                height: 50,
+                margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
                 child: ElevatedButton(
                   child: Text('Anmelden'),
                   style: ElevatedButton.styleFrom(
@@ -127,22 +131,10 @@ class _ScreenWelcome extends State<ScreenWelcome> {
                     }
                   },
                 )),
-            Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.fromLTRB(30, 25, 30, 10),
-                child: RichText(
-                  text: TextSpan(children: [
-                    TextSpan(
-                        text: 'Passwort vergessen?',
-                        style: TextStyle(color: Colors.white),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            print('Account erstellen.');
-                          })
-                  ]),
-                )),
+           
             
           ])),
     );
+    
   }
 }

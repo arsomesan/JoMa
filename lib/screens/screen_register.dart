@@ -21,7 +21,7 @@ class _ScreenRegister extends State<ScreenRegister> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   Color loginButtonColor = AppColors().darkPrimaryColor;
-  Color registerButtonColor = AppColors().darkPrimaryColor;
+  Color registerButtonColor = AppColors().darkSecondaryColor;
   bool _obscurePwd = true;
 
   List _items = [];
@@ -42,12 +42,12 @@ class _ScreenRegister extends State<ScreenRegister> {
         String pwdTmp = _items[i]['pwd'].toString();
         if (emailTmp == emailController.text &&
             pwdTmp == passwordController.text) {
-          print("Login erfolgreich");
+          print("Registrieren erfolgreich");
           return true;
         }
       }
     }
-    print("Login nicht erfolgreich");
+    print("Registrieren nicht erfolgreich");
     return false;
   }
 
@@ -56,58 +56,100 @@ class _ScreenRegister extends State<ScreenRegister> {
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
       body: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(0),
           child: ListView(children: <Widget>[
-
-           
             Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(5),
-              child: Padding (
-                padding: EdgeInsets.fromLTRB(100, 50, 100, 0),
-                child: AppLogo().darkLogo),
-              
+              height: 150,
+              padding: const EdgeInsets.fromLTRB(10, 40, 0, 0),
+              color: AppColors().darkPrimaryColor,
+              child: Text(
+                'Registrieren'.toUpperCase(),
+                style: AppTextStyles.darkH1,
+              ),
+            ),
+            // ------- LOGO
+            // Container(
+            //   alignment: Alignment.center,
+            //   padding: const EdgeInsets.all(5),
+            //   child: Padding(
+            //       padding: EdgeInsets.fromLTRB(100, 50, 100, 0),
+            //       child: AppLogo().darkLogo),
+            // ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+              child: Text(
+                'Der Job maßgeschneidert für dich!',
+                textAlign: TextAlign.center,
+                style: AppTextStyles.darkH3,
+              ),
             ),
             Container(
-               color: AppColors().white,
-               margin: const EdgeInsets.fromLTRB(10,50,10,10),
-                child: Padding( padding: EdgeInsets.all(0),
-                  child:TextField(
-                  style: TextStyle(backgroundColor: AppColors().white,),
-                  controller: emailController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'E-Mail',
-                  ),
-                ))),
+                color: AppColors().white,
+                margin: const EdgeInsets.fromLTRB(10, 25, 10, 10),
+                child: Padding(
+                    padding: EdgeInsets.all(0),
+                    child: TextField(
+                      style: TextStyle(
+                        backgroundColor: AppColors().white,
+                      ),
+                      controller: emailController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'E-Mail',
+                      ),
+                    ))),
             Container(
                 margin: const EdgeInsets.all(10),
                 color: AppColors().white,
-                child: Padding( padding: EdgeInsets.all(0),
-                  child:TextField(
-                  obscureText: _obscurePwd,
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    labelText: 'Passwort',
-                    suffixIcon: IconButton(
-                        icon: Icon(_obscurePwd
-                            ? Icons.visibility
-                            : Icons.visibility_off),
-                        onPressed: () {
-                          setState(() {
-                            _obscurePwd = !_obscurePwd;
-                          });
-                        }),
-                  ),
-                ))),
+                child: Padding(
+                    padding: EdgeInsets.all(0),
+                    child: TextField(
+                      obscureText: _obscurePwd,
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                        border: const OutlineInputBorder(),
+                        labelText: 'Passwort',
+                        suffixIcon: IconButton(
+                            icon: Icon(_obscurePwd
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            onPressed: () {
+                              setState(() {
+                                _obscurePwd = !_obscurePwd;
+                              });
+                            }),
+                      ),
+                    ))),
+            Container(
+                margin: const EdgeInsets.all(10),
+                color: AppColors().white,
+                child: Padding(
+                    padding: EdgeInsets.all(0),
+                    child: TextField(
+                      obscureText: _obscurePwd,
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                        border: const OutlineInputBorder(),
+                        labelText: 'Passwort wiederholen',
+                        suffixIcon: IconButton(
+                            icon: Icon(_obscurePwd
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            onPressed: () {
+                              setState(() {
+                                _obscurePwd = !_obscurePwd;
+                              });
+                            }),
+                      ),
+                    ))),
             Container(
                 height: 50,
-                margin: const EdgeInsets.fromLTRB(15, 140, 15, 0),
+                margin: const EdgeInsets.fromLTRB(15, 90, 15, 0),
                 child: ElevatedButton(
                   child: Text('Registrieren'),
                   style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40)),
                     primary: AppColors().darkPrimaryColor,
                     onPrimary: Colors.white,
                     textStyle: TextStyle(
@@ -131,15 +173,14 @@ class _ScreenRegister extends State<ScreenRegister> {
                 child: RichText(
                   text: TextSpan(children: [
                     TextSpan(
-                        text: 'Passwort vergessen?',
+                        text: 'by creating an account you agree to joma.',
                         style: TextStyle(color: Colors.white),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            print('Account erstellen.');
+                            print('Datenschutz.');
                           })
                   ]),
                 )),
-            
           ])),
     );
   }
