@@ -1,22 +1,22 @@
 [
   {
     "id":"1",
-    "icon":"/asstes/icons/smile.svg",
+    "icon":"/assets/icons/smile.svg",
     "title":"Motivation"
   },
   {
     "id":"2",
-    "icon":"/asstes/icons/tree.svg",
+    "icon":"/assets/icons/tree.svg",
     "title":"Naturnähe"
   },
   {
     "id":"3",
-    "icon":"/asstes/icons/shoe.svg",
+    "icon":"/assets/icons/shoe.svg",
     "title":"Mobilität"
   },
   {
     "id":"4",
-    "icon":"/asstes/icons/strong.svg",
+    "icon":"/assets/icons/strong.svg",
     "title":"Eigenständiges Arbeiten"
   }
 ]
