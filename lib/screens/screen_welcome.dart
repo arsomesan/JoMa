@@ -10,14 +10,14 @@ import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_test.dart'; //Json
 import 'package:joma/assets/assets.dart';
 
-class ScreenLogin extends StatefulWidget {
-  const ScreenLogin({Key? key}) : super(key: key);
+class ScreenWelcome extends StatefulWidget {
+  const ScreenWelcome({Key? key}) : super(key: key);
 
   @override
-  _ScreenLogin createState() => _ScreenLogin();
+  _ScreenWelcome createState() => _ScreenWelcome();
 }
 
-class _ScreenLogin extends State<ScreenLogin> {
+class _ScreenWelcome extends State<ScreenWelcome> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   Color loginButtonColor = AppColors().darkPrimaryColor;
@@ -54,19 +54,14 @@ class _ScreenLogin extends State<ScreenLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       backgroundColor: AppBackgroundColors().darkBackground,
       body: Padding(
           padding: const EdgeInsets.all(15),
           child: ListView(children: <Widget>[
-          Container(
-            
-            height: 130,
-            color: AppColors().darkPrimaryColor,
-            child: Text('Anmelden'.toUpperCase(),
-            style:AppTextStyles.darkH1,
-              ),
-          ),
-           
+            Text('Willkommen \nbei Joma'.toUpperCase()
+            ),
+
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.all(5),

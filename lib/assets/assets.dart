@@ -36,7 +36,7 @@ zum Einbinden:
 */
 class AppTextStyles {
   static const darkH1 = TextStyle(
-      fontFamily: AppFont.mainFont, fontSize: 25, fontWeight: FontWeight.bold);
+      fontFamily: AppFont.mainFont, fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white);
   static const darkH2 = TextStyle(
       fontFamily: AppFont.mainFont, fontSize: 23, fontWeight: FontWeight.bold);
   static const darkH3 = TextStyle(
@@ -155,3 +155,5 @@ class AppIcons {
   Icon privacy = Icon(
       Icons.security);
 }
+
+

@@ -10,18 +10,18 @@ import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_test.dart'; //Json
 import 'package:joma/assets/assets.dart';
 
-class ScreenLogin extends StatefulWidget {
-  const ScreenLogin({Key? key}) : super(key: key);
+class ScreenRegister extends StatefulWidget {
+  const ScreenRegister({Key? key}) : super(key: key);
 
   @override
-  _ScreenLogin createState() => _ScreenLogin();
+  _ScreenRegister createState() => _ScreenRegister();
 }
 
-class _ScreenLogin extends State<ScreenLogin> {
+class _ScreenRegister extends State<ScreenRegister> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   Color loginButtonColor = AppColors().darkPrimaryColor;
-  //Color skipButtonColor = const Color(0xFFA1A1A1);
+  Color registerButtonColor = AppColors().darkPrimaryColor;
   bool _obscurePwd = true;
 
   List _items = [];
@@ -58,14 +58,7 @@ class _ScreenLogin extends State<ScreenLogin> {
       body: Padding(
           padding: const EdgeInsets.all(15),
           child: ListView(children: <Widget>[
-          Container(
-            
-            height: 130,
-            color: AppColors().darkPrimaryColor,
-            child: Text('Anmelden'.toUpperCase(),
-            style:AppTextStyles.darkH1,
-              ),
-          ),
+
            
             Container(
               alignment: Alignment.center,
@@ -112,7 +105,7 @@ class _ScreenLogin extends State<ScreenLogin> {
                 height: 50,
                 margin: const EdgeInsets.fromLTRB(15, 140, 15, 0),
                 child: ElevatedButton(
-                  child: Text('Anmelden'),
+                  child: Text('Registrieren'),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
                     primary: AppColors().darkPrimaryColor,

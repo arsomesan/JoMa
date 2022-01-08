@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
+import 'package:joma/screens/screen_register.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
+import 'package:joma/assets/assets.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,11 +27,11 @@ class MyApp extends StatelessWidget {
       home:Center(
       child: AnimatedSplashScreen(
       splash: Image.asset(
-      'assets/images/Logo.png',
+      'assets/images/darkJomaLogo.png',
       ),
-      nextScreen: ScreenLogin(),
+      nextScreen: ScreenRegister(),
       splashTransition: SplashTransition.rotationTransition,
-      backgroundColor: Colors.amber,
+      backgroundColor: AppColors().darkSecondaryColor,
       ),
 
     //home: const ScreenLogin(),
