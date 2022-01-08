@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:joma/assets/assets.dart';
+import 'package:joma/materials/assets.dart';
 
 // ---------- BUTTONS ----------
 

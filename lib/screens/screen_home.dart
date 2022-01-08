@@ -8,7 +8,7 @@ import 'package:joma/screens/joblist_search_screen.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_settings.dart';
 import 'joblist_topic_screen.dart';
-import 'package:joma/assets/assets.dart';
+import 'package:joma/materials/assets.dart';
 
 class HomeScreen extends StatelessWidget {
   final ViewController viewController = Get.put(ViewController());
