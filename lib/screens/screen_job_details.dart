@@ -1,4 +1,5 @@
 // Page-Imports
+import 'package:joma/materials/card.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'joblist_search_screen.dart';
@@ -36,6 +37,9 @@ class ScreenJobDetails extends StatelessWidget {
             titleImageBuilder(),
             titleTextBuilder(),
             carouselSliderBuilder(),
+            AppCard(jobTitle: 'Fischverkäufer', jobDescription: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.', color: AppColors().darkRed, onPressed: () {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    }),
             jobDescriptionBuilder(),
             skillBackgroundBuilder(),
             graduationBuilder(),
