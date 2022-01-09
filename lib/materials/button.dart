@@ -21,7 +21,7 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(85, 10, 85, 10),
+      padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
       child: ElevatedButton(
           onPressed: onPressed,
           child: Text(
@@ -29,13 +29,13 @@ class AppButton extends StatelessWidget {
           ),
           style: ButtonStyle(
               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                  const EdgeInsets.fromLTRB(0, 20, 0, 20)),
+                  const EdgeInsets.fromLTRB(0, 25, 0, 25)),
               backgroundColor: MaterialStateProperty.all<Color>(color),
               textStyle: MaterialStateProperty.all<TextStyle>(
                   AppTextStyles.darkButtonText),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
+                      borderRadius: BorderRadius.circular(20.0),
                       side: BorderSide(color: color))))),
     );
   }

@@ -1,9 +1,13 @@
+import 'package:joma/materials/button.dart';
 import 'package:joma/screens//screen_settings_datenschutz.dart';
 import 'package:joma/screens/screen_login.dart';
 import 'package:joma/screens/screen_profil_settings_loader.dart';
 import 'package:joma/screens/screen_select_view.dart';
+import 'package:joma/screens/screen_settings_datenschutz.dart';
 import 'package:joma/screens/screen_settings_impressum.dart';
 import 'package:flutter/material.dart';
+import 'package:joma/materials/assets.dart';
+import 'package:joma/screens/screen_welcome.dart';
 
 class Einstellungen extends StatelessWidget {
   const Einstellungen({Key? key}) : super(key: key);
@@ -11,26 +15,93 @@ class Einstellungen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("EINSTELLUNGEN"),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_sharp),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        backgroundColor: const Color.fromRGBO(129, 129, 129, 1),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(200.0),
+          child: AppBar(
+            title: Text('Einstellungen'.toUpperCase()),
+            centerTitle: true,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(180),
+              )
+            ),
+            backgroundColor: AppColors().darkPrimaryColor,
+          ),
       ),
 
-      backgroundColor: const Color(0xFFF4F2F2),
-      body: Center(
-        child: SizedBox(
+      backgroundColor: AppBackgroundColors().darkBackground,
+      body: ListView (
+        children: [
+          Container (
+            margin: EdgeInsets.fromLTRB(120, 0, 120,20),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(180),
+              border: Border.all(width: 4, color: AppColors().darkSecondaryColor),
+              color: AppColors().white
+            ),
+            child: Icon(
+              Icons.settings,
+              color: AppColors().darkPrimaryColor,
+              size: 150,
+            ),
+          ),
+          AppButton(
+            text: 'Profil bearbeiten',
+            color: AppColors().darkPrimaryColor,
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader()));
+            }
+          ),
+          AppButton(
+              // icon: AppIcons().profile,
+              text: 'Ansicht wählen',
+              color: AppColors().darkPrimaryColor,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SelectView()));
+              }
+          ),
+          AppButton(
+              text: 'Mitteilungen',
+              color: AppColors().darkPrimaryColor,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader()));
+              }
+          ),
+          AppButton(
+              text: 'Impressum',
+              color: AppColors().darkPrimaryColor,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Impressum()));
+              }
+          ),
+          AppButton(
+              text: 'Datenschutz',
+              color: AppColors().darkPrimaryColor,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Impressum()));
+              }
+          ),
+          AppButton(
+              text: 'Abmelden',
+              color: AppColors().darkSecondaryColor,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenWelcome()));
+              }
+          ),
+        ],
+        /*child: SizedBox(
           width: 390.0,
           height: 844.0,
           child: Stack(
             children: <Widget>[
-// Group: Gruppe 1
+            // Group: Gruppe 1
 
               SizedBox(
                 width: 390.0,
@@ -241,8 +312,9 @@ class Einstellungen extends StatelessWidget {
               ),
             ],
           ),
-        ),
+        ),*/
       ),
     );
   }
 }
+
