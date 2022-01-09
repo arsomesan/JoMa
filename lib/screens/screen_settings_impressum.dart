@@ -26,7 +26,6 @@ class Impressum extends StatelessWidget {
             alignment: Alignment.topCenter,
             children: <Widget>[
 // Group: Gruppe 4
-
               SizedBox(
                 width: 390.0,
                 height: 844.0,

@@ -26,7 +26,6 @@ class Datenschutz extends StatelessWidget {
             alignment: Alignment.topCenter,
             children: <Widget>[
 // Group: Gruppe 5
-
               SizedBox(
                 width: 390.0,
                 height: 844.0,
