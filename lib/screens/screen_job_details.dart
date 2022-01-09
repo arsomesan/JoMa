@@ -77,12 +77,9 @@ Widget buildScreen(BuildContext context, List<Skill>? skills, Job job) {
           titleImageBuilder(job),
           titleTextBuilder(job: job),
           carouselSliderBuilder(job: job),
-
-          /* TODO: AppCard() should be in the joblist_topic_screen?
-            AppCard(jobTitle: 'Fischverkäufer', jobDescription: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.', color: AppColors().darkRed, onPressed: () {
+          AppCard(jobTitle: 'Fischverkäufer', jobDescription: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.', color: AppColors().darkRed, onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-           }), */
-
+           }),
           jobDescriptionBuilder(job),
           skillBackgroundBuilder(job: job, skills: skills),
           graduationBuilder(job),

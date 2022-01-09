@@ -24,6 +24,11 @@ class AppCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(
+            Radius.circular(100),
+          )
+        ),
         margin: EdgeInsets.only(top: 20),
         child: Card(
           child: SizedBox(
