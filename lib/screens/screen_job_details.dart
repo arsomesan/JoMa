@@ -1,6 +1,9 @@
 // Page-Imports
+import 'package:joma/model/job_model.dart';
+import 'package:joma/model/skill_model.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
+import 'package:joma/services/remote_services.dart';
 import 'joblist_search_screen.dart';
 
 // Material-Imports
@@ -21,11 +24,45 @@ import 'package:joma/materials/button.dart';
 // FontAwesome-Import (not working atm)
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ScreenJobDetails extends StatelessWidget {
-  const ScreenJobDetails({Key? key}) : super(key: key);
+class ScreenJobDetails extends StatefulWidget {
+  const ScreenJobDetails({Key? key, required this.job}) : super(key: key);
+  final Job job;
+
+  @override
+  skillsLoaderState createState() => skillsLoaderState(job);
+}
+
+class skillsLoaderState extends State<ScreenJobDetails> {
+  skillsLoaderState(this.job);
+  final Job job;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      body: FutureBuilder<List<Skill>>(
+          future: RemoteServices.fetchSkills(),
+          builder: (BuildContext context, AsyncSnapshot<List<Skill>> snapshot) {
+            if (snapshot.hasData) {
+              return buildScreen(context, snapshot.data, job);
+            } else if (snapshot.hasError) {
+              // TODO handle error, if data wasn't successfully loaded
+            } else {}
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }),
+    );
+  }
+}
+
+  @override
+  Widget buildScreen(BuildContext context, List<Skill>? skills, Job job) {
     return Scaffold(
         appBar: appBarBuilder(),
         floatingActionButton: homeButtonBuilder(),
@@ -33,20 +70,24 @@ class ScreenJobDetails extends StatelessWidget {
         bottomNavigationBar: navBarBuilder(),
         body: ListView(
           children: [
-            titleImageBuilder(),
-            titleTextBuilder(),
-            carouselSliderBuilder(),
-            jobDescriptionBuilder(),
-            skillBackgroundBuilder(),
-            graduationBuilder(),
+            titleImageBuilder(job),
+            titleTextBuilder(job: job),
+            carouselSliderBuilder(job: job),
+            jobDescriptionBuilder(job),
+            skillBackgroundBuilder(job: job, skills: skills),
+            graduationBuilder(job),
             mapBuilder(),
-            adressBuilder(),
+            adressBuilder(job),
             buildHorizontalDivider(),
             buildDistanceText(),
             //buildApplyButton(),
-            AppButton(text: 'Bewerben', color: AppColors().darkSecondaryColor, onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-              }),
+            AppButton(
+                text: 'Bewerben',
+                color: AppColors().darkSecondaryColor,
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                }),
             SizedBox(
               height: 50.0,
             ),
@@ -70,14 +111,14 @@ class ScreenJobDetails extends StatelessWidget {
 
 // ---------- TITELBILD ----------
 
-  Widget titleImageBuilder() {
+  Widget titleImageBuilder(Job job) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Image(
           image: NetworkImage(
-            'https://www.rose-galabau.de/wp-content/uploads/2021/10/Rose-landschaftsbau-gruenflaechenpflege-gewerbliche-landschaftsgaertner-pflasterarbeiten.jp_.jpg',
+            job.images!.banner.toString(),
           ),
         ),
       ),
@@ -86,13 +127,13 @@ class ScreenJobDetails extends StatelessWidget {
 
 // ---------- JOB-BESCHREIBUNG ----------
 
-  Widget jobDescriptionBuilder() {
+  Widget jobDescriptionBuilder(Job job) {
     return Padding(
       padding: EdgeInsets.fromLTRB(44, 10, 44, 0),
       child: Align(
         alignment: Alignment.center,
         child: Text(
-          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+          job.description.toString(),
           style: AppTextStyles.darkMainText,
         ),
       ),
@@ -102,33 +143,33 @@ class ScreenJobDetails extends StatelessWidget {
 // ---------- FÄHIGKEITEN ----------
 
   // Dieses Widget baut eine Reihe von Fähigkeiten auf
-  Widget buildSkillCards() {
+  Widget buildSkillCards(Job job, List<Skill>? skills) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(child: buildSkill()),
-          Expanded(child: buildSkill()),
-          Expanded(child: buildSkill()),
-          Expanded(child: buildSkill()),
+          for(int i = 0; i < job.skills!.length; i++) Expanded(child: buildSkill(skills!, skills.indexWhere((skill) => skill.id == job.skills![i])))
         ],
       ),
     );
   }
 
   // Dieses Widget baut eine einzelne Fähigkeit auf
-  Widget buildSkill() => Column(
+  Widget buildSkill(List<Skill> skills, int skillID) =>
+
+      Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           buildBox(child: Icon(Icons.build)),
           const SizedBox(height: 5),
           Text(
-            'Fähigkeit',
+            skills.elementAt(skillID).title.toString(),
             style: AppTextStyles.darkMainText,
           )
         ],
       );
+
 
   // Dieses Widget baut einen Kreis als Hintergrund um das Fähigkeits-Icon auf
   Widget buildBox({required Widget child}) => Container(
@@ -143,7 +184,7 @@ class ScreenJobDetails extends StatelessWidget {
 // ---------- SCHULABSCHLUSS ----------
 
   // Dieses Widget baut die Schulabschluss-Anzeige auf
-  Widget graduationBuilder() {
+  Widget graduationBuilder(Job job) {
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
       child: Row(
@@ -155,7 +196,7 @@ class ScreenJobDetails extends StatelessWidget {
               buildSchoolBox(child: Icon(Icons.school, size: 50)),
               const SizedBox(height: 10),
               Text(
-                'Hauptschulabschluss',
+                job.requiredGraduation.toString(),
                 style: AppTextStyles.darkH1,
               )
             ],
@@ -190,7 +231,7 @@ class ScreenJobDetails extends StatelessWidget {
 // ---------- ADRESSE ----------
 
   // Dieses Widget baut die Adresszeile auf
-  Widget adressBuilder() {
+  Widget adressBuilder(Job job) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
       child: Row(
@@ -206,15 +247,15 @@ class ScreenJobDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Hochschule Fulda',
+                job.company.toString(),
                 style: AppTextStyles.darkMainText,
               ),
               Text(
-                'Leipziger Straße 123',
+                job.address!.street.toString(),
                 style: AppTextStyles.darkMainText,
               ),
               Text(
-                '36037 Fulda',
+               job.address!.zip.toString() + ' ' + job.address!.city.toString(),
                 style: AppTextStyles.darkMainText,
               ),
             ],
@@ -280,15 +321,15 @@ class ScreenJobDetails extends StatelessWidget {
       ),
     );
   }
-}
+
 
 // ---------- TITEL ----------
 
 // Diese Klasse baut den Titel auf
 class titleTextBuilder extends StatelessWidget {
-  const titleTextBuilder({
-    Key? key,
-  }) : super(key: key);
+  final Job job;
+
+  const titleTextBuilder({Key? key, required this.job}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -304,7 +345,7 @@ class titleTextBuilder extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           child: new Center(
             child: new Text(
-              "Pflege der Grünflächen",
+              job.title.toString(),
               style: AppTextStyles.darkH2,
             ),
           ),
@@ -318,9 +359,9 @@ class titleTextBuilder extends StatelessWidget {
 
 // Diese Klasse baut den Carousel-Slider auf
 class carouselSliderBuilder extends StatelessWidget {
-  const carouselSliderBuilder({
-    Key? key,
-  }) : super(key: key);
+  final Job job;
+
+  const carouselSliderBuilder({Key? key, required this.job}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -336,26 +377,25 @@ class carouselSliderBuilder extends StatelessWidget {
         autoPlayInterval: Duration(seconds: 3),
         autoPlayAnimationDuration: Duration(milliseconds: 800),
         autoPlayCurve: Curves.fastOutSlowIn,
-        enlargeCenterPage: true,
+        enlargeCenterPage: false,
         //onPageChanged: callbackFunction,
         scrollDirection: Axis.horizontal,
       ),
-      items: [1, 2, 3, 4, 5].map((i) {
+      items: job.images!.slides!.map((slide) {
         return Builder(
           builder: (BuildContext context) {
             return Container(
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.symmetric(horizontal: 3.0, vertical: 15.0),
-              decoration: BoxDecoration(color: Colors.blueGrey),
+              //decoration: BoxDecoration(color: Colors.blueGrey),
               child: Column(
                 children: [
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                      child: Text(
-                        'Tätigkeit $i',
-                        style: AppTextStyles.darkInfoText,
+                      child: Image(
+                        image: NetworkImage(slide.url.toString()),
                       ),
                     ),
                   ),
@@ -373,9 +413,10 @@ class carouselSliderBuilder extends StatelessWidget {
 
 // Diese Klasse baut den Hintergrund der Fähigkeiten auf
 class skillBackgroundBuilder extends StatelessWidget {
-  const skillBackgroundBuilder({
-    Key? key,
-  }) : super(key: key);
+  final Job job;
+  final List<Skill>? skills;
+
+  const skillBackgroundBuilder({Key? key, required this.job, required this.skills}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -384,7 +425,7 @@ class skillBackgroundBuilder extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width,
         color: AppColors().darkGreen,
-        child: ScreenJobDetails().buildSkillCards(),
+        child: buildSkillCards(job, skills),
       ),
     );
   }
