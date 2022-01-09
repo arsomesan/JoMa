@@ -24,21 +24,21 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        
         //------------ APP BAR THEME ---------------//
-        appBarTheme: const AppBarTheme(
-          elevation: 0,
-          titleTextStyle:  TextStyle(
-          color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700,),
-          backgroundColor: Color(0xFF30459B),
-          toolbarHeight: 50,
-          // shape: RoundedRectangleBorder(
-          // side: BorderSide(width: 3, color: Colors.orange),
-          //       borderRadius: BorderRadius.vertical(
-          //       bottom: Radius.elliptical(850, 100),
-          //       ),
-          // ),
-        ),
+        // appBarTheme: const AppBarTheme(
+        //   elevation: 0,
+        //   titleTextStyle:  TextStyle(
+        //   color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700,),
+        //   backgroundColor: Color(0xFF30459B),
+        //   toolbarHeight: 50,
+        //   // shape: RoundedRectangleBorder(
+        //   // side: BorderSide(width: 3, color: Colors.orange),
+        //   //       borderRadius: BorderRadius.vertical(
+        //   //       bottom: Radius.elliptical(850, 100),
+        //   //       ),
+        //   // ),
+        // ),
       ),
     
       
