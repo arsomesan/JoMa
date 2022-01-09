@@ -1,25 +1,25 @@
 // To parse this JSON data, do
 //
-//     final skills = skillsFromJson(jsonString);
+//     final skill = skillFromJson(jsonString);
 
 import 'dart:convert';
 
-List<Skills> skillsFromJson(String str) => List<Skills>.from(json.decode(str).map((x) => Skills.fromJson(x)));
+List<Skill> skillFromJson(String str) => List<Skill>.from(json.decode(utf8.decode(str.runes.toList())).map((x) => Skill.fromJson(x)));
 
-String skillsToJson(List<Skills> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String skillToJson(List<Skill> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Skills {
-  Skills({
+class Skill {
+  Skill({
     this.id,
     this.icon,
     this.title,
   });
 
-  String? id;
+  int? id;
   String? icon;
   String? title;
 
-  factory Skills.fromJson(Map<String, dynamic> json) => Skills(
+  factory Skill.fromJson(Map<String, dynamic> json) => Skill(
     id: json["id"],
     icon: json["icon"],
     title: json["title"],
