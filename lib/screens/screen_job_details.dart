@@ -37,6 +37,7 @@ class ScreenJobDetails extends StatefulWidget {
 
 class skillsLoaderState extends State<ScreenJobDetails> {
   skillsLoaderState(this.job);
+
   final Job job;
 
   @override
@@ -64,270 +65,272 @@ class skillsLoaderState extends State<ScreenJobDetails> {
   }
 }
 
-  @override
-  Widget buildScreen(BuildContext context, List<Skill>? skills, Job job) {
-    return Scaffold(
-        appBar: appBarBuilder(),
-        floatingActionButton: homeButtonBuilder(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: navBarBuilder(),
-        body: ListView(
-          children: [
-            titleImageBuilder(job),
-            titleTextBuilder(job: job),
-            carouselSliderBuilder(job: job),
+@override
+Widget buildScreen(BuildContext context, List<Skill>? skills, Job job) {
+  return Scaffold(
+      appBar: appBarBuilder(),
+      floatingActionButton: homeButtonBuilder(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: navBarBuilder(),
+      body: ListView(
+        children: [
+          titleImageBuilder(job),
+          titleTextBuilder(job: job),
+          carouselSliderBuilder(job: job),
+
+          /* TODO: AppCard() should be in the joblist_topic_screen?
             AppCard(jobTitle: 'Fischverkäufer', jobDescription: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.', color: AppColors().darkRed, onPressed: () {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-    }),
-            jobDescriptionBuilder(job),
-            skillBackgroundBuilder(job: job, skills: skills),
-            graduationBuilder(job),
-            mapBuilder(),
-            adressBuilder(job),
-            buildHorizontalDivider(),
-            buildDistanceText(),
-            //buildApplyButton(),
-            AppButton(
-                text: 'Bewerben',
-                color: AppColors().darkSecondaryColor,
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()));
-                }),
-            SizedBox(
-              height: 50.0,
-            ),
-          ],
-        ));
-  }
+            Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+           }), */
+
+          jobDescriptionBuilder(job),
+          skillBackgroundBuilder(job: job, skills: skills),
+          graduationBuilder(job),
+          mapBuilder(),
+          adressBuilder(job),
+          buildHorizontalDivider(),
+          buildDistanceText(),
+          //buildApplyButton(),
+          AppButton(
+              text: 'Bewerben',
+              color: AppColors().darkSecondaryColor,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()));
+              }),
+          SizedBox(
+            height: 50.0,
+          ),
+        ],
+      ));
+}
 
 // ---------- APP-BAR ----------
 
-  // Dieses Widget baut die App-Bar auf
-  PreferredSizeWidget appBarBuilder() {
-    return AppBar(
-      backgroundColor: AppColors().darkGreen,
-      title: Text(
-        'Gärtnerei & Landwirtschaft',
-        style: AppTextStyles.darkH1,
-      ),
-      centerTitle: true,
-    );
-  }
+// Dieses Widget baut die App-Bar auf
+PreferredSizeWidget appBarBuilder() {
+  return AppBar(
+    backgroundColor: AppColors().darkGreen,
+    title: Text(
+      'Gärtnerei & Landwirtschaft',
+      style: AppTextStyles.darkH1,
+    ),
+    centerTitle: true,
+  );
+}
 
 // ---------- TITELBILD ----------
 
-  Widget titleImageBuilder(Job job) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Image(
-          image: NetworkImage(
-            job.images!.banner.toString(),
-          ),
+Widget titleImageBuilder(Job job) {
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Image(
+        image: NetworkImage(
+          job.images!.banner.toString(),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
 // ---------- JOB-BESCHREIBUNG ----------
 
-  Widget jobDescriptionBuilder(Job job) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(44, 10, 44, 0),
-      child: Align(
-        alignment: Alignment.center,
-        child: Text(
-          job.description.toString(),
-          style: AppTextStyles.darkMainText,
-        ),
+Widget jobDescriptionBuilder(Job job) {
+  return Padding(
+    padding: EdgeInsets.fromLTRB(44, 10, 44, 0),
+    child: Align(
+      alignment: Alignment.center,
+      child: Text(
+        job.description.toString(),
+        style: AppTextStyles.darkMainText,
       ),
-    );
-  }
+    ),
+  );
+}
 
 // ---------- FÄHIGKEITEN ----------
 
-  // Dieses Widget baut eine Reihe von Fähigkeiten auf
-  Widget buildSkillCards(Job job, List<Skill>? skills) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          for(int i = 0; i < job.skills!.length; i++) Expanded(child: buildSkill(skills!, skills.indexWhere((skill) => skill.id == job.skills![i])))
-        ],
-      ),
-    );
-  }
-
-  // Dieses Widget baut eine einzelne Fähigkeit auf
-  Widget buildSkill(List<Skill> skills, int skillID) =>
-
-      Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          buildBox(child: Icon(Icons.build)),
-          const SizedBox(height: 5),
-          Text(
-            skills.elementAt(skillID).title.toString(),
-            style: AppTextStyles.darkMainText,
-          )
-        ],
-      );
-
-
-  // Dieses Widget baut einen Kreis als Hintergrund um das Fähigkeits-Icon auf
-  Widget buildBox({required Widget child}) => Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white,
-        ),
-        padding: EdgeInsets.all(7),
-        child: child,
-      );
-
-// ---------- SCHULABSCHLUSS ----------
-
-  // Dieses Widget baut die Schulabschluss-Anzeige auf
-  Widget graduationBuilder(Job job) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              buildSchoolBox(child: Icon(Icons.school, size: 50)),
-              const SizedBox(height: 10),
-              Text(
-                job.requiredGraduation.toString(),
-                style: AppTextStyles.darkH1,
-              )
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  // Dieses Widget baut einen Kreis als Hintergrund um das Schulabschluss-Icon auf
-  Widget buildSchoolBox({required Widget child}) => Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppColors().darkGreen,
-        ),
-        padding: EdgeInsets.all(15),
-        child: child,
-      );
-
-// ---------- MAP ----------
-
-  // Dieses Widget baut (zunächst) eine Karte
-  Widget mapBuilder() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-      child: Image(
-        image: AssetImage('assets/images/maps.PNG'),
-      ),
-    );
-  }
-
-// ---------- ADRESSE ----------
-
-  // Dieses Widget baut die Adresszeile auf
-  Widget adressBuilder(Job job) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              buildAdressBox(child: AppIcons().nurBilder),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                job.company.toString(),
-                style: AppTextStyles.darkMainText,
-              ),
-              Text(
-                job.address!.street.toString(),
-                style: AppTextStyles.darkMainText,
-              ),
-              Text(
-               job.address!.zip.toString() + ' ' + job.address!.city.toString(),
-                style: AppTextStyles.darkMainText,
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  // Dieses Widget baut einen Kreis um das Logo des Unternehmens in der Adresszeile auf
-  Widget buildAdressBox({required Widget child}) => Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppColors().darkGreen,
-        ),
-        padding: EdgeInsets.all(20),
-        child: child,
-      );
-
-// ---------- DIVIDER ----------
-
-  // Dieses Widget baut einen horizontalen Divider auf
-  Widget buildHorizontalDivider() {
-    return Row(
+// Dieses Widget baut eine Reihe von Fähigkeiten auf
+Widget buildSkillCards(Job job, List<Skill>? skills) {
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(
-          child: Divider(
-            color: Colors.black,
-            height: 35,
-          ),
+        for (int i = 0; i < job.skills!.length; i++)
+          Expanded(
+              child: buildSkill(skills!,
+                  skills.indexWhere((skill) => skill.id == job.skills![i])))
+      ],
+    ),
+  );
+}
+
+// Dieses Widget baut eine einzelne Fähigkeit auf
+Widget buildSkill(List<Skill> skills, int skillID) => Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        buildBox(child: Icon(Icons.build)),
+        const SizedBox(height: 5),
+        Text(
+          skills.elementAt(skillID).title.toString(),
+          style: AppTextStyles.darkMainText,
         )
       ],
     );
-  }
+
+// Dieses Widget baut einen Kreis als Hintergrund um das Fähigkeits-Icon auf
+Widget buildBox({required Widget child}) => Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.white,
+      ),
+      padding: EdgeInsets.all(7),
+      child: child,
+    );
+
+// ---------- SCHULABSCHLUSS ----------
+
+// Dieses Widget baut die Schulabschluss-Anzeige auf
+Widget graduationBuilder(Job job) {
+  return Padding(
+    padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            buildSchoolBox(child: Icon(Icons.school, size: 50)),
+            const SizedBox(height: 10),
+            Text(
+              job.requiredGraduation.toString(),
+              style: AppTextStyles.darkH1,
+            )
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+// Dieses Widget baut einen Kreis als Hintergrund um das Schulabschluss-Icon auf
+Widget buildSchoolBox({required Widget child}) => Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: AppColors().darkGreen,
+      ),
+      padding: EdgeInsets.all(15),
+      child: child,
+    );
+
+// ---------- MAP ----------
+
+// Dieses Widget baut (zunächst) eine Karte
+Widget mapBuilder() {
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+    child: Image(
+      image: AssetImage('assets/images/maps.PNG'),
+    ),
+  );
+}
+
+// ---------- ADRESSE ----------
+
+// Dieses Widget baut die Adresszeile auf
+Widget adressBuilder(Job job) {
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            buildAdressBox(child: AppIcons().nurBilder),
+          ],
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              job.company.toString(),
+              style: AppTextStyles.darkMainText,
+            ),
+            Text(
+              job.address!.street.toString(),
+              style: AppTextStyles.darkMainText,
+            ),
+            Text(
+              job.address!.zip.toString() + ' ' + job.address!.city.toString(),
+              style: AppTextStyles.darkMainText,
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+// Dieses Widget baut einen Kreis um das Logo des Unternehmens in der Adresszeile auf
+Widget buildAdressBox({required Widget child}) => Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: AppColors().darkGreen,
+      ),
+      padding: EdgeInsets.all(20),
+      child: child,
+    );
+
+// ---------- DIVIDER ----------
+
+// Dieses Widget baut einen horizontalen Divider auf
+Widget buildHorizontalDivider() {
+  return Row(
+    children: [
+      Expanded(
+        child: Divider(
+          color: Colors.black,
+          height: 35,
+        ),
+      )
+    ],
+  );
+}
 
 // ---------- ENTFERNUNG ----------
 
-  // Dieses Widget baut den Text für die Entfernung auf
-  Widget buildDistanceText() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            '10 km entfernt!',
-            style: AppTextStyles.darkH1,
-          )
-        ],
-      ),
-    );
-  }
+// Dieses Widget baut den Text für die Entfernung auf
+Widget buildDistanceText() {
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          '10 km entfernt!',
+          style: AppTextStyles.darkH1,
+        )
+      ],
+    ),
+  );
+}
 
 // ---------- BEWERBEN-BUTTON ----------
 
-  // Dieses Widget baut den Bewerben-Button auf
-  Widget buildApplyButton() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(100, 20, 100, 50),
-      child: ElevatedButton(
-        onPressed: () {},
-        child: Text("Bewerben"),
-      ),
-    );
-  }
-
+// Dieses Widget baut den Bewerben-Button auf
+Widget buildApplyButton() {
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(100, 20, 100, 50),
+    child: ElevatedButton(
+      onPressed: () {},
+      child: Text("Bewerben"),
+    ),
+  );
+}
 
 // ---------- TITEL ----------
 
@@ -422,7 +425,9 @@ class skillBackgroundBuilder extends StatelessWidget {
   final Job job;
   final List<Skill>? skills;
 
-  const skillBackgroundBuilder({Key? key, required this.job, required this.skills}) : super(key: key);
+  const skillBackgroundBuilder(
+      {Key? key, required this.job, required this.skills})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
