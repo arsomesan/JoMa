@@ -130,7 +130,7 @@ Widget generateSingleJobCard(List<Color> _jobColors) {
                   onPressed: () {
                     //Get.to(ScreenJobDetails());
                     //Get.off(() => ScreenJobDetails());
-                    Get.to(() => ScreenJobDetails());
+                    //Get.to(() => ScreenJobDetails()); TODO: currently not working because of the new implementation in the job_details screen, which is necessary to fetch job list from JSON
                   },
                 ),
               ),
