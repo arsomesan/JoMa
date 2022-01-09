@@ -10,7 +10,7 @@ class RemoteServices {
 
   static Future<List<Profil>> fetchProfil() async {
     http.Response response =
-        await client.get(Uri.http("testerinooooo.bplaced.net", "/profil.json"));
+        await client.get(Uri.http("joma.informatik.hs-fulda.de", "/daten/profil.json"));
 
     if (response.statusCode == 200) {
       var result = profilFromJson(response.body);
