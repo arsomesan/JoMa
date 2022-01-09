@@ -36,11 +36,11 @@ zum Einbinden:
 */
 class AppTextStyles {
   static const darkH1 = TextStyle(
-      fontFamily: AppFont.mainFont, fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white);
+      fontFamily: AppFont.mainFont, fontSize: 25, fontWeight: FontWeight.bold);
   static const darkH2 = TextStyle(
       fontFamily: AppFont.mainFont, fontSize: 23, fontWeight: FontWeight.bold);
   static const darkH3 = TextStyle(
-      fontFamily: AppFont.mainFont, fontSize: 21, fontWeight: FontWeight.bold, color: Colors.white);
+      fontFamily: AppFont.mainFont, fontSize: 21, fontWeight: FontWeight.bold);
   static const darkMainText = TextStyle(
       fontFamily: AppFont.mainFont, fontSize: 16);
   static const darkInfoText = TextStyle(
@@ -141,6 +141,9 @@ class AppIcons {
       color: AppColors().white);
   Icon yellowSection = Icon(
       Icons.local_dining,
+      color: AppColors().white);
+  Icon forwardArrow = Icon(
+      Icons.arrow_forward_ios,
       color: AppColors().white);
 
   // Profil & Settings

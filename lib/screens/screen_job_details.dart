@@ -1,6 +1,9 @@
 // Page-Imports
+
 import 'package:joma/model/job_model.dart';
 import 'package:joma/model/skill_model.dart';
+
+import 'package:joma/materials/card.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/services/remote_services.dart';
@@ -73,6 +76,9 @@ class skillsLoaderState extends State<ScreenJobDetails> {
             titleImageBuilder(job),
             titleTextBuilder(job: job),
             carouselSliderBuilder(job: job),
+            AppCard(jobTitle: 'Fischverkäufer', jobDescription: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.', color: AppColors().darkRed, onPressed: () {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    }),
             jobDescriptionBuilder(job),
             skillBackgroundBuilder(job: job, skills: skills),
             graduationBuilder(job),
