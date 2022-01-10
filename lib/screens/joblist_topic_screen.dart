@@ -57,7 +57,7 @@ Widget buildJobList(BuildContext context, List<Job>? jobs) {
   ];
 
   return Scaffold(
-    backgroundColor: AppBackgroundColors().darkBackgroundBlue,
+    backgroundColor: AppBackgroundColors().darkBackground,
     appBar: AppBar(
       backgroundColor: _colorBlue,
       title: Text('Soziales & Hauswirtschaft'),
@@ -93,18 +93,18 @@ Widget buildJobList(BuildContext context, List<Job>? jobs) {
               jobDescription: 'Dies ist eine Testbeschreibung.',
               color: AppColors().darkBlue,
               onPressed: () {}), // TODO: Test der AppCard
-          /*AppCardSearch(jobTitle: 'Professor/in',
+          AppCardSearch(jobTitle: 'Professor/in',
                         jobDescription: 'Du arbeitest in Vollzeit in einer Uni.',
                         color: AppColors().darkGreen,
-                        onPressed: () {}),*/
-          /*AppCardSearch(jobTitle: 'Reinigungskraft',
+                        onPressed: () {}),
+          AppCardSearch(jobTitle: 'Reinigungskraft',
               jobDescription: 'Du arbeitest in Vollzeit in einer Reinigungsfirma.',
               color: AppColors().darkYellow,
-              onPressed: () {}),*/
-          /*AppCardSearch(jobTitle: 'Altenpfleger/in',
+              onPressed: () {}),
+          AppCardSearch(jobTitle: 'Altenpfleger/in',
               jobDescription: 'Du arbeitest in Vollzeit in einem Seniorenheim.',
               color: AppColors().darkBlue,
-              onPressed: () {}),*/ // TODO: Tests der farbigen AppCards bei der Suche
+              onPressed: () {}), // TODO: Tests der farbigen AppCards bei der Suche
           Card(
             margin: EdgeInsets.only(top: 20, bottom: 80),
             color: _colorBlue,
