@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:joma/materials/assets.dart';
+import 'package:joma/materials/card.dart';
 import 'package:joma/model/job_model.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_job_details.dart';
@@ -55,6 +57,7 @@ Widget buildJobList(BuildContext context, List<Job>? jobs) {
   ];
 
   return Scaffold(
+    backgroundColor: AppBackgroundColors().darkBackground,
     appBar: AppBar(
       backgroundColor: _colorBlue,
       title: Text('Soziales & Hauswirtschaft'),
@@ -73,6 +76,35 @@ Widget buildJobList(BuildContext context, List<Job>? jobs) {
               textAlign: TextAlign.left,
             ),
           ),
+          AppCardSpecial(jobTitle: 'Handwerker/in',
+              jobDescription: 'Dies ist der Job der Woche!',
+              color: AppColors().darkBlue,
+              onPressed: () {}), // TODO: Test der großen AppCard
+          const SizedBox(height: 10),
+          AppCard(jobTitle: 'Fischverkäufer/in',
+              jobDescription: 'Dies ist eine Testbeschreibung.',
+              color: AppColors().darkBlue,
+              onPressed: () {}),
+          AppCard(jobTitle: 'Fischverkäufer/in',
+              jobDescription: 'Dies ist eine Testbeschreibung.',
+              color: AppColors().darkBlue,
+              onPressed: () {}),
+          AppCard(jobTitle: 'Fischverkäufer/in',
+              jobDescription: 'Dies ist eine Testbeschreibung.',
+              color: AppColors().darkBlue,
+              onPressed: () {}), // TODO: Test der AppCard
+          AppCardSearch(jobTitle: 'Professor/in',
+                        jobDescription: 'Du arbeitest in Vollzeit in einer Uni.',
+                        color: AppColors().darkGreen,
+                        onPressed: () {}),
+          AppCardSearch(jobTitle: 'Reinigungskraft',
+              jobDescription: 'Du arbeitest in Vollzeit in einer Reinigungsfirma.',
+              color: AppColors().darkYellow,
+              onPressed: () {}),
+          AppCardSearch(jobTitle: 'Altenpfleger/in',
+              jobDescription: 'Du arbeitest in Vollzeit in einem Seniorenheim.',
+              color: AppColors().darkBlue,
+              onPressed: () {}), // TODO: Tests der farbigen AppCards bei der Suche
           Card(
             margin: EdgeInsets.only(top: 20, bottom: 80),
             color: _colorBlue,
@@ -133,19 +165,27 @@ Widget buildJobList(BuildContext context, List<Job>? jobs) {
           for (int i = 0; i < jobs!.length; i++)
             generateSingleJobCard(
                 _jobColors,
-                jobs.elementAt(i))
+                jobs.elementAt(i)),
         ],
       ),
     ),
-    floatingActionButton: FloatingActionButton(
-      backgroundColor: Colors.black,
-      child: Icon(Icons.home),
+    floatingActionButton: Container(
+      height: 80.0,
+      width: 80.0,
+      child: FloatingActionButton(
+        elevation: 0,
+        child: CircleAvatar(
+          radius: 80.0,
+          backgroundImage: AssetImage('assets/images/darkJomaLogo.png',
+          ),
+        ),
       onPressed: () {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => ScreenHome()),
         );
       },
+      ),
     ),
     bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
@@ -165,15 +205,16 @@ Widget buildJobList(BuildContext context, List<Job>? jobs) {
           }
           //if (value == 2) Navigator.of(context).push(...);
         },
-        backgroundColor: Colors.grey,
-        selectedItemColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
+        backgroundColor: AppColors().darkPrimaryColor,
+        selectedItemColor: AppColors().white,
+        unselectedItemColor: AppColors().white,
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: AppIcons().searchGlass,
             label: 'Suchen',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: AppIcons().profile,
             label: 'Profil',
           ),
         ]),
@@ -211,7 +252,7 @@ Widget generateSingleJobCard(
                       Container(height: 10),
                       Container(
                         width: 200,
-                        child: Text(job.description.toString().substring(0, job.description!.length < 35 ? job.description!.length : 35) +  ' ...'),
+                        child: Text(job.description!.full.toString().substring(0, job.description!.full!.length < 35 ? job.description!.full!.length : 35) +  ' ...'),
                       ),
                     ],
                   )),
