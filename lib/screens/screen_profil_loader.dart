@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/global/glovar.dart';
+import 'package:joma/materials/assets.dart';
+import 'package:joma/materials/button.dart';
 import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/joblist_search_screen.dart';
 import 'package:joma/screens/screen_home.dart';
@@ -28,6 +30,58 @@ class _ProfilLoaderState extends State<ProfilLoader> {
     super.initState();
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Profil'.toUpperCase()),
+        centerTitle: true,
+        /*leading: IconButton(
+           icon: Icon(Icons.settings), // Icon muss noch auf die rechte Seite
+           onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),*/
+        backgroundColor: AppColors().darkPrimaryColor,
+      ),
+
+      backgroundColor: AppBackgroundColors().darkBackground,
+      body: ListView (
+        children: [
+          AppButton(
+              text: 'Profil anzeigen',
+              color: AppColors().darkPrimaryColor,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader())); // screen_profileView
+              }
+          ),
+          AppButton(
+              text: 'Gespeicherte Jobs',
+              color: AppColors().darkPrimaryColor,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader())); // screen_savedJob
+              }
+          ),
+          AppButton(
+              text: 'Bewerbung',
+              color: AppColors().darkPrimaryColor,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader())); // screen_savedJob
+              }
+          ),
+          AppButton(
+              text: 'Einstellungen',
+              color: AppColors().darkPrimaryColor,
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Einstellungen())); // screen_savedJob
+              }
+          ),
+        ],
+      ),
+    );
+  }
+
+  /*
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -349,13 +403,21 @@ Widget profile(List<Profil>? profil) {
         ],
       ),
     ),
-    floatingActionButton: FloatingActionButton(
-      backgroundColor: Colors.black,
-      child: Icon(Icons.home),
+    floatingActionButton: Container(
+      height: 80.0,
+      width: 80.0,
+      child: FloatingActionButton(
+        elevation: 0,
+        child: CircleAvatar(
+          radius: 80.0,
+          backgroundImage: AssetImage('assets/images/darkJomaLogo.png',
+          ),
+      ),
       onPressed: () {
         Get.off(() => HomeScreen());
       },
     ),
+  ),
     bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
         onTap: (value) {
@@ -364,15 +426,16 @@ Widget profile(List<Profil>? profil) {
           //);
           //if (value == 2) Navigator.of(context).push(...);
         },
-        backgroundColor: Colors.grey,
-        selectedItemColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
+        backgroundColor: AppColors().darkPrimaryColor,
+        selectedItemColor: AppColors().white,
+        unselectedItemColor: AppColors().white,
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: AppIcons().searchGlass,
             label: 'Suchen',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: AppIcons().profile,
             label: 'Profil',
           ),
         ]
@@ -380,4 +443,5 @@ Widget profile(List<Profil>? profil) {
     floatingActionButtonLocation:
     FloatingActionButtonLocation.centerDocked,
   );
+  */
 }

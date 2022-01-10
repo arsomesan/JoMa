@@ -245,13 +245,22 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
 
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black,
-        child: Icon(Icons.home),
+        floatingActionButton: Container(
+          height: 80.0,
+          width: 80.0,
+          child: FloatingActionButton(
+            elevation: 0,
+            child: CircleAvatar(
+              radius: 80.0,
+              backgroundImage: AssetImage('assets/images/darkJomaLogo.png',
+              ),
+          ),
         onPressed: () {
           //Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()),);
         },
       ),
+        ),
+
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: 0,
           onTap: (value) {
@@ -261,15 +270,16 @@ class HomeScreen extends StatelessWidget {
             );
             //if (value == 2) Navigator.of(context).push(...);
           },
-          backgroundColor: Colors.grey,
-          selectedItemColor: Colors.black54,
-          items: const <BottomNavigationBarItem>[
+          backgroundColor: AppColors().darkPrimaryColor,
+          selectedItemColor: AppColors().white,
+          unselectedItemColor: AppColors().white,
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
+              icon: AppIcons().searchGlass,
               label: 'Suchen',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: AppIcons().profile,
               label: 'Profil',
             ),
           ]
