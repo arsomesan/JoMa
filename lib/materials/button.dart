@@ -5,16 +5,17 @@ import 'package:joma/materials/assets.dart';
 
 /* Diese Klasse beinhaltet einen standardisierten Button, der sich durch unsere App zieht (wie z.B. im Login-Screen)
 zum Einbinden:
-  - AppButton(text: [ hier den Text einfügen, der auf dem Button angezeigt werden soll ],
-              color: [ hier die Farbe einfügen, entweder AppColors().darkPrimaryColor oder AppColors().darkSecondaryColor ],
-              onPressed: [ hier die Callback-Routine einfügen, bspw. für den HomeScreen ->
-              () {Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));} ]
+  - AppButton(text: hier den Text einfügen, der auf dem Button angezeigt werden soll,
+              color: hier die Farbe einfügen, entweder AppColors().darkPrimaryColor oder AppColors().darkSecondaryColor,
+              onPressed: hier die Callback-Routine einfügen, bspw. für den HomeScreen -> () {Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));}
               )
 */
 class AppButton extends StatelessWidget {
   final String text;
   final Color color;
   final VoidCallback onPressed;
+  // TODO: implement a possibility to use an icon in the button
+  // TODO: implement a possibility to change the text color
 
   AppButton({required this.text, required this.color, required this.onPressed});
 
