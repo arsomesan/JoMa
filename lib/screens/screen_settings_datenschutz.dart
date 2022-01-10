@@ -1,6 +1,10 @@
+import 'package:joma/screens/screen_home.dart';
+import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:joma/materials/assets.dart';
+
+import 'joblist_search_screen.dart';
 
 class Datenschutz extends StatelessWidget {
   const Datenschutz({Key? key}) : super(key: key);
@@ -59,6 +63,51 @@ class Datenschutz extends StatelessWidget {
               )],
           ),
         ),
+      ),
+
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
+        height: 80.0,
+        width: 80.0,
+        child: FloatingActionButton(
+          elevation: 0,
+          child: CircleAvatar(
+            radius: 80.0,
+            backgroundImage: AssetImage('assets/images/darkJomaLogo.png',
+            ),
+          ),
+          onPressed: () {
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
+          },
+        ),
+      ),
+
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 0,
+          onTap: (value) {
+            if (value == 0) {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
+              );
+            }
+            if (value == 1) {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilLoader()),
+              );
+            }
+            //if (value == 2) Navigator.of(context).push(...);
+          },
+          backgroundColor: AppColors().darkPrimaryColor,
+          selectedItemColor: AppColors().white,
+          unselectedItemColor: AppColors().white,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: AppIcons().searchGlass,
+              label: 'Suchen',
+            ),
+            BottomNavigationBarItem(
+              icon: AppIcons().profile,
+              label: 'Profil',
+            ),
+          ]
       ),
     );
   }

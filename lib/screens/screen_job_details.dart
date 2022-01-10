@@ -74,7 +74,7 @@ Widget buildScreen(BuildContext context, List<Skill>? skills, Job job) {
       bottomNavigationBar: navBarBuilder(),
       body: ListView(
         children: [
-          titleImageBuilder(job),
+          //titleImageBuilder(job),
           titleTextBuilder(job: job),
           carouselSliderBuilder(job: job),
           AppCard(jobTitle: 'Fischverkäufer', jobDescription: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.', color: AppColors().darkRed, onPressed: () {
@@ -117,7 +117,7 @@ PreferredSizeWidget appBarBuilder() {
 }
 
 // ---------- TITELBILD ----------
-
+/*
 Widget titleImageBuilder(Job job) {
   return Padding(
     padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
@@ -125,13 +125,13 @@ Widget titleImageBuilder(Job job) {
       borderRadius: BorderRadius.circular(20),
       child: Image(
         image: NetworkImage(
-          job.images!.banner.toString(),
+          //job.images!.banner.toString(),
         ),
       ),
     ),
   );
 }
-
+*/
 // ---------- JOB-BESCHREIBUNG ----------
 
 Widget jobDescriptionBuilder(Job job) {
@@ -140,7 +140,7 @@ Widget jobDescriptionBuilder(Job job) {
     child: Align(
       alignment: Alignment.center,
       child: Text(
-        job.description.toString(),
+        job.description!.full.toString(),
         style: AppTextStyles.darkMainText,
       ),
     ),
@@ -466,14 +466,15 @@ class navBarBuilder extends StatelessWidget {
           //if (value == 2) Navigator.of(context).push(...);
         },
         backgroundColor: AppColors().darkGreen,
-        selectedItemColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
+        selectedItemColor: AppColors().white,
+        unselectedItemColor: AppColors().white,
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: AppIcons().searchGlass,
             label: 'Suchen',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: AppIcons().profile,
             label: 'Profil',
           ),
         ]);
@@ -490,15 +491,23 @@ class homeButtonBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      backgroundColor: Colors.black,
-      child: Icon(Icons.home),
+    return Container(
+      height: 80.0,
+      width: 80.0,
+        child: FloatingActionButton(
+          elevation: 0,
+          child: CircleAvatar(
+            radius: 80.0,
+            backgroundImage: AssetImage('assets/images/darkJomaLogo.png',
+            ),
+        ),
       onPressed: () {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen()),
         );
       },
+        ),
     );
   }
 }
