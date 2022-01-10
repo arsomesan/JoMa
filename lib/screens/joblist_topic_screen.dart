@@ -252,7 +252,7 @@ Widget generateSingleJobCard(
                       Container(height: 10),
                       Container(
                         width: 200,
-                        child: Text(job.description.toString().substring(0, job.description!.length < 35 ? job.description!.length : 35) +  ' ...'),
+                        child: Text(job.description!.full.toString().substring(0, job.description!.full!.length < 35 ? job.description!.full!.length : 35) +  ' ...'),
                       ),
                     ],
                   )),

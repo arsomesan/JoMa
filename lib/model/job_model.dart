@@ -38,44 +38,44 @@ class Job {
   ContactPerson? contactPerson;
   Address? address;
   Coords? coords;
-  String? description;
+  Description? description;
   List<int>? skills;
   String? requiredGraduation;
   Images? images;
 
   factory Job.fromJson(Map<String, dynamic> json) => Job(
-        id: json["id"],
-        category: json["category"],
-        insertionDate: DateTime.parse(json["insertionDate"]),
-        type: json["type"],
-        title: json["title"],
-        company: json["company"],
-        homepage: json["homepage"],
-        contactPerson: ContactPerson.fromJson(json["contactPerson"]),
-        address: Address.fromJson(json["address"]),
-        coords: Coords.fromJson(json["coords"]),
-        description: json["description"],
-        skills: List<int>.from(json["skills"].map((x) => x)),
-        requiredGraduation: json["requiredGraduation"],
-        images: Images.fromJson(json["images"]),
-      );
+    id: json["id"],
+    category: json["category"],
+    insertionDate: DateTime.parse(json["insertionDate"]),
+    type: json["type"],
+    title: json["title"],
+    company: json["company"],
+    homepage: json["homepage"],
+    contactPerson: ContactPerson.fromJson(json["contactPerson"]),
+    address: Address.fromJson(json["address"]),
+    coords: Coords.fromJson(json["coords"]),
+    description: Description.fromJson(json["description"]),
+    skills: List<int>.from(json["skills"].map((x) => x)),
+    requiredGraduation: json["requiredGraduation"],
+    images: Images.fromJson(json["images"]),
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "category": category,
-        "insertionDate": insertionDate!.toIso8601String(),
-        "type": type,
-        "title": title,
-        "company": company,
-        "homepage": homepage,
-        "contactPerson": contactPerson!.toJson(),
-        "address": address!.toJson(),
-        "coords": coords!.toJson(),
-        "description": description,
-        "skills": List<dynamic>.from(skills!.map((x) => x)),
-        "requiredGraduation": requiredGraduation,
-        "images": images!.toJson(),
-      };
+    "id": id,
+    "category": category,
+    "insertionDate": insertionDate!.toIso8601String(),
+    "type": type,
+    "title": title,
+    "company": company,
+    "homepage": homepage,
+    "contactPerson": contactPerson!.toJson(),
+    "address": address!.toJson(),
+    "coords": coords!.toJson(),
+    "description": description!.toJson(),
+    "skills": List<dynamic>.from(skills!.map((x) => x)),
+    "requiredGraduation": requiredGraduation,
+    "images": images!.toJson(),
+  };
 }
 
 class Address {
@@ -90,16 +90,16 @@ class Address {
   String? city;
 
   factory Address.fromJson(Map<String, dynamic> json) => Address(
-        street: json["street"],
-        zip: json["zip"],
-        city: json["city"],
-      );
+    street: json["street"],
+    zip: json["zip"],
+    city: json["city"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "street": street,
-        "zip": zip,
-        "city": city,
-      };
+    "street": street,
+    "zip": zip,
+    "city": city,
+  };
 }
 
 class ContactPerson {
@@ -116,18 +116,18 @@ class ContactPerson {
   String? role;
 
   factory ContactPerson.fromJson(Map<String, dynamic> json) => ContactPerson(
-        firstname: json["firstname"],
-        lastname: json["lastname"],
-        phone: json["phone"],
-        role: json["role"],
-      );
+    firstname: json["firstname"],
+    lastname: json["lastname"],
+    phone: json["phone"],
+    role: json["role"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "firstname": firstname,
-        "lastname": lastname,
-        "phone": phone,
-        "role": role,
-      };
+    "firstname": firstname,
+    "lastname": lastname,
+    "phone": phone,
+    "role": role,
+  };
 }
 
 class Coords {
@@ -140,52 +140,88 @@ class Coords {
   String? lat;
 
   factory Coords.fromJson(Map<String, dynamic> json) => Coords(
-        long: json["long"],
-        lat: json["lat"],
-      );
+    long: json["long"],
+    lat: json["lat"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "long": long,
-        "lat": lat,
-      };
+    "long": long,
+    "lat": lat,
+  };
+}
+
+class Description {
+  Description({
+    this.full,
+    this.simple,
+  });
+
+  String? full;
+  String? simple;
+
+  factory Description.fromJson(Map<String, dynamic> json) => Description(
+    full: json["full"],
+    simple: json["simple"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "full": full,
+    "simple": simple,
+  };
 }
 
 class Images {
   Images({
-    this.banner,
     this.slides,
+    this.video,
   });
 
-  String? banner;
-  List<Slides>? slides;
+  List<Slide>? slides;
+  Video? video;
 
   factory Images.fromJson(Map<String, dynamic> json) => Images(
-    banner: json["banner"],
-    slides: List<Slides>.from(json["slides"].map((x) => Slides.fromJson(x))),
+    slides: List<Slide>.from(json["slides"].map((x) => Slide.fromJson(x))),
+    video: Video.fromJson(json["video"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "banner": banner,
     "slides": List<dynamic>.from(slides!.map((x) => x.toJson())),
+    "video": video!.toJson(),
   };
 }
 
-class Slides {
-  Slides({
+class Slide {
+  Slide({
     this.url,
-    this.description,
+    this.alt,
   });
 
   String? url;
-  String? description;
+  String? alt;
 
-  factory Slides.fromJson(Map<String, dynamic> json) => Slides(
+  factory Slide.fromJson(Map<String, dynamic> json) => Slide(
     url: json["url"],
-    description: json["description"],
+    alt: json["alt"],
   );
 
   Map<String, dynamic> toJson() => {
     "url": url,
-    "description": description,
+    "alt": alt,
+  };
+}
+
+class Video {
+  Video({
+    this.url,
+  });
+
+  String? url;
+
+  factory Video.fromJson(Map<String, dynamic> json) => Video(
+    url: json["url"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "url": url,
   };
 }

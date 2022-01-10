@@ -39,7 +39,7 @@ dependencies:
   get: ^4.5.1
 
   # fontawesome
-  font_awesome_flutter: ^8.2.0
+  font_awesome_flutter: ^9.2.0
 
   # Carousel-Slider
   carousel_slider: ^4.0.0
