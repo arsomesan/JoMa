@@ -353,7 +353,7 @@ Widget profile(List<Profil>? profil) {
       backgroundColor: Colors.black,
       child: Icon(Icons.home),
       onPressed: () {
-        Get.off(() => HomeScreen());
+        Get.off(() => ScreenHome());
       },
     ),
     bottomNavigationBar: BottomNavigationBar(
