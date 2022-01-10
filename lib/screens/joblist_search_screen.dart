@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:joma/materials/assets.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_job_details.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
@@ -40,13 +41,22 @@ class JobListSearchScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black,
-        child: Icon(Icons.home),
-        onPressed: () {
+      floatingActionButton: Container(
+        height: 80.0,
+        width: 80.0,
+        child: FloatingActionButton(
+          elevation: 0,
+          child: CircleAvatar(
+            radius: 80.0,
+            foregroundImage: AssetImage('assets/images/darkJomaLogo.png',
+            ),
+          ),
+            onPressed: () {
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
         },
+        ),
       ),
+
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: 0,
           onTap: (value) {
@@ -60,15 +70,16 @@ class JobListSearchScreen extends StatelessWidget {
             }
             //if (value == 2) Navigator.of(context).push(...);
           },
-          backgroundColor: Colors.grey,
-          selectedItemColor: Colors.white,
-          items: const <BottomNavigationBarItem>[
+          backgroundColor: AppColors().darkPrimaryColor,
+          selectedItemColor: AppColors().white,
+          unselectedItemColor: AppColors().white,
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
+              icon: AppIcons().searchGlass,
               label: 'Suchen',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: AppIcons().profile,
               label: 'Profil',
             ),
           ]

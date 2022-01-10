@@ -1,7 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:joma/screens/joblist_topic_screen.dart';
+import 'package:joma/screens/joblist_search_screen.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
 import 'package:joma/screens/screen_register.dart';
@@ -45,12 +45,12 @@ class MyApp extends StatelessWidget {
       
 
 
-      home: Center(
+      home:Center(
       child: AnimatedSplashScreen(
       splash: Image.asset(
       'assets/images/darkJomaLogo.png',
       ),
-      nextScreen: HomeScreen(),
+      nextScreen: JobListSearchScreen(),
       splashTransition: SplashTransition.rotationTransition,
       backgroundColor: AppColors().darkSecondaryColor,
       ),
