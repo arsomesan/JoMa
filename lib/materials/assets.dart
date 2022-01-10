@@ -59,12 +59,12 @@ zum Einbinden:
   - AppColors().darkPrimaryColor
 */
 class AppColors {
-  Color darkPrimaryColor = const Color.fromRGBO(48, 69, 155, 1);
+  Color darkPrimaryColor = const Color.fromRGBO(48, 69, 155, 1.0);
   Color darkSecondaryColor = const Color.fromRGBO(239, 157, 15, 1);
-  Color darkRed = const Color.fromRGBO(177, 44, 51, 1);
+  Color darkRed = const Color.fromRGBO(177, 44, 51, 1.0);
   Color darkGreen = const Color.fromRGBO(38, 127, 106, 1.0);
-  Color darkBlue = const Color.fromRGBO(33, 89, 127, 1);
-  Color darkYellow = const Color.fromRGBO(226, 199, 10, 1);
+  Color darkBlue = const Color.fromRGBO(33, 89, 127, 1.0);
+  Color darkYellow = const Color.fromRGBO(226, 199, 10, 1.0);
   Color white = const Color.fromRGBO(255, 255, 255, 1);
   Color black = const Color.fromRGBO(0, 0, 0, 1);
 }
@@ -74,7 +74,7 @@ zum Einbinden:
   - AppBackgroundColors().darkBackground
 */
 class AppBackgroundColors {
-  Color darkBackground = const Color.fromRGBO(20, 20, 40, 1);
+  Color darkBackground = const Color.fromRGBO(20, 20, 40, 1.0);
   Color darkBackgroundRed = const Color.fromRGBO(180, 111, 111, 1);
   Color darkBackgroundGreen = const Color.fromRGBO(112, 173, 133, 1);
   Color darkBackgroundBlue = const Color.fromRGBO(128, 186, 196, 1);
