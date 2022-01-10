@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:joma/materials/assets.dart';
+import 'package:joma/materials/card.dart';
 import 'package:joma/model/job_model.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_job_details.dart';
@@ -133,7 +135,9 @@ Widget buildJobList(BuildContext context, List<Job>? jobs) {
           for (int i = 0; i < jobs!.length; i++)
             generateSingleJobCard(
                 _jobColors,
-                jobs.elementAt(i))
+                jobs.elementAt(i)),
+          //AppCard(jobTitle: 'Fischverkäufer/in', jobDescription: 'Das hier ist eine Beschreibung.', color: AppColors().darkRed, onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));}),
+          // TODO: kurzer Test der Karte @Malte
         ],
       ),
     ),
