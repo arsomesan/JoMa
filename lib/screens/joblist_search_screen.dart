@@ -44,7 +44,7 @@ class JobListSearchScreen extends StatelessWidget {
         backgroundColor: Colors.black,
         child: Icon(Icons.home),
         onPressed: () {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ScreenHome()),);
         },
       ),
       bottomNavigationBar: BottomNavigationBar(

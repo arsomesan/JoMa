@@ -77,7 +77,7 @@ class Datenschutz extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ScreenHome()),);
           },
         ),
       ),

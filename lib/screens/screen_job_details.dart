@@ -74,11 +74,11 @@ Widget buildScreen(BuildContext context, List<Skill>? skills, Job job) {
       bottomNavigationBar: navBarBuilder(),
       body: ListView(
         children: [
-          titleImageBuilder(job),
+          //titleImageBuilder(job),
           titleTextBuilder(job: job),
           carouselSliderBuilder(job: job),
           AppCard(jobTitle: 'Fischverkäufer', jobDescription: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.', color: AppColors().darkRed, onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenHome()));
            }),
           jobDescriptionBuilder(job),
           skillBackgroundBuilder(job: job, skills: skills),
@@ -93,7 +93,7 @@ Widget buildScreen(BuildContext context, List<Skill>? skills, Job job) {
               color: AppColors().darkSecondaryColor,
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()));
+                    MaterialPageRoute(builder: (context) => ScreenHome()));
               }),
           SizedBox(
             height: 50.0,
@@ -117,7 +117,7 @@ PreferredSizeWidget appBarBuilder() {
 }
 
 // ---------- TITELBILD ----------
-
+/*
 Widget titleImageBuilder(Job job) {
   return Padding(
     padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
@@ -131,7 +131,7 @@ Widget titleImageBuilder(Job job) {
     ),
   );
 }
-
+*/
 // ---------- JOB-BESCHREIBUNG ----------
 
 Widget jobDescriptionBuilder(Job job) {
@@ -496,7 +496,7 @@ class homeButtonBuilder extends StatelessWidget {
       onPressed: () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => ScreenHome()),
         );
       },
     );

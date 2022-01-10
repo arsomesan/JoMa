@@ -184,7 +184,7 @@ class SelectView extends StatelessWidget {
         child:
         AppButton(text: "Weiter",
                   color: AppColors().darkSecondaryColor,
-                  onPressed:(){ Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));},
+                  onPressed:(){ Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenHome()));},
         ),
 
       ),
