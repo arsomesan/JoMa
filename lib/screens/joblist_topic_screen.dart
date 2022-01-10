@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:joma/materials/assets.dart';
+import 'package:joma/materials/card.dart';
 import 'package:joma/model/job_model.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_job_details.dart';
@@ -56,6 +57,7 @@ Widget buildJobList(BuildContext context, List<Job>? jobs) {
   ];
 
   return Scaffold(
+    backgroundColor: AppBackgroundColors().darkBackgroundBlue,
     appBar: AppBar(
       backgroundColor: _colorBlue,
       title: Text('Soziales & Hauswirtschaft'),
@@ -74,6 +76,35 @@ Widget buildJobList(BuildContext context, List<Job>? jobs) {
               textAlign: TextAlign.left,
             ),
           ),
+          AppCardSpecial(jobTitle: 'Handwerker/in',
+              jobDescription: 'Dies ist der Job der Woche!',
+              color: AppColors().darkBlue,
+              onPressed: () {}), // TODO: Test der großen AppCard
+          const SizedBox(height: 10),
+          AppCard(jobTitle: 'Fischverkäufer/in',
+              jobDescription: 'Dies ist eine Testbeschreibung.',
+              color: AppColors().darkBlue,
+              onPressed: () {}),
+          AppCard(jobTitle: 'Fischverkäufer/in',
+              jobDescription: 'Dies ist eine Testbeschreibung.',
+              color: AppColors().darkBlue,
+              onPressed: () {}),
+          AppCard(jobTitle: 'Fischverkäufer/in',
+              jobDescription: 'Dies ist eine Testbeschreibung.',
+              color: AppColors().darkBlue,
+              onPressed: () {}), // TODO: Test der AppCard
+          /*AppCardSearch(jobTitle: 'Professor/in',
+                        jobDescription: 'Du arbeitest in Vollzeit in einer Uni.',
+                        color: AppColors().darkGreen,
+                        onPressed: () {}),*/
+          /*AppCardSearch(jobTitle: 'Reinigungskraft',
+              jobDescription: 'Du arbeitest in Vollzeit in einer Reinigungsfirma.',
+              color: AppColors().darkYellow,
+              onPressed: () {}),*/
+          /*AppCardSearch(jobTitle: 'Altenpfleger/in',
+              jobDescription: 'Du arbeitest in Vollzeit in einem Seniorenheim.',
+              color: AppColors().darkBlue,
+              onPressed: () {}),*/ // TODO: Tests der farbigen AppCards bei der Suche
           Card(
             margin: EdgeInsets.only(top: 20, bottom: 80),
             color: _colorBlue,
@@ -134,7 +165,7 @@ Widget buildJobList(BuildContext context, List<Job>? jobs) {
           for (int i = 0; i < jobs!.length; i++)
             generateSingleJobCard(
                 _jobColors,
-                jobs.elementAt(i))
+                jobs.elementAt(i)),
         ],
       ),
     ),
