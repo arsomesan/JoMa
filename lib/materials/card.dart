@@ -16,6 +16,7 @@ class AppCard extends StatelessWidget {
   final String jobDescription;
   final Color color;
   final VoidCallback onPressed;
+  // TODO: implement possibility to create a card for saved jobs / applications
 
 
   AppCard({required this.jobTitle, required this.jobDescription, required this.color, required this.onPressed});

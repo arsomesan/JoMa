@@ -57,7 +57,7 @@ class _ScreenWelcome extends State<ScreenWelcome> {
       }
     }
     print("Login nicht erfolgreich");
-    return true;
+    return true; // TODO: set to false -> is true only for test purposes
   }
 
 @override
