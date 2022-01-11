@@ -53,7 +53,7 @@ class SelectView extends StatelessWidget {
                         Container(
 
                          padding: EdgeInsets.all(28.0),
-                         margin: EdgeInsets.all(44.0),
+                         margin: EdgeInsets.all(40.0),
                           child: Text("Bildsprache",
                                       style:  AppTextStyles.darkH2,
                                       textAlign: TextAlign.center),
@@ -98,7 +98,7 @@ class SelectView extends StatelessWidget {
                         Container(
 
                           padding: EdgeInsets.all(28.0),
-                          margin: EdgeInsets.all(44.0),
+                          margin: EdgeInsets.all(40.0),
                           child: Text("Leichte Sprache",
                               style:  AppTextStyles.darkH2,
                               textAlign: TextAlign.center),
@@ -142,7 +142,7 @@ class SelectView extends StatelessWidget {
                         Container(
 
                           padding: EdgeInsets.all(28.0),
-                          margin: EdgeInsets.all(44.0),
+                          margin: EdgeInsets.all(40.0),
                           child: Text("Volltext",
                               style:  AppTextStyles.darkH2,
                               textAlign: TextAlign.center),
@@ -173,21 +173,22 @@ class SelectView extends StatelessWidget {
                 flex: 1,
               );
             },),
-
+            Container(
+              height:80,
+              width: 370,
+              child:
+                  AppButton(text: "Weiter",
+                color: AppColors().darkSecondaryColor,
+                onPressed:(){ Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenHome()));},
+                )
+            ),
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 60,
-        //color: Colors.black12,
-        color: AppBackgroundColors().darkBackground,
-        child:
-        AppButton(text: "Weiter",
-                  color: AppColors().darkSecondaryColor,
-                  onPressed:(){ Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenHome()));},
-        ),
 
-      ),
+
+
+
     );
   }
 }
