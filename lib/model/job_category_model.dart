@@ -12,22 +12,22 @@ class JobCategory {
   JobCategory({
     this.id,
     this.title,
-    this.colorRGB,
+    this.colorHex,
   });
 
   int? id;
   String? title;
-  String? colorRGB;
+  String? colorHex;
 
   factory JobCategory.fromJson(Map<String, dynamic> json) => JobCategory(
     id: json["id"],
     title: json["title"],
-    colorRGB: json["colorRGB"],
+    colorHex: json["colorHEX"]!.replaceAll("#", "0xFF"),
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "title": title,
-    "colorRGB": colorRGB,
+    "colorHEX": colorHex,
   };
 }

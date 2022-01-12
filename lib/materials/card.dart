@@ -33,7 +33,7 @@ class AppCard extends StatelessWidget {
           elevation: 4,
           child: InkWell(
             splashColor: color.withAlpha(30),
-            onTap: () {},
+            onTap: onPressed,
             child: Row(
               children: [
                 Container(
@@ -50,6 +50,9 @@ class AppCard extends StatelessWidget {
                         const SizedBox(height: 3),
                         Text(jobDescription.toString(),
                             style: AppTextStyles.darkCardText,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: false,
                         ),
                       ],
                     ),
@@ -94,7 +97,7 @@ class AppCardSpecial extends StatelessWidget {
           elevation: 8,
           child: InkWell(
             splashColor: color.withAlpha(30),
-            onTap: () {},
+            onTap: onPressed,
             child: Row(
               children: [
                 Container(
@@ -111,6 +114,9 @@ class AppCardSpecial extends StatelessWidget {
                         const SizedBox(height: 8),
                         Text(jobDescription.toString(),
                           style: AppTextStyles.darkCardText,
+                          maxLines: 4,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: false,
                         ),
                       ],
                     ),
@@ -156,7 +162,7 @@ class AppCardSearch extends StatelessWidget {
           elevation: 4,
           child: InkWell(
             splashColor: AppColors().white.withAlpha(30),
-            onTap: () {},
+            onTap: onPressed,
             child: Row(
               children: [
                 Container(
@@ -173,6 +179,9 @@ class AppCardSearch extends StatelessWidget {
                         const SizedBox(height: 3),
                         Text(jobDescription.toString(),
                           style: AppTextStyles.darkCardTextWhite,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: false,
                         ),
                       ],
                     ),
