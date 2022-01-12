@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:joma/controllers/jobs_controller.dart';
 import 'package:joma/controllers/view_controller.dart';
 import 'package:joma/materials/button.dart';
 import 'package:joma/screens/joblist_search_screen.dart';
@@ -14,7 +13,6 @@ import 'package:joma/materials/assets.dart';
 
 class ScreenHome extends StatelessWidget {
   final ViewController viewController = Get.put(ViewController());
-  final JobsController productController = Get.put(JobsController());
 
   @override
   Widget build(BuildContext context) {
