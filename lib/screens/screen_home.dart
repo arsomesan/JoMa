@@ -241,7 +241,7 @@ class ScreenHome extends StatelessWidget {
               ),*/
               ElevatedButton(
                   onPressed: (){
-                    Get.to(() => const JobListTopicScreen());
+                    Get.to(() => JobListTopicScreen());
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
