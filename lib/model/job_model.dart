@@ -107,18 +107,21 @@ class ContactPerson {
     this.firstname,
     this.lastname,
     this.phone,
+    this.mail,
     this.role,
   });
 
   String? firstname;
   String? lastname;
   String? phone;
+  String? mail;
   String? role;
 
   factory ContactPerson.fromJson(Map<String, dynamic> json) => ContactPerson(
     firstname: json["firstname"],
     lastname: json["lastname"],
     phone: json["phone"],
+    mail: json["mail"],
     role: json["role"],
   );
 
@@ -126,6 +129,7 @@ class ContactPerson {
     "firstname": firstname,
     "lastname": lastname,
     "phone": phone,
+    "mail": mail,
     "role": role,
   };
 }
