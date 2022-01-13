@@ -7,8 +7,10 @@ import 'dart:convert';
 List<Profil> profilFromJson(String str) =>
     List<Profil>.from(json.decode(utf8.decode(str.runes.toList())).map((x) => Profil.fromJson(x)));
 
-String profilToJson(List<Profil> data) =>
+//TODO: UTF8 Encoding in profilToJson implementieren.
+String profilToJson(List<Profil> data, bool bool) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
 
 class Profil {
   Profil({
