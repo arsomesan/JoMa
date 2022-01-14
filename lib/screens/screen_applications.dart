@@ -9,8 +9,8 @@ import 'package:joma/screens/screen_settings.dart';
 
 import 'joblist_search_screen.dart';
 
-class ScreenSavedJobs extends StatelessWidget {
-  ScreenSavedJobs({Key? key}) : super(key: key);
+class ScreenApplications extends StatelessWidget {
+  ScreenApplications({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ScreenSavedJobs extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors().darkPrimaryColor,
         title: Text(
-          'Gespeicherte Jobs'.toUpperCase(),
+          'Bewerbungen'.toUpperCase(),
           style: AppTextStyles.darkH1,
         ),
         centerTitle: true,
@@ -45,9 +45,9 @@ class ScreenSavedJobs extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-              child: Text('Hier siehst du deine gespeicherten Jobs!',
-                    style: AppTextStyles.darkH4White,
-                    textAlign: TextAlign.center),
+              child: Text('Hier siehst du die Jobs, auf die du dich beworben hast!',
+                  style: AppTextStyles.darkH4White,
+                  textAlign: TextAlign.center),
             ),
             const SizedBox(height: 30),
             AppCardSearch(
@@ -55,7 +55,7 @@ class ScreenSavedJobs extends StatelessWidget {
                 jobDescription: 'Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung',
                 color: AppColors().darkYellow,
                 onPressed: () {}
-                ),
+            ),
             AppCardSearch(
                 jobTitle: 'Testjob',
                 jobDescription: 'Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung',

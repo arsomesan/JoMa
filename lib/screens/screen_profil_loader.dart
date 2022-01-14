@@ -7,6 +7,7 @@ import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/button.dart';
 import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/joblist_search_screen.dart';
+import 'package:joma/screens/screen_applications.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_settings_loader.dart';
 import 'package:joma/screens/screen_saved_jobs.dart';
@@ -35,19 +36,31 @@ class _ProfilLoaderState extends State<ProfilLoader> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profil'.toUpperCase()),
+        backgroundColor: AppColors().darkPrimaryColor,
+        title: Text(
+          'Profil'.toUpperCase(),
+          style: AppTextStyles.darkH1,
+        ),
         centerTitle: true,
-        /*leading: IconButton(
-           icon: Icon(Icons.settings), // Icon muss noch auf die rechte Seite
-           onPressed: () {
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
             Navigator.of(context).pop();
           },
-        ),*/
-        backgroundColor: AppColors().darkPrimaryColor,
+        ),
+        actions: [
+          IconButton(
+            icon: AppIcons().settingsWheel,
+            onPressed: () {
+              Get.to(() => const Einstellungen());
+            },
+          )
+        ],
       ),
 
       backgroundColor: AppBackgroundColors().darkBackground,
       body: ListView (
+        padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
         children: [
           AppButton(
               text: 'Profil anzeigen',
@@ -64,10 +77,10 @@ class _ProfilLoaderState extends State<ProfilLoader> {
               }
           ),
           AppButton(
-              text: 'Bewerbung',
+              text: 'Bewerbungen',
               color: AppColors().darkPrimaryColor,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader())); // screen_savedJob
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenApplications())); // screen_savedJob
               }
           ),
           AppButton(
