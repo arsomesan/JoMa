@@ -388,14 +388,7 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                         ),
                       ),
                     ),
-                        Container(
-                          margin: EdgeInsets.only(top: 30),
-                          child: IconButton(
-                              icon: Icon(Icons.edit),
-                              onPressed: () {
-                                // Button linking to settings page
-                              }),
-                        )
+
 
                   ],
 
@@ -404,12 +397,21 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
 
                   skills.add(
                     Container(
-                      child: Row(
+                      margin: EdgeInsets.only(left: 10),
+                      child: Wrap(
                         children: [
                           for(int i = 0; i < user.skills!.length; i++)
                             Expanded(
                                 child: buildSkill(data.skills.indexWhere((skill) => skill.id == user.skills![i]))),
+                          Container(
+                            child: IconButton(
+                                icon: Icon(Icons.edit),
+                                onPressed: () {
+                                  // Button linking to settings page
+                                }),
+                          ),
                         ],
+
                       ),
                     )
                   );
@@ -564,6 +566,7 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
   //colors get generated at random
   Widget buildSkill(int skillID) =>
       Container(
+        margin: EdgeInsets.only(right: 5),
         child: InputChip(
             label: Text(data.skills.elementAt(skillID).title.toString()),
             labelStyle: TextStyle(color: AppColors().white),
