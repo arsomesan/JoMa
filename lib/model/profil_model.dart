@@ -1,16 +1,12 @@
 // To parse this JSON data, do
 //
-//     final profil = profilFromJson(jsonString);
+//     final welcome = welcomeFromJson(jsonString);
 
 import 'dart:convert';
 
-List<Profil> profilFromJson(String str) =>
-    List<Profil>.from(json.decode(utf8.decode(str.runes.toList())).map((x) => Profil.fromJson(x)));
+List<Profil> profilFromJson(String str) => List<Profil>.from(json.decode(str).map((x) => Profil.fromJson(x)));
 
-//TODO: UTF8 Encoding in profilToJson implementieren.
-String profilToJson(List<Profil> data, bool bool) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
+String profilToJson(List<Profil> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Profil {
   Profil({
@@ -22,6 +18,7 @@ class Profil {
     this.adresse,
     this.kontakt,
     this.zugriff,
+    this.skills,
   });
 
   String? name;
@@ -32,30 +29,31 @@ class Profil {
   Adresse? adresse;
   Kontakt? kontakt;
   Zugriff? zugriff;
+  List<int>? skills;
 
-  factory Profil.fromJson(Map<String, dynamic> json) =>
-      Profil(
-        name: json["name"],
-        vorname: json["vorname"],
-        login: json["login"],
-        password: json["password"],
-        bild: json["bild"],
-        adresse: Adresse.fromJson(json["adresse"]),
-        kontakt: Kontakt.fromJson(json["kontakt"]),
-        zugriff: Zugriff.fromJson(json["zugriff"]),
-      );
+  factory Profil.fromJson(Map<String, dynamic> json) => Profil(
+    name: json["name"],
+    vorname: json["vorname"],
+    login: json["login"],
+    password: json["password"],
+    bild: json["bild"],
+    adresse: Adresse.fromJson(json["adresse"]),
+    kontakt: Kontakt.fromJson(json["kontakt"]),
+    zugriff: Zugriff.fromJson(json["zugriff"]),
+    skills: List<int>.from(json["skills"].map((x) => x)),
+  );
 
-  Map<String, dynamic> toJson() =>
-      {
-        "name": name,
-        "vorname": vorname,
-        "login": login,
-        "password": password,
-        "bild": bild,
-        "adresse": adresse!.toJson(),
-        "kontakt": kontakt!.toJson(),
-        "zugriff": zugriff! .toJson(),
-      };
+  Map<String, dynamic> toJson() => {
+    "name": name,
+    "vorname": vorname,
+    "login": login,
+    "password": password,
+    "bild": bild,
+    "adresse": adresse!.toJson(),
+    "kontakt": kontakt!.toJson(),
+    "zugriff": zugriff!.toJson(),
+    "skills": List<dynamic>.from(skills!.map((x) => x)),
+  };
 }
 
 class Adresse {
@@ -71,21 +69,19 @@ class Adresse {
   String? strasse;
   String? hausnummer;
 
-  factory Adresse.fromJson(Map<String, dynamic> json) =>
-      Adresse(
-        ort: json["ort"],
-        plz: json["plz"],
-        strasse: json["strasse"],
-        hausnummer: json["hausnummer"],
-      );
+  factory Adresse.fromJson(Map<String, dynamic> json) => Adresse(
+    ort: json["ort"],
+    plz: json["plz"],
+    strasse: json["strasse"],
+    hausnummer: json["hausnummer"],
+  );
 
-  Map<String, dynamic> toJson() =>
-      {
-        "ort": ort,
-        "plz": plz,
-        "strasse": strasse,
-        "hausnummer": hausnummer,
-      };
+  Map<String, dynamic> toJson() => {
+    "ort": ort,
+    "plz": plz,
+    "strasse": strasse,
+    "hausnummer": hausnummer,
+  };
 }
 
 class Kontakt {
@@ -99,19 +95,17 @@ class Kontakt {
   String? tel;
   String? web;
 
-  factory Kontakt.fromJson(Map<String, dynamic> json) =>
-      Kontakt(
-        email: json["email"],
-        tel: json["tel"],
-        web: json["web"],
-      );
+  factory Kontakt.fromJson(Map<String, dynamic> json) => Kontakt(
+    email: json["email"],
+    tel: json["tel"],
+    web: json["web"],
+  );
 
-  Map<String, dynamic> toJson() =>
-      {
-        "email": email,
-        "tel": tel,
-        "web": web,
-      };
+  Map<String, dynamic> toJson() => {
+    "email": email,
+    "tel": tel,
+    "web": web,
+  };
 }
 
 class Zugriff {
@@ -121,15 +115,11 @@ class Zugriff {
 
   DateTime? datum;
 
-  factory Zugriff.fromJson(Map<String, dynamic> json) =>
-      Zugriff(
-        datum: DateTime.parse(json["datum"]),
-      );
+  factory Zugriff.fromJson(Map<String, dynamic> json) => Zugriff(
+    datum: DateTime.parse(json["datum"]),
+  );
 
-  Map<String, dynamic> toJson() =>
-      {
-        "datum":
-        "${datum!.year.toString().padLeft(4, '0')}-${datum!.month.toString()
-            .padLeft(2, '0')}-${datum!.day.toString().padLeft(2, '0')}",
-      };
+  Map<String, dynamic> toJson() => {
+    "datum": "${datum!.year.toString().padLeft(4, '0')}-${datum!.month.toString().padLeft(2, '0')}-${datum!.day.toString().padLeft(2, '0')}",
+  };
 }
