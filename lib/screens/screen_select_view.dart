@@ -7,7 +7,6 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:joma/controllers/view_controller.dart';
 import 'package:joma/materials/button.dart';
 import 'package:joma/screens/screen_home.dart';
-
 import 'package:get/get.dart';
 import 'package:joma/materials/assets.dart';
 
@@ -23,7 +22,6 @@ class SelectView extends StatelessWidget {
           child: Text(
             'ANSICHT',
             textAlign: TextAlign.center,
-            //style: TextStyle(fontFamily: 'Marcellus', fontSize: 20),
             style: AppTextStyles.darkH1,
           ),
         ),
@@ -43,23 +41,20 @@ class SelectView extends StatelessWidget {
                   onTap: () {viewController.setView(0);},
                   child: Card(
                     clipBehavior: Clip.antiAlias,
-                    /*child: InkWell(
-                    splashColor: Colors.blue.withAlpha(30),
-                    onTap: () {
-                    debugPrint('Card tapped.');
-                    },*/
                     child: Column(
                       children: [
                         Container(
-
-                         padding: EdgeInsets.all(28.0),
-                         margin: EdgeInsets.all(40.0),
-                          child: Text("Bildsprache",
+                         //padding: EdgeInsets.all(28.0),
+                          margin: EdgeInsets.all(65.0),
+                          child:
+                            Text("NUR BILDER",
                                       style:  AppTextStyles.darkH2,
-                                      textAlign: TextAlign.center),
-
-
+                                      textAlign: TextAlign.center
+                          ),
                         ),
+                        Container(
+                          child: AppIcons().nurBilder,
+                          ),
                       ],
                     ),
                     color: (() {
@@ -70,16 +65,9 @@ class SelectView extends StatelessWidget {
                         return Colors.white;
                       }
                     }()),
-                    shape: Border.all(
-                      color: (() {
-                        if (_.state == 0) {
-                          return Colors.blue;
-                        } else {
-                          return Colors.black;
-                        }
-                      }()),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
                     ),
-
                   ),
                 ),
                 flex: 1,
@@ -96,14 +84,14 @@ class SelectView extends StatelessWidget {
                     child: Column(
                       children: [
                         Container(
-
-                          padding: EdgeInsets.all(28.0),
-                          margin: EdgeInsets.all(40.0),
-                          child: Text("Leichte Sprache",
+                          //padding: EdgeInsets.all(28.0),
+                          margin: EdgeInsets.all(43.0),
+                          child: Text("EINFACHE SPRACHE",
                               style:  AppTextStyles.darkH2,
                               textAlign: TextAlign.center),
-
-
+                        ),
+                        Container(
+                          child: AppIcons().einfacheSprache,
                         ),
                       ],
                     ),
@@ -114,16 +102,10 @@ class SelectView extends StatelessWidget {
                         return Colors.white;
                       }
                     }()),
-                    shape: Border.all(
-                      color: (() {
-                        if (_.state == 1) {
-                          return Colors.blue;
-                        } else {
-                          return Colors.black;
-                        }
-                      }()),
+                    shape:
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
                     ),
-
                   ),
                 ),
                 flex: 1,
@@ -140,14 +122,14 @@ class SelectView extends StatelessWidget {
                     child: Column(
                       children: [
                         Container(
-
-                          padding: EdgeInsets.all(28.0),
-                          margin: EdgeInsets.all(40.0),
-                          child: Text("Volltext",
+                          //padding: EdgeInsets.all(28.0),
+                          margin: EdgeInsets.all(60.0),
+                          child: Text("VOLLTEXT",
                               style:  AppTextStyles.darkH2,
                               textAlign: TextAlign.center),
-
-
+                        ),
+                        Container(
+                          child: AppIcons().vollText,
                         ),
                       ],
                     ),
@@ -158,37 +140,25 @@ class SelectView extends StatelessWidget {
                         return Colors.white;
                       }
                     }()),
-                    shape: Border.all(
-                      color: (() {
-                        if (_.state == 2) {
-                          return Colors.blue;
-                        } else {
-                          return Colors.black;
-                        }
-                      }()),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
                     ),
-
                   ),
                 ),
                 flex: 1,
               );
-            },),
-            Container(
-              height:80,
-              width: 370,
-              child:
-                  AppButton(text: "Weiter",
-                color: AppColors().darkSecondaryColor,
-                onPressed:(){ Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenHome()));},
+            },),Container(
+                height:75,
+                width: 370,
+                child:
+                AppButton(text: "Weiter",
+                  color: AppColors().darkPrimaryColor,
+                  onPressed:(){ Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenHome()));},
                 )
             ),
           ],
         ),
       ),
-
-
-
-
     );
   }
 }
