@@ -2,6 +2,7 @@ import 'package:joma/materials/button.dart';
 import 'package:joma/screens//screen_settings_datenschutz.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
+import 'package:joma/screens/screen_notifications.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_profil_settings_loader.dart';
 import 'package:joma/screens/screen_select_view.dart';
@@ -35,20 +36,6 @@ class Einstellungen extends StatelessWidget {
       backgroundColor: AppBackgroundColors().darkBackground,
       body: ListView (
         children: [
-          /*Container (
-            margin: EdgeInsets.fromLTRB(120, 0, 120,20),
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(180),
-              border: Border.all(width: 4, color: AppColors().darkSecondaryColor),
-              color: AppColors().white
-            ),
-            child: Icon(
-              Icons.settings,
-              color: AppColors().darkPrimaryColor,
-              size: 150,
-            ),
-          ),*/
           const SizedBox(height: 15),
           CircleAvatar(
             radius: 50,
@@ -82,7 +69,7 @@ class Einstellungen extends StatelessWidget {
               text: 'Mitteilungen',
               color: AppColors().darkPrimaryColor,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenNotifications()));
               }
           ),
           AppButton(

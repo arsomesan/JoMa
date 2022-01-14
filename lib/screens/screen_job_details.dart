@@ -309,7 +309,8 @@ Widget titleTextBuilder(BuildContext context) {
       child: Align(
         alignment: Alignment.center,
         child: Container(
-          height: 50.0,
+          alignment: Alignment.center,
+          height: 100.0,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               color: Colors.blueGrey,

@@ -6,6 +6,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:joma/screens/joblist_search_screen.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
+import 'package:joma/screens/screen_notifications.dart';
 import 'package:joma/screens/screen_register.dart';
 import 'package:joma/screens/screen_saved_jobs.dart';
 import 'package:joma/screens/screen_select_view.dart';
