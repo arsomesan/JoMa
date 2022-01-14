@@ -42,6 +42,7 @@ class ScreenSavedJobs extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            const SizedBox(height: 20),
             AppCardSearch(
                 jobTitle: 'Testjob',
                 jobDescription: 'Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung',
@@ -107,7 +108,7 @@ class ScreenSavedJobs extends StatelessWidget {
             //if (value == 2) Navigator.of(context).push(...);
           },
           backgroundColor: AppColors().darkPrimaryColor,
-          selectedItemColor: AppColors().white,
+          selectedItemColor: AppColors().darkSecondaryColor,
           unselectedItemColor: AppColors().white,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
