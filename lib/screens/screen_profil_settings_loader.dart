@@ -12,8 +12,8 @@ import 'package:joma/materials/assets.dart';
 import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
-import 'package:joma/services/remote_services.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
+import 'dart:math' as math;
 
 import 'joblist_search_screen.dart';
 
@@ -87,12 +87,13 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
               child: Center(
                 child: Obx(() {
 
-                  var remoteUser = profilToJson(data.profile, true);
+                  var remoteUser = profilToJson(data.profile);
                   var tmpUser = profilFromJson(UserSimplePreferences.getUser() ?? remoteUser.toString());
                   Profil user = tmpUser[0];
 
                   var bild = <Widget>[];
                   var result = <Widget>[];
+                  var skills = <Widget>[];
                   bild.add( Container(
                   width: 200,
                   height: 200,
@@ -374,6 +375,47 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                     ),
                   );
 
+                  skills.add(
+                    Row(
+                      children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 30, left: 20),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Stärken',
+                          style: TextStyle(color: Glovar.blackvar),
+                        ),
+                      ),
+                    ),
+                        Container(
+                          margin: EdgeInsets.only(top: 30),
+                          child: IconButton(
+                              icon: Icon(Icons.edit),
+                              onPressed: () {
+                                // Button linking to settings page
+                              }),
+                        )
+
+                  ],
+
+                    ),
+                  );
+
+                  skills.add(
+                    Container(
+                      child: Row(
+                        children: [
+                          for(int i = 0; i < user.skills!.length; i++)
+                            Expanded(
+                                child: buildSkill(data.skills.indexWhere((skill) => skill.id == user.skills![i]))),
+                        ],
+                      ),
+                    )
+                  );
+
+
+
 
 
                   return Center(
@@ -390,6 +432,12 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                           children: result,
                         ),
                       ),
+                      Container(
+                          margin: EdgeInsets.only(right: 20),
+                          child: Column(
+                          children: skills,
+                        )
+                      )
 
                     ],
                   ));
@@ -399,95 +447,6 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                   )
                 ),
 
-            Container(
-
-              child: Column(
-                children: [
-
-                  Container(
-                    margin: EdgeInsets.only(top: 30, left: 20),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Stärken',
-                        style: TextStyle(color: Glovar.blackvar),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 20),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Row(
-                        children: [
-                          Container(
-                              child: InputChip(
-                                  label: const Text('Belastbarkeit'),
-                                  labelStyle: TextStyle(color: Glovar.white),
-                                  backgroundColor: Glovar.red,
-                                  onPressed: () {
-                                    print('I am the one thing in life.');
-                                  })),
-                          Container(
-                              margin: EdgeInsets.only(left: 5),
-                              child: InputChip(
-                                  label: const Text('Teamfähigkeit'),
-                                  labelStyle: TextStyle(color: Glovar.white),
-                                  backgroundColor: Glovar.blue,
-                                  onPressed: () {
-                                    print('I am the one thing in life.');
-                                  })),
-                          Container(
-                              margin: EdgeInsets.only(left: 5),
-                              child: InputChip(
-                                  label: const Text('Offenheit'),
-                                  labelStyle: TextStyle(color: Glovar.white),
-                                  backgroundColor: Glovar.green,
-                                  onPressed: () {
-                                    print('I am the one thing in life.');
-                                  })),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 20),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Row(
-                        children: [
-                          Container(
-                              child: InputChip(
-                                  label: const Text('Engagement'),
-                                  labelStyle: TextStyle(color: Glovar.white),
-                                  backgroundColor: Glovar.purple,
-                                  onPressed: () {
-                                    print('I am the one thing in life.');
-                                  })),
-                          Container(
-                              margin: EdgeInsets.only(left: 5),
-                              child: InputChip(
-                                  label: const Text('Geduld'),
-                                  labelStyle: TextStyle(color: Glovar.white),
-                                  backgroundColor: Glovar.orange,
-                                  onPressed: () {
-                                    print('I am the one thing in life.');
-                                  })),
-                          Container(
-                              margin: EdgeInsets.only(left: 5),
-                              child: IconButton(
-                                  icon: Icon(Icons.add),
-                                  onPressed: () {
-                                    // Button linking to settings page
-                                  })
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
             Container(
               child: Center(
                 child: Container(
@@ -527,7 +486,7 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                       }
 
 
-                      var lokalusersavetmp = profilToJson(data.profile ,true);
+                      var lokalusersavetmp = profilToJson(data.profile);
                       UserSimplePreferences.setUser(lokalusersavetmp.toString());
 
                       setState(() {
@@ -593,7 +552,24 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
     );
   }
 
+  //dont know how skills are gonna look...
+  //as an example using inputchips
+  //colors get generated at random
+  Widget buildSkill(int skillID) =>
+      Container(
+        child: InputChip(
+            label: Text(data.skills.elementAt(skillID).title.toString()),
+            labelStyle: TextStyle(color: AppColors().white),
+            backgroundColor: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+            onPressed: () {
+
+            }
+        ),
+      );
+
 }
+
+
     //old profile function used with future builder
     /*
       body: FutureBuilder<List<Profil>>(
