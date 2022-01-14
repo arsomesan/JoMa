@@ -9,6 +9,7 @@ import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/joblist_search_screen.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_settings_loader.dart';
+import 'package:joma/screens/screen_saved_jobs.dart';
 import 'package:joma/screens/screen_settings.dart';
 import 'package:joma/services/remote_services.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
@@ -59,7 +60,7 @@ class _ProfilLoaderState extends State<ProfilLoader> {
               text: 'Gespeicherte Jobs',
               color: AppColors().darkPrimaryColor,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader())); // screen_savedJob
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenSavedJobs())); // screen_savedJob
               }
           ),
           AppButton(

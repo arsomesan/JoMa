@@ -7,6 +7,8 @@ import 'package:joma/screens/joblist_search_screen.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
 import 'package:joma/screens/screen_register.dart';
+import 'package:joma/screens/screen_saved_jobs.dart';
+import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_welcome.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
 import 'package:joma/materials/assets.dart';
@@ -52,7 +54,7 @@ class MyApp extends StatelessWidget {
       splash: Image.asset(
       'assets/images/darkJomaLogo.png',
       ),
-      nextScreen: ScreenWelcome(),
+      nextScreen: ScreenSavedJobs(),
       splashTransition: SplashTransition.rotationTransition,
       backgroundColor: AppColors().darkSecondaryColor,
       ),
