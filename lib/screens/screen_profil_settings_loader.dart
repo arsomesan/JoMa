@@ -490,7 +490,14 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                       UserSimplePreferences.setUser(lokalusersavetmp.toString());
 
                       setState(() {
-
+                          EmailController.clear();
+                          NameController.clear();
+                          VornameController.clear();
+                          TelController.clear();
+                          StrasseController.clear();
+                          HausnummerController.clear();
+                          StadtController.clear();
+                          PlzController.clear();
                       });
 
                     },
@@ -566,6 +573,7 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
             }
         ),
       );
+
 
 }
 
