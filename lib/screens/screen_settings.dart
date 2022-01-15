@@ -95,6 +95,8 @@ class Einstellungen extends StatelessWidget {
           ),
         ],
       ),
+
+      //------Bottom Navigation------//
       floatingActionButton: Container(
         height: 80.0,
         width: 80.0,
@@ -114,6 +116,7 @@ class Einstellungen extends StatelessWidget {
           },
         ),
       ),
+
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: 0,
           onTap: (value) {
@@ -133,7 +136,7 @@ class Einstellungen extends StatelessWidget {
             //if (value == 2) Navigator.of(context).push(...);
           },
           backgroundColor: AppColors().darkPrimaryColor,
-          selectedItemColor: AppColors().darkSecondaryColor,
+          selectedItemColor: AppColors().white,
           unselectedItemColor: AppColors().white,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(

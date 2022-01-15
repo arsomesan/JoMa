@@ -42,39 +42,26 @@ class AppButton extends StatelessWidget {
   }
 }
 
-class AppButtonWithCheckbox extends StatelessWidget {
+class AppButtonWithIcon extends StatelessWidget {
   final String text;
   final Color color;
-  bool isChecked = false;
+  final VoidCallback onPressed;
+  final Icon icon;
   // TODO: implement a possibility to use an icon in the button
   // TODO: implement a possibility to change the text color
 
-  AppButtonWithCheckbox({required this.text, required this.color});
+  AppButtonWithIcon({required this.text, required this.color, required this.onPressed, required this.icon});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
       child: ElevatedButton(
-          onPressed: () {},
-          child: Container(
-            child: Row(
-              children: [
-                Text(
-                  text,
-                ),
-                Spacer(),
-                Checkbox(
-                  checkColor: AppColors().white,
-                  fillColor: MaterialStateProperty.all<Color>(AppColors().white),
-                  value: isChecked,
-                  onChanged: (bool? value) {
-                      isChecked = value!;
-                  },
-                ),
-              ],
-            ),
+          onPressed: onPressed,
+          child: Text(
+            text,
           ),
+
           style: ButtonStyle(
               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                   const EdgeInsets.fromLTRB(0, 25, 0, 25)),
@@ -84,7 +71,11 @@ class AppButtonWithCheckbox extends StatelessWidget {
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
-                      side: BorderSide(color: color))))),
+                      side: BorderSide(color: color)
+                  )
+              )
+          )
+      ),
     );
   }
 }
