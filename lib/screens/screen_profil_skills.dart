@@ -165,28 +165,6 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
                         child: TextButton(
                           child: Text('Speichern'),
                           onPressed: () async {
-                            int count = 0;
-                            for(int i = 0; i < data.boolList.length; i++) {
-                              if(data.boolList[i] == true) count++;
-                            }
-
-                            var skillList = new List.filled(count, 0, growable: false);
-                            int before = -1;
-                            for(int i = 0; i < skillList.length; i++) {
-
-                              for(int l = 0; l < data.boolList.length; l++) {
-                                if(data.boolList[l] == true && l > before) {
-                                  skillList[i] = l;
-                                  before = l;
-                                  break;
-                                }
-                              }
-                            }
-
-                            var test = [0,1];
-                            tmpUser[0].skills = skillList;
-                            var lokalusersavetmp = profilToJson(tmpUser);
-                            UserSimplePreferences.setUser(lokalusersavetmp.toString());
                             Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader())); // screen_profileView
 
 

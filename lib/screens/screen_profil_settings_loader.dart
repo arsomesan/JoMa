@@ -74,13 +74,7 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
           ),
           backgroundColor: Glovar.white,
           foregroundColor: Glovar.blackvar,
-          actions: [
-            IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () {
-                  // Button linking to settings page
-                }),
-          ]),
+          ),
       body: SingleChildScrollView(
         child: Column(
           children: [
