@@ -401,7 +401,7 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                       child: Wrap(
                         children: [
                           for(int i = 0; i < user.skills!.length; i++)
-                            Expanded(
+                            Container(
                                 child: buildSkill(data.skills.indexWhere((skill) => skill.id == user.skills![i]))),
                           Container(
                             child: IconButton(
