@@ -440,7 +440,71 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                           child: Column(
                           children: skills,
                         )
-                      )
+                      ),
+                      Container(
+                        child: Center(
+                          child: Container(
+                            width: 140,
+                            height: 35,
+                            margin: EdgeInsets.only(top: 35, bottom: 50),
+                            child: TextButton(
+                              child: Text('Speichern'),
+                              onPressed: () {
+                                if (emailCheck) {
+                                  tmpUser[0].kontakt!.email = EmailController.text;
+                                }
+                                if (vornameCheck) {
+                                  tmpUser[0].vorname = VornameController.text;
+                                }
+                                if (nameCheck) {
+                                  tmpUser[0].name = NameController.text;
+                                }
+                                if (telCheck) {
+                                  tmpUser[0].kontakt!.tel = TelController.text;
+                                }
+                                if (strasseCheck) {
+                                  tmpUser[0].adresse!.strasse = StrasseController.text;
+                                }
+                                if (hausnummerCheck) {
+                                  tmpUser[0].adresse!.hausnummer = HausnummerController.text;
+                                }
+                                if (stadtCheck) {
+                                  tmpUser[0].adresse!.ort = StadtController.text;
+                                }
+                                if (plzCheck) {
+                                  tmpUser[0].adresse!.plz = PlzController.text;
+                                }
+
+
+                                var lokalusersavetmp = profilToJson(tmpUser);
+                                UserSimplePreferences.setUser(lokalusersavetmp.toString());
+/*
+                                setState(() {
+                                  EmailController.clear();
+                                  NameController.clear();
+                                  VornameController.clear();
+                                  TelController.clear();
+                                  StrasseController.clear();
+                                  HausnummerController.clear();
+                                  StadtController.clear();
+                                  PlzController.clear();
+                                }
+
+                                );
+*/
+                              },
+                              style: TextButton.styleFrom(
+                                primary: Glovar.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                backgroundColor: Glovar.grey,
+
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
 
                     ],
                   ));
@@ -450,72 +514,7 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                   )
                 ),
 
-            Container(
-              child: Center(
-                child: Container(
-                  width: 140,
-                  height: 35,
-                  margin: EdgeInsets.only(top: 35, bottom: 50),
-                  child: TextButton(
-                    child: Text('Speichern'),
-                    onPressed: () async {
-                      if (emailCheck) {
-                        data.profile[0].kontakt!.email = EmailController.text;
-                      }
 
-                      if (vornameCheck) {
-                        data.profile[0].vorname = VornameController.text;
-
-                      }
-
-                      if (nameCheck) {
-                        data.profile[0].name = NameController.text;
-                      }
-
-                      if (telCheck) {
-                        data.profile[0].kontakt!.tel = TelController.text;
-                      }
-                      if (strasseCheck) {
-                        data.profile[0].adresse!.strasse = StrasseController.text;
-                      }
-                      if (hausnummerCheck) {
-                        data.profile[0].adresse!.hausnummer = HausnummerController.text;
-                      }
-                      if (stadtCheck) {
-                        data.profile[0].adresse!.ort = StadtController.text;
-                      }
-                      if (plzCheck) {
-                        data.profile[0].adresse!.plz = PlzController.text;
-                      }
-
-
-                      var lokalusersavetmp = profilToJson(data.profile);
-                      UserSimplePreferences.setUser(lokalusersavetmp.toString());
-
-                      setState(() {
-                          EmailController.clear();
-                          NameController.clear();
-                          VornameController.clear();
-                          TelController.clear();
-                          StrasseController.clear();
-                          HausnummerController.clear();
-                          StadtController.clear();
-                          PlzController.clear();
-                      });
-
-                    },
-                    style: TextButton.styleFrom(
-                      primary: Glovar.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      backgroundColor: Glovar.grey,
-
-                    ),
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),

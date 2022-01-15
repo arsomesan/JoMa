@@ -55,156 +55,159 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
           )
         ],
       ),
-      body: Center(child: Obx(() {
-        var remoteUser = profilToJson(data.profile);
-        var tmpUser = profilFromJson(
-            UserSimplePreferences.getUser() ?? remoteUser.toString());
-        Profil user = tmpUser[0];
+      body: SingleChildScrollView(
+        child: Center(child: Obx(() {
+          var remoteUser = profilToJson(data.profile);
+          var tmpUser = profilFromJson(
+              UserSimplePreferences.getUser() ?? remoteUser.toString());
+          Profil user = tmpUser[0];
 
-        var result = <Widget>[];
+          var result = <Widget>[];
 
-        data.boolList = new List.filled(data.skills.length, false, growable: false).obs;
+          data.boolList = new List.filled(data.skills.length, false, growable: false).obs;
 
-        for(int i = 0; i < data.skills.length; i++) {
-          for(int l = 0; l < user.skills!.length; l++) {
-            if(data.skills[i].id == user.skills![l]) {
-              data.boolList[i] = true;
-              break;
+          for(int i = 0; i < data.skills.length; i++) {
+            for(int l = 0; l < user.skills!.length; l++) {
+              if(data.skills[i].id == user.skills![l]) {
+                data.boolList[i] = true;
+                break;
+              }
             }
+
           }
 
-        }
-
-        result.add(Container(
-            child: Column(
-          children: [
-            for (int i = 0; i < data.skills.length; i++)
-              Container(
-                //child: skillCard(data.skills[i], boolList[i]),
-                child: Container(
-                  width: 300,
-                  height: 85,
-                  margin: EdgeInsets.only(top: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Card(
-                      color: AppColors().darkPrimaryColor,
-                      elevation: 4,
-                      child: InkWell(
-                        splashColor: AppColors().white.withAlpha(30),
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(left: 10),
-                              child: Container(
-                                width: 200,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
+          result.add(Container(
+              child: Column(
+                children: [
+                  for (int i = 0; i < data.skills.length; i++)
+                    Container(
+                      //child: skillCard(data.skills[i], boolList[i]),
+                        child: Container(
+                          width: 300,
+                          height: 85,
+                          margin: EdgeInsets.only(top: 10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Card(
+                              color: AppColors().darkPrimaryColor,
+                              elevation: 4,
+                              child: InkWell(
+                                splashColor: AppColors().white.withAlpha(30),
+                                child: Row(
                                   children: [
-                                    Text(
-                                      data.skills[i].title.toString().toUpperCase(),
-                                      style: TextStyle(color: AppColors().white),
+                                    Container(
+                                      margin: EdgeInsets.only(left: 10),
+                                      child: Container(
+                                        width: 200,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              data.skills[i].title.toString().toUpperCase(),
+                                              style: TextStyle(color: AppColors().white),
+                                            ),
+                                            const SizedBox(height: 3),
+                                          ],
+                                        ),
+                                      ),
                                     ),
-                                    const SizedBox(height: 3),
+                                    Spacer(),
+                                    Container(
+                                        margin: EdgeInsets.only(right: 10),
+                                        child: Checkbox(
+                                          value: data.boolList[i],
+                                          onChanged: (bool? value) {
+                                            data.boolList[i] = value!;
+                                            int count = 0;
+                                            for(int i = 0; i < data.boolList.length; i++) {
+                                              if(data.boolList[i] == true) count++;
+                                            }
+
+                                            var skillList = new List.filled(count, 0, growable: false);
+                                            int before = -1;
+                                            for(int i = 0; i < skillList.length; i++) {
+
+                                              for(int l = 0; l < data.boolList.length; l++) {
+                                                if(data.boolList[l] == true && l > before) {
+                                                  skillList[i] = l;
+                                                  before = l;
+                                                  break;
+                                                }
+                                              }
+                                            }
+                                            tmpUser[0].skills = skillList;
+                                            var lokalusersavetmp = profilToJson(tmpUser);
+                                            UserSimplePreferences.setUser(lokalusersavetmp.toString());
+                                          },
+                                        ))
                                   ],
                                 ),
-                              ),
+                              )),
+                        )
+                    )
+                ],
+              )));
+
+          return Center(
+              child: Column(
+                children: [
+                  Column(
+                    children: result,
+                  ),
+                  Container(
+                    child: Center(
+                      child: Container(
+                        width: 140,
+                        height: 35,
+                        margin: EdgeInsets.only(top: 35, bottom: 50),
+                        child: TextButton(
+                          child: Text('Speichern'),
+                          onPressed: () async {
+                            int count = 0;
+                            for(int i = 0; i < data.boolList.length; i++) {
+                              if(data.boolList[i] == true) count++;
+                            }
+
+                            var skillList = new List.filled(count, 0, growable: false);
+                            int before = -1;
+                            for(int i = 0; i < skillList.length; i++) {
+
+                              for(int l = 0; l < data.boolList.length; l++) {
+                                if(data.boolList[l] == true && l > before) {
+                                  skillList[i] = l;
+                                  before = l;
+                                  break;
+                                }
+                              }
+                            }
+
+                            var test = [0,1];
+                            tmpUser[0].skills = skillList;
+                            var lokalusersavetmp = profilToJson(tmpUser);
+                            UserSimplePreferences.setUser(lokalusersavetmp.toString());
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader())); // screen_profileView
+
+
+                          },
+                          style: TextButton.styleFrom(
+                            primary: AppColors().white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                            Spacer(),
-                            Container(
-                                margin: EdgeInsets.only(right: 10),
-                                child: Checkbox(
-                                  value: data.boolList[i],
-                                  onChanged: (bool? value) {
-                                    data.boolList[i] = value!;
-                                    int count = 0;
-                                    for(int i = 0; i < data.boolList.length; i++) {
-                                      if(data.boolList[i] == true) count++;
-                                    }
+                            backgroundColor: AppColors().darkBlue,
 
-                                    var skillList = new List.filled(count, 0, growable: false);
-                                    int before = -1;
-                                    for(int i = 0; i < skillList.length; i++) {
-
-                                      for(int l = 0; l < data.boolList.length; l++) {
-                                        if(data.boolList[l] == true && l > before) {
-                                          skillList[i] = l;
-                                          before = l;
-                                          break;
-                                        }
-                                      }
-                                    }
-                                    tmpUser[0].skills = skillList;
-                                    var lokalusersavetmp = profilToJson(tmpUser);
-                                    UserSimplePreferences.setUser(lokalusersavetmp.toString());
-                                  },
-                                ))
-                          ],
+                          ),
                         ),
-                      )),
-                )
-              )
-          ],
-        )));
-
-        return Center(
-            child: Column(
-          children: [
-            Column(
-              children: result,
-            ),
-            Container(
-              child: Center(
-                child: Container(
-                  width: 140,
-                  height: 35,
-                  margin: EdgeInsets.only(top: 35, bottom: 50),
-                  child: TextButton(
-                    child: Text('Speichern'),
-                    onPressed: () async {
-                      int count = 0;
-                      for(int i = 0; i < data.boolList.length; i++) {
-                        if(data.boolList[i] == true) count++;
-                      }
-
-                      var skillList = new List.filled(count, 0, growable: false);
-                      int before = -1;
-                      for(int i = 0; i < skillList.length; i++) {
-
-                        for(int l = 0; l < data.boolList.length; l++) {
-                          if(data.boolList[l] == true && l > before) {
-                            skillList[i] = l;
-                            before = l;
-                            break;
-                          }
-                        }
-                      }
-
-                      var test = [0,1];
-                      tmpUser[0].skills = skillList;
-                      var lokalusersavetmp = profilToJson(tmpUser);
-                      UserSimplePreferences.setUser(lokalusersavetmp.toString());
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader())); // screen_profileView
-
-
-                    },
-                    style: TextButton.styleFrom(
-                      primary: AppColors().white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
                       ),
-                      backgroundColor: AppColors().darkBlue,
-
                     ),
                   ),
-                ),
-              ),
-            ),
-          ],
-        ));
-      })),
+                ],
+              ));
+        })),
+      ),
+
       floatingActionButton: Container(
         height: 80.0,
         width: 80.0,
@@ -259,63 +262,4 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
     );
   }
 
-  Widget skillCard(Skill skill, bool isChecked) => Container(
-        width: 300,
-        height: 85,
-        margin: EdgeInsets.only(top: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Card(
-            color: AppColors().darkPrimaryColor,
-            elevation: 4,
-            child: InkWell(
-              splashColor: AppColors().white.withAlpha(30),
-              child: Row(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 10),
-                    child: Container(
-                      width: 200,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            skill.title.toString().toUpperCase(),
-                            style: TextStyle(color: AppColors().white),
-                          ),
-                          const SizedBox(height: 3),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Spacer(),
-                  Container(
-                      margin: EdgeInsets.only(right: 10),
-                      child: Checkbox(
-                        checkColor: AppColors().white,
-                        fillColor: MaterialStateProperty.resolveWith(getColor),
-                        value: isChecked,
-                        onChanged: (bool? value) {
-                          setState(() {
-                          });
-                        },
-                      ))
-                ],
-              ),
-            )),
-      );
-
-  Color getColor(Set<MaterialState> states) {
-    const Set<MaterialState> interactiveStates = <MaterialState>{
-      MaterialState.pressed,
-      MaterialState.hovered,
-      MaterialState.focused,
-    };
-    if (states.any(interactiveStates.contains)) {
-      return Colors.blue;
-    }
-    return Colors.red;
-  }
 }
