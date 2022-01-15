@@ -12,6 +12,8 @@ class DataController extends GetxController {
   var jobCategories = List<JobCategory>.empty().obs;
   var skills = List<Skill>.empty().obs;
 
+  RxList<bool> boolList = List<bool>.empty().obs;
+
   RxInt jobOfTheWeek = 0.obs;
 
   DataController() {
