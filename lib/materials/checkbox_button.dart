@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:joma/materials/assets.dart';
 
-class CheckboxButton extends StatelessWidget {
-  bool value = false;
+class CheckboxButton extends StatefulWidget {
   final String text;
 
   CheckboxButton(
@@ -13,8 +12,39 @@ class CheckboxButton extends StatelessWidget {
       bool autofocus: false});
 
   @override
+  State<CheckboxButton> createState() => _CheckboxButtonState();
+}
+
+class _CheckboxButtonState extends State<CheckboxButton> {
+  bool _checked = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
+      padding: EdgeInsets.fromLTRB(50, 25, 50, 25),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: AppColors().darkPrimaryColor,
+        ),
+        child: CheckboxListTile(
+          contentPadding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+          title: Text('Notification'.toUpperCase(), style: AppTextStyles.darkButtonText),
+          secondary: AppIcons().bookMark,
+          controlAffinity:
+          ListTileControlAffinity.platform,
+          value: _checked,
+          onChanged: (bool? value) {
+            setState(() {
+              _checked = value!;
+            });
+          },
+          activeColor: Colors.white,
+          checkColor: Colors.white,
+        ),
+      ),
+    );
+    /*Container(
       alignment: Alignment.center,
       width: 300,
       height: 45,
@@ -73,6 +103,6 @@ class CheckboxButton extends StatelessWidget {
           ),
         ],
       ),
-    );
+    );*/
   }
 }
