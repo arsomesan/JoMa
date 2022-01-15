@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -202,10 +203,11 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                   result.add(
                     Container(
                         child: TextFormField(
+                            keyboardType: TextInputType.emailAddress,
                             controller: EmailController,
                             onChanged: (text) {
-                              emailCheck = true;
-                            },
+                              emailCheck = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(EmailController.text);
+                              },
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: user.kontakt!.email,
@@ -230,6 +232,7 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                   result.add(
                     Container(
                         child: TextFormField(
+                            keyboardType: TextInputType.phone,
                             controller: TelController,
                             onChanged: (text) {
                               telCheck = true;
@@ -293,6 +296,7 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                                       ),
                                       Container(
                                           child: TextFormField(
+                                              keyboardType: TextInputType.number,
                                               controller: HausnummerController,
                                               onChanged: (text) {
                                                 hausnummerCheck = true;
@@ -358,6 +362,7 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                   result.add(
                     Container(
                         child: TextFormField(
+                            keyboardType: TextInputType.number,
                             controller: PlzController,
                             onChanged: (text) {
                               plzCheck = true;
