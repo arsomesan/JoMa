@@ -18,15 +18,12 @@ class SelectView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'ANSICHT',
-            textAlign: TextAlign.center,
-            style: AppTextStyles.darkH1,
-          ),
+        title: Text(
+          'Ansicht wählen'.toUpperCase(),
+          style: AppTextStyles.darkH1,
         ),
-        //backgroundColor: const Color.fromRGBO(129, 129, 129, 1),
           backgroundColor: AppBackgroundColors().darkBackground,
+          centerTitle: true,
       ),
       backgroundColor: AppBackgroundColors().darkBackground,
 
