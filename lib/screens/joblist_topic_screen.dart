@@ -12,6 +12,7 @@ import 'package:joma/screens/screen_job_details.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
+import 'package:joma/screens/screen_settings.dart';
 import 'package:joma/services/remote_services.dart';
 
 import 'joblist_search_screen.dart';
@@ -32,9 +33,23 @@ class JobListTopicScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
       appBar: AppBar(
-        backgroundColor: AppBackgroundColors().darkBackground,
-        title: Text('Soziales & Hauswirtschaft'),
+        backgroundColor: AppColors().darkPrimaryColor,
+        title: Text('Soziales & Hauswirtschaft'.toUpperCase(), style: AppTextStyles.darkH4),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: AppIcons().settingsWheel,
+            onPressed: () {
+              Get.to(() => const Einstellungen());
+            },
+          )
+        ],
       ),
       body: SingleChildScrollView(
           child:

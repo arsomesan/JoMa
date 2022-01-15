@@ -3,9 +3,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:joma/materials/assets.dart';
+import 'package:joma/materials/card.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_job_details.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
+import 'package:joma/screens/screen_settings.dart';
 
 class JobListSearchScreen extends StatelessWidget {
   const JobListSearchScreen({Key? key}) : super(key: key);
@@ -25,10 +28,25 @@ class JobListSearchScreen extends StatelessWidget {
     ];
 
     return Scaffold(
+      backgroundColor: AppBackgroundColors().darkBackground,
       appBar: AppBar(
-        backgroundColor: _colorGrey,
-        title: Text('Alle Jobs'),
+        backgroundColor: AppColors().darkPrimaryColor,
+        title: Text('Alle Jobs'.toUpperCase(), style: AppTextStyles.darkH1),
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: AppIcons().settingsWheel,
+            onPressed: () {
+              Get.to(() => const Einstellungen());
+            },
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -36,45 +54,62 @@ class JobListSearchScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             buildSearchBar(),
-            for (int i = 0; i < 7; i++) generateSingleJobCard(_jobColors)
+            for (int i = 0; i < 7; i++) generateSingleJobCard(_jobColors),
+            const SizedBox(height: 50),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black,
-        child: Icon(Icons.home),
-        onPressed: () {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ScreenHome()),);
-        },
+      floatingActionButton: Container(
+        height: 80.0,
+        width: 80.0,
+        child: FloatingActionButton(
+          elevation: 0,
+          child: CircleAvatar(
+            radius: 80.0,
+            backgroundImage: AssetImage(
+              'assets/images/darkJomaLogo.png',
+            ),
+          ),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => ScreenHome()),
+            );
+          },
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: 0,
           onTap: (value) {
             if (value == 0) {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
-            );
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const JobListSearchScreen()),
+              );
             }
             if (value == 1) {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilLoader()),
-            );
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilLoader()),
+              );
             }
             //if (value == 2) Navigator.of(context).push(...);
           },
-          backgroundColor: Colors.grey,
-          selectedItemColor: Colors.white,
-          items: const <BottomNavigationBarItem>[
+          backgroundColor: AppColors().darkPrimaryColor,
+          selectedItemColor: AppColors().white,
+          unselectedItemColor: AppColors().white,
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
+              icon: AppIcons().searchGlass,
               label: 'Suchen',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: AppIcons().profile,
               label: 'Profil',
             ),
-          ]
-      ),
-      floatingActionButtonLocation:
-      FloatingActionButtonLocation.centerDocked,
+          ]),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
@@ -84,61 +119,11 @@ Widget generateSingleJobCard(List<Color> _jobColors) {
   Color _color = _jobColors[_random.nextInt(_jobColors.length)];
 
   return (Center(
-    child: Container(
-      margin: EdgeInsets.only(top: 20),
-      child: Card(
-        shape: Border(
-          top: BorderSide(color: _color, width: 10),
-          right: BorderSide(color: _color, width: 10),
-        ),
-        child: SizedBox(
-          width: 320,
-          height: 130,
-          child: Row(
-            children: [
-              Container(
-                  margin: EdgeInsets.only(left: 20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Jobtitel',
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          )),
-                      Container(height: 10),
-                      Container(
-                        width: 200,
-                        child: Text(
-                            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.'),
-                      ),
-                    ],
-                  )),
-              Spacer(),
-              Container(
-                margin: EdgeInsets.only(right: 30),
-                decoration: BoxDecoration(
-                  color: _color,
-                  border: Border.all(color: _color),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(100),
-                  ),
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.arrow_forward_ios),
-                  tooltip: '',
-                  onPressed: () {
-                    //Get.to(ScreenJobDetails());
-                    //Get.off(() => ScreenJobDetails());
-                    //Get.to(() => ScreenJobDetails()); TODO: currently not working because of the new implementation in the job_details screen, which is necessary to fetch job list from JSON
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    ),
+    child: AppCardSearch(
+        jobTitle: 'Jobtitel',
+        jobDescription: 'Dies ist eine Testbeschreibung vom hier angezeigten Job!',
+        color: _color,
+        onPressed: () {})
   ));
 }
 
