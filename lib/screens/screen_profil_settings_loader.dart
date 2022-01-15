@@ -12,6 +12,7 @@ import 'package:joma/materials/assets.dart';
 import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
+import 'package:joma/screens/screen_profil_skills.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
 import 'dart:math' as math;
 
@@ -407,7 +408,7 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                             child: IconButton(
                                 icon: Icon(Icons.edit),
                                 onPressed: () {
-                                  // Button linking to settings page
+                                  Get.to(() => ScreenProfilSkills());
                                 }),
                           ),
                         ],
