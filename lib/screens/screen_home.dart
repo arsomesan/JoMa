@@ -37,7 +37,6 @@ class ScreenHome extends StatelessWidget {
             },
           )
         ],
-        //backgroundColor: const Color.fromRGBO(129, 129, 129, 1),
       ),
       extendBodyBehindAppBar: true,
       body: CustomPaint(
@@ -46,189 +45,14 @@ class ScreenHome extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              /*Center(
-                child: RotationTransition(
-                  turns: const AlwaysStoppedAnimation(45 / 360),
-                  alignment: const Alignment(-0.5, 1.5),
-                  child: Center(
-                    child: Flexible(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: Flexible(
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      //Get.to(JobListTopicScreen());
-                                      Get.to(() => JobListTopicScreen());
-
-                                    },
-                                    child: DecoratedBox(
-                                      decoration: BoxDecoration(
-                                        color: AppColors().darkRed,
-                                        shape: BoxShape.rectangle,
-                                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(32.0),
-                                        child: Container(
-                                          width: 60.0,
-                                          height: 60.0,
-                                          child: const RotationTransition(
-                                            turns: AlwaysStoppedAnimation(-45 / 360),
-                                            child: Text(
-                                              "TECHNIK\nHANDWERK",
-                                              textAlign: TextAlign.left,
-                                              style: TextStyle(
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  flex: 1),
-                            ),
-                            Center(
-                              child: Flexible(
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      //Get.to(JobListTopicScreen());
-                                      Get.to(() => JobListTopicScreen());
-                                    },
-                                    child: DecoratedBox(
-                                      decoration: BoxDecoration(
-                                        color: AppColors().darkGreen,
-                                        shape: BoxShape.rectangle,
-                                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(32.0),
-                                        child: Container(
-                                          width: 60.0,
-                                          height: 60.0,
-                                          child: const RotationTransition(
-                                            turns: AlwaysStoppedAnimation(-45 / 360),
-                                            child: Text(
-                                              "GÄRTNEREI\nLANDWIRTSCHAFT",
-                                              textAlign: TextAlign.right,
-                                              style: TextStyle(
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  flex: 1),
-                            ),
-                          ],
-                        ),
-                        flex: 1),
-                  ),
-                ),
-              ),
-
-              Center(
-                child: RotationTransition(
-                  turns:  const AlwaysStoppedAnimation(45 / 360),
-                  alignment: const Alignment(-0.5, -0.5),
-                  child: Center(
-                    child: Flexible(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: Flexible(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    //Get.to(JobListTopicScreen());
-                                    Get.to(() => JobListTopicScreen());
-
-                                  },
-                                  child: DecoratedBox(
-                                    decoration: BoxDecoration(
-                                      color: AppColors().darkBlue,
-                                      shape: BoxShape.rectangle,
-                                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(32.0),
-                                      child: Container(
-                                        width: 60.0,
-                                        height: 60.0,
-                                        child: const RotationTransition(
-                                          turns: AlwaysStoppedAnimation(-45 / 360),
-                                          child: Text(
-                                            "SOZIALES\nHAUSWIRTSCHAFT",
-                                            textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                              fontSize: 11,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                  flex: 1),
-                            ),
-                            Center(
-                              child: Flexible(
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      //Get.to(JobListTopicScreen());
-                                      Get.to(() => JobListTopicScreen());
-                                    },
-                                    child: DecoratedBox(
-                                      decoration: BoxDecoration(
-                                        color: AppColors().darkYellow,
-                                        shape: BoxShape.rectangle,
-                                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(32.0),
-                                        child: Container(
-                                          width: 60.0,
-                                          height: 60.0,
-                                          child: const RotationTransition(
-                                            turns: AlwaysStoppedAnimation(-45 / 360),
-                                            child: Text(
-                                              "SERVICE\nLEBENSMITTEL",
-                                              textAlign: TextAlign.left,
-                                              style: TextStyle(
-                                                fontSize: 11,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  flex: 1),
-                            ),
-                          ],
-                        ),
-                        flex: 1),
-                  ),
-                ),
-              ), */
               Stack(children: [
                 Container(
                   alignment: Alignment.center,
                   child: RotationTransition(
                     turns: AlwaysStoppedAnimation(45 / 360),
                     child: Container(
-                      width: 200,
-                      height: 200,
+                      width: 250,
+                      height: 250,
                       child: Stack(
                         children: [
                           Positioned(
@@ -239,35 +63,35 @@ class ScreenHome extends StatelessWidget {
                                   Get.to(() => JobListTopicScreen());
                                 },
                                 color: AppColors().darkRed,
-                                icon: Icon(Icons.card_travel),
-                                title: 'Hallo'),
+                                icon: AppIcons().homeRedSection,
+                                title: 'TECHNIK\nHANDWERK'),
                           ),
                           Positioned(
                             top: 0,
-                            left: 100,
+                            left: 125,
                             child: HomeScreenCard(
                                 elevatedButtonRoute: () {},
                                 color: AppColors().darkGreen,
-                                icon: Icon(Icons.card_travel),
-                                title: 'Hallo'),
+                                icon: AppIcons().homeGreenSection,
+                                title: 'GÄRTNEREI\nLANDWIRTSCHAFT'),
                           ),
                           Positioned(
-                            top: 100,
+                            top: 125,
                             left: 0,
                             child: HomeScreenCard(
                                 elevatedButtonRoute: () {},
                                 color: AppColors().darkBlue,
-                                icon: Icon(Icons.card_travel),
-                                title: 'Hallo'),
+                                icon: AppIcons().homeBlueSection,
+                                title: 'SOZIALES\nHAUSWIRTSCHAFT'),
                           ),
                           Positioned(
-                            top: 100,
-                            left: 100,
+                            top: 125,
+                            left: 125,
                             child: HomeScreenCard(
                                 elevatedButtonRoute: () {},
                                 color: AppColors().darkYellow,
-                                icon: Icon(Icons.card_travel),
-                                title: 'Hallo'),
+                                icon: AppIcons().homeYellowSection,
+                                title: 'SERVICE\nLEBENSMITTEL'),
                           ),
                         ],
                       ),
@@ -285,13 +109,6 @@ class ScreenHome extends StatelessWidget {
                 ),
               ),
               Container(height: 20),
-              /*AppButton(
-                text: "Wahl-O-Mat asoidhgö odbfh öa<sih b",
-                color: AppColors().black,
-                onPressed: (){
-                  Get.to(() => const JobListTopicScreen());
-                },
-              ),*/
               ElevatedButton(
                   onPressed: () {
                     Get.to(() => JobListTopicScreen());
@@ -299,7 +116,7 @@ class ScreenHome extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 100, vertical: 25),
+                        horizontal: 120, vertical: 25),
                     shape: const StadiumBorder(),
                   ),
                   child: const Text(
@@ -329,7 +146,10 @@ class ScreenHome extends StatelessWidget {
           },
         ),
       ),
-      bottomNavigationBar: AppNavBar(backgroundColor: AppColors().darkPrimaryColor, selectedItemColor: AppColors().darkSecondaryColor, unselectedItemColor: AppColors().white),
+      bottomNavigationBar: AppNavBar(
+          backgroundColor: AppColors().darkPrimaryColor,
+          selectedItemColor: AppColors().white,
+          unselectedItemColor: AppColors().white),
       /*bottomNavigationBar: BottomNavigationBar(
           currentIndex: 0,
           onTap: (value) {
