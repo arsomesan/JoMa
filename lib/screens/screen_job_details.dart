@@ -42,9 +42,57 @@ class ScreenJobDetails extends StatelessWidget {
 Widget build(BuildContext context) {
   return Scaffold(
       appBar: appBarBuilder(),
-      floatingActionButton: homeButtonBuilder(context),
+      floatingActionButton: Container(
+        height: 80.0,
+        width: 80.0,
+        child: FloatingActionButton(
+          elevation: 0,
+          child: CircleAvatar(
+            radius: 80.0,
+            backgroundImage: AssetImage(
+              'assets/images/darkJomaLogo.png',
+            ),
+          ),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => ScreenHome()),
+            );
+          },
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 0,
+          onTap: (value) {
+            if (value == 0) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const JobListSearchScreen()),
+              );
+            }
+            if (value == 1) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilLoader()),
+              );
+            }
+            //if (value == 2) Navigator.of(context).push(...);
+          },
+          backgroundColor: AppColors().darkPrimaryColor,
+          selectedItemColor: AppColors().darkSecondaryColor,
+          unselectedItemColor: AppColors().white,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: AppIcons().searchGlass,
+              label: 'Suchen',
+            ),
+            BottomNavigationBarItem(
+              icon: AppIcons().profile,
+              label: 'Profil',
+            ),
+          ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: navBarBuilder(context),
       body: ListView(
         children: [
           //titleImageBuilder(job),
@@ -82,7 +130,7 @@ PreferredSizeWidget appBarBuilder() {
     backgroundColor: AppColors().darkGreen,
     title: Text(
       'Gärtnerei & Landwirtschaft',
-      style: AppTextStyles.darkH1,
+      style: AppTextStyles.darkH3,
     ),
     centerTitle: true,
   );
