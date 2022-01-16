@@ -21,7 +21,7 @@ class _CheckboxButtonState extends State<CheckboxButton> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.fromLTRB(50, 25, 50, 25),
+      padding: EdgeInsets.fromLTRB(50, 15, 50, 15),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
