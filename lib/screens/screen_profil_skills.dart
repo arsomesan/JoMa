@@ -5,6 +5,7 @@ import 'package:joma/materials/assets.dart';
 import 'package:get/get.dart';
 import 'package:joma/materials/card.dart';
 import 'package:joma/materials/checkbox_button.dart';
+import 'package:joma/materials/skill_checkbox_button.dart';
 import 'package:joma/model/profil_model.dart';
 import 'package:joma/model/skill_model.dart';
 import 'package:joma/screens/screen_home.dart';
@@ -32,6 +33,25 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
   final DataController data = Get.find();
   @override
   Widget build(BuildContext context) {
+
+    //Load Profile from Json
+    var remoteUser = profilToJson(data.profile);
+    //Load Profile from Shared Preferences if given. If not load Json Profile
+    var tmpUser = profilFromJson(UserSimplePreferences.getUser() ?? remoteUser.toString());
+    Profil user = tmpUser[0];
+
+    data.boolList =
+        new List.filled(data.skills.length, false, growable: false).obs;
+
+    for (int i = 0; i < data.skills.length; i++) {
+      for (int l = 0; l < user.skills!.length; l++) {
+        if (data.skills[i].id == user.skills![l]) {
+          data.boolList[i] = true;
+          break;
+        }
+      }
+    }
+
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
       appBar: AppBar(
@@ -58,29 +78,18 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
       ),
       body: SingleChildScrollView(
         child: Center(child: Obx(() {
-          var remoteUser = profilToJson(data.profile);
-          var tmpUser = profilFromJson(UserSimplePreferences.getUser() ?? remoteUser.toString());
-          Profil user = tmpUser[0];
+
 
           var result = <Widget>[];
 
-          data.boolList =
-              new List.filled(data.skills.length, false, growable: false).obs;
 
-          for (int i = 0; i < data.skills.length; i++) {
-            for (int l = 0; l < user.skills!.length; l++) {
-              if (data.skills[i].id == user.skills![l]) {
-                data.boolList[i] = true;
-                break;
-              }
-            }
-          }
 
           result.add(Container(
               child: Column(
             children: [
               for (int i = 0; i < data.skills.length; i++)
-                renderSkillWidget(i, data, tmpUser)
+                //renderSkillWidget(i, data, tmpUser)
+                SkillCheckboxButton(text: data.skills[i].title.toString(), value: data.boolList[i], id: i)
             ],
           )));
 
@@ -99,6 +108,7 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
                     child: TextButton(
                       child: Text('Speichern'),
                       onPressed: () async {
+                        saveSkillState(data.boolList, tmpUser);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -195,7 +205,8 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
         value: data.boolList[i],
         onChanged: (bool? value) {
           setState(() {
-            saveSkillState(data.boolList, tmpUser, value, i);
+            data.boolList[i] = value!;
+            saveSkillState(data.boolList, tmpUser);
           });
         },
         activeColor: Colors.white,
@@ -204,8 +215,7 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
     );
   }
 
-  void saveSkillState(RxList<bool> boolList, List<Profil> tmpUser, bool? value, int i) {
-    data.boolList[i] = value!;
+  void saveSkillState(RxList<bool> boolList, List<Profil> tmpUser) {
     int count = 0;
     for (int i = 0; i < data.boolList.length; i++) {
       if (data.boolList[i] == true) count++;
