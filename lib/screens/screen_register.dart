@@ -57,120 +57,118 @@ class _ScreenRegister extends State<ScreenRegister> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
-     body: Center(
-            child: ListView(children: <Widget>[
-          Container(
-            height: 255,
-            margin: EdgeInsets.only(bottom:20),
-            child: AppBarMainArea(
-              bgColor: AppBackgroundColors().darkBackground,
-              bgColorBar: AppColors().darkPrimaryColor,
-              color: AppColors().darkPrimaryColor,
-              title: 'Registrieren'.toUpperCase(),
-            ),
+      body: Center(
+          child: ListView(children: <Widget>[
+        Container(
+          height: 255,
+          margin: EdgeInsets.only(bottom: 20),
+          child: AppBarMainArea(
+            bgColor: AppBackgroundColors().darkBackground,
+            bgColorBar: AppColors().darkPrimaryColor,
+            color: AppColors().darkPrimaryColor,
+            title: 'Registrieren'.toUpperCase(),
           ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: Text(
-                'Der Job maßgeschneidert für dich!',
-                textAlign: TextAlign.center,
-                style: AppTextStyles.darkH4White,
-              ),
-            ),
-            Container(
-                color: AppColors().white,
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.fromLTRB(10, 05, 10, 05),
-                child: Padding(
-                    padding: EdgeInsets.all(0),
-                    child: TextField(
-                      style: TextStyle(
-                        backgroundColor: AppColors().white,
-                      ),
-                      controller: emailController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'E-Mail',
-                      ),
-                    ))),
-            Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.fromLTRB(10, 05, 10, 05),                
-                color: AppColors().white,
-                child: Padding(
-                    padding: EdgeInsets.all(0),
-                    child: TextField(
-                      obscureText: _obscurePwd,
-                      controller: passwordController,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: 'Passwort',
-                        suffixIcon: IconButton(
-                            icon: Icon(_obscurePwd
-                                ? Icons.visibility
-                                : Icons.visibility_off),
-                            onPressed: () {
-                              setState(() {
-                                _obscurePwd = !_obscurePwd;
-                              });
-                            }),
-                      ),
-                    ))),
-            Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.fromLTRB(10, 05, 10, 05),                   
-                color: AppColors().white,
-                child: Padding(
-                    padding: EdgeInsets.all(0),
-                    child: TextField(
-                      obscureText: _obscurePwd,
-                      controller: passwordController,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: 'Passwort wiederholen',
-                        suffixIcon: IconButton(
-                            icon: Icon(_obscurePwd
-                                ? Icons.visibility
-                                : Icons.visibility_off),
-                            onPressed: () {
-                              setState(() {
-                                _obscurePwd = !_obscurePwd;
-                              });
-                            }),
-                      ),
-                    ))),
-            Container(
-                
-               width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.fromLTRB(0, 90, 0, 02),
-                child: AppButton(
-                text: 'Registrieren',
-                color: AppColors().darkPrimaryColor,
-                  onPressed: () {
-                    if (validate(
-                        emailController.text, passwordController.text)) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SelectView()),
-                      );
-                    }
-                  },
-                )),
-            Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.fromLTRB(30, 15, 30, 10),
-                child: RichText(
-                  text: TextSpan(children: [
-                    TextSpan(
-                        text: 'by creating an account you agree to joma.',
-                        style: TextStyle(color: Colors.white),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            print('Datenschutz.');
-                          })
-                  ]),
-                )),
-          ])),
+        ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+          child: Text(
+            'Der Job maßgeschneidert für dich!',
+            textAlign: TextAlign.center,
+            style: AppTextStyles.darkH4White,
+          ),
+        ),
+        Container(
+            color: AppColors().white,
+            width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.fromLTRB(10, 05, 10, 05),
+            child: Padding(
+                padding: EdgeInsets.all(0),
+                child: TextField(
+                  style: TextStyle(
+                    backgroundColor: AppColors().white,
+                  ),
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'E-Mail',
+                  ),
+                ))),
+        Container(
+            width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.fromLTRB(10, 05, 10, 05),
+            color: AppColors().white,
+            child: Padding(
+                padding: EdgeInsets.all(0),
+                child: TextField(
+                  obscureText: _obscurePwd,
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    labelText: 'Passwort',
+                    suffixIcon: IconButton(
+                        icon: Icon(_obscurePwd
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            _obscurePwd = !_obscurePwd;
+                          });
+                        }),
+                  ),
+                ))),
+        Container(
+            width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.fromLTRB(10, 05, 10, 05),
+            color: AppColors().white,
+            child: Padding(
+                padding: EdgeInsets.all(0),
+                child: TextField(
+                  obscureText: _obscurePwd,
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    labelText: 'Passwort wiederholen',
+                    suffixIcon: IconButton(
+                        icon: Icon(_obscurePwd
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            _obscurePwd = !_obscurePwd;
+                          });
+                        }),
+                  ),
+                ))),
+        Container(
+            width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.fromLTRB(0, 90, 0, 02),
+            child: AppButton(
+              text: 'Registrieren',
+              color: AppColors().darkPrimaryColor,
+              onPressed: () {
+                if (validate(emailController.text, passwordController.text)) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SelectView()),
+                  );
+                }
+              },
+            )),
+        Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.fromLTRB(30, 15, 30, 10),
+            child: RichText(
+              text: TextSpan(children: [
+                TextSpan(
+                    text: 'by creating an account you agree to joma.',
+                    style: TextStyle(color: Colors.white),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        print('Datenschutz.');
+                      })
+              ]),
+            )),
+      ])),
     );
   }
 }
