@@ -39,6 +39,8 @@ zum Einbinden:
 class AppTextStyles {
   static const darkH1 = TextStyle(
       fontFamily: AppFont.mainFont, fontSize: 25, fontWeight: FontWeight.bold);
+  static const darkH1black = TextStyle(
+      fontFamily: AppFont.mainFont, fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black);
   static const darkH2 = TextStyle(
       fontFamily: AppFont.mainFont, fontSize: 23, fontWeight: FontWeight.bold);
   static const darkH3 = TextStyle(
