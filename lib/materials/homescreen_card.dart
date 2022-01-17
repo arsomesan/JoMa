@@ -19,8 +19,8 @@ class HomeScreenCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(5),
-      width: 100,
-      height: 100,
+      width: 125,
+      height: 125,
       child: ElevatedButton(
         onPressed: this.elevatedButtonRoute,
         style: ButtonStyle(
@@ -32,14 +32,18 @@ class HomeScreenCard extends StatelessWidget {
         child: RotationTransition(
           turns: AlwaysStoppedAnimation(-45 / 360),
           child: Container(
-              width: 70,
-              height: 70,
+              width: 90,
+              height: 90,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   this.icon,
-                  Text(this.title),
+                  Text(this.title, style: TextStyle(
+                      color: AppBackgroundColors().darkBackground,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 11)
+                  ),
                 ],
               )),
           alignment: Alignment.center,

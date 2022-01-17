@@ -40,6 +40,21 @@ class ScreenNotifications extends StatelessWidget {
               text: 'Soziales & Hauswirtschaft',
               value: false,
               // onChanged: true,
+          ),
+          CheckboxButton(
+            text: 'Handwerk & Technik',
+            value: false,
+            // onChanged: true,
+          ),
+          CheckboxButton(
+            text: 'Service & Lebensmittel',
+            value: false,
+            // onChanged: true,
+          ),
+          CheckboxButton(
+            text: 'Gärtnerei & Landwirtschaft',
+            value: false,
+            // onChanged: true,
           )
         ],
       ),
