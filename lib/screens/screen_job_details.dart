@@ -276,11 +276,12 @@ Widget titleImageBuilder(Job job) {
           child: FlutterMap(
             options: MapOptions(
               center: LatLng(double.parse(job.coords!.lat!),double.parse(job.coords!.long!)),
-              zoom: 20.0,
+              zoom: 16.0,
             ),
             layers: [
               TileLayerOptions(
-                urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+
+                urlTemplate: "https://a.tile.openstreetmap.de/{z}/{x}/{y}.png",
                 subdomains: ['a', 'b', 'c'],
               ),
               MarkerLayerOptions(
