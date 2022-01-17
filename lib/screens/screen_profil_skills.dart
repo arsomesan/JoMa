@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:get/get.dart';
+import 'package:joma/materials/button.dart';
 import 'package:joma/materials/card.dart';
 import 'package:joma/materials/checkbox_button.dart';
 import 'package:joma/materials/skill_checkbox_button.dart';
@@ -89,7 +90,16 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
             children: [
               for (int i = 0; i < data.skills.length; i++)
                 //renderSkillWidget(i, data, tmpUser)
-                SkillCheckboxButton(text: data.skills[i].title.toString(), value: data.boolList[i], id: i)
+                SkillCheckboxButton(
+                    text: data.skills[i].title.toString(),
+                    value: data.boolList[i],
+                    onChanged: (bool? value) {
+                      setState(() {
+                        data.boolList[i] = value!;
+                        saveSkillState(data.boolList, tmpUser);
+                      });
+                      print(data.boolList);
+                    })
             ],
           )));
 
@@ -99,6 +109,7 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
               Column(
                 children: result,
               ),
+              /*
               Container(
                 child: Center(
                   child: Container(
@@ -113,8 +124,8 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    ProfilSettingsLoader())); // screen_profileView
-                      },
+                                const ProfilSettingsLoader()));
+                    },
                       style: TextButton.styleFrom(
                         primary: AppColors().white,
                         shape: RoundedRectangleBorder(
@@ -126,7 +137,15 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
                   ),
                 ),
               ),
-            ],
+              */
+
+              Container(
+                  child: AppButton(
+                      text: "Speichern",
+                      color: AppColors().darkPrimaryColor,
+                      onPressed: () {saveButton(data, tmpUser);})
+              )
+                ],
           ));
         })),
       ),
@@ -215,6 +234,15 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
     );
   }
 
+  void saveButton(DataController data, List<Profil> tmpUser) {
+    saveSkillState(data.boolList, tmpUser);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+            const ProfilSettingsLoader()));// screen_profileView
+  }
+
   void saveSkillState(RxList<bool> boolList, List<Profil> tmpUser) {
     int count = 0;
     for (int i = 0; i < data.boolList.length; i++) {
@@ -236,5 +264,7 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
     var lokalusersavetmp = profilToJson(tmpUser);
     UserSimplePreferences.setUser(lokalusersavetmp.toString());
   }
+
+
 
 }

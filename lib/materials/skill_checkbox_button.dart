@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:joma/controllers/data_controller.dart';
@@ -6,13 +7,13 @@ import 'package:joma/materials/assets.dart';
 
 class SkillCheckboxButton extends StatefulWidget {
   final String text;
+  ValueChanged<bool?>? onChanged;
   bool value;
-  int id;
 
   SkillCheckboxButton(
       {required this.text,
         required this.value,
-        required this.id
+        required this.onChanged
       });
 
 
@@ -38,15 +39,11 @@ class _SkillCheckboxButtonState extends State<SkillCheckboxButton> {
         child: CheckboxListTile(
           contentPadding: EdgeInsets.fromLTRB(10, 5, 10, 5),
           title: Text(widget.text.toUpperCase(), style: AppTextStyles.darkButtonText),
-          secondary: AppIcons().bookMark,
+          secondary: Icon(FontAwesomeIcons.handshake),
           controlAffinity:
           ListTileControlAffinity.platform,
           value: widget.value,
-          onChanged: (bool? value) {
-            setState(() {
-              widget.value = value!;
-            });
-            data.boolList[widget.id] = value!;},
+          onChanged: widget.onChanged,
           activeColor: Colors.white,
           checkColor: Colors.white,
         ),
