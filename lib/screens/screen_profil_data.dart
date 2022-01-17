@@ -18,7 +18,6 @@ import 'joblist_search_screen.dart';
 class ProfilData extends StatelessWidget {
   const ProfilData({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     final DataController data = Get.find();
@@ -45,24 +44,24 @@ class ProfilData extends StatelessWidget {
         child: Column(
           children: [
             Center(
-              child: Container(
+              child:                   Container(
                 width: 200,
                 height: 200,
-                margin: const EdgeInsets.only(top: 25.0),
+                margin: EdgeInsets.only(top: 25.0),
                 decoration: BoxDecoration(
+                  //shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: NetworkImage(user.bild!),
+                    fit: BoxFit.cover,
+                  ),
                   border: Border.all(
                     color: Glovar.grey,
                     width: 1,
                   ),
                   borderRadius: BorderRadius.circular(100),
-                  //shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: NetworkImage(
-                        user.bild!),
                 ),
               ),
             ),
-      ),
             Container(
               margin: const EdgeInsets.only(left: 20, top: 30),
               child: Column(
@@ -78,9 +77,9 @@ class ProfilData extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       user.vorname! + " " + user.name!,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 10),
@@ -96,8 +95,8 @@ class ProfilData extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       user.kontakt!.email!,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
                   Container(
@@ -114,8 +113,8 @@ class ProfilData extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       user.kontakt!.tel!,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
                   Container(
@@ -132,8 +131,8 @@ class ProfilData extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       user.adresse!.strasse! + " " + user.adresse!.hausnummer!,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
                   Container(
@@ -150,8 +149,8 @@ class ProfilData extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       user.adresse!.plz! + " " + user.adresse!.ort!,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
                   Container(
@@ -167,113 +166,41 @@ class ProfilData extends StatelessWidget {
                   Container(
                     child: Wrap(
                       children: [
-                        for(int i = 0; i < user.skills!.length; i++)
+                        for (int i = 0; i < user.skills!.length; i++)
                           Container(
-                              child: buildSkill(data.skills.indexWhere((skill) => skill.id == user.skills![i]), data)),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: [
-                        InputChip(
-                            label: const Text('Belastbarkeit'),
-                            labelStyle: TextStyle(color: Glovar.white),
-                            backgroundColor: Glovar.red,
-                            onPressed: () {}),
-                        Container(
-                            margin: const EdgeInsets.only(left: 5),
-                            child: InputChip(
-                                label: const Text('Teamfähigkeit'),
-                                labelStyle: TextStyle(color: Glovar.white),
-                                backgroundColor: Glovar.blue,
-                                onPressed: () {})),
-                        Container(
-                            margin: const EdgeInsets.only(left: 5),
-                            child: InputChip(
-                                label: const Text('Offenheit'),
-                                labelStyle: TextStyle(color: Glovar.white),
-                                backgroundColor: Glovar.green,
-                                onPressed: () {})),
+                              child: buildSkill(
+                                  data.skills.indexWhere(
+                                      (skill) => skill.id == user.skills![i]),
+                                  data)),
                       ],
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: [
-                        InputChip(
-                            label: const Text('Engagement'),
-                            labelStyle: TextStyle(color: Glovar.white),
-                            backgroundColor: Glovar.purple,
-                            onPressed: () {}),
-                        Container(
-                            margin: const EdgeInsets.only(left: 5),
-                            child: InputChip(
-                                label: const Text('Geduld'),
-                                labelStyle: TextStyle(color: Glovar.white),
-                                backgroundColor: Glovar.orange,
-                                onPressed: () {})),
-                      ],
-
+                  Center(
+                    child: Container(
+                      width: 140,
+                      height: 35,
+                      margin: const EdgeInsets.only(top: 35, bottom: 50),
+                      child: TextButton(
+                        child: const Text('Profil bearbeiten'),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader()));
+                        },
+                        style: TextButton.styleFrom(
+                          primary: Glovar.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          backgroundColor: Glovar.grey,
+                        ),
+                      ),
                     ),
-                  )
+                  ),
                 ],
-              ),
-            ),
-            Center(
-              child: Container(
-                width: 140,
-                height: 35,
-                margin: const EdgeInsets.only(top: 35, bottom: 50),
-                child: TextButton(
-                  child: const Text('Profil bearbeiten'),
-                  onPressed: () {
-                    Get.off(() => const ProfilSettingsLoader());
-                  },
-                  style: TextButton.styleFrom(
-                    primary: Glovar.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    backgroundColor: Glovar.grey,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 35,
-              child: Center(
-                child: TextButton(
-                  child: const Text('Impressum'),
-                  onPressed: () {
-                    // Button linking to the impress page
-                  },
-                  style: TextButton.styleFrom(
-                    primary: Glovar.greylight,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              height: 30,
-              margin: const EdgeInsets.only(bottom: 60),
-              child: Center(
-                child: TextButton(
-                  child: const Text('Datenschutz'),
-                  onPressed: () {
-                    // Button linking to the impress page
-                  },
-                  style: TextButton.styleFrom(
-                    primary: Glovar.greylight,
-                  ),
-                ),
               ),
             ),
           ],
         ),
       ),
-  ],
-        ),
-    ),
       floatingActionButton: Container(
         height: 80.0,
         width: 80.0,
@@ -314,17 +241,14 @@ class ProfilData extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
-  Widget buildSkill(int skillID, DataController data) =>
-      Container(
+
+  Widget buildSkill(int skillID, DataController data) => Container(
         margin: EdgeInsets.only(right: 5),
         child: InputChip(
             label: Text(data.skills.elementAt(skillID).title.toString()),
             labelStyle: TextStyle(color: AppColors().white),
-            backgroundColor: Color(int.parse(data.skills.elementAt(skillID as int).colorHex.toString())),
-            onPressed: () {
-
-            }
-        ),
+            backgroundColor: Color(int.parse(
+                data.skills.elementAt(skillID as int).colorHex.toString())),
+            onPressed: () {}),
       );
-
 }
