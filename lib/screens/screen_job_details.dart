@@ -1,5 +1,6 @@
 // Page-Imports
 
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -197,7 +198,7 @@ Widget buildSkillCards() {
 Widget buildSkill(int skillID) => Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        buildBox(child: Icon(Icons.build)),
+        buildBox(child: Icon(IconDataSolid(int.parse("0x" + data.skills[skillID].icon.toString())))),
         const SizedBox(height: 5),
         Text(
           data.skills.elementAt(skillID).title.toString(),
