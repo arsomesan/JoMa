@@ -109,18 +109,25 @@ class _ScreenWelcome extends State<ScreenWelcome> {
                   if (validate(emailController.text, passwordController.text)) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ScreenRegister()),
+                      MaterialPageRoute(builder: (context) => ScreenLogin()),
                     );
                   }
                 },
               )),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('created by Hochschule Fulda',
-                style:TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-                              ),
-              ),
+             Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.fromLTRB(30, 15, 30, 10),
+                child: RichText(
+                  text: TextSpan(children: [
+                    TextSpan(
+                        text: 'created by Hochschule Fulda',
+                        style: TextStyle(color: Colors.white),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            print('Datenschutz.');
+                          })
+                  ]),
+                )),
 
         ])));
   }
