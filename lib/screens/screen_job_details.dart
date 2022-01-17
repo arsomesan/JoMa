@@ -1,5 +1,6 @@
 // Page-Imports
 
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -197,7 +198,7 @@ Widget buildSkillCards() {
 Widget buildSkill(int skillID) => Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        buildBox(child: Icon(Icons.build)),
+        buildBox(child: Icon(IconDataSolid(int.parse("0x" + data.skills[skillID].icon.toString())))),
         const SizedBox(height: 5),
         Text(
           data.skills.elementAt(skillID).title.toString(),
@@ -245,7 +246,7 @@ Widget graduationBuilder() {
 Widget buildSchoolBox({required Widget child}) => Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors().darkGreen,
+        color: currentBackgroundColor,
       ),
       padding: EdgeInsets.all(15),
       child: child,
@@ -304,7 +305,7 @@ Widget adressBuilder() {
 Widget buildAdressBox({required Widget child}) => Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors().darkGreen,
+        color: currentBackgroundColor,
       ),
       padding: EdgeInsets.all(20),
       child: child,
@@ -370,7 +371,7 @@ Widget titleTextBuilder(BuildContext context) {
           height: 100.0,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-              color: Colors.blueGrey,
+              color: Colors.transparent,
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           child: new Center(
             child: new Text(
@@ -442,7 +443,7 @@ Widget skillBackgroundBuilder(BuildContext context) {
       padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        color: AppColors().darkGreen,
+        color: currentBackgroundColor,
         child: buildSkillCards(),
       ),
     );
