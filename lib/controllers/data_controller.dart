@@ -14,19 +14,6 @@ class DataController extends GetxController {
 
   RxList<bool> boolList = List<bool>.empty().obs;
 
-  RxInt jobOfTheWeek = 0.obs;
-
-  DataController() {
-    jobOfTheWeek.value = 0;
-  }
-
-  int getJobOfTheWeek() {
-    return jobOfTheWeek.value;
-  }
-
-  void setJobOfTheWeek(int jobID) {
-    jobOfTheWeek.value = jobID;
-  }
 
   @override
   void onInit() {
