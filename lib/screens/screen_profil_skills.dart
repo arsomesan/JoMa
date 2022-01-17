@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:get/get.dart';
 import 'package:joma/materials/button.dart';
 import 'package:joma/materials/card.dart';
 import 'package:joma/materials/checkbox_button.dart';
-import 'package:joma/materials/skill_checkbox_button.dart';
 import 'package:joma/model/profil_model.dart';
 import 'package:joma/model/skill_model.dart';
 import 'package:joma/screens/screen_home.dart';
@@ -90,7 +90,7 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
             children: [
               for (int i = 0; i < data.skills.length; i++)
                 //renderSkillWidget(i, data, tmpUser)
-                SkillCheckboxButton(
+                CheckboxButton(
                     text: data.skills[i].title.toString(),
                     value: data.boolList[i],
                     onChanged: (bool? value) {
@@ -98,7 +98,9 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
                         data.boolList[i] = value!;
                         saveSkillState(data.boolList, tmpUser);
                       });
-                    })
+                    },
+                    icon: Icon(FontAwesomeIcons.handHolding),
+                )
             ],
           )));
 
@@ -114,7 +116,6 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
                       text: "Speichern",
                       color: AppColors().darkPrimaryColor,
                       onPressed: () {
-                        saveSkillState(data.boolList, tmpUser);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -191,7 +192,6 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
     int before = -1;
     for (int i = 0; i < skillList.length; i++) {
       for (int l = 0; l < data.boolList.length; l++) {
-        print(l);
         if (data.boolList[l] == true && l > before) {
           skillList[i] = l;
           before = l;

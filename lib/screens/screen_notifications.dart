@@ -1,3 +1,4 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:joma/materials/button.dart';
 import 'package:joma/materials/checkbox_button.dart';
 import 'package:joma/materials/navbar.dart';
@@ -39,22 +40,26 @@ class ScreenNotifications extends StatelessWidget {
           CheckboxButton(
               text: 'Soziales & Hauswirtschaft',
               value: false,
-              // onChanged: true,
+              onChanged: (bool? value) {},
+              icon: Icon(FontAwesomeIcons.tools),
           ),
           CheckboxButton(
             text: 'Handwerk & Technik',
             value: false,
-            // onChanged: true,
+            onChanged: (bool? value) {},
+            icon: Icon(FontAwesomeIcons.tools),
           ),
           CheckboxButton(
             text: 'Service & Lebensmittel',
             value: false,
-            // onChanged: true,
+            onChanged: (bool? value) {},
+            icon: Icon(FontAwesomeIcons.tools),
           ),
           CheckboxButton(
             text: 'Gärtnerei & Landwirtschaft',
             value: false,
-            // onChanged: true,
+            onChanged: (bool? value) {},
+            icon: Icon(FontAwesomeIcons.tools),
           )
         ],
       ),
