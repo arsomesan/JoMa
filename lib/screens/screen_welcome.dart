@@ -66,12 +66,59 @@ class _ScreenWelcome extends State<ScreenWelcome> {
 
   @override
   Widget build(BuildContext context) {
-    return AppBarMainArea(
-      bgColor: AppBackgroundColors().darkBackground,
-      bgColorBar: AppColors().darkPrimaryColor,
-      color: AppColors().darkPrimaryColor,
-      title: 'Willkommen \nbei joma'.toUpperCase(),
-    );
+    return Scaffold(
+        backgroundColor: AppBackgroundColors().darkBackground,
+        body: Center(
+            child: ListView(children: <Widget>[
+          Container(
+            height: 255,
+            child: AppBarMainArea(
+              bgColor: AppBackgroundColors().darkBackground,
+              bgColorBar: AppColors().darkPrimaryColor,
+              color: AppColors().darkPrimaryColor,
+              title: ''.toUpperCase(),
+            ),
+          ),
+          Container(
+              height: 50,
+              margin: const EdgeInsets.fromLTRB(15, 150, 15, 10),
+              child: AppButton(
+                text: 'Registrieren',
+                color: AppColors().darkSecondaryColor,
+                onPressed: () {
+                  if (validate(emailController.text, passwordController.text)) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ScreenRegister()),
+                    );
+                  }
+                },
+              )),
+          Container(
+              height: 50,
+              margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+              child: ElevatedButton(
+                child: Text('Anmelden'),
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40)),
+                  primary: AppColors().darkPrimaryColor,
+                  onPrimary: Colors.white,
+                  textStyle: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Raleway'),
+                ),
+                onPressed: () {
+                  if (validate(emailController.text, passwordController.text)) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ScreenLogin()),
+                    );
+                  }
+                },
+              ))
+        ])));
   }
 }
 
