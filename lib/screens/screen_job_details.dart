@@ -1,5 +1,9 @@
 // Page-Imports
 
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/model/job_model.dart';
 import 'package:joma/model/skill_model.dart';
 
@@ -27,64 +31,78 @@ import 'package:joma/materials/button.dart';
 // FontAwesome-Import (not working atm)
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ScreenJobDetails extends StatefulWidget {
-  const ScreenJobDetails({Key? key, required this.job}) : super(key: key);
-  final Job job;
+class ScreenJobDetails extends StatelessWidget {
+  final int? jobID;
+  ScreenJobDetails({Key? key, required this.jobID}) : super(key: key);
+  final DataController data = Get.find();
+  late Job job = data.jobs.elementAt(jobID!);
 
-  @override
-  skillsLoaderState createState() => skillsLoaderState(job);
-}
-
-class skillsLoaderState extends State<ScreenJobDetails> {
-  skillsLoaderState(this.job);
-
-  final Job job;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder<List<Skill>>(
-          future: RemoteServices.fetchSkills(),
-          builder: (BuildContext context, AsyncSnapshot<List<Skill>> snapshot) {
-            if (snapshot.hasData) {
-              return buildScreen(context, snapshot.data, job);
-            } else if (snapshot.hasError) {
-              // TODO handle error, if data wasn't successfully loaded
-            } else {}
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }),
-    );
-  }
-}
 
 @override
-Widget buildScreen(BuildContext context, List<Skill>? skills, Job job) {
+Widget build(BuildContext context) {
   return Scaffold(
       appBar: appBarBuilder(),
-      floatingActionButton: homeButtonBuilder(),
+      floatingActionButton: Container(
+        height: 80.0,
+        width: 80.0,
+        child: FloatingActionButton(
+          elevation: 0,
+          child: CircleAvatar(
+            radius: 80.0,
+            backgroundImage: AssetImage(
+              'assets/images/darkJomaLogo.png',
+            ),
+          ),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => ScreenHome()),
+            );
+          },
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 0,
+          onTap: (value) {
+            if (value == 0) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const JobListSearchScreen()),
+              );
+            }
+            if (value == 1) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilLoader()),
+              );
+            }
+            //if (value == 2) Navigator.of(context).push(...);
+          },
+          backgroundColor: AppColors().darkPrimaryColor,
+          selectedItemColor: AppColors().darkSecondaryColor,
+          unselectedItemColor: AppColors().white,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: AppIcons().searchGlass,
+              label: 'Suchen',
+            ),
+            BottomNavigationBarItem(
+              icon: AppIcons().profile,
+              label: 'Profil',
+            ),
+          ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: navBarBuilder(),
       body: ListView(
         children: [
           //titleImageBuilder(job),
-          titleTextBuilder(job: job),
-          carouselSliderBuilder(job: job),
-          AppCard(jobTitle: 'Fischverkäufer', jobDescription: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.', color: AppColors().darkRed, onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenHome()));
-           }),
-          jobDescriptionBuilder(job),
-          skillBackgroundBuilder(job: job, skills: skills),
-          graduationBuilder(job),
+          titleTextBuilder(context),
+          carouselSliderBuilder(),
+          jobDescriptionBuilder(),
+          skillBackgroundBuilder(context),
+          graduationBuilder(),
           mapBuilder(),
-          adressBuilder(job),
+          adressBuilder(),
           buildHorizontalDivider(),
           buildDistanceText(),
           //buildApplyButton(),
@@ -100,6 +118,8 @@ Widget buildScreen(BuildContext context, List<Skill>? skills, Job job) {
           ),
         ],
       ));
+
+
 }
 
 // ---------- APP-BAR ----------
@@ -110,7 +130,7 @@ PreferredSizeWidget appBarBuilder() {
     backgroundColor: AppColors().darkGreen,
     title: Text(
       'Gärtnerei & Landwirtschaft',
-      style: AppTextStyles.darkH1,
+      style: AppTextStyles.darkH3,
     ),
     centerTitle: true,
   );
@@ -134,13 +154,13 @@ Widget titleImageBuilder(Job job) {
 */
 // ---------- JOB-BESCHREIBUNG ----------
 
-Widget jobDescriptionBuilder(Job job) {
+Widget jobDescriptionBuilder() {
   return Padding(
     padding: EdgeInsets.fromLTRB(44, 10, 44, 0),
     child: Align(
       alignment: Alignment.center,
       child: Text(
-        job.description.toString(),
+        job.description!.full.toString(),
         style: AppTextStyles.darkMainText,
       ),
     ),
@@ -150,7 +170,7 @@ Widget jobDescriptionBuilder(Job job) {
 // ---------- FÄHIGKEITEN ----------
 
 // Dieses Widget baut eine Reihe von Fähigkeiten auf
-Widget buildSkillCards(Job job, List<Skill>? skills) {
+Widget buildSkillCards() {
   return Padding(
     padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
     child: Row(
@@ -158,21 +178,20 @@ Widget buildSkillCards(Job job, List<Skill>? skills) {
       children: [
         for (int i = 0; i < job.skills!.length; i++)
           Expanded(
-              child: buildSkill(skills!,
-                  skills.indexWhere((skill) => skill.id == job.skills![i])))
+              child: buildSkill(data.skills.indexWhere((skill) => skill.id == job.skills![i]))),
       ],
     ),
   );
 }
 
 // Dieses Widget baut eine einzelne Fähigkeit auf
-Widget buildSkill(List<Skill> skills, int skillID) => Column(
+Widget buildSkill(int skillID) => Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         buildBox(child: Icon(Icons.build)),
         const SizedBox(height: 5),
         Text(
-          skills.elementAt(skillID).title.toString(),
+          data.skills.elementAt(skillID).title.toString(),
           style: AppTextStyles.darkMainText,
         )
       ],
@@ -191,7 +210,7 @@ Widget buildBox({required Widget child}) => Container(
 // ---------- SCHULABSCHLUSS ----------
 
 // Dieses Widget baut die Schulabschluss-Anzeige auf
-Widget graduationBuilder(Job job) {
+Widget graduationBuilder() {
   return Padding(
     padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
     child: Row(
@@ -238,7 +257,7 @@ Widget mapBuilder() {
 // ---------- ADRESSE ----------
 
 // Dieses Widget baut die Adresszeile auf
-Widget adressBuilder(Job job) {
+Widget adressBuilder() {
   return Padding(
     padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
     child: Row(
@@ -332,19 +351,14 @@ Widget buildApplyButton() {
 // ---------- TITEL ----------
 
 // Diese Klasse baut den Titel auf
-class titleTextBuilder extends StatelessWidget {
-  final Job job;
-
-  const titleTextBuilder({Key? key, required this.job}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+Widget titleTextBuilder(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
       child: Align(
         alignment: Alignment.center,
         child: Container(
-          height: 50.0,
+          alignment: Alignment.center,
+          height: 100.0,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               color: Colors.blueGrey,
@@ -359,18 +373,13 @@ class titleTextBuilder extends StatelessWidget {
       ),
     );
   }
-}
+
 
 // ---------- BILDER-KARUSSELL ----------
 
 // Diese Klasse baut den Carousel-Slider auf
-class carouselSliderBuilder extends StatelessWidget {
-  final Job job;
+Widget carouselSliderBuilder() {
 
-  const carouselSliderBuilder({Key? key, required this.job}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
         height: 200.0,
@@ -413,27 +422,19 @@ class carouselSliderBuilder extends StatelessWidget {
       }).toList(),
     );
   }
-}
+
 
 // ---------- SKILL-BACKGROUND ----------
 
 // Diese Klasse baut den Hintergrund der Fähigkeiten auf
-class skillBackgroundBuilder extends StatelessWidget {
-  final Job job;
-  final List<Skill>? skills;
+Widget skillBackgroundBuilder(BuildContext context) {
 
-  const skillBackgroundBuilder(
-      {Key? key, required this.job, required this.skills})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
       child: Container(
         width: MediaQuery.of(context).size.width,
         color: AppColors().darkGreen,
-        child: buildSkillCards(job, skills),
+        child: buildSkillCards(),
       ),
     );
   }
@@ -442,13 +443,7 @@ class skillBackgroundBuilder extends StatelessWidget {
 // ---------- NAV-BAR ----------
 
 // Diese Klasse baut die Bottom-Navigationbar auf
-class navBarBuilder extends StatelessWidget {
-  const navBarBuilder({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+Widget navBarBuilder(BuildContext context) {
     return BottomNavigationBar(
         currentIndex: 0,
         onTap: (value) {
@@ -477,19 +472,14 @@ class navBarBuilder extends StatelessWidget {
             label: 'Profil',
           ),
         ]);
-  }
+
 }
 
 // ---------- HOME-BUTTON ----------
 
 // Diese Klasse baut den Home-Button auf
-class homeButtonBuilder extends StatelessWidget {
-  const homeButtonBuilder({
-    Key? key,
-  }) : super(key: key);
+Widget homeButtonBuilder(BuildContext context) {
 
-  @override
-  Widget build(BuildContext context) {
     return FloatingActionButton(
       backgroundColor: Colors.black,
       child: Icon(Icons.home),
@@ -500,5 +490,7 @@ class homeButtonBuilder extends StatelessWidget {
         );
       },
     );
-  }
+
 }
+
+

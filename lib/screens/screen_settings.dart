@@ -2,6 +2,7 @@ import 'package:joma/materials/button.dart';
 import 'package:joma/screens//screen_settings_datenschutz.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
+import 'package:joma/screens/screen_notifications.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_profil_settings_loader.dart';
 import 'package:joma/screens/screen_select_view.dart';
@@ -20,7 +21,7 @@ class Einstellungen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-            title: Text('Einstellungen'.toUpperCase()),
+            title: Text('Einstellungen'.toUpperCase(), style: AppTextStyles.darkH1),
             centerTitle: true,
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
@@ -35,20 +36,20 @@ class Einstellungen extends StatelessWidget {
       backgroundColor: AppBackgroundColors().darkBackground,
       body: ListView (
         children: [
-          Container (
-            margin: EdgeInsets.fromLTRB(120, 0, 120,20),
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(180),
-              border: Border.all(width: 4, color: AppColors().darkSecondaryColor),
-              color: AppColors().white
-            ),
-            child: Icon(
-              Icons.settings,
-              color: AppColors().darkPrimaryColor,
-              size: 150,
+          const SizedBox(height: 15),
+          CircleAvatar(
+            radius: 50,
+            backgroundColor: AppColors().darkSecondaryColor,
+            child: CircleAvatar(
+              radius: 45,
+              backgroundColor: AppColors().white,
+              child: Icon(
+                  Icons.settings,
+                  color: AppColors().darkPrimaryColor,
+                  size: 50),
             ),
           ),
+          const SizedBox(height: 35),
           AppButton(
             text: 'Profil bearbeiten',
             color: AppColors().darkPrimaryColor,
@@ -68,7 +69,7 @@ class Einstellungen extends StatelessWidget {
               text: 'Mitteilungen',
               color: AppColors().darkPrimaryColor,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenNotifications()));
               }
           ),
           AppButton(
@@ -93,8 +94,61 @@ class Einstellungen extends StatelessWidget {
               }
           ),
         ],
-
       ),
+
+      //------Bottom Navigation------//
+      floatingActionButton: Container(
+        height: 80.0,
+        width: 80.0,
+        child: FloatingActionButton(
+          elevation: 0,
+          child: CircleAvatar(
+            radius: 80.0,
+            backgroundImage: AssetImage(
+              'assets/images/darkJomaLogo.png',
+            ),
+          ),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => ScreenHome()),
+            );
+          },
+        ),
+      ),
+
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 0,
+          onTap: (value) {
+            if (value == 0) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const JobListSearchScreen()),
+              );
+            }
+            if (value == 1) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilLoader()),
+              );
+            }
+            //if (value == 2) Navigator.of(context).push(...);
+          },
+          backgroundColor: AppColors().darkPrimaryColor,
+          selectedItemColor: AppColors().white,
+          unselectedItemColor: AppColors().white,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: AppIcons().searchGlass,
+              label: 'Suchen',
+            ),
+            BottomNavigationBarItem(
+              icon: AppIcons().profile,
+              label: 'Profil',
+            ),
+          ]),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/controllers/profil_controller.dart';
 import 'package:joma/model/profil_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,12 +8,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UserSimplePreferences {
   static SharedPreferences _preferences = SharedPreferences.getInstance() as SharedPreferences;
 
+//old data structure
+/*
+  static const _keyVorname = "vorname";
   static const _keyName = "profil";
   static const _keyEmail = "mail";
   static const _keyTelefon = "123";
   static const _keyAdresse = "fill";
   static const _keyStadt = "city";
   static const _keyPicture = "kek";
+
+ */
+  //saving whole profile in one string
+  static const _user = "test";
 
 /*
   static void setVars(int i) async {
@@ -46,6 +54,14 @@ class UserSimplePreferences {
      //setVars(0);
   }
 
+  static Future setUser(String userdata) async =>
+      await _preferences.setString(_user, userdata);
+
+  static String? getUser() => _preferences.getString(_user);
+/*
+  static Future setVorname(String vorname) async =>
+      await _preferences.setString(_keyVorname, vorname);
+
   static Future setName(String name) async =>
     await _preferences.setString(_keyName, name);
 
@@ -64,13 +80,14 @@ class UserSimplePreferences {
   static Future setPicture(String pictureurl) async =>
       await _preferences.setString(_keyPicture, pictureurl);
 
+  static String? getVorname() => _preferences.getString(_keyVorname);
   static String? getName() => _preferences.getString(_keyName);
   static String? getEmail() => _preferences.getString(_keyEmail);
   static String? getTelefon() => _preferences.getString(_keyTelefon);
   static String? getAdresse() => _preferences.getString(_keyAdresse);
   static String? getStadt() => _preferences.getString(_keyStadt);
   static String? getPicture() => _preferences.getString(_keyPicture);
-
+*/
   static Future setProfil(Profil profil) async {
     final json = profil.toJson();
 
