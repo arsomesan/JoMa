@@ -226,25 +226,29 @@ Widget titleImageBuilder(Job job) {
 
 // Dieses Widget baut die Schulabschluss-Anzeige auf
   Widget graduationBuilder() {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              buildSchoolBox(child: Icon(Icons.school, size: 50)),
-              const SizedBox(height: 10),
-              Text(
-                job.requiredGraduation.toString(),
-                style: AppTextStyles.darkH1,
-              )
-            ],
-          ),
-        ],
-      ),
-    );
+    if (job.requiredGraduation == "") {
+      return Container();
+    } else {
+      return Padding(
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                buildSchoolBox(child: Icon(Icons.school, size: 50)),
+                const SizedBox(height: 10),
+                Text(
+                  job.requiredGraduation.toString(),
+                  style: AppTextStyles.darkH1,
+                )
+              ],
+            ),
+          ],
+        ),
+      );
+    }
   }
 
 // Dieses Widget baut einen Kreis als Hintergrund um das Schulabschluss-Icon auf
