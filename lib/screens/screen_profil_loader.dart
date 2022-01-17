@@ -9,7 +9,6 @@ import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/joblist_search_screen.dart';
 import 'package:joma/screens/screen_applications.dart';
 import 'package:joma/screens/screen_home.dart';
-import 'package:joma/screens/screen_profil_data.dart';
 import 'package:joma/screens/screen_profil_settings_loader.dart';
 import 'package:joma/screens/screen_saved_jobs.dart';
 import 'package:joma/screens/screen_settings.dart';
@@ -23,7 +22,10 @@ class ProfilLoader extends StatefulWidget {
   _ProfilLoaderState createState() => _ProfilLoaderState();
 }
 
+
+
 class _ProfilLoaderState extends State<ProfilLoader> {
+
   @override
   void initState() {
     // TODO: implement initState
@@ -57,49 +59,41 @@ class _ProfilLoaderState extends State<ProfilLoader> {
       ),
 
       backgroundColor: AppBackgroundColors().darkBackground,
-      body: ListView(
+      body: ListView (
         padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
         children: [
-          AppButton(
-              text: 'Persönliche Daten',
+          AppButtonWithIcon(
+              text: 'Profil anzeigen',
+              icon: AppIcons().profile,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            const ProfilData())); // screen_profileView
-              }),
-          AppButton(
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader())); // screen_profileView
+              }
+          ),
+          AppButtonWithIcon(
               text: 'Gespeicherte Jobs',
+              icon: AppIcons().bookMark,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            ScreenSavedJobs())); // screen_savedJob
-              }),
-          AppButton(
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenSavedJobs())); // screen_savedJob
+              }
+          ),
+          AppButtonWithIcon(
               text: 'Bewerbungen',
+              icon: AppIcons().applicationsSent,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            ScreenApplications())); // screen_savedJob
-              }),
-          AppButton(
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenApplications())); // screen_savedJob
+              }
+          ),
+          AppButtonWithIcon(
               text: 'Einstellungen',
+              icon: AppIcons().settingsWheel,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            Einstellungen())); // screen_savedJob
-              }),
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Einstellungen())); // screen_savedJob
+              }
+          ),
         ],
       ),
 

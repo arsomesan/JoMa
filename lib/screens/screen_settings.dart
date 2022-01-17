@@ -31,8 +31,6 @@ class Einstellungen extends StatelessWidget {
             ),
             backgroundColor: AppColors().darkPrimaryColor,
           ),
-
-
       backgroundColor: AppBackgroundColors().darkBackground,
       body: ListView (
         children: [
@@ -50,37 +48,41 @@ class Einstellungen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 35),
-          AppButton(
+          AppButtonWithIcon(
             text: 'Profil bearbeiten',
+              icon: AppIcons().profile,
             color: AppColors().darkPrimaryColor,
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader()));
             }
           ),
-          AppButton(
-              // icon: AppIcons().profile,
+          AppButtonWithIcon(
               text: 'Ansicht wählen',
+              icon: AppIcons().settingsWheel,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => SelectView()));
               }
           ),
-          AppButton(
+          AppButtonWithIcon(
               text: 'Mitteilungen',
+              icon: AppIcons().notifications,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenNotifications()));
               }
           ),
-          AppButton(
+          AppButtonWithIcon(
               text: 'Impressum',
+              icon: AppIcons().imprint,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Impressum()));
               }
           ),
-          AppButton(
+          AppButtonWithIcon(
               text: 'Datenschutz',
+              icon: AppIcons().privacy,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Impressum()));
