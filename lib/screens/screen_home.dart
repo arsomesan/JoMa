@@ -236,7 +236,7 @@ class ScreenHome extends StatelessWidget {
                             left: 0,
                             child: HomeScreenCard(
                                 elevatedButtonRoute: () {
-                                  Get.to(() => JobListTopicScreen());
+                                  Get.to(() => JobListTopicScreen(categoryID: 0));
                                 },
                                 color: AppColors().darkRed,
                                 icon: Icon(Icons.card_travel),
@@ -246,7 +246,9 @@ class ScreenHome extends StatelessWidget {
                             top: 0,
                             left: 100,
                             child: HomeScreenCard(
-                                elevatedButtonRoute: () {},
+                                elevatedButtonRoute: () {
+                                  Get.to(() => JobListTopicScreen(categoryID: 1));
+                                },
                                 color: AppColors().darkGreen,
                                 icon: Icon(Icons.card_travel),
                                 title: 'Hallo'),
@@ -255,7 +257,9 @@ class ScreenHome extends StatelessWidget {
                             top: 100,
                             left: 0,
                             child: HomeScreenCard(
-                                elevatedButtonRoute: () {},
+                                elevatedButtonRoute: () {
+                                  Get.to(() => JobListTopicScreen(categoryID: 2));
+                                },
                                 color: AppColors().darkBlue,
                                 icon: Icon(Icons.card_travel),
                                 title: 'Hallo'),
@@ -264,7 +268,9 @@ class ScreenHome extends StatelessWidget {
                             top: 100,
                             left: 100,
                             child: HomeScreenCard(
-                                elevatedButtonRoute: () {},
+                                elevatedButtonRoute: () {
+                                  Get.to(() => JobListTopicScreen(categoryID: 3));
+                                },
                                 color: AppColors().darkYellow,
                                 icon: Icon(Icons.card_travel),
                                 title: 'Hallo'),
@@ -294,7 +300,7 @@ class ScreenHome extends StatelessWidget {
               ),*/
               ElevatedButton(
                   onPressed: () {
-                    Get.to(() => JobListTopicScreen());
+                    Get.to(() => JobListTopicScreen(categoryID: 0));
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,

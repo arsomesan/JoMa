@@ -18,23 +18,28 @@ import 'package:joma/services/remote_services.dart';
 import 'joblist_search_screen.dart';
 
 class JobListTopicScreen extends StatelessWidget {
-  JobListTopicScreen({Key? key}) : super(key: key);
-  final DataController data = Get.find();
-  final category = 0; // TODO: state / view control
+  final int categoryID;
 
-  /* TODO: variables for alternative implementation (see below)
-  late List<Job> jobList = data.jobs;
-  late Job jobOfTheWeek =
-  data.jobs.firstWhere((job) => job.id == data.getJobOfTheWeek());
-  */
+  JobListTopicScreen({Key? key, required this.categoryID}) : super(key: key);
+  final DataController data = Get.find();
+
+  late Color currentColor = Color(
+      int.parse(data.jobCategories.elementAt(categoryID).colorHex.toString()));
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
       appBar: AppBar(
-        backgroundColor: AppColors().darkPrimaryColor,
-        title: Text('Soziales & Hauswirtschaft'.toUpperCase(), style: AppTextStyles.darkH4),
+        backgroundColor: currentColor,
+        title: Obx(() => Text(
+            data.jobCategories
+                .elementAt(categoryID)
+                .title
+                .toString()
+                .toUpperCase(),
+            style: AppTextStyles.darkH4)),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -52,73 +57,59 @@ class JobListTopicScreen extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-          child:
-                Obx(() {
-                  var result = <Widget>[];
-                  Job jobOfTheWeek =
-                      data.jobs.firstWhere((job) => job.id == data.getJobOfTheWeek());
+        child: Obx(() {
+          var result = <Widget>[];
 
-                  result.add(AppCardSpecial(
-                      jobTitle: jobOfTheWeek.title.toString(),
-                      jobDescription: jobOfTheWeek.description!.full.toString(),
-                      color: AppColors().darkBlue,
-                      onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenJobDetails(jobID: data.getJobOfTheWeek(),))); } ));
+          Job jobOfTheWeek =
+              data.jobs.firstWhere((job) => job.id == data.getJobOfTheWeek());
 
-                  result.add(const SizedBox(height: 10));
+          result.add(AppCardSpecial(
+              jobTitle: jobOfTheWeek.title.toString(),
+              jobDescription: jobOfTheWeek.description!.full.toString(),
+              color: AppColors().darkBlue,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ScreenJobDetails(
+                              jobID: data.getJobOfTheWeek(),
+                            )));
+              }));
 
-                  for (var currentJob in data.jobs) {
-                    JobCategory currentJobCategory = data.jobCategories.firstWhere((category) => category.id == currentJob.category);
+          result.add(const SizedBox(height: 10));
 
-                    result.add(AppCard(
-                        jobTitle: currentJob.title.toString(),
-                        jobDescription: currentJob.description!.full.toString(),
-                        color: Color(int.parse(currentJobCategory.colorHex.toString())), //AppColors().darkBlue,
-                        onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenJobDetails(jobID: currentJob.id,))); } ));
-                  }
-                  return Center(
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: result));
-                }),
-              ),
+          for (var currentJob in data.jobs) {
+            if (currentJob.category != categoryID) continue;
 
+            JobCategory currentJobCategory = data.jobCategories
+                .firstWhere((category) => category.id == currentJob.category);
 
-              /* TODO: this is an alternative implementation. Figure out which is better.
-              Center(
-                child: Column(
-                  children: [
-                    AppCardSpecial(
-                        jobTitle: jobOfTheWeek.title.toString(),
-                        jobDescription: jobOfTheWeek.description!.full.toString(),
-                        color: AppColors().darkBlue,
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ScreenJobDetails(
-                                        jobID: data.getJobOfTheWeek(),
-                                      )));
-                        }),
-                    for (var currentJob in data.jobs)
-                      AppCard(
-                          jobTitle: currentJob.title.toString(),
-                          jobDescription: currentJob.description!.full.toString(),
-                          color: AppColors().darkBlue,
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ScreenJobDetails(
-                                          jobID: currentJob.id,
-                                        )));
-                          }),
-                  ],
-                ),
-              ))
-              */
+            result.add(AppCard(
+                jobTitle: currentJob.title.toString(),
+                jobDescription: currentJob.description!.full.toString(),
+                color: Color(int.parse(currentJobCategory.colorHex.toString())),
+                //AppColors().darkBlue,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ScreenJobDetails(
+                                jobID: currentJob.id,
+                              )));
+                }));
+          }
+          if (result.length <= 2) {
+            result.add(const Text("Zur Zeit sind leider keine Jobangebote für diese Kategorie vorhanden.", style: TextStyle( color: Colors.white), textAlign: TextAlign.center),);
+          }
 
-
+          return Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: result),
+          );
+        }),
+      ),
       floatingActionButton: Container(
         height: 80.0,
         width: 80.0,
