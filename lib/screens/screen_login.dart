@@ -5,12 +5,16 @@ import 'package:flutter/material.dart';
 import 'dart:convert'; //Json
 import 'package:flutter/services.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/materials/appbar.dart';
 import 'package:joma/materials/button.dart';
+import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_test.dart'; //Json
 import 'package:joma/materials/assets.dart';
+import 'package:joma/utils/user_simple_preferences.dart';
 
 class ScreenLogin extends StatefulWidget {
   const ScreenLogin({Key? key}) : super(key: key);
@@ -20,6 +24,15 @@ class ScreenLogin extends StatefulWidget {
 }
 
 class _ScreenLogin extends State<ScreenLogin> {
+  late Future<List<Profil>> futureProfil;
+  final DataController data = Get.find();
+
+    
+  @override
+  void initState() {
+    super.initState();
+  }
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   Color loginButtonColor = AppColors().darkPrimaryColor;
@@ -36,25 +49,33 @@ class _ScreenLogin extends State<ScreenLogin> {
     });
   }
 
-  bool validate(String email, String pwd) {
-    readJson();
-    if (_items.isNotEmpty) {
-      for (int i = 0; i < _items.length; i++) {
-        String emailTmp = _items[i]['email'].toString();
-        String pwdTmp = _items[i]['pwd'].toString();
+  @override
+  Widget build(BuildContext context) {
+ //Load Profile from Json
+    var remoteUser = profilToJson(data.profile);
+    //Load Profile from Shared Preferences if given. If not load Json Profile
+    var tmpUser = profilFromJson(
+        UserSimplePreferences.getUser() ?? remoteUser.toString());
+    Profil user = tmpUser[0];
+    print(user.name);
+
+    bool validate(String email, String pwd) {
+      //ToDos: json durchlaufen
+      if(user.kontakt!.email == email && user.password == pwd) {
+        String? emailTmp = user.kontakt!.email;
+        String? pwdTmp = user.password;
         if (emailTmp == emailController.text &&
             pwdTmp == passwordController.text) {
           print("Login erfolgreich");
           return true;
         }
-      }
-    }
+      }   
     print("Login nicht erfolgreich");
     return false;
   }
 
-  @override
-  Widget build(BuildContext context) {
+
+
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
       body: Center(
