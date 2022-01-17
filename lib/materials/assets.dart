@@ -168,4 +168,13 @@ class AppIcons {
   Icon privacy = Icon(
       Icons.security);
 }
-//
+
+// ---------- BUTTON ----------
+
+// Diese Klasse beinhaltet Werte für den generalisierten Button, die man an Themes anpassen kann
+
+class AppButtonValues {
+
+  double borderRadiusCircular = 100.0;
+
+}

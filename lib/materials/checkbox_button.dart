@@ -3,20 +3,21 @@ import 'package:joma/materials/assets.dart';
 
 class CheckboxButton extends StatefulWidget {
   final String text;
+  ValueChanged<bool?>? onChanged;
+  bool value;
+  Icon icon;
 
   CheckboxButton(
       {required this.text,
-      required bool value,
-      bool tristate: false,
-      // required ValueChanged<bool> onChanged,
-      bool autofocus: false});
+      required this.value,
+      required this.onChanged,
+      required this.icon});
 
   @override
   State<CheckboxButton> createState() => _CheckboxButtonState();
 }
 
 class _CheckboxButtonState extends State<CheckboxButton> {
-  bool _checked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +30,12 @@ class _CheckboxButtonState extends State<CheckboxButton> {
         ),
         child: CheckboxListTile(
           contentPadding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-          title: Text('Notification'.toUpperCase(), style: AppTextStyles.darkButtonText),
-          secondary: AppIcons().bookMark,
+          title: Text(widget.text, style: AppTextStyles.darkButtonText),
+          secondary: widget.icon,
           controlAffinity:
           ListTileControlAffinity.platform,
-          value: _checked,
-          onChanged: (bool? value) {
-            setState(() {
-              _checked = value!;
-            });
-          },
+          value: widget.value,
+          onChanged: widget.onChanged,
           activeColor: Colors.white,
           checkColor: Colors.white,
         ),

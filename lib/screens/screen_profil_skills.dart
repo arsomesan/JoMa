@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:get/get.dart';
+import 'package:joma/materials/button.dart';
 import 'package:joma/materials/card.dart';
 import 'package:joma/materials/checkbox_button.dart';
 import 'package:joma/model/profil_model.dart';
@@ -32,6 +34,25 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
   final DataController data = Get.find();
   @override
   Widget build(BuildContext context) {
+    //Load Profile from Json
+    var remoteUser = profilToJson(data.profile);
+    //Load Profile from Shared Preferences if given. If not load Json Profile
+    var tmpUser = profilFromJson(
+        UserSimplePreferences.getUser() ?? remoteUser.toString());
+    Profil user = tmpUser[0];
+
+    data.boolList =
+        new List.filled(data.skills.length, false, growable: false).obs;
+
+    for (int i = 0; i < data.skills.length; i++) {
+      for (int l = 0; l < user.skills!.length; l++) {
+        if (data.skills[i].id == user.skills![l]) {
+          data.boolList[i] = true;
+          break;
+        }
+      }
+    }
+
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
       appBar: AppBar(
@@ -58,29 +79,24 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
       ),
       body: SingleChildScrollView(
         child: Center(child: Obx(() {
-          var remoteUser = profilToJson(data.profile);
-          var tmpUser = profilFromJson(UserSimplePreferences.getUser() ?? remoteUser.toString());
-          Profil user = tmpUser[0];
-
           var result = <Widget>[];
-
-          data.boolList =
-              new List.filled(data.skills.length, false, growable: false).obs;
-
-          for (int i = 0; i < data.skills.length; i++) {
-            for (int l = 0; l < user.skills!.length; l++) {
-              if (data.skills[i].id == user.skills![l]) {
-                data.boolList[i] = true;
-                break;
-              }
-            }
-          }
 
           result.add(Container(
               child: Column(
             children: [
               for (int i = 0; i < data.skills.length; i++)
-                renderSkillWidget(i, data, tmpUser)
+                //renderSkillWidget(i, data, tmpUser)
+                CheckboxButton(
+                  text: data.skills[i].title.toString(),
+                  value: data.boolList[i],
+                  onChanged: (bool? value) {
+                    setState(() {
+                      data.boolList[i] = value!;
+                      saveSkillState(data.boolList, tmpUser);
+                    });
+                  },
+                  icon: Icon(FontAwesomeIcons.handHolding),
+                )
             ],
           )));
 
@@ -91,31 +107,36 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
                 children: result,
               ),
               Container(
-                child: Center(
-                  child: Container(
-                    width: 140,
-                    height: 35,
-                    margin: EdgeInsets.only(top: 35, bottom: 50),
-                    child: TextButton(
-                      child: Text('Speichern'),
-                      onPressed: () async {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    ProfilSettingsLoader())); // screen_profileView
+                  margin: EdgeInsets.only(top: 30),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.height * 0.25,
+                  child: ElevatedButton(
+
+                      onPressed: () {
+                        Get.off(() => const ProfilSettingsLoader());
                       },
-                      style: TextButton.styleFrom(
-                        primary: AppColors().white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        backgroundColor: AppColors().darkBlue,
+                      child: Text(
+                        "Speichern",
                       ),
-                    ),
-                  ),
-                ),
-              ),
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              const EdgeInsets.fromLTRB(0, 25, 0, 25)),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              AppColors().darkPrimaryColor),
+                          textStyle: MaterialStateProperty.all<TextStyle>(
+                              AppTextStyles.darkButtonText),
+                          shape:
+                          MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  side: BorderSide(
+                                      color:
+                                      AppColors().darkPrimaryColor))))),
+                )
+              )
+
+
+
             ],
           ));
         })),
@@ -174,38 +195,7 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
     );
   }
 
-
-  Widget renderSkillWidget(int i, DataController data, List<Profil> tmpUser) {
-
-
-    return Container(
-      margin: EdgeInsets.only(top: 10, left: 20, right: 20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: AppColors().darkPrimaryColor,
-      ),
-      child: CheckboxListTile(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10)),
-        contentPadding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-        title: Text(data.skills[i].title.toString().toUpperCase(), style: AppTextStyles.darkButtonText),
-        secondary: AppIcons().bookMark,
-        controlAffinity:
-        ListTileControlAffinity.platform,
-        value: data.boolList[i],
-        onChanged: (bool? value) {
-          setState(() {
-            saveSkillState(data.boolList, tmpUser, value, i);
-          });
-        },
-        activeColor: Colors.white,
-        checkColor: Colors.white,
-      ),
-    );
-  }
-
-  void saveSkillState(RxList<bool> boolList, List<Profil> tmpUser, bool? value, int i) {
-    data.boolList[i] = value!;
+  void saveSkillState(RxList<bool> boolList, List<Profil> tmpUser) {
     int count = 0;
     for (int i = 0; i < data.boolList.length; i++) {
       if (data.boolList[i] == true) count++;
@@ -226,5 +216,4 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
     var lokalusersavetmp = profilToJson(tmpUser);
     UserSimplePreferences.setUser(lokalusersavetmp.toString());
   }
-
 }
