@@ -29,23 +29,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'JOMA',
       theme: ThemeData(
-        
-        //------------ APP BAR THEME ---------------//
-        // appBarTheme: const AppBarTheme(
-        //   elevation: 0,
-        //   titleTextStyle:  TextStyle(
-        //   color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700,),
-        //   backgroundColor: Color(0xFF30459B),
-        //   toolbarHeight: 50,
-        //   // shape: RoundedRectangleBorder(
-        //   // side: BorderSide(width: 3, color: Colors.orange),
-        //   //       borderRadius: BorderRadius.vertical(
-        //   //       bottom: Radius.elliptical(850, 100),
-        //   //       ),
-        //   // ),
-        // ),
+      
       ),
 
 
@@ -60,9 +46,6 @@ class MyApp extends StatelessWidget {
       backgroundColor: AppColors().darkSecondaryColor,
       ),
       
-
-    //home: const ScreenLogin(),
-    //home: const ScreenHome(),
       ),
     );
     
