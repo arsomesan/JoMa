@@ -152,7 +152,7 @@ class JobListTopicScreen extends StatelessWidget {
             }
             //if (value == 2) Navigator.of(context).push(...);
           },
-          backgroundColor: AppColors().darkPrimaryColor,
+          backgroundColor: currentColor,
           selectedItemColor: AppColors().white,
           unselectedItemColor: AppColors().white,
           items: <BottomNavigationBarItem>[

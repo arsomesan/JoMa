@@ -40,20 +40,17 @@ class ScreenJobDetails extends StatelessWidget {
   final DataController data = Get.find();
   late Job job = data.jobs.elementAt(jobID!);
 
-  late JobCategory currentJobCategory = data.jobCategories
-      .firstWhere((category) => category.id == job.category);
+  late JobCategory currentJobCategory =
+      data.jobCategories.firstWhere((category) => category.id == job.category);
 
-  late Color currentColor = Color(
-      int.parse(data.jobCategories
-          .elementAt(currentJobCategory.id as int)
-          .colorHex
-          .toString()));
-  late Color currentBackgroundColor = Color(
-      int.parse(data.jobCategories
-          .elementAt(currentJobCategory.id as int)
-          .backgroundColorHex
-          .toString()));
-
+  late Color currentColor = Color(int.parse(data.jobCategories
+      .elementAt(currentJobCategory.id as int)
+      .colorHex
+      .toString()));
+  late Color currentBackgroundColor = Color(int.parse(data.jobCategories
+      .elementAt(currentJobCategory.id as int)
+      .backgroundColorHex
+      .toString()));
 
   @override
   Widget build(BuildContext context) {
@@ -193,34 +190,30 @@ Widget titleImageBuilder(Job job) {
         children: [
           for (int i = 0; i < job.skills!.length; i++)
             Expanded(
-                child: buildSkill(data.skills.indexWhere((skill) => skill.id ==
-                    job.skills![i]))),
+                child: buildSkill(data.skills
+                    .indexWhere((skill) => skill.id == job.skills![i]))),
         ],
       ),
     );
   }
 
 // Dieses Widget baut eine einzelne Fähigkeit auf
-  Widget buildSkill(int skillID) =>
-      Column(
+  Widget buildSkill(int skillID) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          buildBox(child: Icon(IconDataSolid(
-              int.parse("0x" + data.skills[skillID].icon.toString())))),
+          buildBox(
+              child: Icon(IconDataSolid(
+                  int.parse("0x" + data.skills[skillID].icon.toString())))),
           const SizedBox(height: 5),
           Text(
-            data.skills
-                .elementAt(skillID)
-                .title
-                .toString(),
+            data.skills.elementAt(skillID).title.toString(),
             style: AppTextStyles.darkMainText,
           )
         ],
       );
 
 // Dieses Widget baut einen Kreis als Hintergrund um das Fähigkeits-Icon auf
-  Widget buildBox({required Widget child}) =>
-      Container(
+  Widget buildBox({required Widget child}) => Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.white,
@@ -255,8 +248,7 @@ Widget titleImageBuilder(Job job) {
   }
 
 // Dieses Widget baut einen Kreis als Hintergrund um das Schulabschluss-Icon auf
-  Widget buildSchoolBox({required Widget child}) =>
-      Container(
+  Widget buildSchoolBox({required Widget child}) => Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: currentBackgroundColor,
@@ -275,12 +267,12 @@ Widget titleImageBuilder(Job job) {
           padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
           child: FlutterMap(
             options: MapOptions(
-              center: LatLng(double.parse(job.coords!.lat!),double.parse(job.coords!.long!)),
+              center: LatLng(double.parse(job.coords!.lat!),
+                  double.parse(job.coords!.long!)),
               zoom: 16.0,
             ),
             layers: [
               TileLayerOptions(
-
                 urlTemplate: "https://a.tile.openstreetmap.de/{z}/{x}/{y}.png",
                 subdomains: ['a', 'b', 'c'],
               ),
@@ -289,15 +281,15 @@ Widget titleImageBuilder(Job job) {
                   Marker(
                     width: 80.0,
                     height: 80.0,
-                    point: LatLng(double.parse(job.coords!.lat!),double.parse(job.coords!.long!)),
+                    point: LatLng(double.parse(job.coords!.lat!),
+                        double.parse(job.coords!.long!)),
                     builder: (ctx) =>
                         const Icon(FontAwesomeIcons.mapPin, color: Colors.red),
                   ),
                 ],
               ),
             ],
-          )
-      ),
+          )),
     );
   }
 
@@ -328,7 +320,8 @@ Widget titleImageBuilder(Job job) {
                 style: AppTextStyles.darkMainText,
               ),
               Text(
-                job.address!.zip.toString() + ' ' +
+                job.address!.zip.toString() +
+                    ' ' +
                     job.address!.city.toString(),
                 style: AppTextStyles.darkMainText,
               ),
@@ -340,8 +333,7 @@ Widget titleImageBuilder(Job job) {
   }
 
 // Dieses Widget baut einen Kreis um das Logo des Unternehmens in der Adresszeile auf
-  Widget buildAdressBox({required Widget child}) =>
-      Container(
+  Widget buildAdressBox({required Widget child}) => Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: currentBackgroundColor,
@@ -408,10 +400,7 @@ Widget titleImageBuilder(Job job) {
         child: Container(
           alignment: Alignment.center,
           height: 100.0,
-          width: MediaQuery
-              .of(context)
-              .size
-              .width,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               color: Colors.transparent,
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -425,7 +414,6 @@ Widget titleImageBuilder(Job job) {
       ),
     );
   }
-
 
 // ---------- BILDER-KARUSSELL ----------
 
@@ -451,10 +439,7 @@ Widget titleImageBuilder(Job job) {
         return Builder(
           builder: (BuildContext context) {
             return Container(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
+              width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.symmetric(horizontal: 3.0, vertical: 15.0),
               //decoration: BoxDecoration(color: Colors.blueGrey),
               child: Column(
@@ -477,7 +462,6 @@ Widget titleImageBuilder(Job job) {
     );
   }
 
-
 // ---------- SKILL-BACKGROUND ----------
 
 // Diese Klasse baut den Hintergrund der Fähigkeiten auf
@@ -485,65 +469,60 @@ Widget titleImageBuilder(Job job) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
       child: Container(
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
+        width: MediaQuery.of(context).size.width,
         color: currentBackgroundColor,
         child: buildSkillCards(),
       ),
     );
   }
-}
 
 // ---------- NAV-BAR ----------
 
 // Diese Klasse baut die Bottom-Navigationbar auf
-Widget navBarBuilder(BuildContext context) {
-  return BottomNavigationBar(
-      currentIndex: 0,
-      onTap: (value) {
-        if (value == 0)
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const JobListSearchScreen()),
-          );
-        if (value == 1)
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const ProfilLoader()),
-          );
-        //if (value == 2) Navigator.of(context).push(...);
-      },
-      backgroundColor: AppColors().darkGreen,
-      selectedItemColor: Colors.white,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: 'Suchen',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Profil',
-        ),
-      ]);
-}
+  Widget navBarBuilder(BuildContext context) {
+    return BottomNavigationBar(
+        currentIndex: 0,
+        onTap: (value) {
+          if (value == 0)
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const JobListSearchScreen()),
+            );
+          if (value == 1)
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfilLoader()),
+            );
+          //if (value == 2) Navigator.of(context).push(...);
+        },
+        backgroundColor: currentColor,
+        selectedItemColor: Colors.white,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Suchen',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profil',
+          ),
+        ]);
+  }
 
 // ---------- HOME-BUTTON ----------
 
 // Diese Klasse baut den Home-Button auf
-Widget homeButtonBuilder(BuildContext context) {
-  return FloatingActionButton(
-    backgroundColor: Colors.black,
-    child: Icon(Icons.home),
-    onPressed: () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => ScreenHome()),
-      );
-    },
-  );
+  Widget homeButtonBuilder(BuildContext context) {
+    return FloatingActionButton(
+      backgroundColor: Colors.black,
+      child: Icon(Icons.home),
+      onPressed: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => ScreenHome()),
+        );
+      },
+    );
+  }
 }
-
-
