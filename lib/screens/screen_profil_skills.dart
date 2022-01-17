@@ -34,11 +34,11 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
   final DataController data = Get.find();
   @override
   Widget build(BuildContext context) {
-
     //Load Profile from Json
     var remoteUser = profilToJson(data.profile);
     //Load Profile from Shared Preferences if given. If not load Json Profile
-    var tmpUser = profilFromJson(UserSimplePreferences.getUser() ?? remoteUser.toString());
+    var tmpUser = profilFromJson(
+        UserSimplePreferences.getUser() ?? remoteUser.toString());
     Profil user = tmpUser[0];
 
     data.boolList =
@@ -79,11 +79,7 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
       ),
       body: SingleChildScrollView(
         child: Center(child: Obx(() {
-
-
           var result = <Widget>[];
-
-
 
           result.add(Container(
               child: Column(
@@ -91,15 +87,15 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
               for (int i = 0; i < data.skills.length; i++)
                 //renderSkillWidget(i, data, tmpUser)
                 CheckboxButton(
-                    text: data.skills[i].title.toString(),
-                    value: data.boolList[i],
-                    onChanged: (bool? value) {
-                      setState(() {
-                        data.boolList[i] = value!;
-                        saveSkillState(data.boolList, tmpUser);
-                      });
-                    },
-                    icon: Icon(FontAwesomeIcons.handHolding),
+                  text: data.skills[i].title.toString(),
+                  value: data.boolList[i],
+                  onChanged: (bool? value) {
+                    setState(() {
+                      data.boolList[i] = value!;
+                      saveSkillState(data.boolList, tmpUser);
+                    });
+                  },
+                  icon: Icon(FontAwesomeIcons.handHolding),
                 )
             ],
           )));
@@ -110,21 +106,38 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
               Column(
                 children: result,
               ),
-
               Container(
-                  child: AppButton(
-                      text: "Speichern",
-                      color: AppColors().darkPrimaryColor,
+                  margin: EdgeInsets.only(top: 30),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.height * 0.25,
+                  child: ElevatedButton(
+
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                const ProfilSettingsLoader()));
-                      }
-                  )
+                        Get.off(() => const ProfilSettingsLoader());
+                      },
+                      child: Text(
+                        "Speichern",
+                      ),
+                      style: ButtonStyle(
+                          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              const EdgeInsets.fromLTRB(0, 25, 0, 25)),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              AppColors().darkPrimaryColor),
+                          textStyle: MaterialStateProperty.all<TextStyle>(
+                              AppTextStyles.darkButtonText),
+                          shape:
+                          MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  side: BorderSide(
+                                      color:
+                                      AppColors().darkPrimaryColor))))),
+                )
               )
-                ],
+
+
+
+            ],
           ));
         })),
       ),
@@ -203,7 +216,4 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
     var lokalusersavetmp = profilToJson(tmpUser);
     UserSimplePreferences.setUser(lokalusersavetmp.toString());
   }
-
-
-
 }
