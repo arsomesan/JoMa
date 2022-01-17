@@ -80,8 +80,9 @@ class _ScreenWelcome extends State<ScreenWelcome> {
             ),
           ),
           Container(
-              height: 50,
-              margin: const EdgeInsets.fromLTRB(15, 150, 15, 10),
+              //height: 100,
+              width: MediaQuery.of(context).size.width,
+              //margin: const EdgeInsets.fromLTRB(15, 150, 15, 10),
               child: AppButton(
                 text: 'Registrieren',
                 color: AppColors().darkSecondaryColor,
