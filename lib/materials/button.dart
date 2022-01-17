@@ -14,6 +14,7 @@ class AppButton extends StatelessWidget {
   final String text;
   final Color color;
   final VoidCallback onPressed;
+
   // TODO: implement a possibility to use an icon in the button
   // TODO: implement a possibility to change the text color
 
@@ -21,7 +22,6 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     // double-Wert
 
     return Padding(
@@ -39,7 +39,8 @@ class AppButton extends StatelessWidget {
                   AppTextStyles.darkButtonText),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(AppButtonValues().borderRadiusCircular),
+                      borderRadius: BorderRadius.circular(
+                          AppButtonValues().borderRadiusCircular),
                       side: BorderSide(color: color))))),
     );
   }
@@ -50,35 +51,36 @@ class AppButtonWithIcon extends StatelessWidget {
   final Color color;
   final VoidCallback onPressed;
   final Icon icon;
+
   // TODO: implement a possibility to use an icon in the button
   // TODO: implement a possibility to change the text color
 
-  AppButtonWithIcon({required this.text, required this.color, required this.onPressed, required this.icon});
+  AppButtonWithIcon(
+      {required this.text,
+      required this.color,
+      required this.onPressed,
+      required this.icon});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
-      child: ElevatedButton(
-          onPressed: onPressed,
-          child: Text(
-            text,
+      child: ElevatedButton.icon(
+            onPressed: onPressed,
+            icon: icon,
+            label: Text(text),
+              style: ButtonStyle(
+                  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                      const EdgeInsets.fromLTRB(0, 15, 0, 15)),
+                  backgroundColor: MaterialStateProperty.all<Color>(color),
+                  textStyle: MaterialStateProperty.all<TextStyle>(
+                      AppTextStyles.darkButtonText),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              AppButtonValues().borderRadiusCircular),
+                          side: BorderSide(color: color))))
           ),
-
-          style: ButtonStyle(
-              padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                  const EdgeInsets.fromLTRB(0, 25, 0, 25)),
-              backgroundColor: MaterialStateProperty.all<Color>(color),
-              textStyle: MaterialStateProperty.all<TextStyle>(
-                  AppTextStyles.darkButtonText),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(AppButtonValues().borderRadiusCircular),
-                      side: BorderSide(color: color)
-                  )
-              )
-          )
-      ),
     );
   }
 }
