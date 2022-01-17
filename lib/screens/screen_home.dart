@@ -8,7 +8,7 @@ import 'package:joma/materials/button.dart';
 import 'package:joma/screens/screen_joblist_search.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_settings.dart';
-import 'screen_joblist_category_screen.dart';
+import 'screen_joblist_category.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/homescreen_card.dart';
 import 'package:joma/materials/navbar.dart';
