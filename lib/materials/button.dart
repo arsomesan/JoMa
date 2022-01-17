@@ -51,7 +51,6 @@ class AppButtonWithIcon extends StatelessWidget {
   final Color color;
   final VoidCallback onPressed;
   final Icon icon;
-
   // TODO: implement a possibility to use an icon in the button
   // TODO: implement a possibility to change the text color
 

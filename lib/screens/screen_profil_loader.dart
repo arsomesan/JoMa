@@ -62,29 +62,33 @@ class _ProfilLoaderState extends State<ProfilLoader> {
       body: ListView (
         padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
         children: [
-          AppButton(
+          AppButtonWithIcon(
               text: 'Profil anzeigen',
+              icon: AppIcons().profile,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader())); // screen_profileView
               }
           ),
-          AppButton(
+          AppButtonWithIcon(
               text: 'Gespeicherte Jobs',
+              icon: AppIcons().bookMark,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenSavedJobs())); // screen_savedJob
               }
           ),
-          AppButton(
+          AppButtonWithIcon(
               text: 'Bewerbungen',
+              icon: AppIcons().applicationsSent,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenApplications())); // screen_savedJob
               }
           ),
-          AppButton(
+          AppButtonWithIcon(
               text: 'Einstellungen',
+              icon: AppIcons().settingsWheel,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Einstellungen())); // screen_savedJob

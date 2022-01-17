@@ -31,8 +31,6 @@ class Einstellungen extends StatelessWidget {
             ),
             backgroundColor: AppColors().darkPrimaryColor,
           ),
-
-
       backgroundColor: AppBackgroundColors().darkBackground,
       body: ListView (
         children: [
