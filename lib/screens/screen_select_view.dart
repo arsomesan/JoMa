@@ -87,7 +87,6 @@ class SelectView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  //flex: 1,
                 );
               },
             ),
@@ -176,7 +175,6 @@ class SelectView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  //flex: 1,
                 );
               },
             ),
@@ -240,13 +238,11 @@ class SelectView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  //flex: 1,
                 );
               },
             ),
             Container(
-                width: MediaQuery.of(context).size.width * 1.00,
-                height: MediaQuery.of(context).size.height * .095,
+                width: MediaQuery.of(context).size.width,
                 child: AppButton(
                   text: "Weiter",
                   color: AppColors().darkPrimaryColor,
