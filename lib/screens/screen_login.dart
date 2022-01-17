@@ -56,7 +56,7 @@ class _ScreenLogin extends State<ScreenLogin> {
     print(user.name);
 
     bool validate(String email, String pwd) {
-      //ToDos: Json durchlaufen
+      //ToDos: json durchlaufen
       if(user.kontakt!.email == email && user.password == pwd) {
         String? emailTmp = user.kontakt!.email;
         String? pwdTmp = user.password;
