@@ -23,10 +23,7 @@ class ProfilLoader extends StatefulWidget {
   _ProfilLoaderState createState() => _ProfilLoaderState();
 }
 
-
-
 class _ProfilLoaderState extends State<ProfilLoader> {
-
   @override
   void initState() {
     // TODO: implement initState
@@ -60,37 +57,49 @@ class _ProfilLoaderState extends State<ProfilLoader> {
       ),
 
       backgroundColor: AppBackgroundColors().darkBackground,
-      body: ListView (
+      body: ListView(
         padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
         children: [
           AppButton(
               text: 'Persönliche Daten',
               color: AppColors().darkPrimaryColor,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilData())); // screen_profileView
-              }
-          ),
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            const ProfilData())); // screen_profileView
+              }),
           AppButton(
               text: 'Gespeicherte Jobs',
               color: AppColors().darkPrimaryColor,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenSavedJobs())); // screen_savedJob
-              }
-          ),
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ScreenSavedJobs())); // screen_savedJob
+              }),
           AppButton(
               text: 'Bewerbungen',
               color: AppColors().darkPrimaryColor,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenApplications())); // screen_savedJob
-              }
-          ),
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ScreenApplications())); // screen_savedJob
+              }),
           AppButton(
               text: 'Einstellungen',
               color: AppColors().darkPrimaryColor,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Einstellungen())); // screen_savedJob
-              }
-          ),
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Einstellungen())); // screen_savedJob
+              }),
         ],
       ),
 

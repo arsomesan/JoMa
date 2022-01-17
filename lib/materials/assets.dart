@@ -39,8 +39,6 @@ zum Einbinden:
 class AppTextStyles {
   static const darkH1 = TextStyle(
       fontFamily: AppFont.mainFont, fontSize: 25, fontWeight: FontWeight.bold);
-  static const darkH1black = TextStyle(
-      fontFamily: AppFont.mainFont, fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black);
   static const darkH2 = TextStyle(
       fontFamily: AppFont.mainFont, fontSize: 23, fontWeight: FontWeight.bold);
   static const darkH3 = TextStyle(
@@ -62,6 +60,7 @@ class AppTextStyles {
       fontFamily: AppFont.mainFont, fontSize: 12);
   static const darkCardTextWhite = TextStyle(
       fontFamily: AppFont.mainFont, fontSize: 12, color: Colors.white);
+  //
 }
 
 // ---------- FARBEN ----------

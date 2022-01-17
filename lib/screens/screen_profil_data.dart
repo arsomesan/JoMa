@@ -21,6 +21,7 @@ class ProfilData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     final DataController data = Get.find();
 //Load Profile from Json
     var remoteUser = profilToJson(data.profile);
@@ -28,6 +29,8 @@ class ProfilData extends StatelessWidget {
     var tmpUser = profilFromJson(
         UserSimplePreferences.getUser() ?? remoteUser.toString());
     Profil user = tmpUser[0];
+=======
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
     return Scaffold(
       appBar: AppBar(
           title: const Text("Profil"),
@@ -51,9 +54,14 @@ class ProfilData extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 25.0),
                 decoration: BoxDecoration(
                   //shape: BoxShape.circle,
+<<<<<<< HEAD
                   image: DecorationImage(
                     image: NetworkImage(
                         user.bild!),
+=======
+                  image: const DecorationImage(
+                    image: NetworkImage("https://picsum.photos/250/250"),
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     fit: BoxFit.cover,
                   ),
                   border: Border.all(
@@ -78,9 +86,15 @@ class ProfilData extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
+<<<<<<< HEAD
                       user.vorname! + " " + user.name!,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20),
+=======
+                      "Norbert Haselmann",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     ),
                   ),
                   Container(
@@ -96,9 +110,15 @@ class ProfilData extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
+<<<<<<< HEAD
                       user.kontakt!.email!,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20),
+=======
+                      "n-haselmann@mail.com",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     ),
                   ),
                   Container(
@@ -114,9 +134,15 @@ class ProfilData extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
+<<<<<<< HEAD
                       user.kontakt!.tel!,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20),
+=======
+                      "0800/2222222",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     ),
                   ),
                   Container(
@@ -132,9 +158,15 @@ class ProfilData extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
+<<<<<<< HEAD
                       user.adresse!.strasse! + " " + user.adresse!.hausnummer!,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20),
+=======
+                      "Leipziger Straße 12",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     ),
                   ),
                   Container(
@@ -150,9 +182,15 @@ class ProfilData extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
+<<<<<<< HEAD
                       user.adresse!.plz! + " " + user.adresse!.ort!,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20),
+=======
+                      "Kassel",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     ),
                   ),
                   Container(
@@ -165,12 +203,57 @@ class ProfilData extends StatelessWidget {
                       ),
                     ),
                   ),
+<<<<<<< HEAD
                   Container(
                     child: Wrap(
                       children: [
                         for(int i = 0; i < user.skills!.length; i++)
                           Container(
                               child: buildSkill(data.skills.indexWhere((skill) => skill.id == user.skills![i]), data)),
+=======
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      children: [
+                        InputChip(
+                            label: const Text('Belastbarkeit'),
+                            labelStyle: TextStyle(color: Glovar.white),
+                            backgroundColor: Glovar.red,
+                            onPressed: () {}),
+                        Container(
+                            margin: const EdgeInsets.only(left: 5),
+                            child: InputChip(
+                                label: const Text('Teamfähigkeit'),
+                                labelStyle: TextStyle(color: Glovar.white),
+                                backgroundColor: Glovar.blue,
+                                onPressed: () {})),
+                        Container(
+                            margin: const EdgeInsets.only(left: 5),
+                            child: InputChip(
+                                label: const Text('Offenheit'),
+                                labelStyle: TextStyle(color: Glovar.white),
+                                backgroundColor: Glovar.green,
+                                onPressed: () {})),
+                      ],
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      children: [
+                        InputChip(
+                            label: const Text('Engagement'),
+                            labelStyle: TextStyle(color: Glovar.white),
+                            backgroundColor: Glovar.purple,
+                            onPressed: () {}),
+                        Container(
+                            margin: const EdgeInsets.only(left: 5),
+                            child: InputChip(
+                                label: const Text('Geduld'),
+                                labelStyle: TextStyle(color: Glovar.white),
+                                backgroundColor: Glovar.orange,
+                                onPressed: () {})),
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                       ],
 
                     ),
@@ -182,12 +265,11 @@ class ProfilData extends StatelessWidget {
               child: Container(
                 width: 140,
                 height: 35,
-                margin: EdgeInsets.only(top: 35, bottom: 50),
+                margin: const EdgeInsets.only(top: 35, bottom: 50),
                 child: TextButton(
                   child: const Text('Profil bearbeiten'),
                   onPressed: () {
                     Get.off(() => const ProfilSettingsLoader());
-
                   },
                   style: TextButton.styleFrom(
                     primary: Glovar.white,
@@ -217,15 +299,13 @@ class ProfilData extends StatelessWidget {
               height: 30,
               margin: const EdgeInsets.only(bottom: 60),
               child: Center(
-                child: Container(
-                  child: TextButton(
-                    child: const Text('Datenschutz'),
-                    onPressed: () {
-                      // Button linking to the impress page
-                    },
-                    style: TextButton.styleFrom(
-                      primary: Glovar.greylight,
-                    ),
+                child: TextButton(
+                  child: const Text('Datenschutz'),
+                  onPressed: () {
+                    // Button linking to the impress page
+                  },
+                  style: TextButton.styleFrom(
+                    primary: Glovar.greylight,
                   ),
                 ),
               ),
@@ -240,7 +320,8 @@ class ProfilData extends StatelessWidget {
           elevation: 0,
           child: const CircleAvatar(
             radius: 80.0,
-            backgroundImage: AssetImage('assets/images/darkJomaLogo.png',
+            backgroundImage: AssetImage(
+              'assets/images/darkJomaLogo.png',
             ),
           ),
           onPressed: () {
@@ -268,13 +349,14 @@ class ProfilData extends StatelessWidget {
               icon: AppIcons().profile,
               label: 'Profil',
             ),
-          ]
-      ),
-      floatingActionButtonLocation:
-      FloatingActionButtonLocation.centerDocked,
+          ]),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
   }
   Widget buildSkill(int skillID, DataController data) =>
       Container(
