@@ -245,7 +245,7 @@ Widget graduationBuilder() {
 Widget buildSchoolBox({required Widget child}) => Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors().darkGreen,
+        color: currentBackgroundColor,
       ),
       padding: EdgeInsets.all(15),
       child: child,
@@ -304,7 +304,7 @@ Widget adressBuilder() {
 Widget buildAdressBox({required Widget child}) => Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: AppColors().darkGreen,
+        color: currentBackgroundColor,
       ),
       padding: EdgeInsets.all(20),
       child: child,
@@ -370,7 +370,7 @@ Widget titleTextBuilder(BuildContext context) {
           height: 100.0,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-              color: Colors.blueGrey,
+              color: Colors.transparent,
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           child: new Center(
             child: new Text(
@@ -442,7 +442,7 @@ Widget skillBackgroundBuilder(BuildContext context) {
       padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        color: AppColors().darkGreen,
+        color: currentBackgroundColor,
         child: buildSkillCards(),
       ),
     );
