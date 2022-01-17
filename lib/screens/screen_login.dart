@@ -6,6 +6,7 @@ import 'dart:convert'; //Json
 import 'package:flutter/services.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:joma/materials/appbar.dart';
 import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_test.dart'; //Json
 import 'package:joma/materials/assets.dart';
@@ -55,66 +56,64 @@ class _ScreenLogin extends State<ScreenLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
-      body: Padding(
-          padding: const EdgeInsets.all(15),
+      body: Center(
           child: ListView(children: <Widget>[
-          Container(
-            
-            height: 130,
-            color: AppColors().darkPrimaryColor,
-            child: Text('Anmelden'.toUpperCase(),
-            style:AppTextStyles.darkH1,
+            Container(
+              height: 255,
+              //color: AppColors().darkPrimaryColor,
+              child: AppBarMainArea(
+                bgColor: AppBackgroundColors().darkBackground,
+                bgColorBar: AppColors().darkPrimaryColor,
+                color: AppColors().darkPrimaryColor,
+                title: 'Willkommen \nbei joma'.toUpperCase(),
               ),
-          ),
-           
+              //style:AppTextStyles.darkH1,
+            ), 
             Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(5),
-              child: Padding (
-                padding: EdgeInsets.fromLTRB(100, 50, 100, 0),
-                child: AppLogo().darkLogo),
-              
-            ),
-            Container(
-               color: AppColors().white,
-               margin: const EdgeInsets.fromLTRB(10,50,10,10),
-                child: Padding( padding: EdgeInsets.all(0),
-                  child:TextField(
-                  style: TextStyle(backgroundColor: AppColors().white,),
-                  controller: emailController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'E-Mail',
-                  ),
-                ))),
+                color: AppColors().white,
+                margin: const EdgeInsets.fromLTRB(10, 50, 10, 10),
+                child: Padding(
+                    padding: EdgeInsets.all(0),
+                    child: TextField(
+                      style: TextStyle(
+                        backgroundColor: AppColors().white,
+                      ),
+                      controller: emailController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'E-Mail',
+                      ),
+                    ))),
             Container(
                 margin: const EdgeInsets.all(10),
                 color: AppColors().white,
-                child: Padding( padding: EdgeInsets.all(0),
-                  child:TextField(
-                  obscureText: _obscurePwd,
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    labelText: 'Passwort',
-                    suffixIcon: IconButton(
-                        icon: Icon(_obscurePwd
-                            ? Icons.visibility
-                            : Icons.visibility_off),
-                        onPressed: () {
-                          setState(() {
-                            _obscurePwd = !_obscurePwd;
-                          });
-                        }),
-                  ),
-                ))),
+                child: Padding(
+                    padding: EdgeInsets.all(0),
+                    child: TextField(
+                      obscureText: _obscurePwd,
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                        border: const OutlineInputBorder(),
+                        labelText: 'Passwort',
+                        suffixIcon: IconButton(
+                            icon: Icon(_obscurePwd
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            onPressed: () {
+                              setState(() {
+                                _obscurePwd = !_obscurePwd;
+                              });
+                            }),
+                      ),
+                    ))),
             Container(
                 height: 50,
                 margin: const EdgeInsets.fromLTRB(15, 140, 15, 0),
                 child: ElevatedButton(
                   child: Text('Anmelden'),
                   style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40)),
                     primary: AppColors().darkPrimaryColor,
                     onPrimary: Colors.white,
                     textStyle: TextStyle(
@@ -146,7 +145,6 @@ class _ScreenLogin extends State<ScreenLogin> {
                           })
                   ]),
                 )),
-            
           ])),
     );
   }
