@@ -6,6 +6,8 @@ import 'dart:convert'; //Json
 import 'package:flutter/services.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:joma/materials/appbar.dart';
+import 'package:joma/materials/button.dart';
 import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_test.dart'; //Json
 import 'package:joma/materials/assets.dart';
@@ -55,37 +57,30 @@ class _ScreenRegister extends State<ScreenRegister> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
-      body: Padding(
-          padding: const EdgeInsets.all(0),
-          child: ListView(children: <Widget>[
-            Container(
-              height: 150,
-              padding: const EdgeInsets.fromLTRB(10, 40, 0, 0),
+     body: Center(
+            child: ListView(children: <Widget>[
+          Container(
+            height: 255,
+            margin: EdgeInsets.only(bottom:20),
+            child: AppBarMainArea(
+              bgColor: AppBackgroundColors().darkBackground,
+              bgColorBar: AppColors().darkPrimaryColor,
               color: AppColors().darkPrimaryColor,
-              child: Text(
-                'Registrieren'.toUpperCase(),
-                style: AppTextStyles.darkH1,
-              ),
+              title: 'Registrieren'.toUpperCase(),
             ),
-            // ------- LOGO
-            // Container(
-            //   alignment: Alignment.center,
-            //   padding: const EdgeInsets.all(5),
-            //   child: Padding(
-            //       padding: EdgeInsets.fromLTRB(100, 50, 100, 0),
-            //       child: AppLogo().darkLogo),
-            // ),
+          ),
             Container(
-              margin: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+              margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
               child: Text(
                 'Der Job maßgeschneidert für dich!',
                 textAlign: TextAlign.center,
-                style: AppTextStyles.darkH3,
+                style: AppTextStyles.darkH4White,
               ),
             ),
             Container(
                 color: AppColors().white,
-                margin: const EdgeInsets.fromLTRB(10, 25, 10, 10),
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.fromLTRB(10, 05, 10, 05),
                 child: Padding(
                     padding: EdgeInsets.all(0),
                     child: TextField(
@@ -99,7 +94,8 @@ class _ScreenRegister extends State<ScreenRegister> {
                       ),
                     ))),
             Container(
-                margin: const EdgeInsets.all(10),
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.fromLTRB(10, 05, 10, 05),                
                 color: AppColors().white,
                 child: Padding(
                     padding: EdgeInsets.all(0),
@@ -121,7 +117,8 @@ class _ScreenRegister extends State<ScreenRegister> {
                       ),
                     ))),
             Container(
-                margin: const EdgeInsets.all(10),
+                width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.fromLTRB(10, 05, 10, 05),                   
                 color: AppColors().white,
                 child: Padding(
                     padding: EdgeInsets.all(0),
@@ -143,20 +140,12 @@ class _ScreenRegister extends State<ScreenRegister> {
                       ),
                     ))),
             Container(
-                height: 50,
-                margin: const EdgeInsets.fromLTRB(15, 90, 15, 0),
-                child: ElevatedButton(
-                  child: Text('Registrieren'),
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40)),
-                    primary: AppColors().darkPrimaryColor,
-                    onPrimary: Colors.white,
-                    textStyle: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Raleway'),
-                  ),
+                
+               width: MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.fromLTRB(0, 90, 0, 02),
+                child: AppButton(
+                text: 'Registrieren',
+                color: AppColors().darkPrimaryColor,
                   onPressed: () {
                     if (validate(
                         emailController.text, passwordController.text)) {
@@ -169,7 +158,7 @@ class _ScreenRegister extends State<ScreenRegister> {
                 )),
             Container(
                 alignment: Alignment.center,
-                padding: const EdgeInsets.fromLTRB(30, 25, 30, 10),
+                padding: const EdgeInsets.fromLTRB(30, 15, 30, 10),
                 child: RichText(
                   text: TextSpan(children: [
                     TextSpan(

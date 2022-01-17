@@ -72,17 +72,18 @@ class _ScreenWelcome extends State<ScreenWelcome> {
             child: ListView(children: <Widget>[
           Container(
             height: 255,
+            margin: EdgeInsets.only(bottom:280),
             child: AppBarMainArea(
               bgColor: AppBackgroundColors().darkBackground,
               bgColorBar: AppColors().darkPrimaryColor,
               color: AppColors().darkPrimaryColor,
-              title: ''.toUpperCase(),
+              title: 'Willkommen \nbei JOMA'.toUpperCase(),
             ),
           ),
           Container(
               //height: 100,
               width: MediaQuery.of(context).size.width,
-              //margin: const EdgeInsets.fromLTRB(15, 150, 15, 10),
+              margin: const EdgeInsets.fromLTRB(0, 02, 0, 02),
               child: AppButton(
                 text: 'Registrieren',
                 color: AppColors().darkSecondaryColor,
@@ -95,21 +96,15 @@ class _ScreenWelcome extends State<ScreenWelcome> {
                   }
                 },
               )),
-          Container(
-              height: 50,
-              margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-              child: ElevatedButton(
-                child: Text('Anmelden'),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40)),
-                  primary: AppColors().darkPrimaryColor,
-                  onPrimary: Colors.white,
-                  textStyle: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Raleway'),
-                ),
+
+
+              Container(
+              //height: 100,
+              width: MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.fromLTRB(0, 02, 0, 02),
+              child: AppButton(
+                text: 'Anmelden',
+                color: AppColors().darkPrimaryColor,
                 onPressed: () {
                   if (validate(emailController.text, passwordController.text)) {
                     Navigator.push(
@@ -118,60 +113,22 @@ class _ScreenWelcome extends State<ScreenWelcome> {
                     );
                   }
                 },
-              ))
+              )),
+             Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.fromLTRB(30, 15, 30, 10),
+                child: RichText(
+                  text: TextSpan(children: [
+                    TextSpan(
+                        text: 'created by Hochschule Fulda',
+                        style: TextStyle(color: Colors.white),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            print('Datenschutz.');
+                          })
+                  ]),
+                )),
+
         ])));
   }
 }
-
-//             Container(
-//                 height: 50,
-//                 margin: const EdgeInsets.fromLTRB(15, 350, 15, 10),
-//                 child: AppButton(
-//                   text: ('Registrieren'),
-//                   color: AppColors().darkSecondaryColor,
-//                   // style: AppButton.styleFrom(
-//                   //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-//                   //   primary: AppColors().darkSecondaryColor,
-//                   //   onPrimary: Colors.white,
-//                   //   textStyle: TextStyle(
-//                   //       fontSize: 16,
-//                   //       fontWeight: FontWeight.w600,
-//                   //       fontFamily: 'Raleway'),
-//                   // ),
-//                   onPressed: () {
-//                     if (validate(
-//                         emailController.text, passwordController.text)) {
-//                       Navigator.push(
-//                         context,
-//                         MaterialPageRoute(builder: (context) => ScreenRegister()),
-//                       );
-//                     }
-//                   },
-//                 )),
-//                 Container(
-//                 height: 50,
-//                 margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-//                 child: ElevatedButton(
-//                   child: Text('Anmelden'),
-//                   style: ElevatedButton.styleFrom(
-//                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-//                     primary: AppColors().darkPrimaryColor,
-//                     onPrimary: Colors.white,
-//                     textStyle: TextStyle(
-//                         fontSize: 16,
-//                         fontWeight: FontWeight.w600,
-//                         fontFamily: 'Raleway'),
-//                   ),
-//                   onPressed: () {
-//                     if (validate(
-//                         emailController.text, passwordController.text)) {
-//                       Navigator.push(
-//                         context,
-//                         MaterialPageRoute(builder: (context) => ScreenLogin()),
-//                       );
-//                     }
-//                   },
-//                 ));
-
-//   }
-// }
