@@ -22,7 +22,7 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    //double left = MediaQuery.of(context).size.width;
+    double left = MediaQuery.of(context).size.width;
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),

@@ -175,6 +175,6 @@ class AppIcons {
 
 class AppButtonValues {
 
-  double borderRadiusCircular = 20.0;
+  double borderRadiusCircular = 100.0;
 
 }
