@@ -21,7 +21,10 @@ class ProfilData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
+    return Scaffold();
+  }
+  }
+    /*
     final DataController data = Get.find();
 //Load Profile from Json
     var remoteUser = profilToJson(data.profile);
@@ -29,8 +32,6 @@ class ProfilData extends StatelessWidget {
     var tmpUser = profilFromJson(
         UserSimplePreferences.getUser() ?? remoteUser.toString());
     Profil user = tmpUser[0];
-=======
->>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
     return Scaffold(
       appBar: AppBar(
           title: const Text("Profil"),
@@ -54,14 +55,11 @@ class ProfilData extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 25.0),
                 decoration: BoxDecoration(
                   //shape: BoxShape.circle,
-<<<<<<< HEAD
                   image: DecorationImage(
                     image: NetworkImage(
                         user.bild!),
-=======
                   image: const DecorationImage(
                     image: NetworkImage("https://picsum.photos/250/250"),
->>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     fit: BoxFit.cover,
                   ),
                   border: Border.all(
@@ -372,3 +370,5 @@ class ProfilData extends StatelessWidget {
       );
 
 }
+
+*/
