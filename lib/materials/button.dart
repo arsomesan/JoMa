@@ -21,6 +21,9 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    //double left = MediaQuery.of(context).size.width;
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
       child: ElevatedButton(
@@ -36,7 +39,7 @@ class AppButton extends StatelessWidget {
                   AppTextStyles.darkButtonText),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(AppButtonValues().borderRadiusCircular),
                       side: BorderSide(color: color))))),
     );
   }
@@ -70,7 +73,7 @@ class AppButtonWithIcon extends StatelessWidget {
                   AppTextStyles.darkButtonText),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(AppButtonValues().borderRadiusCircular),
                       side: BorderSide(color: color)
                   )
               )
