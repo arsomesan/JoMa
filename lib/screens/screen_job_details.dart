@@ -35,6 +35,7 @@ import 'package:joma/materials/button.dart';
 
 class ScreenJobDetails extends StatelessWidget {
   final int? jobID;
+
   ScreenJobDetails({Key? key, required this.jobID}) : super(key: key);
   final DataController data = Get.find();
   late Job job = data.jobs.elementAt(jobID!);
@@ -43,108 +44,112 @@ class ScreenJobDetails extends StatelessWidget {
       .firstWhere((category) => category.id == job.category);
 
   late Color currentColor = Color(
-      int.parse(data.jobCategories.elementAt(currentJobCategory.id as int).colorHex.toString()));
+      int.parse(data.jobCategories
+          .elementAt(currentJobCategory.id as int)
+          .colorHex
+          .toString()));
   late Color currentBackgroundColor = Color(
-      int.parse(data.jobCategories.elementAt(currentJobCategory.id as int).backgroundColorHex.toString()));
+      int.parse(data.jobCategories
+          .elementAt(currentJobCategory.id as int)
+          .backgroundColorHex
+          .toString()));
 
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-      appBar: appBarBuilder(),
-      floatingActionButton: Container(
-        height: 80.0,
-        width: 80.0,
-        child: FloatingActionButton(
-          elevation: 0,
-          child: CircleAvatar(
-            radius: 80.0,
-            backgroundImage: AssetImage(
-              'assets/images/darkJomaLogo.png',
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: appBarBuilder(),
+        floatingActionButton: Container(
+          height: 80.0,
+          width: 80.0,
+          child: FloatingActionButton(
+            elevation: 0,
+            child: CircleAvatar(
+              radius: 80.0,
+              backgroundImage: AssetImage(
+                'assets/images/darkJomaLogo.png',
+              ),
             ),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => ScreenHome()),
+              );
+            },
           ),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => ScreenHome()),
-            );
-          },
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 0,
-          onTap: (value) {
-            if (value == 0) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const JobListSearchScreen()),
-              );
-            }
-            if (value == 1) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfilLoader()),
-              );
-            }
-            //if (value == 2) Navigator.of(context).push(...);
-          },
-          backgroundColor: AppColors().darkPrimaryColor,
-          selectedItemColor: AppColors().darkSecondaryColor,
-          unselectedItemColor: AppColors().white,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: AppIcons().searchGlass,
-              label: 'Suchen',
+        bottomNavigationBar: BottomNavigationBar(
+            currentIndex: 0,
+            onTap: (value) {
+              if (value == 0) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const JobListSearchScreen()),
+                );
+              }
+              if (value == 1) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfilLoader()),
+                );
+              }
+              //if (value == 2) Navigator.of(context).push(...);
+            },
+            backgroundColor: AppColors().darkPrimaryColor,
+            selectedItemColor: AppColors().darkSecondaryColor,
+            unselectedItemColor: AppColors().white,
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: AppIcons().searchGlass,
+                label: 'Suchen',
+              ),
+              BottomNavigationBarItem(
+                icon: AppIcons().profile,
+                label: 'Profil',
+              ),
+            ]),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        body: ListView(
+          children: [
+            //titleImageBuilder(job),
+            titleTextBuilder(context),
+            carouselSliderBuilder(),
+            jobDescriptionBuilder(),
+            skillBackgroundBuilder(context),
+            graduationBuilder(),
+            mapBuilder(),
+            adressBuilder(),
+            buildHorizontalDivider(),
+            buildDistanceText(),
+            //buildApplyButton(),
+            AppButton(
+                text: 'Bewerben',
+                color: AppColors().darkSecondaryColor,
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ScreenHome()));
+                }),
+            SizedBox(
+              height: 50.0,
             ),
-            BottomNavigationBarItem(
-              icon: AppIcons().profile,
-              label: 'Profil',
-            ),
-          ]),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: ListView(
-        children: [
-          //titleImageBuilder(job),
-          titleTextBuilder(context),
-          carouselSliderBuilder(),
-          jobDescriptionBuilder(),
-          skillBackgroundBuilder(context),
-          graduationBuilder(),
-          mapBuilder(),
-          adressBuilder(),
-          buildHorizontalDivider(),
-          buildDistanceText(),
-          //buildApplyButton(),
-          AppButton(
-              text: 'Bewerben',
-              color: AppColors().darkSecondaryColor,
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ScreenHome()));
-              }),
-          SizedBox(
-            height: 50.0,
-          ),
-        ],
-      ));
-
-
-}
+          ],
+        ));
+  }
 
 // ---------- APP-BAR ----------
 
 // Dieses Widget baut die App-Bar auf
-PreferredSizeWidget appBarBuilder() {
-  return AppBar(
-    backgroundColor: currentColor,
-    title: Text(
-      currentJobCategory.title.toString().toUpperCase(),
-      style: AppTextStyles.darkH4,
-    ),
-    centerTitle: true,
-  );
-}
+  PreferredSizeWidget appBarBuilder() {
+    return AppBar(
+      backgroundColor: currentColor,
+      title: Text(
+        currentJobCategory.title.toString().toUpperCase(),
+        style: AppTextStyles.darkH4,
+      ),
+      centerTitle: true,
+    );
+  }
 
 // ---------- TITELBILD ----------
 /*
@@ -164,204 +169,237 @@ Widget titleImageBuilder(Job job) {
 */
 // ---------- JOB-BESCHREIBUNG ----------
 
-Widget jobDescriptionBuilder() {
-  return Padding(
-    padding: EdgeInsets.fromLTRB(44, 10, 44, 0),
-    child: Align(
-      alignment: Alignment.center,
-      child: Text(
-        job.description!.full.toString(),
-        style: AppTextStyles.darkMainText,
+  Widget jobDescriptionBuilder() {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(44, 10, 44, 0),
+      child: Align(
+        alignment: Alignment.center,
+        child: Text(
+          job.description!.full.toString(),
+          style: AppTextStyles.darkMainText,
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 
 // ---------- FÄHIGKEITEN ----------
 
 // Dieses Widget baut eine Reihe von Fähigkeiten auf
-Widget buildSkillCards() {
-  return Padding(
-    padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        for (int i = 0; i < job.skills!.length; i++)
-          Expanded(
-              child: buildSkill(data.skills.indexWhere((skill) => skill.id == job.skills![i]))),
-      ],
-    ),
-  );
-}
+  Widget buildSkillCards() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          for (int i = 0; i < job.skills!.length; i++)
+            Expanded(
+                child: buildSkill(data.skills.indexWhere((skill) => skill.id ==
+                    job.skills![i]))),
+        ],
+      ),
+    );
+  }
 
 // Dieses Widget baut eine einzelne Fähigkeit auf
-Widget buildSkill(int skillID) => Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        buildBox(child: Icon(IconDataSolid(int.parse("0x" + data.skills[skillID].icon.toString())))),
-        const SizedBox(height: 5),
-        Text(
-          data.skills.elementAt(skillID).title.toString(),
-          style: AppTextStyles.darkMainText,
-        )
-      ],
-    );
+  Widget buildSkill(int skillID) =>
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          buildBox(child: Icon(IconDataSolid(
+              int.parse("0x" + data.skills[skillID].icon.toString())))),
+          const SizedBox(height: 5),
+          Text(
+            data.skills
+                .elementAt(skillID)
+                .title
+                .toString(),
+            style: AppTextStyles.darkMainText,
+          )
+        ],
+      );
 
 // Dieses Widget baut einen Kreis als Hintergrund um das Fähigkeits-Icon auf
-Widget buildBox({required Widget child}) => Container(
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.white,
-      ),
-      padding: EdgeInsets.all(7),
-      child: child,
-    );
+  Widget buildBox({required Widget child}) =>
+      Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white,
+        ),
+        padding: EdgeInsets.all(7),
+        child: child,
+      );
 
 // ---------- SCHULABSCHLUSS ----------
 
 // Dieses Widget baut die Schulabschluss-Anzeige auf
-Widget graduationBuilder() {
-  return Padding(
-    padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            buildSchoolBox(child: Icon(Icons.school, size: 50)),
-            const SizedBox(height: 10),
-            Text(
-              job.requiredGraduation.toString(),
-              style: AppTextStyles.darkH1,
-            )
-          ],
-        ),
-      ],
-    ),
-  );
-}
+  Widget graduationBuilder() {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              buildSchoolBox(child: Icon(Icons.school, size: 50)),
+              const SizedBox(height: 10),
+              Text(
+                job.requiredGraduation.toString(),
+                style: AppTextStyles.darkH1,
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
 // Dieses Widget baut einen Kreis als Hintergrund um das Schulabschluss-Icon auf
-Widget buildSchoolBox({required Widget child}) => Container(
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: currentBackgroundColor,
-      ),
-      padding: EdgeInsets.all(15),
-      child: child,
-    );
+  Widget buildSchoolBox({required Widget child}) =>
+      Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: currentBackgroundColor,
+        ),
+        padding: EdgeInsets.all(15),
+        child: child,
+      );
 
 // ---------- MAP ----------
 
 // Dieses Widget baut (zunächst) eine Karte
-Widget mapBuilder() {
-  return Padding(
-    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-    child: Image(
-      image: AssetImage('assets/images/maps.PNG'),
-    ),
-  );
-}
+  Widget mapBuilder() {
+    return Container(
+      height: 400,
+      child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          child: FlutterMap(
+            options: MapOptions(
+              center: LatLng(double.parse(job.coords!.lat!),double.parse(job.coords!.long!)),
+              zoom: 20.0,
+            ),
+            layers: [
+              TileLayerOptions(
+                urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                subdomains: ['a', 'b', 'c'],
+              ),
+              MarkerLayerOptions(
+                markers: [
+                  Marker(
+                    width: 80.0,
+                    height: 80.0,
+                    point: LatLng(double.parse(job.coords!.lat!),double.parse(job.coords!.long!)),
+                    builder: (ctx) =>
+                        const Icon(FontAwesomeIcons.mapPin, color: Colors.red),
+                  ),
+                ],
+              ),
+            ],
+          )
+      ),
+    );
+  }
 
 // ---------- ADRESSE ----------
 
 // Dieses Widget baut die Adresszeile auf
-Widget adressBuilder() {
-  return Padding(
-    padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            buildAdressBox(child: AppIcons().nurBilder),
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              job.company.toString(),
-              style: AppTextStyles.darkMainText,
-            ),
-            Text(
-              job.address!.street.toString(),
-              style: AppTextStyles.darkMainText,
-            ),
-            Text(
-              job.address!.zip.toString() + ' ' + job.address!.city.toString(),
-              style: AppTextStyles.darkMainText,
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
-}
+  Widget adressBuilder() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              buildAdressBox(child: AppIcons().nurBilder),
+            ],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                job.company.toString(),
+                style: AppTextStyles.darkMainText,
+              ),
+              Text(
+                job.address!.street.toString(),
+                style: AppTextStyles.darkMainText,
+              ),
+              Text(
+                job.address!.zip.toString() + ' ' +
+                    job.address!.city.toString(),
+                style: AppTextStyles.darkMainText,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
 // Dieses Widget baut einen Kreis um das Logo des Unternehmens in der Adresszeile auf
-Widget buildAdressBox({required Widget child}) => Container(
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: currentBackgroundColor,
-      ),
-      padding: EdgeInsets.all(20),
-      child: child,
-    );
+  Widget buildAdressBox({required Widget child}) =>
+      Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: currentBackgroundColor,
+        ),
+        padding: EdgeInsets.all(20),
+        child: child,
+      );
 
 // ---------- DIVIDER ----------
 
 // Dieses Widget baut einen horizontalen Divider auf
-Widget buildHorizontalDivider() {
-  return Row(
-    children: [
-      Expanded(
-        child: Divider(
-          color: Colors.black,
-          height: 35,
-        ),
-      )
-    ],
-  );
-}
+  Widget buildHorizontalDivider() {
+    return Row(
+      children: [
+        Expanded(
+          child: Divider(
+            color: Colors.black,
+            height: 35,
+          ),
+        )
+      ],
+    );
+  }
 
 // ---------- ENTFERNUNG ----------
 
 // Dieses Widget baut den Text für die Entfernung auf
-Widget buildDistanceText() {
-  return Padding(
-    padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          '10 km entfernt!',
-          style: AppTextStyles.darkH1,
-        )
-      ],
-    ),
-  );
-}
+  Widget buildDistanceText() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            '10 km entfernt!',
+            style: AppTextStyles.darkH1,
+          )
+        ],
+      ),
+    );
+  }
 
 // ---------- BEWERBEN-BUTTON ----------
 
 // Dieses Widget baut den Bewerben-Button auf
-Widget buildApplyButton() {
-  return Padding(
-    padding: const EdgeInsets.fromLTRB(100, 20, 100, 50),
-    child: ElevatedButton(
-      onPressed: () {},
-      child: Text("Bewerben"),
-    ),
-  );
-}
+  Widget buildApplyButton() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(100, 20, 100, 50),
+      child: ElevatedButton(
+        onPressed: () {},
+        child: Text("Bewerben"),
+      ),
+    );
+  }
 
 // ---------- TITEL ----------
 
 // Diese Klasse baut den Titel auf
-Widget titleTextBuilder(BuildContext context) {
+  Widget titleTextBuilder(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
       child: Align(
@@ -369,7 +407,10 @@ Widget titleTextBuilder(BuildContext context) {
         child: Container(
           alignment: Alignment.center,
           height: 100.0,
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
           decoration: BoxDecoration(
               color: Colors.transparent,
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -388,8 +429,7 @@ Widget titleTextBuilder(BuildContext context) {
 // ---------- BILDER-KARUSSELL ----------
 
 // Diese Klasse baut den Carousel-Slider auf
-Widget carouselSliderBuilder() {
-
+  Widget carouselSliderBuilder() {
     return CarouselSlider(
       options: CarouselOptions(
         height: 200.0,
@@ -410,7 +450,10 @@ Widget carouselSliderBuilder() {
         return Builder(
           builder: (BuildContext context) {
             return Container(
-              width: MediaQuery.of(context).size.width,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
               margin: EdgeInsets.symmetric(horizontal: 3.0, vertical: 15.0),
               //decoration: BoxDecoration(color: Colors.blueGrey),
               child: Column(
@@ -437,12 +480,14 @@ Widget carouselSliderBuilder() {
 // ---------- SKILL-BACKGROUND ----------
 
 // Diese Klasse baut den Hintergrund der Fähigkeiten auf
-Widget skillBackgroundBuilder(BuildContext context) {
-
+  Widget skillBackgroundBuilder(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width,
         color: currentBackgroundColor,
         child: buildSkillCards(),
       ),
@@ -454,53 +499,50 @@ Widget skillBackgroundBuilder(BuildContext context) {
 
 // Diese Klasse baut die Bottom-Navigationbar auf
 Widget navBarBuilder(BuildContext context) {
-    return BottomNavigationBar(
-        currentIndex: 0,
-        onTap: (value) {
-          if (value == 0)
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const JobListSearchScreen()),
-            );
-          if (value == 1)
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const ProfilLoader()),
-            );
-          //if (value == 2) Navigator.of(context).push(...);
-        },
-        backgroundColor: AppColors().darkGreen,
-        selectedItemColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Suchen',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-        ]);
-
+  return BottomNavigationBar(
+      currentIndex: 0,
+      onTap: (value) {
+        if (value == 0)
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const JobListSearchScreen()),
+          );
+        if (value == 1)
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const ProfilLoader()),
+          );
+        //if (value == 2) Navigator.of(context).push(...);
+      },
+      backgroundColor: AppColors().darkGreen,
+      selectedItemColor: Colors.white,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.search),
+          label: 'Suchen',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: 'Profil',
+        ),
+      ]);
 }
 
 // ---------- HOME-BUTTON ----------
 
 // Diese Klasse baut den Home-Button auf
 Widget homeButtonBuilder(BuildContext context) {
-
-    return FloatingActionButton(
-      backgroundColor: Colors.black,
-      child: Icon(Icons.home),
-      onPressed: () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => ScreenHome()),
-        );
-      },
-    );
-
+  return FloatingActionButton(
+    backgroundColor: Colors.black,
+    child: Icon(Icons.home),
+    onPressed: () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => ScreenHome()),
+      );
+    },
+  );
 }
 
 
