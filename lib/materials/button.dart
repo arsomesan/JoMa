@@ -33,7 +33,7 @@ class AppButton extends StatelessWidget {
           ),
           style: ButtonStyle(
               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                  const EdgeInsets.fromLTRB(0, 35, 0, 35)),
+                  const EdgeInsets.fromLTRB(0, 17, 0, 17)),
               backgroundColor: MaterialStateProperty.all<Color>(color),
               textStyle: MaterialStateProperty.all<TextStyle>(
                   AppTextStyles.darkButtonText),
