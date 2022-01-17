@@ -60,7 +60,7 @@ class ScreenHome extends StatelessWidget {
                             left: 0,
                             child: HomeScreenCard(
                                 elevatedButtonRoute: () {
-                                  Get.to(() => JobListTopicScreen());
+                                  Get.to(() => JobListTopicScreen(categoryID: 0));
                                 },
                                 color: AppColors().darkRed,
                                 icon: AppIcons().homeRedSection,
@@ -70,7 +70,9 @@ class ScreenHome extends StatelessWidget {
                             top: 0,
                             left: 125,
                             child: HomeScreenCard(
-                                elevatedButtonRoute: () {},
+                                elevatedButtonRoute: () {
+                                  Get.to(() => JobListTopicScreen(categoryID: 1));
+                                },
                                 color: AppColors().darkGreen,
                                 icon: AppIcons().homeGreenSection,
                                 title: 'GÄRTNEREI\nLANDWIRTSCHAFT'),
@@ -79,7 +81,9 @@ class ScreenHome extends StatelessWidget {
                             top: 125,
                             left: 0,
                             child: HomeScreenCard(
-                                elevatedButtonRoute: () {},
+                                elevatedButtonRoute: () {
+                                  Get.to(() => JobListTopicScreen(categoryID: 2));
+                                },
                                 color: AppColors().darkBlue,
                                 icon: AppIcons().homeBlueSection,
                                 title: 'SOZIALES\nHAUSWIRTSCHAFT'),
@@ -88,7 +92,9 @@ class ScreenHome extends StatelessWidget {
                             top: 125,
                             left: 125,
                             child: HomeScreenCard(
-                                elevatedButtonRoute: () {},
+                                elevatedButtonRoute: () {
+                                  Get.to(() => JobListTopicScreen(categoryID: 3));
+                                },
                                 color: AppColors().darkYellow,
                                 icon: AppIcons().homeYellowSection,
                                 title: 'SERVICE\nLEBENSMITTEL'),
@@ -111,7 +117,7 @@ class ScreenHome extends StatelessWidget {
               Container(height: 20),
               ElevatedButton(
                   onPressed: () {
-                    Get.to(() => JobListTopicScreen());
+                    Get.to(() => JobListTopicScreen(categoryID: 0));
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,

@@ -50,13 +50,12 @@ class MyApp extends StatelessWidget {
 
 
 
-      home: ScreenHome(),
-      /*home: Center(
+      home: Center(
       child: AnimatedSplashScreen(
       splash: Image.asset(
       'assets/images/darkJomaLogo.png',
       ),
-      nextScreen: ScreenWelcome(),
+      nextScreen: ScreenHome(),
       splashTransition: SplashTransition.rotationTransition,
       backgroundColor: AppColors().darkSecondaryColor,
       ),
@@ -64,7 +63,7 @@ class MyApp extends StatelessWidget {
 
     //home: const ScreenLogin(),
     //home: const ScreenHome(),
-      ),*/
+      ),
     );
     
   
