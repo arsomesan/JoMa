@@ -21,10 +21,6 @@ class ProfilData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
-  }
-  }
-    /*
     final DataController data = Get.find();
 //Load Profile from Json
     var remoteUser = profilToJson(data.profile);
@@ -54,22 +50,19 @@ class ProfilData extends StatelessWidget {
                 height: 200,
                 margin: const EdgeInsets.only(top: 25.0),
                 decoration: BoxDecoration(
-                  //shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: NetworkImage(
-                        user.bild!),
-                  image: const DecorationImage(
-                    image: NetworkImage("https://picsum.photos/250/250"),
-                    fit: BoxFit.cover,
-                  ),
                   border: Border.all(
                     color: Glovar.grey,
                     width: 1,
                   ),
                   borderRadius: BorderRadius.circular(100),
+                  //shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        user.bild!),
                 ),
               ),
             ),
+      ),
             Container(
               margin: const EdgeInsets.only(left: 20, top: 30),
               child: Column(
@@ -84,16 +77,10 @@ class ProfilData extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-<<<<<<< HEAD
                       user.vorname! + " " + user.name!,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20),
-=======
-                      "Norbert Haselmann",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
->>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
-                    ),
+                  ),
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 10),
@@ -108,15 +95,9 @@ class ProfilData extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-<<<<<<< HEAD
                       user.kontakt!.email!,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20),
-=======
-                      "n-haselmann@mail.com",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
->>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     ),
                   ),
                   Container(
@@ -132,15 +113,9 @@ class ProfilData extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-<<<<<<< HEAD
                       user.kontakt!.tel!,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20),
-=======
-                      "0800/2222222",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
->>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     ),
                   ),
                   Container(
@@ -156,15 +131,9 @@ class ProfilData extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-<<<<<<< HEAD
                       user.adresse!.strasse! + " " + user.adresse!.hausnummer!,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20),
-=======
-                      "Leipziger Straße 12",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
->>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     ),
                   ),
                   Container(
@@ -180,15 +149,9 @@ class ProfilData extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-<<<<<<< HEAD
                       user.adresse!.plz! + " " + user.adresse!.ort!,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20),
-=======
-                      "Kassel",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
->>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     ),
                   ),
                   Container(
@@ -201,14 +164,12 @@ class ProfilData extends StatelessWidget {
                       ),
                     ),
                   ),
-<<<<<<< HEAD
                   Container(
                     child: Wrap(
                       children: [
                         for(int i = 0; i < user.skills!.length; i++)
                           Container(
                               child: buildSkill(data.skills.indexWhere((skill) => skill.id == user.skills![i]), data)),
-=======
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Row(
@@ -251,7 +212,6 @@ class ProfilData extends StatelessWidget {
                                 labelStyle: TextStyle(color: Glovar.white),
                                 backgroundColor: Glovar.orange,
                                 onPressed: () {})),
->>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                       ],
 
                     ),
@@ -311,6 +271,9 @@ class ProfilData extends StatelessWidget {
           ],
         ),
       ),
+  ],
+        ),
+    ),
       floatingActionButton: Container(
         height: 80.0,
         width: 80.0,
@@ -350,11 +313,6 @@ class ProfilData extends StatelessWidget {
           ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
-<<<<<<< HEAD
-
-
-=======
->>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
   }
   Widget buildSkill(int skillID, DataController data) =>
       Container(
@@ -370,5 +328,3 @@ class ProfilData extends StatelessWidget {
       );
 
 }
-
-*/

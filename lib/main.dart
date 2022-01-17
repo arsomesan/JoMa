@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
       splash: Image.asset(
       'assets/images/darkJomaLogo.png',
       ),
-      nextScreen: ScreenWelcome(),
+      nextScreen: ScreenHome(),
       splashTransition: SplashTransition.rotationTransition,
       backgroundColor: AppColors().darkSecondaryColor,
       ),
