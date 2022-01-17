@@ -13,21 +13,29 @@ class JobCategory {
     this.id,
     this.title,
     this.colorHex,
+    this.backgroundColorHex,
+    this.jobOfTheWeek,
   });
 
   int? id;
   String? title;
   String? colorHex;
+  String? backgroundColorHex;
+  int? jobOfTheWeek;
 
   factory JobCategory.fromJson(Map<String, dynamic> json) => JobCategory(
     id: json["id"],
     title: json["title"],
     colorHex: json["colorHEX"]!.replaceAll("#", "0xFF"),
+    backgroundColorHex: json["backgroundColorHEX"]!.replaceAll("#", "0xFF"),
+    jobOfTheWeek: json["jobOfTheWeek"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "title": title,
     "colorHEX": colorHex,
+    "backgroundColorHEX": backgroundColorHex,
+    "jobOfTheWeek": jobOfTheWeek,
   };
 }

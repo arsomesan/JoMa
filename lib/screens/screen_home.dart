@@ -45,6 +45,7 @@ class ScreenHome extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Container(height: 120),
               Stack(children: [
                 Container(
                   alignment: Alignment.center,
@@ -105,7 +106,7 @@ class ScreenHome extends StatelessWidget {
                   ),
                 ),
               ]),
-              Container(height: 150),
+              Container(height: 100),
               const Text(
                 "UNSICHER?",
                 style: TextStyle(

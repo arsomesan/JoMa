@@ -16,11 +16,27 @@ import 'package:joma/screens/screen_welcome.dart';
 
 import 'joblist_search_screen.dart';
 
-class ScreenNotifications extends StatelessWidget {
+class ScreenNotifications extends StatefulWidget {
   const ScreenNotifications({Key? key}) : super(key: key);
 
   @override
+  _ScreenNotificationsState createState() => _ScreenNotificationsState();
+
+}
+
+class _ScreenNotificationsState extends State<ScreenNotifications> {
+  bool _isChecked = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Mitteilungen'.toUpperCase()),
@@ -39,8 +55,13 @@ class ScreenNotifications extends StatelessWidget {
         children: [
           CheckboxButton(
               text: 'Soziales & Hauswirtschaft',
-              value: false,
-              onChanged: (bool? value) {},
+              value: _isChecked,
+              onChanged: (bool? value) {
+                setState(() {
+                  _isChecked = value!;
+                });
+
+              },
               icon: Icon(FontAwesomeIcons.tools),
           ),
           CheckboxButton(
