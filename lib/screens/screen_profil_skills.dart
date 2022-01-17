@@ -95,7 +95,8 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
                       saveSkillState(data.boolList, tmpUser);
                     });
                   },
-                  icon: Icon(FontAwesomeIcons.handHolding),
+                  icon: Icon(IconDataSolid(int.parse("0x" + data.skills[i].icon.toString())))
+                  ,
                 )
             ],
           )));
