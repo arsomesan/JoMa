@@ -60,6 +60,7 @@ class AppTextStyles {
       fontFamily: AppFont.mainFont, fontSize: 12);
   static const darkCardTextWhite = TextStyle(
       fontFamily: AppFont.mainFont, fontSize: 12, color: Colors.white);
+  //
 }
 
 // ---------- FARBEN ----------
