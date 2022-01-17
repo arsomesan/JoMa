@@ -13,21 +13,25 @@ class Skill {
     this.id,
     this.icon,
     this.title,
+    this.colorHex,
   });
 
   int? id;
   String? icon;
   String? title;
+  String? colorHex;
 
   factory Skill.fromJson(Map<String, dynamic> json) => Skill(
     id: json["id"],
     icon: json["icon"],
     title: json["title"],
+    colorHex: json["colorHEX"]!.replaceAll("#", "0xFF"),
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "icon": icon,
     "title": title,
+    "colorHEX": colorHex,
   };
 }
