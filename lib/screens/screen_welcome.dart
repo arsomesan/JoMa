@@ -72,11 +72,12 @@ class _ScreenWelcome extends State<ScreenWelcome> {
             child: ListView(children: <Widget>[
           Container(
             height: 255,
+            margin: EdgeInsets.only(bottom:300),
             child: AppBarMainArea(
               bgColor: AppBackgroundColors().darkBackground,
               bgColorBar: AppColors().darkPrimaryColor,
               color: AppColors().darkPrimaryColor,
-              title: ''.toUpperCase(),
+              title: 'Willkommen \nbei JOMA'.toUpperCase(),
             ),
           ),
           Container(
@@ -95,83 +96,30 @@ class _ScreenWelcome extends State<ScreenWelcome> {
                   }
                 },
               )),
-          Container(
-              height: 50,
-              margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-              child: ElevatedButton(
-                child: Text('Anmelden'),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40)),
-                  primary: AppColors().darkPrimaryColor,
-                  onPrimary: Colors.white,
-                  textStyle: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Raleway'),
-                ),
+
+
+              Container(
+              //height: 100,
+              width: MediaQuery.of(context).size.width,
+              //margin: const EdgeInsets.fromLTRB(15, 150, 15, 10),
+              child: AppButton(
+                text: 'Anmelden',
+                color: AppColors().darkPrimaryColor,
                 onPressed: () {
                   if (validate(emailController.text, passwordController.text)) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ScreenLogin()),
+                      MaterialPageRoute(builder: (context) => ScreenRegister()),
                     );
                   }
                 },
-              ))
+              )),
+              Container(
+                child: Text('created by Hochschule Fulda',
+                style:TextStyle(color: Colors.white),
+                textAlign: TextAlign.center,
+                              ),),
+
         ])));
   }
 }
-
-//             Container(
-//                 height: 50,
-//                 margin: const EdgeInsets.fromLTRB(15, 350, 15, 10),
-//                 child: AppButton(
-//                   text: ('Registrieren'),
-//                   color: AppColors().darkSecondaryColor,
-//                   // style: AppButton.styleFrom(
-//                   //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-//                   //   primary: AppColors().darkSecondaryColor,
-//                   //   onPrimary: Colors.white,
-//                   //   textStyle: TextStyle(
-//                   //       fontSize: 16,
-//                   //       fontWeight: FontWeight.w600,
-//                   //       fontFamily: 'Raleway'),
-//                   // ),
-//                   onPressed: () {
-//                     if (validate(
-//                         emailController.text, passwordController.text)) {
-//                       Navigator.push(
-//                         context,
-//                         MaterialPageRoute(builder: (context) => ScreenRegister()),
-//                       );
-//                     }
-//                   },
-//                 )),
-//                 Container(
-//                 height: 50,
-//                 margin: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-//                 child: ElevatedButton(
-//                   child: Text('Anmelden'),
-//                   style: ElevatedButton.styleFrom(
-//                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-//                     primary: AppColors().darkPrimaryColor,
-//                     onPrimary: Colors.white,
-//                     textStyle: TextStyle(
-//                         fontSize: 16,
-//                         fontWeight: FontWeight.w600,
-//                         fontFamily: 'Raleway'),
-//                   ),
-//                   onPressed: () {
-//                     if (validate(
-//                         emailController.text, passwordController.text)) {
-//                       Navigator.push(
-//                         context,
-//                         MaterialPageRoute(builder: (context) => ScreenLogin()),
-//                       );
-//                     }
-//                   },
-//                 ));
-
-//   }
-// }
