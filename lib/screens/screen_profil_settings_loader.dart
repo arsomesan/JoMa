@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -569,7 +567,7 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
         child: InputChip(
             label: Text(data.skills.elementAt(skillID).title.toString()),
             labelStyle: TextStyle(color: AppColors().white),
-            backgroundColor: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+            backgroundColor: Color(int.parse(data.skills.elementAt(skillID as int).colorHex.toString())),
             onPressed: () {
 
             }

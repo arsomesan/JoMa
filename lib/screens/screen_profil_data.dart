@@ -1,21 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/global/glovar.dart';
 import 'package:joma/materials/assets.dart';
+import 'package:joma/model/profil_model.dart';
 
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_settings_loader.dart';
 import 'package:joma/screens/screen_settings.dart';
+import 'package:joma/utils/user_simple_preferences.dart';
 
 import 'joblist_search_screen.dart';
 
 class ProfilData extends StatelessWidget {
   const ProfilData({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
+    final DataController data = Get.find();
+//Load Profile from Json
+    var remoteUser = profilToJson(data.profile);
+    //Load Profile from Shared Preferences if given. If not load Json Profile
+    var tmpUser = profilFromJson(
+        UserSimplePreferences.getUser() ?? remoteUser.toString());
+    Profil user = tmpUser[0];
+=======
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
     return Scaffold(
       appBar: AppBar(
           title: const Text("Profil"),
@@ -39,8 +54,14 @@ class ProfilData extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 25.0),
                 decoration: BoxDecoration(
                   //shape: BoxShape.circle,
+<<<<<<< HEAD
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        user.bild!),
+=======
                   image: const DecorationImage(
                     image: NetworkImage("https://picsum.photos/250/250"),
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     fit: BoxFit.cover,
                   ),
                   border: Border.all(
@@ -62,12 +83,18 @@ class ProfilData extends StatelessWidget {
                       style: TextStyle(color: Glovar.blackvar),
                     ),
                   ),
-                  const Align(
+                  Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
+<<<<<<< HEAD
+                      user.vorname! + " " + user.name!,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20),
+=======
                       "Norbert Haselmann",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     ),
                   ),
                   Container(
@@ -80,12 +107,18 @@ class ProfilData extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Align(
+                  Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
+<<<<<<< HEAD
+                      user.kontakt!.email!,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20),
+=======
                       "n-haselmann@mail.com",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     ),
                   ),
                   Container(
@@ -98,12 +131,18 @@ class ProfilData extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Align(
+                  Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
+<<<<<<< HEAD
+                      user.kontakt!.tel!,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20),
+=======
                       "0800/2222222",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     ),
                   ),
                   Container(
@@ -116,12 +155,18 @@ class ProfilData extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Align(
+                  Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
+<<<<<<< HEAD
+                      user.adresse!.strasse! + " " + user.adresse!.hausnummer!,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20),
+=======
                       "Leipziger Straße 12",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     ),
                   ),
                   Container(
@@ -134,12 +179,18 @@ class ProfilData extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Align(
+                  Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
+<<<<<<< HEAD
+                      user.adresse!.plz! + " " + user.adresse!.ort!,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20),
+=======
                       "Kassel",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                     ),
                   ),
                   Container(
@@ -152,6 +203,14 @@ class ProfilData extends StatelessWidget {
                       ),
                     ),
                   ),
+<<<<<<< HEAD
+                  Container(
+                    child: Wrap(
+                      children: [
+                        for(int i = 0; i < user.skills!.length; i++)
+                          Container(
+                              child: buildSkill(data.skills.indexWhere((skill) => skill.id == user.skills![i]), data)),
+=======
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Row(
@@ -194,9 +253,11 @@ class ProfilData extends StatelessWidget {
                                 labelStyle: TextStyle(color: Glovar.white),
                                 backgroundColor: Glovar.orange,
                                 onPressed: () {})),
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
                       ],
+
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
@@ -291,5 +352,23 @@ class ProfilData extends StatelessWidget {
           ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> d58efcbba05d2b59ea1abd9359ff3a3cb4c262a9
   }
+  Widget buildSkill(int skillID, DataController data) =>
+      Container(
+        margin: EdgeInsets.only(right: 5),
+        child: InputChip(
+            label: Text(data.skills.elementAt(skillID).title.toString()),
+            labelStyle: TextStyle(color: AppColors().white),
+            backgroundColor: Color(int.parse(data.skills.elementAt(skillID as int).colorHex.toString())),
+            onPressed: () {
+
+            }
+        ),
+      );
+
 }
