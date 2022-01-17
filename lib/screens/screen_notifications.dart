@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/screens/screen_welcome.dart';
 
-import 'joblist_search_screen.dart';
+import 'screen_joblist_search.dart';
 
 class ScreenNotifications extends StatefulWidget {
   const ScreenNotifications({Key? key}) : super(key: key);

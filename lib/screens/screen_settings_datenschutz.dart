@@ -4,7 +4,7 @@ import 'package:joma/screens/screen_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:joma/materials/assets.dart';
 
-import 'joblist_search_screen.dart';
+import 'screen_joblist_search.dart';
 
 class Datenschutz extends StatelessWidget {
   const Datenschutz({Key? key}) : super(key: key);
@@ -86,7 +86,7 @@ class Datenschutz extends StatelessWidget {
           currentIndex: 0,
           onTap: (value) {
             if (value == 0) {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ScreenJobListSearch()),
               );
             }
             if (value == 1) {

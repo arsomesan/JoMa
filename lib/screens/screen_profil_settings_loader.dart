@@ -16,7 +16,7 @@ import 'package:joma/screens/screen_profil_skills.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
 import 'dart:math' as math;
 
-import 'joblist_search_screen.dart';
+import 'screen_joblist_search.dart';
 
 class ProfilSettingsLoader extends StatefulWidget {
   const ProfilSettingsLoader({Key? key}) : super(key: key);
@@ -474,7 +474,7 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: 1,
           onTap: (value) {
-            if (value == 0) Get.off(() => JobListSearchScreen());
+            if (value == 0) Get.off(() => ScreenJobListSearch());
             if (value == 1) Get.off(() => ProfilLoader());
             //);
             //if (value == 2) Navigator.of(context).push(...);

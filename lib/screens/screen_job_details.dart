@@ -13,7 +13,7 @@ import 'package:joma/materials/card.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/services/remote_services.dart';
-import 'joblist_search_screen.dart';
+import 'screen_joblist_search.dart';
 
 // Material-Imports
 import 'package:flutter/material.dart';
@@ -82,7 +82,7 @@ class ScreenJobDetails extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const JobListSearchScreen()),
+                      builder: (context) => const ScreenJobListSearch()),
                 );
               }
               if (value == 1) {
@@ -487,7 +487,7 @@ Widget titleImageBuilder(Job job) {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                  builder: (context) => const JobListSearchScreen()),
+                  builder: (context) => const ScreenJobListSearch()),
             );
           if (value == 1)
             Navigator.pushReplacement(

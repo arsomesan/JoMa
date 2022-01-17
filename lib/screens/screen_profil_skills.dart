@@ -15,7 +15,7 @@ import 'package:joma/screens/screen_profil_settings_loader.dart';
 import 'package:joma/screens/screen_settings.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
 
-import 'joblist_search_screen.dart';
+import 'screen_joblist_search.dart';
 
 class ScreenProfilSkills extends StatefulWidget {
   ScreenProfilSkills({Key? key}) : super(key: key);
@@ -168,7 +168,7 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const JobListSearchScreen()),
+                    builder: (context) => const ScreenJobListSearch()),
               );
             }
             if (value == 1) {

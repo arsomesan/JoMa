@@ -15,12 +15,12 @@ import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_settings.dart';
 import 'package:joma/services/remote_services.dart';
 
-import 'joblist_search_screen.dart';
+import 'screen_joblist_search.dart';
 
-class JobListTopicScreen extends StatelessWidget {
+class ScreenJobListCategory extends StatelessWidget {
   final int categoryID;
 
-  JobListTopicScreen({Key? key, required this.categoryID}) : super(key: key);
+  ScreenJobListCategory({Key? key, required this.categoryID}) : super(key: key);
   final DataController data = Get.find();
 
   late Color currentColor = Color(
@@ -141,7 +141,7 @@ class JobListTopicScreen extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const JobListSearchScreen()),
+                    builder: (context) => const ScreenJobListSearch()),
               );
             }
             if (value == 1) {

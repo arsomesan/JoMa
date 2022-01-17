@@ -6,7 +6,7 @@ import 'package:joma/global/glovar.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/button.dart';
 import 'package:joma/model/profil_model.dart';
-import 'package:joma/screens/joblist_search_screen.dart';
+import 'package:joma/screens/screen_joblist_search.dart';
 import 'package:joma/screens/screen_applications.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_data.dart';
@@ -126,7 +126,7 @@ class _ProfilLoaderState extends State<ProfilLoader> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const JobListSearchScreen()),
+                    builder: (context) => const ScreenJobListSearch()),
               );
             }
             if (value == 1) {

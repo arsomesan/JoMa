@@ -13,7 +13,7 @@ import 'package:joma/screens/screen_profil_settings_loader.dart';
 import 'package:joma/screens/screen_settings.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
 
-import 'joblist_search_screen.dart';
+import 'screen_joblist_search.dart';
 
 class ProfilData extends StatelessWidget {
   const ProfilData({Key? key}) : super(key: key);
@@ -220,7 +220,7 @@ class ProfilData extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: 1,
           onTap: (value) {
-            if (value == 0) Get.off(() => const JobListSearchScreen());
+            if (value == 0) Get.off(() => const ScreenJobListSearch());
             //if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilLoader()),
             //);
             //if (value == 2) Navigator.of(context).push(...);

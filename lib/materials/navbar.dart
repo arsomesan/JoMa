@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
-import 'package:joma/screens/joblist_search_screen.dart';
+import 'package:joma/screens/screen_joblist_search.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 
 import 'assets.dart';
@@ -21,7 +21,7 @@ class AppNavBar extends StatelessWidget {
         currentIndex: 0,
         onTap: (value) {
           if (value == 0) {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const JobListSearchScreen()),
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ScreenJobListSearch()),
             );
           }
           if (value == 1) {

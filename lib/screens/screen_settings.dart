@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/screens/screen_welcome.dart';
 
-import 'joblist_search_screen.dart';
+import 'screen_joblist_search.dart';
 
 class Einstellungen extends StatelessWidget {
   const Einstellungen({Key? key}) : super(key: key);
@@ -126,7 +126,7 @@ class Einstellungen extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const JobListSearchScreen()),
+                    builder: (context) => const ScreenJobListSearch()),
               );
             }
             if (value == 1) {

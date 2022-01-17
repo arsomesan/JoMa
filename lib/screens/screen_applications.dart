@@ -7,7 +7,7 @@ import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_settings.dart';
 
-import 'joblist_search_screen.dart';
+import 'screen_joblist_search.dart';
 
 class ScreenApplications extends StatelessWidget {
   ScreenApplications({Key? key}) : super(key: key);
@@ -121,7 +121,7 @@ class ScreenApplications extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const JobListSearchScreen()),
+                    builder: (context) => const ScreenJobListSearch()),
               );
             }
             if (value == 1) {

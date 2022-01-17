@@ -5,10 +5,10 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/controllers/view_controller.dart';
 import 'package:joma/materials/button.dart';
-import 'package:joma/screens/joblist_search_screen.dart';
+import 'package:joma/screens/screen_joblist_search.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_settings.dart';
-import 'joblist_topic_screen.dart';
+import 'screen_joblist_category_screen.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/homescreen_card.dart';
 import 'package:joma/materials/navbar.dart';
@@ -61,7 +61,7 @@ class ScreenHome extends StatelessWidget {
                             left: 0,
                             child: HomeScreenCard(
                                 elevatedButtonRoute: () {
-                                  Get.to(() => JobListTopicScreen(categoryID: 0));
+                                  Get.to(() => ScreenJobListCategory(categoryID: 0));
                                 },
                                 color: AppColors().darkRed,
                                 icon: AppIcons().homeRedSection,
@@ -72,7 +72,7 @@ class ScreenHome extends StatelessWidget {
                             left: 125,
                             child: HomeScreenCard(
                                 elevatedButtonRoute: () {
-                                  Get.to(() => JobListTopicScreen(categoryID: 1));
+                                  Get.to(() => ScreenJobListCategory(categoryID: 1));
                                 },
                                 color: AppColors().darkGreen,
                                 icon: AppIcons().homeGreenSection,
@@ -83,7 +83,7 @@ class ScreenHome extends StatelessWidget {
                             left: 0,
                             child: HomeScreenCard(
                                 elevatedButtonRoute: () {
-                                  Get.to(() => JobListTopicScreen(categoryID: 2));
+                                  Get.to(() => ScreenJobListCategory(categoryID: 2));
                                 },
                                 color: AppColors().darkBlue,
                                 icon: AppIcons().homeBlueSection,
@@ -94,7 +94,7 @@ class ScreenHome extends StatelessWidget {
                             left: 125,
                             child: HomeScreenCard(
                                 elevatedButtonRoute: () {
-                                  Get.to(() => JobListTopicScreen(categoryID: 3));
+                                  Get.to(() => ScreenJobListCategory(categoryID: 3));
                                 },
                                 color: AppColors().darkYellow,
                                 icon: AppIcons().homeYellowSection,
@@ -118,7 +118,7 @@ class ScreenHome extends StatelessWidget {
               Container(height: 20),
               ElevatedButton(
                   onPressed: () {
-                    Get.to(() => JobListTopicScreen(categoryID: 0));
+                    Get.to(() => ScreenJobListCategory(categoryID: 0));
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
