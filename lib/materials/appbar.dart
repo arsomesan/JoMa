@@ -6,31 +6,43 @@ import 'package:joma/materials/assets.dart';
 class RoundRecMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 140,
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(0),
-      decoration: BoxDecoration(
-        color: AppColors().darkPrimaryColor,
-        borderRadius: BorderRadius.vertical(
-          top: Radius.zero,
-          bottom: Radius.elliptical(550, 220),
+    return Stack(
+      children: [
+        Container(
+          height: 200,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.all(0),
+          decoration: BoxDecoration(
+            color: AppColors().darkPrimaryColor,
+            border: Border.all(
+              width: 5,
+              color: Colors.orangeAccent
+            ),
+            borderRadius: BorderRadius.vertical(
+              top: Radius.zero,
+              bottom: Radius.elliptical(550, 220),
+            ),
+          ),
         ),
-      ),
+        Container(
+          height: 200-70,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.all(0),
+          decoration: BoxDecoration(
+            color: AppColors().darkPrimaryColor,
+          ),
+        )
+      ],
     );
   }
 }
 
-
 // ENDE Runder Kasten als Klasse //
-
-
 
 //--------------------- NUTZUNG
 // Appbar kann genutzt werden durch den Auruf: AppBarMainArea();
-// genutzt werden kann sie folgendermaßen: 
+// genutzt werden kann sie folgendermaßen:
 // hier ein Beispielsweise
-
 
 // class _ScreenTest extends State<ScreenTest> {
 //   get title => null;
@@ -49,10 +61,6 @@ class RoundRecMain extends StatelessWidget {
 //   }
 // }
 
-
-
-
-
 // AppBarMainArea - normale Appbar am beginn der App //
 
 class AppBarMainArea extends StatelessWidget {
@@ -60,6 +68,7 @@ class AppBarMainArea extends StatelessWidget {
   final Color color; //
   final Color bgColor;
   final Color bgColorBar;
+
   //final Icon iconTheme;
 
   AppBarMainArea({
@@ -72,32 +81,60 @@ class AppBarMainArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: bgColor,
-      appBar: AppBar(
-        title: Text(
-          title.toUpperCase(),
-          style: AppTextStyles.darkH1,
-          textAlign: TextAlign.left,
-        ),
-        backgroundColor: bgColorBar,
-        elevation: 0,
-      ),
-      body: Stack(
-        fit: StackFit.loose,
-        children: <Widget>[
-        RoundRecMain(),
-        Positioned(
-          child:
-        Padding(
-          padding: const EdgeInsets.fromLTRB(140, 80, 140, 0),
-          child: AppLogo().darkLogo,
-        ),),
-      ],
-    )
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: bgColor,
+          body: Stack(
+            //fit: StackFit.loose,
+            children: <Widget>[
+              Container(
+                height: 255,
+                width: double.infinity,
+                color: Colors.transparent,
+              ),
+              RoundRecMain(),
+              Positioned.fill(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: 120,
+                    width: 120,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AppLogo().darkLogoAssestImage,
+                        fit: BoxFit.contain,
+                      ),
+                      //color: Colors.green,
+                    ),
+                    //child: AppLogo().darkLogo,
+                  ),
+                ),
+              ),
+              Positioned.fill(
+                top: -100,
+                //left: 30,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(title,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                      )),
+                ),
+              ),
+            ],
+          )),
+    );
+  }
+
+  Padding buildPadding() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(140, 80, 140, 0),
+      child: AppLogo().darkLogo,
     );
   }
 }
-
 
 // ENDE ------ AppBarMainArea - normale Appbar am beginn der App //

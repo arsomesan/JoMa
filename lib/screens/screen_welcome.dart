@@ -14,7 +14,6 @@ import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_test.dart'; //Json
 import 'package:joma/materials/assets.dart';
 
-
 class ScreenWelcome extends StatefulWidget {
   const ScreenWelcome({Key? key}) : super(key: key);
 
@@ -27,10 +26,15 @@ class _ScreenWelcome extends State<ScreenWelcome> {
   TextEditingController passwordController = TextEditingController();
   Color loginButtonColor = AppColors().darkPrimaryColor;
   Color registerButtonColor = AppColors().darkSecondaryColor;
+
   get title => null;
+
   get color => null;
+
   get bgColor => null;
+
   get bgColorBar => null;
+
   //bool _obscurePwd = true;
 
   List _items = [];
@@ -60,20 +64,16 @@ class _ScreenWelcome extends State<ScreenWelcome> {
     return true; // TODO: set to false -> is true only for test purposes
   }
 
-@override
+  @override
   Widget build(BuildContext context) {
     return AppBarMainArea(
-  bgColor: AppBackgroundColors().darkBackground,
+      bgColor: AppBackgroundColors().darkBackground,
       bgColorBar: AppColors().darkPrimaryColor,
       color: AppColors().darkPrimaryColor,
       title: 'Willkommen \nbei joma'.toUpperCase(),
-                );
+    );
   }
 }
-                  
-                
-            
-            
 
 //             Container(
 //                 height: 50,
@@ -124,6 +124,6 @@ class _ScreenWelcome extends State<ScreenWelcome> {
 //                     }
 //                   },
 //                 ));
-    
+
 //   }
 // }
