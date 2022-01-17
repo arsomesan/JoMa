@@ -25,12 +25,14 @@ class JobListTopicScreen extends StatelessWidget {
 
   late Color currentColor = Color(
       int.parse(data.jobCategories.elementAt(categoryID).colorHex.toString()));
+  late Color currentBackgroundColor = Color(
+      int.parse(data.jobCategories.elementAt(categoryID).backgroundColorHex.toString()));
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppBackgroundColors().darkBackground,
+      backgroundColor: currentBackgroundColor,
       appBar: AppBar(
         backgroundColor: currentColor,
         title: Obx(() => Text(
@@ -60,21 +62,24 @@ class JobListTopicScreen extends StatelessWidget {
         child: Obx(() {
           var result = <Widget>[];
 
-          Job jobOfTheWeek =
-              data.jobs.firstWhere((job) => job.id == data.getJobOfTheWeek());
+          if (data.jobCategories.elementAt(categoryID).jobOfTheWeek != -1) {
+            Job jobOfTheWeek =
+                data.jobs.firstWhere((job) => job.id == data.jobCategories.elementAt(categoryID).jobOfTheWeek);
 
-          result.add(AppCardSpecial(
-              jobTitle: jobOfTheWeek.title.toString(),
-              jobDescription: jobOfTheWeek.description!.full.toString(),
-              color: AppColors().darkBlue,
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ScreenJobDetails(
-                              jobID: data.getJobOfTheWeek(),
-                            )));
-              }));
+              result.add(AppCardSpecial(
+                  jobTitle: jobOfTheWeek.title.toString(),
+                  jobDescription: jobOfTheWeek.description!.full.toString(),
+                  color: currentColor,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ScreenJobDetails(
+                                  jobID: jobOfTheWeek.id,
+                                )));
+                  }));
+          }
 
           result.add(const SizedBox(height: 10));
 

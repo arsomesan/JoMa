@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:joma/controllers/data_controller.dart';
+import 'package:joma/model/job_category_model.dart';
 import 'package:joma/model/job_model.dart';
 import 'package:joma/model/skill_model.dart';
 
@@ -36,6 +37,14 @@ class ScreenJobDetails extends StatelessWidget {
   ScreenJobDetails({Key? key, required this.jobID}) : super(key: key);
   final DataController data = Get.find();
   late Job job = data.jobs.elementAt(jobID!);
+
+  late JobCategory currentJobCategory = data.jobCategories
+      .firstWhere((category) => category.id == job.category);
+
+  late Color currentColor = Color(
+      int.parse(data.jobCategories.elementAt(currentJobCategory.id as int).colorHex.toString()));
+  late Color currentBackgroundColor = Color(
+      int.parse(data.jobCategories.elementAt(currentJobCategory.id as int).backgroundColorHex.toString()));
 
 
 @override
@@ -127,10 +136,10 @@ Widget build(BuildContext context) {
 // Dieses Widget baut die App-Bar auf
 PreferredSizeWidget appBarBuilder() {
   return AppBar(
-    backgroundColor: AppColors().darkGreen,
+    backgroundColor: currentColor,
     title: Text(
-      'Gärtnerei & Landwirtschaft',
-      style: AppTextStyles.darkH3,
+      currentJobCategory.title.toString().toUpperCase(),
+      style: AppTextStyles.darkH4,
     ),
     centerTitle: true,
   );

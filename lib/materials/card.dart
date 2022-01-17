@@ -117,7 +117,7 @@ class AppCardSpecial extends StatelessWidget {
                         const SizedBox(height: 8),
                         Text(jobDescription.toString(),
                           style: AppTextStyles.darkCardText,
-                          maxLines: 4,
+                          maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           softWrap: false,
                         ),

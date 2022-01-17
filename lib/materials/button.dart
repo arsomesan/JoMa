@@ -21,6 +21,9 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // double-Wert
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
       child: ElevatedButton(
@@ -30,13 +33,13 @@ class AppButton extends StatelessWidget {
           ),
           style: ButtonStyle(
               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                  const EdgeInsets.fromLTRB(0, 25, 0, 25)),
+                  const EdgeInsets.fromLTRB(0, 17, 0, 17)),
               backgroundColor: MaterialStateProperty.all<Color>(color),
               textStyle: MaterialStateProperty.all<TextStyle>(
                   AppTextStyles.darkButtonText),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(AppButtonValues().borderRadiusCircular),
                       side: BorderSide(color: color))))),
     );
   }
@@ -70,7 +73,7 @@ class AppButtonWithIcon extends StatelessWidget {
                   AppTextStyles.darkButtonText),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(AppButtonValues().borderRadiusCircular),
                       side: BorderSide(color: color)
                   )
               )
