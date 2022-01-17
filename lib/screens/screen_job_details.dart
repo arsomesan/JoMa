@@ -93,7 +93,7 @@ class ScreenJobDetails extends StatelessWidget {
               }
               //if (value == 2) Navigator.of(context).push(...);
             },
-            backgroundColor: AppColors().darkPrimaryColor,
+            backgroundColor: currentColor,
             selectedItemColor: AppColors().darkSecondaryColor,
             unselectedItemColor: AppColors().white,
             items: <BottomNavigationBarItem>[
