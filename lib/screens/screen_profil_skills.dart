@@ -98,7 +98,6 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
                         data.boolList[i] = value!;
                         saveSkillState(data.boolList, tmpUser);
                       });
-                      print(data.boolList);
                     })
             ],
           )));
@@ -109,41 +108,20 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
               Column(
                 children: result,
               ),
-              /*
+
               Container(
-                child: Center(
-                  child: Container(
-                    width: 140,
-                    height: 35,
-                    margin: EdgeInsets.only(top: 35, bottom: 50),
-                    child: TextButton(
-                      child: Text('Speichern'),
-                      onPressed: () async {
+                  child: AppButton(
+                      text: "Speichern",
+                      color: AppColors().darkPrimaryColor,
+                      onPressed: () {
                         saveSkillState(data.boolList, tmpUser);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
                                 const ProfilSettingsLoader()));
-                    },
-                      style: TextButton.styleFrom(
-                        primary: AppColors().white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        backgroundColor: AppColors().darkBlue,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              */
-
-              Container(
-                  child: AppButton(
-                      text: "Speichern",
-                      color: AppColors().darkPrimaryColor,
-                      onPressed: () {saveButton(data, tmpUser);})
+                      }
+                  )
               )
                 ],
           ));
@@ -203,46 +181,6 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
     );
   }
 
-
-  Widget renderSkillWidget(int i, DataController data, List<Profil> tmpUser) {
-
-
-    return Container(
-      margin: EdgeInsets.only(top: 10, left: 20, right: 20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: AppColors().darkPrimaryColor,
-      ),
-      child: CheckboxListTile(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10)),
-        contentPadding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-        title: Text(data.skills[i].title.toString().toUpperCase(), style: AppTextStyles.darkButtonText),
-        secondary: AppIcons().bookMark,
-        controlAffinity:
-        ListTileControlAffinity.platform,
-        value: data.boolList[i],
-        onChanged: (bool? value) {
-          setState(() {
-            data.boolList[i] = value!;
-            saveSkillState(data.boolList, tmpUser);
-          });
-        },
-        activeColor: Colors.white,
-        checkColor: Colors.white,
-      ),
-    );
-  }
-
-  void saveButton(DataController data, List<Profil> tmpUser) {
-    saveSkillState(data.boolList, tmpUser);
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-            const ProfilSettingsLoader()));// screen_profileView
-  }
-
   void saveSkillState(RxList<bool> boolList, List<Profil> tmpUser) {
     int count = 0;
     for (int i = 0; i < data.boolList.length; i++) {
@@ -253,6 +191,7 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
     int before = -1;
     for (int i = 0; i < skillList.length; i++) {
       for (int l = 0; l < data.boolList.length; l++) {
+        print(l);
         if (data.boolList[l] == true && l > before) {
           skillList[i] = l;
           before = l;
