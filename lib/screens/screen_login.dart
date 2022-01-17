@@ -5,11 +5,19 @@ import 'package:flutter/material.dart';
 import 'dart:convert'; //Json
 import 'package:flutter/services.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/materials/appbar.dart';
+import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_test.dart'; //Json
 import 'package:joma/materials/assets.dart';
+import 'package:joma/services/remote_services.dart';
+import 'package:joma/utils/user_simple_preferences.dart';
+//import 'package:joma/services/remote_services_test.dart';
+
+
 
 class ScreenLogin extends StatefulWidget {
   const ScreenLogin({Key? key}) : super(key: key);
@@ -18,56 +26,62 @@ class ScreenLogin extends StatefulWidget {
   _ScreenLogin createState() => _ScreenLogin();
 }
 
+
+
 class _ScreenLogin extends State<ScreenLogin> {
+  late Future<List<Profil>> futureProfil;
+  final DataController data = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   Color loginButtonColor = AppColors().darkPrimaryColor;
-  //Color skipButtonColor = const Color(0xFFA1A1A1);
+ 
+ //Password anzeigen/nicht anzeigen lassen
   bool _obscurePwd = true;
 
-  List _items = [];
+  @override
+  Widget build(BuildContext context) {
 
-  void readJson() async {
-    String response = await rootBundle.loadString('assets/users.json');
-    final data = await json.decode(response);
-    setState(() {
-      _items = data["user"];
-    });
-  }
+    //Load Profile from Json
+    var remoteUser = profilToJson(data.profile);
+    //Load Profile from Shared Preferences if given. If not load Json Profile
+    var tmpUser = profilFromJson(
+        UserSimplePreferences.getUser() ?? remoteUser.toString());
+    Profil user = tmpUser[0];
+    print(user.name);
 
-  bool validate(String email, String pwd) {
-    readJson();
-    if (_items.isNotEmpty) {
-      for (int i = 0; i < _items.length; i++) {
-        String emailTmp = _items[i]['email'].toString();
-        String pwdTmp = _items[i]['pwd'].toString();
+    bool validate(String email, String pwd) {
+      //ToDos: Json durchlaufen
+      if(user.kontakt!.email == email && user.password == pwd) {
+        String? emailTmp = user.kontakt!.email;
+        String? pwdTmp = user.password;
         if (emailTmp == emailController.text &&
             pwdTmp == passwordController.text) {
           print("Login erfolgreich");
           return true;
         }
-      }
-    }
+      }   
     print("Login nicht erfolgreich");
     return false;
   }
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
       body: Center(
           child: ListView(children: <Widget>[
             Container(
               height: 255,
-              //color: AppColors().darkPrimaryColor,
               child: AppBarMainArea(
                 bgColor: AppBackgroundColors().darkBackground,
                 bgColorBar: AppColors().darkPrimaryColor,
                 color: AppColors().darkPrimaryColor,
                 title: 'Willkommen \nbei joma'.toUpperCase(),
               ),
-              //style:AppTextStyles.darkH1,
             ), 
             Container(
                 color: AppColors().white,
