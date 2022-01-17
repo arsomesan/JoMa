@@ -9,6 +9,7 @@ import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/joblist_search_screen.dart';
 import 'package:joma/screens/screen_applications.dart';
 import 'package:joma/screens/screen_home.dart';
+import 'package:joma/screens/screen_profil_data.dart';
 import 'package:joma/screens/screen_profil_settings_loader.dart';
 import 'package:joma/screens/screen_saved_jobs.dart';
 import 'package:joma/screens/screen_settings.dart';
@@ -63,10 +64,10 @@ class _ProfilLoaderState extends State<ProfilLoader> {
         padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
         children: [
           AppButton(
-              text: 'Profil anzeigen',
+              text: 'Persönliche Daten',
               color: AppColors().darkPrimaryColor,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader())); // screen_profileView
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilData())); // screen_profileView
               }
           ),
           AppButton(
