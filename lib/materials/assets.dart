@@ -22,6 +22,8 @@ zum Einbinden
   - z.B. als child-Attribut
 */
 class AppLogo {
+  AssetImage darkLogoAssestImage = AssetImage ('assets/images/darkJomaLogo.png');
+  AssetImage lightLogoAssestImage = AssetImage ('assets/images/lightJomaLogo.png');
   Image darkLogo = Image.asset('assets/images/darkJomaLogo.png');
   Image lightLogo = Image.asset('assets/images/lightJomaLogo.png');
 }
