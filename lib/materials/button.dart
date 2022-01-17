@@ -22,8 +22,6 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    double left = MediaQuery.of(context).size.width;
-
     return Padding(
       padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
       child: ElevatedButton(
@@ -33,7 +31,7 @@ class AppButton extends StatelessWidget {
           ),
           style: ButtonStyle(
               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                  const EdgeInsets.fromLTRB(0, 25, 0, 25)),
+                  const EdgeInsets.fromLTRB(0, 35, 0, 35)),
               backgroundColor: MaterialStateProperty.all<Color>(color),
               textStyle: MaterialStateProperty.all<TextStyle>(
                   AppTextStyles.darkButtonText),
