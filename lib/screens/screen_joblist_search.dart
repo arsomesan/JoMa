@@ -1,18 +1,56 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/card.dart';
+import 'package:joma/model/job_category_model.dart';
+import 'package:joma/model/job_model.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_job_details.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_settings.dart';
+import 'package:joma/services/remote_services.dart';
+import 'package:joma/materials/search_widget.dart';
 
-class ScreenJobListSearch extends StatelessWidget {
-  const ScreenJobListSearch({Key? key}) : super(key: key);
+final DataController data = Get.find();
+String query = '';
+var searchResult = <Job>[];
 
+late int categoryID;
+late Color currentColor = Color(
+    int.parse(data.jobCategories.elementAt(categoryID).colorHex.toString()));
+
+
+class JobListSearchScreen extends StatefulWidget {
+  @override
+  JobListSearchScreenState createState() => JobListSearchScreenState();
+}
+
+class JobListSearchScreenState extends State<JobListSearchScreen> {
+  Timer? debouncer;
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
+  @override
+  void dispose() {
+    debouncer?.cancel();
+    super.dispose();
+  }
+
+  Future init() async {
+    setState(()=> searchJob(query));
+  }
   @override
   Widget build(BuildContext context) {
     const _colorGrey = Color.fromRGBO(129, 129, 129, 1);
@@ -53,8 +91,8 @@ class ScreenJobListSearch extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            buildSearchBar(),
-            for (int i = 0; i < 7; i++) generateSingleJobCard(_jobColors),
+            buildSearch(),
+            generateJobCards(context),
             const SizedBox(height: 50),
           ],
         ),
@@ -85,7 +123,7 @@ class ScreenJobListSearch extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const ScreenJobListSearch()),
+                    builder: (context) => JobListSearchScreen()),
               );
             }
             if (value == 1) {
@@ -112,21 +150,42 @@ class ScreenJobListSearch extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
-}
 
-Widget generateSingleJobCard(List<Color> _jobColors) {
-  final _random = new Random();
-  Color _color = _jobColors[_random.nextInt(_jobColors.length)];
 
-  return (Center(
-    child: AppCardSearch(
-        jobTitle: 'Jobtitel',
-        jobDescription: 'Dies ist eine Testbeschreibung vom hier angezeigten Job!',
-        color: _color,
-        onPressed: () {})
-  ));
-}
+  Widget generateJobCards(context) {
+    var jobCards = <Widget>[];
+    int i = 0;
+    for (var currentJob in searchResult) {
+      jobCards.add(AppCardSearch(
+          jobTitle: currentJob.title.toString(),
+          jobDescription: currentJob.description!.full.toString(),
+          color: Color(int.parse(data.jobCategories
+              .elementAt((searchResult
+              .elementAt(i)
+              .category)!.toInt())
+              .colorHex
+              .toString())),
+          //AppColors().darkBlue,
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ScreenJobDetails(
+                          jobID: currentJob.id,
+                        )));
+          }));
+      i++;
+    }
+    return Center(
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: jobCards),
+    );
+  }
 
+/*
 Widget buildSearchBar() {
   return (Center(
     child: Container(
@@ -155,3 +214,34 @@ Widget buildSearchBar() {
     ),
   ));
 }
+*/
+  Widget buildSearch() =>
+      SearchWidget(
+        text: query,
+        hintText: 'Was suchst du?',
+        onChanged: searchJob,
+      );
+
+  void searchJob(String query) {
+    final queryLower = query.toLowerCase();
+    var result = <Job>[];
+    for (int currentJob = 0; currentJob < data.jobs.length; currentJob++) {
+      final jobLower = data.jobs
+          .elementAt(currentJob)
+          .title
+          .toString()
+          .toLowerCase();
+
+      if (jobLower.contains(queryLower)) {
+        result.add(data.jobs.elementAt(currentJob));
+
+      }
+    }
+    setState(() {
+      searchResult = result;
+    });
+
+
+  }
+}
+
