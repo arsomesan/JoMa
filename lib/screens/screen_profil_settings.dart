@@ -367,7 +367,10 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                             child: buildSkill(data.skills.indexWhere(
                                 (skill) => skill.id == user.skills![i]))),
                       Container(
+                        margin: EdgeInsets.only(top: 3, left: 5),
                         child: IconButton(
+                            padding: EdgeInsets.zero,
+                            constraints: BoxConstraints(),
                             icon: Icon(Icons.edit),
                             onPressed: () {
                               Get.to(() => ScreenProfilSkills());

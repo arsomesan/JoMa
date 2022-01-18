@@ -162,7 +162,7 @@ class ProfilData extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(top: 30, left: 20),
+                    margin: const EdgeInsets.only(top: 30, left: 20, bottom: 10),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
