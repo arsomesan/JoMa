@@ -11,7 +11,7 @@ import 'package:joma/model/profil_model.dart';
 import 'package:joma/model/skill_model.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
-import 'package:joma/screens/screen_profil_settings_loader.dart';
+import 'package:joma/screens/screen_profil_settings.dart';
 import 'package:joma/screens/screen_settings.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
 
@@ -95,7 +95,9 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
                       saveSkillState(data.boolList, tmpUser);
                     });
                   },
-                  icon: Icon(IconDataSolid(int.parse("0x" + data.skills[i].icon.toString())))
+                  icon: Icon(IconDataSolid(int.parse("0x" + data.skills[i].icon.toString())),
+                  color: AppColors().white,
+                  )
                   ,
                 )
             ],
@@ -108,13 +110,13 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
                 children: result,
               ),
               Container(
-                  margin: EdgeInsets.only(top: 30),
+                  margin: EdgeInsets.only(top: 30, bottom: 40),
                 child: SizedBox(
                   width: MediaQuery.of(context).size.height * 0.25,
                   child: ElevatedButton(
 
                       onPressed: () {
-                        Get.off(() => const ProfilSettingsLoader());
+                        Get.off(() => const ScreenProfilSettings());
                       },
                       child: Text(
                         "Speichern",

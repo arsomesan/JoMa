@@ -9,7 +9,8 @@ import 'package:joma/materials/assets.dart';
 import 'package:joma/model/profil_model.dart';
 
 import 'package:joma/screens/screen_home.dart';
-import 'package:joma/screens/screen_profil_settings_loader.dart';
+import 'package:joma/screens/screen_profil_settings.dart';
+import 'package:joma/screens/screen_profil_skills.dart';
 import 'package:joma/screens/screen_settings.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
 
@@ -44,7 +45,7 @@ class ProfilData extends StatelessWidget {
         child: Column(
           children: [
             Center(
-              child:                   Container(
+              child: Container(
                 width: 200,
                 height: 200,
                 margin: EdgeInsets.only(top: 25.0),
@@ -153,8 +154,15 @@ class ProfilData extends StatelessWidget {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 20, bottom: 10),
+              child: Column(
+                children: [
                   Container(
-                    margin: const EdgeInsets.only(top: 30),
+                    margin: const EdgeInsets.only(top: 30, left: 20),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -164,13 +172,14 @@ class ProfilData extends StatelessWidget {
                     ),
                   ),
                   Container(
+                    margin: EdgeInsets.only(left: 10),
                     child: Wrap(
                       children: [
                         for (int i = 0; i < user.skills!.length; i++)
                           Container(
                               child: buildSkill(
                                   data.skills.indexWhere(
-                                      (skill) => skill.id == user.skills![i]),
+                                          (skill) => skill.id == user.skills![i]),
                                   data)),
                       ],
                     ),
@@ -183,7 +192,10 @@ class ProfilData extends StatelessWidget {
                       child: TextButton(
                         child: const Text('Profil bearbeiten'),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilSettingsLoader()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ScreenProfilSettings()));
                         },
                         style: TextButton.styleFrom(
                           primary: Glovar.white,
@@ -198,6 +210,8 @@ class ProfilData extends StatelessWidget {
                 ],
               ),
             ),
+
+
           ],
         ),
       ),
@@ -243,12 +257,15 @@ class ProfilData extends StatelessWidget {
   }
 
   Widget buildSkill(int skillID, DataController data) => Container(
-        margin: EdgeInsets.only(right: 5),
+        margin: EdgeInsets.only(right: 5, bottom: 5),
         child: InputChip(
             label: Text(data.skills.elementAt(skillID).title.toString()),
             labelStyle: TextStyle(color: AppColors().white),
             backgroundColor: Color(int.parse(
                 data.skills.elementAt(skillID as int).colorHex.toString())),
-            onPressed: () {}),
+            onPressed: () {},
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap
+        ),
+
       );
 }

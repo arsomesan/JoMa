@@ -18,14 +18,14 @@ import 'dart:math' as math;
 
 import 'screen_joblist_search.dart';
 
-class ProfilSettingsLoader extends StatefulWidget {
-  const ProfilSettingsLoader({Key? key}) : super(key: key);
+class ScreenProfilSettings extends StatefulWidget {
+  const ScreenProfilSettings({Key? key}) : super(key: key);
 
   @override
-  _ProfilSettingsLoaderState createState() => _ProfilSettingsLoaderState();
+  _ScreenProfilSettingsState createState() => _ScreenProfilSettingsState();
 }
 
-class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
+class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
   final DataController data = Get.find();
 
   @override
@@ -345,7 +345,7 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
                   Row(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: 30, left: 20),
+                        margin: EdgeInsets.only(top: 30, left: 20, bottom: 10),
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
@@ -500,12 +500,14 @@ class _ProfilSettingsLoaderState extends State<ProfilSettingsLoader> {
   //as an example using inputchips
   //colors get generated at random
   Widget buildSkill(int skillID) => Container(
-        margin: EdgeInsets.only(right: 5),
+        margin: EdgeInsets.only(right: 5, bottom: 5),
         child: InputChip(
             label: Text(data.skills.elementAt(skillID).title.toString()),
             labelStyle: TextStyle(color: AppColors().white),
             backgroundColor: Color(int.parse(
                 data.skills.elementAt(skillID as int).colorHex.toString())),
-            onPressed: () {}),
+            onPressed: () {},
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
       );
 }

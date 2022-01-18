@@ -10,7 +10,7 @@ import 'package:joma/screens/screen_joblist_search.dart';
 import 'package:joma/screens/screen_applications.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_data.dart';
-import 'package:joma/screens/screen_profil_settings_loader.dart';
+import 'package:joma/screens/screen_profil_settings.dart';
 import 'package:joma/screens/screen_saved_jobs.dart';
 import 'package:joma/screens/screen_settings.dart';
 import 'package:joma/services/remote_services.dart';

@@ -98,6 +98,7 @@ class _ScreenLogin extends State<ScreenLogin> {
             child: Padding(
                 padding: EdgeInsets.all(0),
                 child: TextField(
+                  keyboardType: TextInputType.emailAddress,
                   style: TextStyle(
                     backgroundColor: AppColors().white,
                   ),
