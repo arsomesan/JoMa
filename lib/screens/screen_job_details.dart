@@ -82,7 +82,7 @@ class ScreenJobDetails extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ScreenJobListSearch()),
+                      builder: (context) => ScreenJobListSearch()),
                 );
               }
               if (value == 1) {
@@ -491,7 +491,7 @@ Widget titleImageBuilder(Job job) {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                  builder: (context) => const ScreenJobListSearch()),
+                  builder: (context) => ScreenJobListSearch()),
             );
           if (value == 1)
             Navigator.pushReplacement(

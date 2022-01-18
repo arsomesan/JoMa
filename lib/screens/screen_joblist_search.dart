@@ -28,12 +28,12 @@ late Color currentColor = Color(
     int.parse(data.jobCategories.elementAt(categoryID).colorHex.toString()));
 
 
-class JobListSearchScreen extends StatefulWidget {
+class ScreenJobListSearch extends StatefulWidget {
   @override
-  JobListSearchScreenState createState() => JobListSearchScreenState();
+  ScreenJobListSearchState createState() => ScreenJobListSearchState();
 }
 
-class JobListSearchScreenState extends State<JobListSearchScreen> {
+class ScreenJobListSearchState extends State<ScreenJobListSearch> {
   Timer? debouncer;
 
   @override
@@ -123,7 +123,7 @@ class JobListSearchScreenState extends State<JobListSearchScreen> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => JobListSearchScreen()),
+                    builder: (context) => ScreenJobListSearch()),
               );
             }
             if (value == 1) {

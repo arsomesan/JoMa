@@ -121,7 +121,7 @@ class ScreenApplications extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const ScreenJobListSearch()),
+                    builder: (context) => ScreenJobListSearch()),
               );
             }
             if (value == 1) {

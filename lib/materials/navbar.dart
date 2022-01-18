@@ -21,7 +21,7 @@ class AppNavBar extends StatelessWidget {
         currentIndex: 0,
         onTap: (value) {
           if (value == 0) {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ScreenJobListSearch()),
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ScreenJobListSearch()),
             );
           }
           if (value == 1) {

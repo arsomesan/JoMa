@@ -220,7 +220,7 @@ class ProfilData extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: 1,
           onTap: (value) {
-            if (value == 0) Get.off(() => const ScreenJobListSearch());
+            if (value == 0) Get.off(() => ScreenJobListSearch());
             //if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilLoader()),
             //);
             //if (value == 2) Navigator.of(context).push(...);
