@@ -17,6 +17,7 @@ class SelectView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight:110,
         title: Text(
           'Ansicht wählen'.toUpperCase(),
           style: AppTextStyles.darkH1,
@@ -32,8 +33,9 @@ class SelectView extends StatelessWidget {
             GetBuilder<ViewController>(
               builder: (_) {
                 return Container(
-                  width: MediaQuery.of(context).size.width * 0.85,
-                  height: MediaQuery.of(context).size.height * .25,
+                  margin: const EdgeInsets.fromLTRB(10, 20, 10, 10),
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * .20,
                   child: GestureDetector(
                     onTap: () {
                       viewController.setView(0);
@@ -95,8 +97,9 @@ class SelectView extends StatelessWidget {
             GetBuilder<ViewController>(
               builder: (_) {
                 return Container(
-                  width: MediaQuery.of(context).size.width * 0.85,
-                  height: MediaQuery.of(context).size.height * .25,
+                margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * .20,
                   child: GestureDetector(
                     onTap: () {
                       viewController.setView(1);
@@ -183,8 +186,9 @@ class SelectView extends StatelessWidget {
             GetBuilder<ViewController>(
               builder: (_) {
                 return Container(
-                  width: MediaQuery.of(context).size.width * 0.85,
-                  height: MediaQuery.of(context).size.height * .25,
+                  margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * .20,
                   child: GestureDetector(
                     onTap: () {
                       viewController.setView(2);
@@ -243,6 +247,7 @@ class SelectView extends StatelessWidget {
             ),
             Container(
                 width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                 child: AppButton(
                   text: "Weiter",
                   color: AppColors().darkPrimaryColor,

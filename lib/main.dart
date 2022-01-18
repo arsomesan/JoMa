@@ -5,6 +5,7 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:joma/screens/screen_joblist_category.dart';
 import 'package:joma/screens/screen_home.dart';
+import 'package:joma/screens/screen_joblist_search.dart';
 import 'package:joma/screens/screen_login.dart';
 import 'package:joma/screens/screen_notifications.dart';
 import 'package:joma/screens/screen_register.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
       splash: Image.asset(
       'assets/images/darkJomaLogo.png',
       ),
-      nextScreen: ScreenWelcome(),
+      nextScreen: ScreenJobListCategory(categoryID: 0),
       splashTransition: SplashTransition.rotationTransition,
       backgroundColor: AppColors().darkSecondaryColor,
       ),
