@@ -45,60 +45,72 @@ class ScreenHome extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(height: 120),
+              Container(height: 130),
               Stack(children: [
                 Container(
                   alignment: Alignment.center,
                   child: RotationTransition(
                     turns: AlwaysStoppedAnimation(45 / 360),
                     child: Container(
-                      width: 250,
-                      height: 250,
+                      width: 300,
+                      height: 300,
                       child: Stack(
                         children: [
                           Positioned(
                             top: 0,
                             left: 0,
                             child: HomeScreenCard(
-                                elevatedButtonRoute: () {
-                                  Get.to(() => ScreenJobListCategory(categoryID: 0));
-                                },
-                                color: AppColors().darkRed,
-                                icon: AppIcons().homeRedSection,
-                                title: 'TECHNIK\nHANDWERK'),
+                              elevatedButtonRoute: () {
+                                Get.to(
+                                    () => ScreenJobListCategory(categoryID: 0));
+                              },
+                              color: AppColors().darkRed,
+                              icon: AppIcons().homeRedSection,
+                              title: 'TECHNIK\nHANDWERK',
+                              startOrEnd: 1,
+                            ),
                           ),
                           Positioned(
                             top: 0,
-                            left: 125,
+                            left: 150,
                             child: HomeScreenCard(
-                                elevatedButtonRoute: () {
-                                  Get.to(() => ScreenJobListCategory(categoryID: 1));
-                                },
-                                color: AppColors().darkGreen,
-                                icon: AppIcons().homeGreenSection,
-                                title: 'GÄRTNEREI\nLANDWIRTSCHAFT'),
+                              elevatedButtonRoute: () {
+                                Get.to(
+                                    () => ScreenJobListCategory(categoryID: 1));
+                              },
+                              color: AppColors().darkGreen,
+                              icon: AppIcons().homeGreenSection,
+                              title: 'GÄRTNEREI\nLANDWIRT-\nSCHAFT',
+                              startOrEnd: 0,
+                            ),
                           ),
                           Positioned(
-                            top: 125,
+                            top: 150,
                             left: 0,
                             child: HomeScreenCard(
-                                elevatedButtonRoute: () {
-                                  Get.to(() => ScreenJobListCategory(categoryID: 2));
-                                },
-                                color: AppColors().darkBlue,
-                                icon: AppIcons().homeBlueSection,
-                                title: 'SOZIALES\nHAUSWIRTSCHAFT'),
+                              elevatedButtonRoute: () {
+                                Get.to(
+                                    () => ScreenJobListCategory(categoryID: 2));
+                              },
+                              color: AppColors().darkBlue,
+                              icon: AppIcons().homeBlueSection,
+                              title: 'SOZIALES\nHAUSWIRT-\nSCHAFT',
+                              startOrEnd: 0,
+                            ),
                           ),
                           Positioned(
-                            top: 125,
-                            left: 125,
+                            top: 150,
+                            left: 150,
                             child: HomeScreenCard(
-                                elevatedButtonRoute: () {
-                                  Get.to(() => ScreenJobListCategory(categoryID: 3));
-                                },
-                                color: AppColors().darkYellow,
-                                icon: AppIcons().homeYellowSection,
-                                title: 'SERVICE\nLEBENSMITTEL'),
+                              elevatedButtonRoute: () {
+                                Get.to(
+                                    () => ScreenJobListCategory(categoryID: 3));
+                              },
+                              color: AppColors().darkYellow,
+                              icon: AppIcons().homeYellowSection,
+                              title: 'SERVICE\nLEBENSMITTEL',
+                              startOrEnd: 1,
+                            ),
                           ),
                         ],
                       ),
@@ -106,7 +118,7 @@ class ScreenHome extends StatelessWidget {
                   ),
                 ),
               ]),
-              Container(height: 100),
+              Container(height: 90),
               const Text(
                 "UNSICHER?",
                 style: TextStyle(
@@ -115,7 +127,7 @@ class ScreenHome extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Container(height: 20),
+              Container(height: 15),
               ElevatedButton(
                   onPressed: () {
                     Get.to(() => ScreenJobListCategory(categoryID: 0));
@@ -123,7 +135,7 @@ class ScreenHome extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 120, vertical: 25),
+                        horizontal: 120, vertical: 20),
                     shape: const StadiumBorder(),
                   ),
                   child: const Text(

@@ -129,16 +129,20 @@ class AppIcons {
   // Home-Screen
   Icon homeRedSection = Icon(
       Icons.build,
-      color: AppBackgroundColors().darkBackground);
+      size: 50.0,
+      color: AppColors().white);
   Icon homeGreenSection = Icon(
       Icons.local_florist,
-      color: AppBackgroundColors().darkBackground); // Icons.goat würde auch gehen
+      size: 50.0,
+      color: AppColors().white); // Icons.goat würde auch gehen
   Icon homeBlueSection = Icon(
       Icons.people,
-      color: AppBackgroundColors().darkBackground);
+      size: 50.0,
+      color: AppColors().white);
   Icon homeYellowSection = Icon(
       Icons.local_dining,
-      color: AppBackgroundColors().darkBackground);
+      size: 50.0,
+      color: AppColors().white);
 
   // auf der jeweiligen Jobbereichsseite
   Icon redSection = Icon(
