@@ -25,9 +25,8 @@ class ScreenJobListCategory extends StatelessWidget {
 
   late Color currentColor = Color(
       int.parse(data.jobCategories.elementAt(categoryID).colorHex.toString()));
-  late Color currentBackgroundColor = Color(
-      int.parse(data.jobCategories.elementAt(categoryID).backgroundColorHex.toString()));
-
+  late Color currentBackgroundColor = Color(int.parse(
+      data.jobCategories.elementAt(categoryID).backgroundColorHex.toString()));
 
   @override
   Widget build(BuildContext context) {
@@ -63,22 +62,22 @@ class ScreenJobListCategory extends StatelessWidget {
           var result = <Widget>[];
 
           if (data.jobCategories.elementAt(categoryID).jobOfTheWeek != -1) {
-            Job jobOfTheWeek =
-                data.jobs.firstWhere((job) => job.id == data.jobCategories.elementAt(categoryID).jobOfTheWeek);
+            Job jobOfTheWeek = data.jobs.firstWhere((job) =>
+                job.id ==
+                data.jobCategories.elementAt(categoryID).jobOfTheWeek);
 
-              result.add(AppCardSpecial(
-                  jobTitle: jobOfTheWeek.title.toString(),
-                  jobDescription: jobOfTheWeek.description!.full.toString(),
-                  color: currentColor,
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                ScreenJobDetails(
-                                  jobID: jobOfTheWeek.id,
-                                )));
-                  }));
+            result.add(AppCardSpecial(
+                jobTitle: jobOfTheWeek.title.toString(),
+                jobDescription: jobOfTheWeek.description!.full.toString(),
+                color: currentColor,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ScreenJobDetails(
+                                jobID: jobOfTheWeek.id,
+                              )));
+                }));
           }
 
           result.add(const SizedBox(height: 10));
@@ -103,9 +102,17 @@ class ScreenJobListCategory extends StatelessWidget {
                               )));
                 }));
           }
+
           if (result.length <= 2) {
-            result.add(const Text("Zur Zeit sind leider keine Jobangebote für diese Kategorie vorhanden.", style: TextStyle( color: Colors.white), textAlign: TextAlign.center),);
+            result.add(
+              const Text(
+                  "Zur Zeit sind leider keine Jobangebote für diese Kategorie vorhanden.",
+                  style: TextStyle(color: Colors.white),
+                  textAlign: TextAlign.center),
+            );
           }
+
+          result.add(const SizedBox(height: 50)); //Bottom margin
 
           return Center(
             child: Column(
@@ -140,8 +147,7 @@ class ScreenJobListCategory extends StatelessWidget {
             if (value == 0) {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => ScreenJobListSearch()),
+                MaterialPageRoute(builder: (context) => ScreenJobListSearch()),
               );
             }
             if (value == 1) {

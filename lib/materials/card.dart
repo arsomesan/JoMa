@@ -12,19 +12,19 @@ zum Einbinden:
             ),
 */
 class AppCard extends StatelessWidget {
-
   final String jobTitle;
   final String jobDescription;
   final Color color;
   final VoidCallback onPressed;
 
-
-  AppCard({required this.jobTitle, required this.jobDescription, required this.color, required this.onPressed});
-
+  AppCard(
+      {required this.jobTitle,
+      required this.jobDescription,
+      required this.color,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       width: 300,
       height: 85,
@@ -47,15 +47,17 @@ class AppCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(jobTitle.toString().toUpperCase(),
+                        Text(
+                          jobTitle.toString().toUpperCase(),
                           style: AppTextStyles.darkH4,
                         ),
                         const SizedBox(height: 3),
-                        Text(jobDescription.toString(),
-                            style: AppTextStyles.darkCardText,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            softWrap: false,
+                        Text(
+                          jobDescription.toString(),
+                          style: AppTextStyles.darkCardText,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: false,
                         ),
                       ],
                     ),
@@ -72,8 +74,7 @@ class AppCard extends StatelessWidget {
                 )
               ],
             ),
-          )
-      ),
+          )),
     );
   }
 }
@@ -84,8 +85,11 @@ class AppCardSpecial extends StatelessWidget {
   final Color color;
   final VoidCallback onPressed;
 
-
-  AppCardSpecial({required this.jobTitle, required this.jobDescription, required this.color, required this.onPressed});
+  AppCardSpecial(
+      {required this.jobTitle,
+      required this.jobDescription,
+      required this.color,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -111,11 +115,13 @@ class AppCardSpecial extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(jobTitle.toString().toUpperCase(),
+                        Text(
+                          jobTitle.toString().toUpperCase(),
                           style: AppTextStyles.darkH2,
                         ),
                         const SizedBox(height: 8),
-                        Text(jobDescription.toString(),
+                        Text(
+                          jobDescription.toString(),
                           style: AppTextStyles.darkCardText,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
@@ -136,14 +142,12 @@ class AppCardSpecial extends StatelessWidget {
                 )
               ],
             ),
-          )
-      ),
+          )),
     );
   }
 }
 
 class AppCardSearch extends StatelessWidget {
-
   final String jobTitle;
   final String jobDescription;
   final Color color;
@@ -153,12 +157,14 @@ class AppCardSearch extends StatelessWidget {
   TextStyle descriptionTextStyle = AppTextStyles.darkCardTextWhite;
   Color circleAvatarColor = AppColors().white;
 
-
-  AppCardSearch({required this.jobTitle, required this.jobDescription, required this.color, required this.onPressed});
+  AppCardSearch(
+      {required this.jobTitle,
+      required this.jobDescription,
+      required this.color,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-
     // Wenn eine gelbe Karte erzeugt wird, wird alles darauf automatisch schwarz gefärbt zur besseren Lesbarkeit
     if (this.color == AppColors().darkYellow) {
       this.titleTextStyle = AppTextStyles.darkH4;
@@ -189,11 +195,13 @@ class AppCardSearch extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(jobTitle.toString().toUpperCase(),
+                        Text(
+                          jobTitle.toString().toUpperCase(),
                           style: this.titleTextStyle,
                         ),
                         const SizedBox(height: 3),
-                        Text(jobDescription.toString(),
+                        Text(
+                          jobDescription.toString(),
                           style: this.descriptionTextStyle,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -214,8 +222,7 @@ class AppCardSearch extends StatelessWidget {
                 )
               ],
             ),
-          )
-      ),
+          )),
     );
   }
 }
