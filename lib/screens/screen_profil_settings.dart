@@ -8,10 +8,10 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:joma/controllers/data_controller.dart';
-import 'package:joma/global/glovar.dart';
 import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/button.dart';
+import 'package:joma/materials/pop_up.dart';
 import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_data.dart';
@@ -58,6 +58,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
   bool hausnummerCheck = false;
   bool stadtCheck = false;
   bool plzCheck = false;
+  bool isright = false;
 
   @override
   Widget build(BuildContext context) {
@@ -240,9 +241,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                       keyboardType: TextInputType.emailAddress,
                       controller: EmailController,
                       onChanged: (text) {
-                        emailCheck = RegExp(
-                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                            .hasMatch(EmailController.text);
+                        emailCheck = true;
                       },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
@@ -547,7 +546,16 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           color: AppColors().darkSecondaryColor,
                           onPressed: () {
                             if (emailCheck) {
-                              tmpUser[0].kontakt!.email = EmailController.text;
+
+                              isright = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(EmailController.text);
+                              if(isright){
+                                tmpUser[0].kontakt!.email =
+                                    EmailController.text;
+                              } else {
+                                showDialog(context: context,
+                                    builder: (context) => PopUpAlert(title: "Email nicht korrekt", content: "Die eingegebene Email entspricht nicht dem Email Format!", route: ProfilData(), current: ScreenProfilSettings())
+                                );
+                              }
                             }
                             if (vornameCheck) {
                               tmpUser[0].vorname = VornameController.text;
@@ -572,10 +580,15 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                             if (plzCheck) {
                               tmpUser[0].adresse!.plz = PlzController.text;
                             }
+
                             var lokalusersavetmp = profilToJson(tmpUser);
                             UserSimplePreferences.setUser(
                                 lokalusersavetmp.toString());
-                            Get.off(() => ProfilData());
+
+                            if(emailCheck && isright) Get.off(() => ProfilData());
+                            if(emailCheck != true) Get.off(() => ProfilData());
+
+
                           },
                         ),
                       ),
