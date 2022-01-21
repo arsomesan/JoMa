@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -40,9 +41,7 @@ class MyApp extends StatelessWidget {
 
       home: Center(
       child: AnimatedSplashScreen(
-      splash: Image.asset(
-      'assets/images/darkJomaLogo.png',
-      ),
+      splash: SvgPicture.asset("assets/images/darkLogo.svg"),
       nextScreen: ScreenWelcome(),
       splashTransition: SplashTransition.rotationTransition,
       backgroundColor: AppColors().darkSecondaryColor,

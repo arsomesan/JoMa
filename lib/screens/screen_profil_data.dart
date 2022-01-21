@@ -272,7 +272,8 @@ class ProfilData extends StatelessWidget {
               icon: AppIcons().profile,
               label: 'Profil',
             ),
-          ]),
+          ]
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
