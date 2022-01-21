@@ -5,7 +5,10 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/global/glovar.dart';
+import 'package:joma/materials/appbar.dart';
+import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/assets.dart';
+import 'package:joma/materials/button.dart';
 import 'package:joma/model/profil_model.dart';
 
 import 'package:joma/screens/screen_home.dart';
@@ -29,7 +32,19 @@ class ProfilData extends StatelessWidget {
         UserSimplePreferences.getUser() ?? remoteUser.toString());
     Profil user = tmpUser[0];
     return Scaffold(
-      appBar: AppBar(
+      backgroundColor: AppBackgroundColors().darkBackground,
+      appBar: AppBarReplaceableImage(
+        bgColor: AppBackgroundColors().darkBackground,
+        bgColorBar: AppColors().darkPrimaryColor,
+        color: AppColors().darkPrimaryColor,
+        title: 'Profil'.toUpperCase(),
+        bild: DecorationImage(
+          image: NetworkImage(user.bild!),
+          fit: BoxFit.cover,
+        ),
+        hoehe: 200,
+      ),
+      /*appBar: AppBar(
           title: const Text("Profil"),
           centerTitle: true,
           backgroundColor: Glovar.white,
@@ -40,11 +55,25 @@ class ProfilData extends StatelessWidget {
                 onPressed: () {
                   Get.to(const Einstellungen());
                 }),
-          ]),
+          ]),*/
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Center(
+            /*Container(
+              height: 255,
+              //margin: EdgeInsets.only(bottom:20),
+              child: AppBarReplaceableImage(
+                bgColor: AppBackgroundColors().darkBackground,
+                bgColorBar: AppColors().darkPrimaryColor,
+                color: AppColors().darkPrimaryColor,
+                title: 'Profil'.toUpperCase(),
+                bild: DecorationImage(
+                  image: NetworkImage(user.bild!),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),*/
+            /*Center(
               child: Container(
                 width: 200,
                 height: 200,
@@ -62,7 +91,7 @@ class ProfilData extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100),
                 ),
               ),
-            ),
+            ),*/
             Container(
               margin: const EdgeInsets.only(left: 20, top: 30),
               child: Column(
@@ -71,7 +100,7 @@ class ProfilData extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'Name',
-                      style: TextStyle(color: Glovar.blackvar),
+                      style: TextStyle(color: AppColors().white),
                     ),
                   ),
                   Align(
@@ -79,7 +108,7 @@ class ProfilData extends StatelessWidget {
                     child: Text(
                       user.vorname! + " " + user.name!,
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: AppColors().white),
                     ),
                   ),
                   Container(
@@ -88,7 +117,7 @@ class ProfilData extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'E-Mail',
-                        style: TextStyle(color: Glovar.blackvar),
+                        style: TextStyle(color: AppColors().white),
                       ),
                     ),
                   ),
@@ -97,7 +126,7 @@ class ProfilData extends StatelessWidget {
                     child: Text(
                       user.kontakt!.email!,
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: AppColors().white),
                     ),
                   ),
                   Container(
@@ -106,7 +135,7 @@ class ProfilData extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Telefon',
-                        style: TextStyle(color: Glovar.blackvar),
+                        style: TextStyle(color: AppColors().white),
                       ),
                     ),
                   ),
@@ -115,7 +144,7 @@ class ProfilData extends StatelessWidget {
                     child: Text(
                       user.kontakt!.tel!,
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: AppColors().white),
                     ),
                   ),
                   Container(
@@ -124,7 +153,7 @@ class ProfilData extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Adresse',
-                        style: TextStyle(color: Glovar.blackvar),
+                        style: TextStyle(color: AppColors().white),
                       ),
                     ),
                   ),
@@ -133,25 +162,25 @@ class ProfilData extends StatelessWidget {
                     child: Text(
                       user.adresse!.strasse! + " " + user.adresse!.hausnummer!,
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: AppColors().white),
                     ),
                   ),
-                  Container(
+                  /*Container(
                     margin: const EdgeInsets.only(top: 10),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Stadt',
-                        style: TextStyle(color: Glovar.blackvar),
+                        style: TextStyle(color: AppColors().white),
                       ),
                     ),
-                  ),
+                  ),*/
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
                       user.adresse!.plz! + " " + user.adresse!.ort!,
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: AppColors().white),
                     ),
                   ),
                 ],
@@ -167,7 +196,7 @@ class ProfilData extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Stärken',
-                        style: TextStyle(color: Glovar.blackvar),
+                        style: TextStyle(color: AppColors().white),
                       ),
                     ),
                   ),
@@ -184,11 +213,23 @@ class ProfilData extends StatelessWidget {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 35),
                   Center(
-                    child: Container(
+                    child: AppButton(
+                        text: '      Profil bearbeiten      ',
+                        color: AppColors().darkSecondaryColor,
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ScreenProfilSettings()));
+                        }
+                    ),
+                    /*child: Container(
                       width: 140,
                       height: 35,
                       margin: const EdgeInsets.only(top: 35, bottom: 50),
+                      child:
                       child: TextButton(
                         child: const Text('Profil bearbeiten'),
                         onPressed: () {
@@ -202,11 +243,12 @@ class ProfilData extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          backgroundColor: Glovar.grey,
+                          backgroundColor: AppColors().darkSecondaryColor,
                         ),
                       ),
-                    ),
+                    ),*/
                   ),
+                  const SizedBox(height: 35),
                 ],
               ),
             ),

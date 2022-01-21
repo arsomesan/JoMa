@@ -7,7 +7,9 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/global/glovar.dart';
+import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/assets.dart';
+import 'package:joma/materials/button.dart';
 import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_data.dart';
@@ -57,8 +59,27 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
 
   @override
   Widget build(BuildContext context) {
+    final DataController data = Get.find();
+//Load Profile from Json
+    var remoteUser = profilToJson(data.profile);
+    //Load Profile from Shared Preferences if given. If not load Json Profile
+    var tmpUser = profilFromJson(
+        UserSimplePreferences.getUser() ?? remoteUser.toString());
+    Profil user = tmpUser[0];
     return Scaffold(
-      appBar: AppBar(
+      backgroundColor: AppBackgroundColors().darkBackground,
+      appBar: AppBarReplaceableImage(
+        bgColor: AppBackgroundColors().darkBackground,
+        bgColorBar: AppColors().darkPrimaryColor,
+        color: AppColors().darkPrimaryColor,
+        title: 'Profil'.toUpperCase(),
+        bild: DecorationImage(
+          image: NetworkImage(user.bild!),
+          fit: BoxFit.cover,
+        ),
+        hoehe: 200,
+      ),
+      /*appBar: AppBar(
         title: Text("Profil bearbeiten"),
         centerTitle: true,
         leading: IconButton(
@@ -69,7 +90,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
         ),
         backgroundColor: Glovar.white,
         foregroundColor: Glovar.blackvar,
-      ),
+      ),*/
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -83,7 +104,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                 var bild = <Widget>[];
                 var result = <Widget>[];
                 var skills = <Widget>[];
-                bild.add(
+                /*bild.add(
                   Container(
                     width: 200,
                     height: 200,
@@ -101,28 +122,17 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                       borderRadius: BorderRadius.circular(100),
                     ),
                   ),
-                );
+                );*/
 
                 bild.add(
                   Container(
                     child: Center(
-                      child: Container(
-                        width: 120,
-                        height: 35,
-                        margin: EdgeInsets.only(top: 10, bottom: 30),
-                        child: TextButton(
-                          child: Text('Avatar ändern'),
-                          onPressed: () {
-                            // Button to change the profile picture
-                          },
-                          style: TextButton.styleFrom(
-                            primary: Glovar.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            backgroundColor: Glovar.grey,
-                          ),
-                        ),
+                      child: AppButton(
+                        text: '      Avatar ändern      ',
+                        color: AppColors().darkSecondaryColor,
+                        onPressed: () {
+                          // Button to change the profile picture
+                        },
                       ),
                     ),
                   ),
@@ -133,22 +143,37 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Vorname',
-                        style: TextStyle(color: Glovar.blackvar),
+                        style: TextStyle(color: AppColors().white),
                       ),
                     ),
                   ),
                 );
                 result.add(
                   Container(
-                      child: TextFormField(
-                          controller: VornameController,
-                          onChanged: (text) {
-                            vornameCheck = true;
-                          },
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: user.vorname!,
-                          ))),
+                    child: TextFormField(
+                      controller: VornameController,
+                      onChanged: (text) {
+                        vornameCheck = true;
+                      },
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors().white,
+                            width: 1.0,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors().darkSecondaryColor,
+                            width: 1.0,
+                          ),
+                        ),
+                        hintText: user.vorname!,
+                        hintStyle: TextStyle(color: AppColors().white),
+                      ),
+                      style: TextStyle(color: AppColors().white),
+                    ),
+                  ),
                 );
                 result.add(
                   Container(
@@ -157,22 +182,37 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Name',
-                        style: TextStyle(color: Glovar.blackvar),
+                        style: TextStyle(color: AppColors().white),
                       ),
                     ),
                   ),
                 );
                 result.add(
                   Container(
-                      child: TextFormField(
-                          controller: NameController,
-                          onChanged: (text) {
-                            nameCheck = true;
-                          },
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: user.name!,
-                          ))),
+                    child: TextFormField(
+                      controller: NameController,
+                      onChanged: (text) {
+                        nameCheck = true;
+                      },
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors().white,
+                            width: 1.0,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors().darkSecondaryColor,
+                            width: 1.0,
+                          ),
+                        ),
+                        hintText: user.name!,
+                        hintStyle: TextStyle(color: AppColors().white),
+                      ),
+                      style: TextStyle(color: AppColors().white),
+                    ),
+                  ),
                 );
 
                 result.add(
@@ -182,7 +222,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'E-Mail',
-                        style: TextStyle(color: Glovar.blackvar),
+                        style: TextStyle(color: AppColors().white),
                       ),
                     ),
                   ),
@@ -190,18 +230,33 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
 
                 result.add(
                   Container(
-                      child: TextFormField(
-                          keyboardType: TextInputType.emailAddress,
-                          controller: EmailController,
-                          onChanged: (text) {
-                            emailCheck = RegExp(
-                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                .hasMatch(EmailController.text);
-                          },
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: user.kontakt!.email,
-                          ))),
+                    child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: EmailController,
+                      onChanged: (text) {
+                        emailCheck = RegExp(
+                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            .hasMatch(EmailController.text);
+                      },
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors().white,
+                            width: 1.0,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors().darkSecondaryColor,
+                            width: 1.0,
+                          ),
+                        ),
+                        hintText: user.kontakt!.email,
+                        hintStyle: TextStyle(color: AppColors().white),
+                      ),
+                      style: TextStyle(color: AppColors().white),
+                    ),
+                  ),
                 );
 
                 result.add(
@@ -211,7 +266,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Telefon',
-                        style: TextStyle(color: Glovar.blackvar),
+                        style: TextStyle(color: AppColors().white),
                       ),
                     ),
                   ),
@@ -219,16 +274,31 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
 
                 result.add(
                   Container(
-                      child: TextFormField(
-                          keyboardType: TextInputType.phone,
-                          controller: TelController,
-                          onChanged: (text) {
-                            telCheck = true;
-                          },
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: user.kontakt!.tel,
-                          ))),
+                    child: TextFormField(
+                      keyboardType: TextInputType.phone,
+                      controller: TelController,
+                      onChanged: (text) {
+                        telCheck = true;
+                      },
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors().white,
+                            width: 1.0,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors().darkSecondaryColor,
+                            width: 1.0,
+                          ),
+                        ),
+                        hintText: user.kontakt!.tel,
+                        hintStyle: TextStyle(color: AppColors().white),
+                      ),
+                      style: TextStyle(color: AppColors().white),
+                    ),
+                  ),
                 );
 
                 result.add(
@@ -243,20 +313,35 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               'Strasse',
-                              style: TextStyle(color: Glovar.blackvar),
+                              style: TextStyle(color: AppColors().white),
                             ),
                           ),
                         ),
                         Container(
-                            child: TextFormField(
-                                controller: StrasseController,
-                                onChanged: (text) {
-                                  strasseCheck = true;
-                                },
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: user.adresse!.strasse,
-                                ))),
+                          child: TextFormField(
+                            controller: StrasseController,
+                            onChanged: (text) {
+                              strasseCheck = true;
+                            },
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: AppColors().white,
+                                  width: 1.0,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: AppColors().darkSecondaryColor,
+                                  width: 1.0,
+                                ),
+                              ),
+                              hintText: user.adresse!.strasse,
+                              hintStyle: TextStyle(color: AppColors().white),
+                            ),
+                            style: TextStyle(color: AppColors().white),
+                          ),
+                        ),
                       ]),
                     ),
                     Expanded(
@@ -269,7 +354,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 'Hausnummer',
-                                style: TextStyle(color: Glovar.blackvar),
+                                style: TextStyle(color: AppColors().white),
                               ),
                             ),
                           ),
@@ -281,8 +366,21 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                                     hausnummerCheck = true;
                                   },
                                   decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: AppColors().white,
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: AppColors().darkSecondaryColor,
+                                        width: 1.0,
+                                      ),
+                                    ),
                                     hintText: user.adresse!.hausnummer,
+                                    hintStyle:
+                                        TextStyle(color: AppColors().white),
                                   ))),
                         ])))
                   ]),
@@ -295,7 +393,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Stadt',
-                        style: TextStyle(color: Glovar.blackvar),
+                        style: TextStyle(color: AppColors().white),
                       ),
                     ),
                   ),
@@ -303,15 +401,30 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
 
                 result.add(
                   Container(
-                      child: TextFormField(
-                          controller: StadtController,
-                          onChanged: (text) {
-                            stadtCheck = true;
-                          },
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: user.adresse!.ort,
-                          ))),
+                    child: TextFormField(
+                      controller: StadtController,
+                      onChanged: (text) {
+                        stadtCheck = true;
+                      },
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors().white,
+                            width: 1.0,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors().darkSecondaryColor,
+                            width: 1.0,
+                          ),
+                        ),
+                        hintText: user.adresse!.ort,
+                        hintStyle: TextStyle(color: AppColors().white),
+                      ),
+                      style: TextStyle(color: AppColors().white),
+                    ),
+                  ),
                 );
 
                 result.add(
@@ -321,7 +434,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Postleitzahl',
-                        style: TextStyle(color: Glovar.blackvar),
+                        style: TextStyle(color: AppColors().white),
                       ),
                     ),
                   ),
@@ -329,16 +442,31 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
 
                 result.add(
                   Container(
-                      child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          controller: PlzController,
-                          onChanged: (text) {
-                            plzCheck = true;
-                          },
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: user.adresse!.plz,
-                          ))),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: PlzController,
+                      onChanged: (text) {
+                        plzCheck = true;
+                      },
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors().white,
+                            width: 1.0,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: AppColors().darkSecondaryColor,
+                            width: 1.0,
+                          ),
+                        ),
+                        hintText: user.adresse!.plz,
+                        hintStyle: TextStyle(color: AppColors().white),
+                      ),
+                      style: TextStyle(color: AppColors().white),
+                    ),
+                  ),
                 );
 
                 skills.add(
@@ -350,7 +478,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           alignment: Alignment.centerLeft,
                           child: Text(
                             'Stärken',
-                            style: TextStyle(color: Glovar.blackvar),
+                            style: TextStyle(color: AppColors().white),
                           ),
                         ),
                       ),
@@ -371,7 +499,11 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                         child: IconButton(
                             padding: EdgeInsets.zero,
                             constraints: BoxConstraints(),
-                            icon: Icon(Icons.edit),
+                            icon: Icon(
+                              Icons.edit,
+                              color: AppColors().white,
+                              size: 40,
+                            ),
                             onPressed: () {
                               Get.to(() => ScreenProfilSkills());
                             }),
@@ -399,58 +531,47 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                         )),
                     Container(
                       child: Center(
-                        child: Container(
-                          width: 140,
-                          height: 35,
-                          margin: EdgeInsets.only(top: 35, bottom: 50),
-                          child: TextButton(
-                            child: Text('Speichern'),
-                            onPressed: () {
-                              if (emailCheck) {
-                                tmpUser[0].kontakt!.email =
-                                    EmailController.text;
-                              }
-                              if (vornameCheck) {
-                                tmpUser[0].vorname = VornameController.text;
-                              }
-                              if (nameCheck) {
-                                tmpUser[0].name = NameController.text;
-                              }
-                              if (telCheck) {
-                                tmpUser[0].kontakt!.tel = TelController.text;
-                              }
-                              if (strasseCheck) {
-                                tmpUser[0].adresse!.strasse =
-                                    StrasseController.text;
-                              }
-                              if (hausnummerCheck) {
-                                tmpUser[0].adresse!.hausnummer =
-                                    HausnummerController.text;
-                              }
-                              if (stadtCheck) {
-                                tmpUser[0].adresse!.ort = StadtController.text;
-                              }
-                              if (plzCheck) {
-                                tmpUser[0].adresse!.plz = PlzController.text;
-                              }
+                        child: AppButton(
+                          text: '      Speichern      ',
+                          color: AppColors().darkSecondaryColor,
+                          onPressed: () {
+                            if (emailCheck) {
+                              tmpUser[0].kontakt!.email =
+                                  EmailController.text;
+                            }
+                            if (vornameCheck) {
+                              tmpUser[0].vorname = VornameController.text;
+                            }
+                            if (nameCheck) {
+                              tmpUser[0].name = NameController.text;
+                            }
+                            if (telCheck) {
+                              tmpUser[0].kontakt!.tel = TelController.text;
+                            }
+                            if (strasseCheck) {
+                              tmpUser[0].adresse!.strasse =
+                                  StrasseController.text;
+                            }
+                            if (hausnummerCheck) {
+                              tmpUser[0].adresse!.hausnummer =
+                                  HausnummerController.text;
+                            }
+                            if (stadtCheck) {
+                              tmpUser[0].adresse!.ort = StadtController.text;
+                            }
+                            if (plzCheck) {
+                              tmpUser[0].adresse!.plz = PlzController.text;
+                            }
 
-                              var lokalusersavetmp = profilToJson(tmpUser);
-                              UserSimplePreferences.setUser(
-                                  lokalusersavetmp.toString());
-                              Get.off(() => ProfilData());
-
-                            },
-                            style: TextButton.styleFrom(
-                              primary: Glovar.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              backgroundColor: Glovar.grey,
-                            ),
-                          ),
+                            var lokalusersavetmp = profilToJson(tmpUser);
+                            UserSimplePreferences.setUser(
+                                lokalusersavetmp.toString());
+                            Get.off(() => ProfilData());
+                          },
                         ),
                       ),
                     ),
+                    const SizedBox(height: 35),
                   ],
                 ));
               }),
@@ -505,12 +626,12 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
   Widget buildSkill(int skillID) => Container(
         margin: EdgeInsets.only(right: 5, bottom: 5),
         child: InputChip(
-            label: Text(data.skills.elementAt(skillID).title.toString()),
-            labelStyle: TextStyle(color: AppColors().white),
-            backgroundColor: Color(int.parse(
-                data.skills.elementAt(skillID as int).colorHex.toString())),
-            onPressed: () {},
-            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          label: Text(data.skills.elementAt(skillID).title.toString()),
+          labelStyle: TextStyle(color: AppColors().white),
+          backgroundColor: Color(int.parse(
+              data.skills.elementAt(skillID as int).colorHex.toString())),
+          onPressed: () {},
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
       );
 }

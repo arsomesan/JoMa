@@ -64,7 +64,7 @@ class _ProfilLoaderState extends State<ProfilLoader> {
         padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
         children: [
           AppButtonWithIcon(
-              text: 'Persönliche Daten',
+              text: 'Profil anzeigen',
               icon: AppIcons().profile,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
