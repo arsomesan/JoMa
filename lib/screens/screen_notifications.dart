@@ -25,7 +25,7 @@ class ScreenNotifications extends StatefulWidget {
 }
 
 class _ScreenNotificationsState extends State<ScreenNotifications> {
-  bool _isChecked = false;
+  List<bool> _isChecked = [false, false, false, false];
   @override
   void initState() {
     // TODO: implement initState
@@ -55,32 +55,47 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
         children: [
           CheckboxButton(
               text: 'Soziales & Hauswirtschaft',
-              value: _isChecked,
+              value: _isChecked[0],
               onChanged: (bool? value) {
                 setState(() {
-                  _isChecked = value!;
+                  _isChecked[0] = value!;
                 });
 
               },
-              icon: Icon(FontAwesomeIcons.tools),
+              icon: AppIcons().blueSection,
           ),
           CheckboxButton(
             text: 'Handwerk & Technik',
-            value: false,
-            onChanged: (bool? value) {},
-            icon: Icon(FontAwesomeIcons.tools),
+            value: _isChecked[1],
+            onChanged: (bool? value) {
+              setState(() {
+                _isChecked[1] = value!;
+              });
+
+            },
+            icon: AppIcons().redSection,
           ),
           CheckboxButton(
             text: 'Service & Lebensmittel',
-            value: false,
-            onChanged: (bool? value) {},
-            icon: Icon(FontAwesomeIcons.tools),
+            value: _isChecked[2],
+            onChanged: (bool? value) {
+              setState(() {
+                _isChecked[2] = value!;
+              });
+
+            },
+            icon: AppIcons().yellowSection,
           ),
           CheckboxButton(
             text: 'Gärtnerei & Landwirtschaft',
-            value: false,
-            onChanged: (bool? value) {},
-            icon: Icon(FontAwesomeIcons.tools),
+            value: _isChecked[3],
+            onChanged: (bool? value) {
+              setState(() {
+                _isChecked[3] = value!;
+              });
+
+            },
+            icon: AppIcons().greenSection,
           )
         ],
       ),

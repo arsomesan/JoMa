@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/screens/screen_settings.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 
 
@@ -100,9 +102,9 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
                   child: Container(
                     height: 120,
                     width: 120,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AppLogo().darkLogoAssestImage,
+                        image: Svg("assets/images/darkLogo.svg"),
                         fit: BoxFit.contain,
                       ),
                       //color: Colors.green,

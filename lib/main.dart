@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       splash: SvgPicture.asset("assets/images/darkLogo.svg"),
       nextScreen: ScreenWelcome(),
       splashTransition: SplashTransition.rotationTransition,
-      backgroundColor: AppColors().darkSecondaryColor,
+      backgroundColor: AppColors().darkPrimaryColor,
       ),
       
       ),
