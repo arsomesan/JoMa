@@ -63,35 +63,45 @@ class RoundRecMain extends StatelessWidget {
 
 // AppBarMainArea - normale Appbar am beginn der App //
 
-class AppBarMainArea extends StatelessWidget {
+class AppBarJobArea extends StatelessWidget {
   final String title; // Titel der Seite in der AppBar
   final Color color; //
   final Color bgColor;
   final Color bgColorBar;
+  final VoidCallback onPressed1;
+  final VoidCallback onPressed2;
 
 
 
-  AppBarMainArea({
+  AppBarJobArea({
     required this.title,
     required this.color,
     required this.bgColor,
     required this.bgColorBar,
-  
+    required this.onPressed1,
+    required this.onPressed2,
   });
 
   @override
   Widget build(BuildContext context) {
+    var settings_wheel;
     return SafeArea(
       child: Scaffold(
           backgroundColor: bgColor,
           body: Stack(
             //fit: StackFit.loose,
             children: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.arrow_back), 
+                onPressed: onPressed1),
               Container(
                 height: 255,
                 width: double.infinity,
                 color: Colors.transparent,
               ),
+              IconButton(
+                icon: AppIcons().settingsWheel,
+               onPressed: onPressed2),
               RoundRecMain(),
               Positioned.fill(
                 child: Align(

@@ -11,6 +11,7 @@ import 'package:joma/screens/screen_notifications.dart';
 import 'package:joma/screens/screen_register.dart';
 import 'package:joma/screens/screen_saved_jobs.dart';
 import 'package:joma/screens/screen_select_view.dart';
+import 'package:joma/screens/screen_test.dart';
 import 'package:joma/screens/screen_welcome.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
 import 'package:joma/materials/assets.dart';
@@ -42,7 +43,11 @@ class MyApp extends StatelessWidget {
       splash: Image.asset(
       'assets/images/darkJomaLogo.png',
       ),
+<<<<<<< Updated upstream
       nextScreen: ScreenWelcome(),
+=======
+      nextScreen: const SecondRoute(),
+>>>>>>> Stashed changes
       splashTransition: SplashTransition.rotationTransition,
       backgroundColor: AppColors().darkSecondaryColor,
       ),
