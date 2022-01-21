@@ -88,6 +88,10 @@ class AppBarReplaceableImage extends StatelessWidget implements PreferredSizeWid
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: bild,
+                      border: Border.all(
+                        color: AppColors().darkSecondaryColor,
+                        width: 3,
+                      )
                       //color: Colors.green,
                     ),
                     //child: AppLogo().darkLogo,

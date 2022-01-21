@@ -250,7 +250,7 @@ class SelectView extends StatelessWidget {
                 margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                 child: AppButton(
                   text: "Weiter",
-                  color: AppColors().darkPrimaryColor,
+                  color: AppColors().darkSecondaryColor,
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => ScreenHome()));

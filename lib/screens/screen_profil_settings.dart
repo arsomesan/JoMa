@@ -18,8 +18,6 @@ import 'package:joma/screens/screen_profil_data.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_profil_skills.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
-import 'dart:math' as math;
-
 import 'screen_joblist_search.dart';
 
 class ScreenProfilSettings extends StatefulWidget {
@@ -467,7 +465,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           ),
                         ),
                         hintText: user.adresse!.plz,
-                        hintStyle: TextStyle(color: AppColors().white),
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                       style: TextStyle(color: AppColors().white),
                     ),
