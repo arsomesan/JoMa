@@ -43,11 +43,7 @@ class MyApp extends StatelessWidget {
       splash: Image.asset(
       'assets/images/darkJomaLogo.png',
       ),
-<<<<<<< Updated upstream
       nextScreen: ScreenWelcome(),
-=======
-      nextScreen: const SecondRoute(),
->>>>>>> Stashed changes
       splashTransition: SplashTransition.rotationTransition,
       backgroundColor: AppColors().darkSecondaryColor,
       ),

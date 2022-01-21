@@ -26,166 +26,153 @@ class ScreenJobListCategory extends StatelessWidget {
 
   late Color currentColor = Color(
       int.parse(data.jobCategories.elementAt(categoryID).colorHex.toString()));
-  late Color currentBackgroundColor = Color(
-      int.parse(data.jobCategories.elementAt(categoryID).backgroundColorHex.toString()));
-
+  late Color currentBackgroundColor = Color(int.parse(
+      data.jobCategories.elementAt(categoryID).backgroundColorHex.toString()));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: currentBackgroundColor,
+      appBar: AppBarJobArea(
+        bgColor: currentBackgroundColor,
+        bgColorBar: currentColor,
+        color: currentColor,
+        title: 'Handwerk'.toUpperCase(),
+        hoehe: 200, 
+        icon: AppIcons().redSection,
+            onPressed1: () {
+            Navigator.of(context).pop();
+            },
+      ),
+
+
       body: Center(
-          child: ListView(children: <Widget>[
+        child: ListView(
+          children: <Widget>[
+            SingleChildScrollView(
+              child: Obx(() {
+                var result = <Widget>[];
+               
 
-          SingleChildScrollView(
-          child: Obx(() {
-      var result = <Widget>[];
-      var appbar = <Widget>[];
+                if (data.jobCategories.elementAt(categoryID).jobOfTheWeek !=
+                    -1) {
+                  Job jobOfTheWeek = data.jobs.firstWhere((job) =>
+                      job.id ==
+                      data.jobCategories.elementAt(categoryID).jobOfTheWeek);
 
-      appbar.add(
-      Container(
-      child: AppBarJobArea(
-      bgColor: currentColor,
-      bgColorBar: currentBackgroundColor,
-      color: Colors.white,
-      title: data.jobCategories
-          .elementAt(categoryID)
-          .title
-          .toString()
-          .toUpperCase(),
+                  result.add(AppCardSpecial(
+                      jobTitle: jobOfTheWeek.title.toString(),
+                      jobDescription: jobOfTheWeek.description!.full.toString(),
+                      color: currentColor,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ScreenJobDetails(
+                                      jobID: jobOfTheWeek.id,
+                                    )));
+                      }));
+                }
 
-      onPressed1: () {
-      Navigator.of(context).pop();
-      },
-      onPressed2: () {
-      Get.to(() => const Einstellungen());
-      },
+                result.add(const SizedBox(height: 10));
 
-      )
-      )
-      );
+                for (var currentJob in data.jobs) {
+                  if (currentJob.category != categoryID) continue;
 
+                  JobCategory currentJobCategory = data.jobCategories
+                      .firstWhere(
+                          (category) => category.id == currentJob.category);
 
+                  result.add(AppCard(
+                      jobTitle: currentJob.title.toString(),
+                      jobDescription: currentJob.description!.full.toString(),
+                      color: Color(
+                          int.parse(currentJobCategory.colorHex.toString())),
+                      //AppColors().darkBlue,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ScreenJobDetails(
+                                      jobID: currentJob.id,
+                                    )));
+                      }));
+                }
+                if (result.length <= 2) {
+                  result.add(
+                    const Text(
+                        "Zur Zeit sind leider keine Jobangebote für diese Kategorie vorhanden.",
+                        style: TextStyle(color: Colors.white),
+                        textAlign: TextAlign.center),
+                  );
+                }
 
-      if (data.jobCategories.elementAt(categoryID).jobOfTheWeek != -1) {
-      Job jobOfTheWeek =
-      data.jobs.firstWhere((job) => job.id == data.jobCategories.elementAt(categoryID).jobOfTheWeek);
+                return Center(
+                  child: Column(children: [
 
-      result.add(AppCardSpecial(
-      jobTitle: jobOfTheWeek.title.toString(),
-      jobDescription: jobOfTheWeek.description!.full.toString(),
-      color: currentColor,
-      onPressed: () {
-      Navigator.push(
-      context,
-      MaterialPageRoute(
-      builder: (context) =>
-      ScreenJobDetails(
-      jobID: jobOfTheWeek.id,
-      )));
-      }));
-      }
-
-      result.add(const SizedBox(height: 10));
-
-      for (var currentJob in data.jobs) {
-      if (currentJob.category != categoryID) continue;
-
-      JobCategory currentJobCategory = data.jobCategories
-          .firstWhere((category) => category.id == currentJob.category);
-
-      result.add(AppCard(
-      jobTitle: currentJob.title.toString(),
-      jobDescription: currentJob.description!.full.toString(),
-      color: Color(int.parse(currentJobCategory.colorHex.toString())),
-      //AppColors().darkBlue,
-      onPressed: () {
-      Navigator.push(
-      context,
-      MaterialPageRoute(
-      builder: (context) => ScreenJobDetails(
-      jobID: currentJob.id,
-      )));
-      }));
-      }
-      if (result.length <= 2) {
-      result.add(const Text("Zur Zeit sind leider keine Jobangebote für diese Kategorie vorhanden.", style: TextStyle( color: Colors.white), textAlign: TextAlign.center),);
-      }
-
-      return Center(
-      child:
-      Column(children:[
-      Column(
-      children:appbar),
-      Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: result),
-      ]
+                    Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: result),
+                  ]),
+                );
+              }),
+            ),
+          ],
+        ),
       ),
-
-      );
-      }
-
-
-      ),
-    ),
-  ],
+      floatingActionButton: SizedBox(
+        height: 80.0,
+        width: 80.0,
+        child: FloatingActionButton(
+          elevation: 0,
+          child: const CircleAvatar(
+            radius: 80.0,
+            backgroundImage: AssetImage(
+              'assets/images/darkJomaLogo.png',
+            ),
           ),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ScreenHome(),
+              ),
+            );
+          },
+        ),
       ),
-
-
-
-    floatingActionButton: SizedBox(
-    height: 80.0,
-    width: 80.0,
-    child: FloatingActionButton(
-    elevation: 0,
-    child: const CircleAvatar(
-    radius: 80.0,
-    backgroundImage: AssetImage(
-    'assets/images/darkJomaLogo.png',
-    ),
-    ),
-    onPressed: () {
-    Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(builder: (context) => ScreenHome(),
-    ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+        onTap: (value) {
+          if (value == 0) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => ScreenJobListSearch()),
+            );
+          }
+          if (value == 1) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfilLoader()),
+            );
+          }
+          //if (value == 2) Navigator.of(context).push(...);
+        },
+        backgroundColor: currentColor,
+        selectedItemColor: AppColors().white,
+        unselectedItemColor: AppColors().white,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: AppIcons().searchGlass,
+            label: 'Suchen',
+          ),
+          BottomNavigationBarItem(
+            icon: AppIcons().profile,
+            label: 'Profil',
+          ),
+        ],
+      ),
     );
-    },
-    ),
-    ),
-
-    bottomNavigationBar: BottomNavigationBar(
-    currentIndex: 0,
-    onTap: (value) {
-    if (value == 0) {
-    Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(
-    builder: (context) => ScreenJobListSearch()),
-    );
-    }
-    if (value == 1) {
-    Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(builder: (context) => const ProfilLoader()),
-    );
-    }
-    //if (value == 2) Navigator.of(context).push(...);
-    },
-    backgroundColor: currentColor,
-    selectedItemColor: AppColors().white,
-    unselectedItemColor: AppColors().white,
-    items: <BottomNavigationBarItem>[
-    BottomNavigationBarItem(
-    icon: AppIcons().searchGlass,
-    label: 'Suchen',
-    ),
-    BottomNavigationBarItem(
-    icon: AppIcons().profile,
-    label: 'Profil',
-    ),
-    ],
-    ),);}}
+  }
+}

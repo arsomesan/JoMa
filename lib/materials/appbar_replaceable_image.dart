@@ -16,7 +16,7 @@ class AppBarReplaceableImage extends StatelessWidget implements PreferredSizeWid
   final double hoehe;
 
 
-  //final Icon iconTheme;
+
 
   AppBarReplaceableImage({
     required this.title,
@@ -26,7 +26,7 @@ class AppBarReplaceableImage extends StatelessWidget implements PreferredSizeWid
     required this.bild,
     required this.hoehe,
 
-    //required this.iconTheme
+
   });
   @override
   Size get preferredSize => Size.fromHeight(hoehe);
