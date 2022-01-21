@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -67,6 +69,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
         UserSimplePreferences.getUser() ?? remoteUser.toString());
     Profil user = tmpUser[0];
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppBackgroundColors().darkBackground,
       appBar: AppBarReplaceableImage(
         bgColor: AppBackgroundColors().darkBackground,
@@ -77,7 +80,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
           image: NetworkImage(user.bild!),
           fit: BoxFit.cover,
         ),
-        hoehe: 200,
+        hoehe: 250,
       ),
       /*appBar: AppBar(
         title: Text("Profil bearbeiten"),
@@ -127,14 +130,17 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                 bild.add(
                   Container(
                     child: Center(
+                        child: SizedBox(
+                          width: 150,
+                          height: 60,
                       child: AppButton(
-                        text: '      Avatar ändern      ',
+                        text: 'Avatar ändern',
                         color: AppColors().darkSecondaryColor,
                         onPressed: () {
                           // Button to change the profile picture
                         },
                       ),
-                    ),
+                    )),
                   ),
                 );
                 result.add(
@@ -495,14 +501,14 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                             child: buildSkill(data.skills.indexWhere(
                                 (skill) => skill.id == user.skills![i]))),
                       Container(
-                        margin: EdgeInsets.only(top: 3, left: 5),
+                        margin: EdgeInsets.only(left: 10),
                         child: IconButton(
                             padding: EdgeInsets.zero,
                             constraints: BoxConstraints(),
                             icon: Icon(
-                              Icons.edit,
+                              FontAwesomeIcons.pen,
                               color: AppColors().white,
-                              size: 40,
+                              size: 29,
                             ),
                             onPressed: () {
                               Get.to(() => ScreenProfilSkills());
@@ -525,19 +531,23 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                       ),
                     ),
                     Container(
-                        margin: EdgeInsets.only(right: 20),
-                        child: Column(
-                          children: skills,
-                        )),
+                      margin: EdgeInsets.only(right: 20),
+                      child: Column(
+                        children: skills,
+                      ),
+                    ),
                     Container(
-                      child: Center(
+                      padding: const EdgeInsets.all(0.0),
+                      margin: EdgeInsets.fromLTRB(0, 35, 0, 50),
+                      child: SizedBox(
+                        width: 140,
+                        height: 60,
                         child: AppButton(
-                          text: '      Speichern      ',
+                          text: 'Speichern',
                           color: AppColors().darkSecondaryColor,
                           onPressed: () {
                             if (emailCheck) {
-                              tmpUser[0].kontakt!.email =
-                                  EmailController.text;
+                              tmpUser[0].kontakt!.email = EmailController.text;
                             }
                             if (vornameCheck) {
                               tmpUser[0].vorname = VornameController.text;
@@ -562,7 +572,6 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                             if (plzCheck) {
                               tmpUser[0].adresse!.plz = PlzController.text;
                             }
-
                             var lokalusersavetmp = profilToJson(tmpUser);
                             UserSimplePreferences.setUser(
                                 lokalusersavetmp.toString());
@@ -571,7 +580,6 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 35),
                   ],
                 ));
               }),
@@ -584,11 +592,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
         width: 80.0,
         child: FloatingActionButton(
           elevation: 0,
-          child: CircleAvatar(
-            radius: 80.0,
-            backgroundImage: AssetImage(
-              'assets/images/darkJomaLogo.png',
-            ),
+          child: SvgPicture.asset("assets/images/darkLogo.svg",
           ),
           onPressed: () {
             Get.off(() => ScreenHome());

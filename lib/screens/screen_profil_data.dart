@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -42,7 +43,7 @@ class ProfilData extends StatelessWidget {
           image: NetworkImage(user.bild!),
           fit: BoxFit.cover,
         ),
-        hoehe: 200,
+        hoehe: 250,
       ),
       /*appBar: AppBar(
           title: const Text("Profil"),
@@ -213,46 +214,28 @@ class ProfilData extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 35),
-                  Center(
-                    child: AppButton(
-                        text: '      Profil bearbeiten      ',
-                        color: AppColors().darkSecondaryColor,
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ScreenProfilSettings()));
-                        }
-                    ),
-                    /*child: Container(
-                      width: 140,
-                      height: 35,
-                      margin: const EdgeInsets.only(top: 35, bottom: 50),
-                      child:
-                      child: TextButton(
-                        child: const Text('Profil bearbeiten'),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ScreenProfilSettings()));
-                        },
-                        style: TextButton.styleFrom(
-                          primary: Glovar.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          backgroundColor: AppColors().darkSecondaryColor,
-                        ),
-                      ),
-                    ),*/
-                  ),
-                  const SizedBox(height: 35),
+
+
                 ],
               ),
             ),
-
+            Container(
+              margin: EdgeInsets.only(top: 35, bottom: 50),
+              child: SizedBox(
+                height: 60,
+                width: 160,
+                child: AppButton(
+                    text: 'Profil bearbeiten',
+                    color: AppColors().darkSecondaryColor,
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ScreenProfilSettings()));
+                    }
+                ),
+              ),
+            )
 
           ],
         ),
@@ -262,11 +245,7 @@ class ProfilData extends StatelessWidget {
         width: 80.0,
         child: FloatingActionButton(
           elevation: 0,
-          child: const CircleAvatar(
-            radius: 80.0,
-            backgroundImage: AssetImage(
-              'assets/images/darkJomaLogo.png',
-            ),
+          child: SvgPicture.asset("assets/images/darkLogo.svg",
           ),
           onPressed: () {
             Get.off(() => ScreenHome());
