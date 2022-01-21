@@ -133,40 +133,6 @@ class ScreenJobListCategory extends StatelessWidget {
   ],
           ),
       ),
-<<<<<<< Updated upstream
-      bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 0,
-          onTap: (value) {
-            if (value == 0) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ScreenJobListSearch()),
-              );
-            }
-            if (value == 1) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfilLoader()),
-              );
-            }
-            //if (value == 2) Navigator.of(context).push(...);
-          },
-          backgroundColor: currentColor,
-          selectedItemColor: AppColors().white,
-          unselectedItemColor: AppColors().white,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: AppIcons().searchGlass,
-              label: 'Suchen',
-            ),
-            BottomNavigationBarItem(
-              icon: AppIcons().profile,
-              label: 'Profil',
-            ),
-          ]),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-=======
 
 
 
@@ -205,7 +171,6 @@ class ScreenJobListCategory extends StatelessWidget {
     Navigator.pushReplacement(
     context,
     MaterialPageRoute(builder: (context) => const ProfilLoader()),
->>>>>>> Stashed changes
     );
     }
     //if (value == 2) Navigator.of(context).push(...);
