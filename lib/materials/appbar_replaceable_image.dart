@@ -7,6 +7,40 @@ import 'package:joma/screens/screen_settings.dart';
 import 'appbar.dart';
 
 
+class RoundRecMainImage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          height: 200,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.all(0),
+          decoration: BoxDecoration(
+            color: AppColors().darkPrimaryColor,
+            border: Border.all(
+                width: 6,
+                color: AppColors().darkPrimaryColor
+            ),
+            borderRadius: BorderRadius.vertical(
+              top: Radius.zero,
+              bottom: Radius.elliptical(550, 220),
+            ),
+          ),
+        ),
+        Container(
+          height: 200-70,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.all(0),
+          decoration: BoxDecoration(
+            color: AppColors().darkPrimaryColor,
+          ),
+        )
+      ],
+    );
+  }
+}
+
 class AppBarReplaceableImage extends StatelessWidget implements PreferredSizeWidget {
   final String title; // Titel der Seite in der AppBar
   final Color color; //
@@ -40,11 +74,11 @@ class AppBarReplaceableImage extends StatelessWidget implements PreferredSizeWid
             //fit: StackFit.loose,
             children: <Widget>[
               Container(
-                height: 255,
+                height: 400,
                 width: double.infinity,
                 color: Colors.transparent,
               ),
-              RoundRecMain(),
+              RoundRecMainImage(),
               Positioned.fill(
                 child: Align(
                   alignment: Alignment.bottomCenter,
@@ -53,7 +87,6 @@ class AppBarReplaceableImage extends StatelessWidget implements PreferredSizeWid
                     width: 120,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(width: 4, color: AppColors().darkSecondaryColor),
                       image: bild,
                       //color: Colors.green,
                     ),
@@ -77,6 +110,7 @@ class AppBarReplaceableImage extends StatelessWidget implements PreferredSizeWid
                 ),
               ),
               Positioned.fill(
+                top: 47,
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: IconButton(
@@ -88,6 +122,7 @@ class AppBarReplaceableImage extends StatelessWidget implements PreferredSizeWid
                   ),
               ),
               Positioned.fill(
+                top: 47,
                 child: Align(
                     alignment: Alignment.topRight,
                     child: IconButton(
