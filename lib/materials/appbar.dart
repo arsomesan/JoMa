@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:joma/materials/assets.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 // Runder Kasten als Klasse //
 
@@ -101,7 +102,7 @@ class AppBarMainArea extends StatelessWidget {
                     width: 120,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AppLogo().darkLogoAssestImage,
+                        image: Svg("assets/images/darkLogo.svg"),
                         fit: BoxFit.contain,
                       ),
                       //color: Colors.green,
