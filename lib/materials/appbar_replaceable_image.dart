@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/materials/assets.dart';
@@ -83,14 +85,16 @@ class AppBarReplaceableImage extends StatelessWidget implements PreferredSizeWid
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    height: 120,
-                    width: 120,
+                    height: 130,
+                    width: 130,
                     decoration: BoxDecoration(
+                      //color: bgColorBar,
+                      color: AppColors().white,
                       shape: BoxShape.circle,
                       image: bild,
                       border: Border.all(
                         color: AppColors().darkSecondaryColor,
-                        width: 3,
+                        width: 3.5,
                       )
                       //color: Colors.green,
                     ),
@@ -100,7 +104,7 @@ class AppBarReplaceableImage extends StatelessWidget implements PreferredSizeWid
               ),
 
               Positioned.fill(
-                top: -100,
+                top: -170,
                 //left: 30,
                 child: Align(
                   alignment: Alignment.center,
@@ -114,7 +118,6 @@ class AppBarReplaceableImage extends StatelessWidget implements PreferredSizeWid
                 ),
               ),
               Positioned.fill(
-                top: 47,
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: IconButton(
@@ -126,7 +129,6 @@ class AppBarReplaceableImage extends StatelessWidget implements PreferredSizeWid
                   ),
               ),
               Positioned.fill(
-                top: 47,
                 child: Align(
                     alignment: Alignment.topRight,
                     child: IconButton(
