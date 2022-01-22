@@ -1,3 +1,4 @@
+import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/button.dart';
 import 'package:joma/screens//screen_settings_datenschutz.dart';
 import 'package:joma/screens/screen_home.dart';
@@ -20,22 +21,23 @@ class Einstellungen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-            title: Text('Einstellungen'.toUpperCase(), style: AppTextStyles.darkH1),
-            centerTitle: true,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            backgroundColor: AppColors().darkPrimaryColor,
-          ),
+      appBar: AppBarReplaceableImage(
+        bgColor: AppBackgroundColors().darkBackground,
+        bgColorBar: AppColors().darkPrimaryColor,
+        color: AppColors().darkPrimaryColor,
+        title: 'Einstellungen'.toUpperCase(),
+        bild: DecorationImage(
+          image: new AssetImage("assets/icons/walking-solid.png"),
+          fit: BoxFit.cover,
+        ),
+        hoehe: 230,
+      ),
       backgroundColor: AppBackgroundColors().darkBackground,
       body: ListView (
+        padding: EdgeInsets.fromLTRB(0, 50, 0, 50),
         children: [
-          const SizedBox(height: 15),
-          CircleAvatar(
+          //const SizedBox(height: 15),
+          /*CircleAvatar(
             radius: 50,
             backgroundColor: AppColors().darkSecondaryColor,
             child: CircleAvatar(
@@ -47,7 +49,7 @@ class Einstellungen extends StatelessWidget {
                   size: 50),
             ),
           ),
-          const SizedBox(height: 35),
+          const SizedBox(height: 35),*/
           AppButtonWithIcon(
             text: 'Profil bearbeiten',
               icon: AppIcons().profile,
@@ -80,11 +82,12 @@ class Einstellungen extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Impressum()));
               }
           ),
-          AppButtonWithIcon(
+          AppButton(
               text: 'Datenschutz',
-              icon: AppIcons().privacy,
-              color: AppColors().darkPrimaryColor,
+              color: AppColors().darkSecondaryColor,
               onPressed: () {
+                //Navigator.push(context, MaterialPageRoute(builder: (context) => Datenschutz()));
+                // TODO: Klassen Datenschutz kann nicht aufgerufen werden
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Impressum()));
               }
           ),

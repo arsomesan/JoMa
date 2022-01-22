@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:get/get.dart';
 import 'package:joma/materials/card.dart';
@@ -16,27 +17,16 @@ class ScreenSavedJobs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
-      appBar: AppBar(
-        backgroundColor: AppColors().darkPrimaryColor,
-        title: Text(
-          'Gespeicherte Jobs'.toUpperCase(),
-          style: AppTextStyles.darkH1,
+      appBar: AppBarReplaceableImage(
+        bgColor: AppBackgroundColors().darkBackground,
+        bgColorBar: AppColors().darkPrimaryColor,
+        color: AppColors().darkPrimaryColor,
+        title: 'Gespeicherte Jobs'.toUpperCase(),
+        bild: DecorationImage(
+          image: new AssetImage("assets/icons/walking-solid.png"),
+          fit: BoxFit.cover,
         ),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: AppIcons().settingsWheel,
-            onPressed: () {
-              Get.to(() => const Einstellungen());
-            },
-          )
-        ],
+        hoehe: 230,
       ),
       body: Center(
         child: ListView(
@@ -49,7 +39,6 @@ class ScreenSavedJobs extends StatelessWidget {
                     style: AppTextStyles.darkH4White,
                     textAlign: TextAlign.center),
             ),
-            const SizedBox(height: 30),
             AppCardSearch(
                 jobTitle: 'Testjob',
                 jobDescription: 'Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung',

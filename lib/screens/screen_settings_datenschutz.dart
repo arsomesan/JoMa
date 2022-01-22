@@ -1,3 +1,4 @@
+import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_settings.dart';
@@ -12,14 +13,16 @@ class Datenschutz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_sharp),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+      appBar: AppBarReplaceableImage(
+        bgColor: AppBackgroundColors().darkBackground,
+        bgColorBar: AppColors().darkPrimaryColor,
+        color: AppColors().darkPrimaryColor,
+        title: 'Datenschutz'.toUpperCase(),
+        bild: DecorationImage(
+          image: new AssetImage("assets/icons/walking-solid.png"),
+          fit: BoxFit.cover,
         ),
-        backgroundColor: AppColors().darkPrimaryColor,
+        hoehe: 230,
       ),
       backgroundColor: AppBackgroundColors().darkBackground,
       body: Center(

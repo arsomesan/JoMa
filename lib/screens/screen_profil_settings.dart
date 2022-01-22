@@ -79,20 +79,8 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
           image: NetworkImage(user.bild!),
           fit: BoxFit.cover,
         ),
-        hoehe: 250,
+        hoehe: 230,
       ),
-      /*appBar: AppBar(
-        title: Text("Profil bearbeiten"),
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Get.off(() => ProfilData());
-          },
-        ),
-        backgroundColor: Glovar.white,
-        foregroundColor: Glovar.blackvar,
-      ),*/
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -174,7 +162,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           ),
                         ),
                         hintText: user.vorname!,
-                        hintStyle: TextStyle(color: AppColors().white),
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                       style: TextStyle(color: AppColors().white),
                     ),
@@ -213,7 +201,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           ),
                         ),
                         hintText: user.name!,
-                        hintStyle: TextStyle(color: AppColors().white),
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                       style: TextStyle(color: AppColors().white),
                     ),
@@ -255,7 +243,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           ),
                         ),
                         hintText: user.kontakt!.email,
-                        hintStyle: TextStyle(color: AppColors().white),
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                       style: TextStyle(color: AppColors().white),
                     ),
@@ -297,7 +285,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           ),
                         ),
                         hintText: user.kontakt!.tel,
-                        hintStyle: TextStyle(color: AppColors().white),
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                       style: TextStyle(color: AppColors().white),
                     ),
@@ -340,7 +328,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                                 ),
                               ),
                               hintText: user.adresse!.strasse,
-                              hintStyle: TextStyle(color: AppColors().white),
+                              hintStyle: TextStyle(color: Colors.grey),
                             ),
                             style: TextStyle(color: AppColors().white),
                           ),
@@ -383,7 +371,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                                     ),
                                     hintText: user.adresse!.hausnummer,
                                     hintStyle:
-                                        TextStyle(color: AppColors().white),
+                                        TextStyle(color: Colors.grey),
                                   ))),
                         ])))
                   ]),
@@ -423,7 +411,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           ),
                         ),
                         hintText: user.adresse!.ort,
-                        hintStyle: TextStyle(color: AppColors().white),
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                       style: TextStyle(color: AppColors().white),
                     ),

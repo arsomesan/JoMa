@@ -43,20 +43,8 @@ class ProfilData extends StatelessWidget {
           image: NetworkImage(user.bild!),
           fit: BoxFit.cover,
         ),
-        hoehe: 250,
+        hoehe: 230,
       ),
-      /*appBar: AppBar(
-          title: const Text("Profil"),
-          centerTitle: true,
-          backgroundColor: Glovar.white,
-          foregroundColor: Glovar.blackvar,
-          actions: [
-            IconButton(
-                icon: const Icon(Icons.settings),
-                onPressed: () {
-                  Get.to(const Einstellungen());
-                }),
-          ]),*/
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -94,7 +82,7 @@ class ProfilData extends StatelessWidget {
               ),
             ),*/
             Container(
-              margin: const EdgeInsets.only(left: 20, top: 30),
+              padding: EdgeInsets.fromLTRB(20, 30, 0, 0),
               child: Column(
                 children: [
                   Align(

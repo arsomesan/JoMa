@@ -1,4 +1,5 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/button.dart';
 import 'package:joma/materials/checkbox_button.dart';
 import 'package:joma/materials/navbar.dart';
@@ -38,20 +39,21 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
 
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Mitteilungen'.toUpperCase()),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+      appBar: AppBarReplaceableImage(
+        bgColor: AppBackgroundColors().darkBackground,
+        bgColorBar: AppColors().darkPrimaryColor,
+        color: AppColors().darkPrimaryColor,
+        title: 'Mitteilungen'.toUpperCase(),
+        bild: DecorationImage(
+          image: new AssetImage("assets/icons/walking-solid.png"),
+          fit: BoxFit.cover,
         ),
-        backgroundColor: AppColors().darkPrimaryColor,
+        hoehe: 230,
       ),
       backgroundColor: AppBackgroundColors().darkBackground,
 
       body: ListView(
+        padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
         children: [
           CheckboxButton(
               text: 'Soziales & Hauswirtschaft',

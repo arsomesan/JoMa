@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/global/glovar.dart';
+import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/button.dart';
 import 'package:joma/model/profil_model.dart';
@@ -15,6 +17,7 @@ import 'package:joma/screens/screen_saved_jobs.dart';
 import 'package:joma/screens/screen_settings.dart';
 import 'package:joma/services/remote_services.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 class ProfilLoader extends StatefulWidget {
   const ProfilLoader({Key? key}) : super(key: key);
@@ -36,27 +39,16 @@ class _ProfilLoaderState extends State<ProfilLoader> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors().darkPrimaryColor,
-        title: Text(
-          'Profil'.toUpperCase(),
-          style: AppTextStyles.darkH1,
+      appBar: AppBarReplaceableImage(
+        bgColor: AppBackgroundColors().darkBackground,
+        bgColorBar: AppColors().darkPrimaryColor,
+        color: AppColors().darkPrimaryColor,
+        title: 'Profil'.toUpperCase(),
+        bild: DecorationImage(
+          image: new AssetImage("assets/icons/walking-solid.png"),
+          fit: BoxFit.cover,
         ),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: AppIcons().settingsWheel,
-            onPressed: () {
-              Get.to(() => const Einstellungen());
-            },
-          )
-        ],
+        hoehe: 230,
       ),
 
       backgroundColor: AppBackgroundColors().darkBackground,
