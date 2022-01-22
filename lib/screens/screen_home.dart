@@ -18,187 +18,189 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        title: const Center(
-          child: Text(
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          title: Text(
             'JOMA',
             textAlign: TextAlign.center,
             style: AppTextStyles.darkH1,
           ),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: AppIcons().settingsWheel,
+              onPressed: () {
+                Get.to(() => const Einstellungen());
+              },
+            )
+          ],
         ),
-        actions: [
-          IconButton(
-            icon: AppIcons().settingsWheel,
-            onPressed: () {
-              Get.to(() => const Einstellungen());
-            },
-          )
-        ],
-      ),
-      extendBodyBehindAppBar: true,
-      body: CustomPaint(
-        painter: BackgroundPainter(),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(height: 130),
-              Stack(children: [
-                Container(
-                  alignment: Alignment.center,
-                  child: RotationTransition(
-                    turns: AlwaysStoppedAnimation(45 / 360),
-                    child: Container(
-                      width: 300,
-                      height: 300,
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            top: 0,
-                            left: 0,
-                            child: HomeScreenCard(
-                              elevatedButtonRoute: () {
-                                Get.to(
-                                    () => ScreenJobListCategory(categoryID: 0));
-                              },
-                              color: AppColors().darkRed,
-                              icon: AppIcons().homeRedSection,
-                              title: 'TECHNIK\nHANDWERK',
-                              startOrEnd: 1,
+        extendBodyBehindAppBar: true,
+        body: CustomPaint(
+          painter: BackgroundPainter(),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(height: 130),
+                Stack(children: [
+                  Container(
+                    alignment: Alignment.center,
+                    child: RotationTransition(
+                      turns: AlwaysStoppedAnimation(45 / 360),
+                      child: Container(
+                        width: 300,
+                        height: 300,
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              top: 0,
+                              left: 0,
+                              child: HomeScreenCard(
+                                elevatedButtonRoute: () {
+                                  Get.to(
+                                      () => ScreenJobListCategory(categoryID: 0));
+                                },
+                                color: AppColors().darkRed,
+                                icon: AppIcons().homeRedSection,
+                                title: 'TECHNIK\nHANDWERK',
+                                startOrEnd: 1,
+                              ),
                             ),
-                          ),
-                          Positioned(
-                            top: 0,
-                            left: 150,
-                            child: HomeScreenCard(
-                              elevatedButtonRoute: () {
-                                Get.to(
-                                    () => ScreenJobListCategory(categoryID: 1));
-                              },
-                              color: AppColors().darkGreen,
-                              icon: AppIcons().homeGreenSection,
-                              title: 'GÄRTNEREI\nLANDWIRT-\nSCHAFT',
-                              startOrEnd: 0,
+                            Positioned(
+                              top: 0,
+                              left: 150,
+                              child: HomeScreenCard(
+                                elevatedButtonRoute: () {
+                                  Get.to(
+                                      () => ScreenJobListCategory(categoryID: 1));
+                                },
+                                color: AppColors().darkGreen,
+                                icon: AppIcons().homeGreenSection,
+                                title: 'GÄRTNEREI\nLANDWIRT-\nSCHAFT',
+                                startOrEnd: 0,
+                              ),
                             ),
-                          ),
-                          Positioned(
-                            top: 150,
-                            left: 0,
-                            child: HomeScreenCard(
-                              elevatedButtonRoute: () {
-                                Get.to(
-                                    () => ScreenJobListCategory(categoryID: 2));
-                              },
-                              color: AppColors().darkBlue,
-                              icon: AppIcons().homeBlueSection,
-                              title: 'SOZIALES\nHAUSWIRT-\nSCHAFT',
-                              startOrEnd: 0,
+                            Positioned(
+                              top: 150,
+                              left: 0,
+                              child: HomeScreenCard(
+                                elevatedButtonRoute: () {
+                                  Get.to(
+                                      () => ScreenJobListCategory(categoryID: 2));
+                                },
+                                color: AppColors().darkBlue,
+                                icon: AppIcons().homeBlueSection,
+                                title: 'SOZIALES\nHAUSWIRT-\nSCHAFT',
+                                startOrEnd: 0,
+                              ),
                             ),
-                          ),
-                          Positioned(
-                            top: 150,
-                            left: 150,
-                            child: HomeScreenCard(
-                              elevatedButtonRoute: () {
-                                Get.to(
-                                    () => ScreenJobListCategory(categoryID: 3));
-                              },
-                              color: AppColors().darkYellow,
-                              icon: AppIcons().homeYellowSection,
-                              title: 'SERVICE\nLEBENSMITTEL',
-                              startOrEnd: 1,
+                            Positioned(
+                              top: 150,
+                              left: 150,
+                              child: HomeScreenCard(
+                                elevatedButtonRoute: () {
+                                  Get.to(
+                                      () => ScreenJobListCategory(categoryID: 3));
+                                },
+                                color: AppColors().darkYellow,
+                                icon: AppIcons().homeYellowSection,
+                                title: 'SERVICE\nLEBENSMITTEL',
+                                startOrEnd: 1,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ]),
-              Container(height: 90),
-              const Text(
-                "UNSICHER?",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 27,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Container(height: 15),
-              ElevatedButton(
-                  onPressed: () {
-                    Get.to(() => ScreenJobListCategory(categoryID: 0));
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 120, vertical: 20),
-                    shape: const StadiumBorder(),
+                ]),
+                Container(height: 90),
+                const Text(
+                  "UNSICHER?",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 27,
+                    fontWeight: FontWeight.bold,
                   ),
-                  child: const Text(
-                    "Wahl-O-Mat",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 17,
+                ),
+                Container(height: 15),
+                ElevatedButton(
+                    onPressed: () {
+                      Get.to(() => ScreenJobListCategory(categoryID: 0));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 120, vertical: 20),
+                      shape: const StadiumBorder(),
                     ),
-                  )),
-            ],
-          ),
-        ),
-      ),
-      floatingActionButton: Container(
-        height: 80.0,
-        width: 80.0,
-        child: FloatingActionButton(
-          elevation: 0,
-          child: CircleAvatar(
-            radius: 80.0,
-            backgroundImage: AssetImage(
-              'assets/images/darkJomaLogo.png',
+                    child: const Text(
+                      "Wahl-O-Mat",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                      ),
+                    )),
+              ],
             ),
           ),
-          onPressed: () {
-            //Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()),);
-          },
         ),
+        floatingActionButton: Container(
+          height: 80.0,
+          width: 80.0,
+          child: FloatingActionButton(
+            elevation: 0,
+            child: CircleAvatar(
+              radius: 80.0,
+              backgroundImage: AssetImage(
+                'assets/images/darkJomaLogo.png',
+              ),
+            ),
+            onPressed: () {
+              //Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()),);
+            },
+          ),
+        ),
+        bottomNavigationBar: AppNavBar(
+            backgroundColor: AppColors().darkPrimaryColor,
+            selectedItemColor: AppColors().white,
+            unselectedItemColor: AppColors().white),
+        /*bottomNavigationBar: BottomNavigationBar(
+            currentIndex: 0,
+            onTap: (value) {
+              if (value == 0)
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const JobListSearchScreen()),
+                );
+              if (value == 1)
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfilLoader()),
+                );
+              //if (value == 2) Navigator.of(context).push(...);
+            },
+            backgroundColor: AppColors().darkPrimaryColor,
+            selectedItemColor: AppColors().white,
+            unselectedItemColor: AppColors().white,
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: AppIcons().searchGlass,
+                label: 'Suchen',
+              ),
+              BottomNavigationBarItem(
+                icon: AppIcons().profile,
+                label: 'Profil',
+              ),
+            ]),*/
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
-      bottomNavigationBar: AppNavBar(
-          backgroundColor: AppColors().darkPrimaryColor,
-          selectedItemColor: AppColors().white,
-          unselectedItemColor: AppColors().white),
-      /*bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 0,
-          onTap: (value) {
-            if (value == 0)
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const JobListSearchScreen()),
-              );
-            if (value == 1)
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfilLoader()),
-              );
-            //if (value == 2) Navigator.of(context).push(...);
-          },
-          backgroundColor: AppColors().darkPrimaryColor,
-          selectedItemColor: AppColors().white,
-          unselectedItemColor: AppColors().white,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: AppIcons().searchGlass,
-              label: 'Suchen',
-            ),
-            BottomNavigationBarItem(
-              icon: AppIcons().profile,
-              label: 'Profil',
-            ),
-          ]),*/
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

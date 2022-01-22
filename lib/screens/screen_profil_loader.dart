@@ -35,122 +35,111 @@ class _ProfilLoaderState extends State<ProfilLoader> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors().darkPrimaryColor,
-        title: Text(
-          'Profil'.toUpperCase(),
-          style: AppTextStyles.darkH1,
-        ),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: AppIcons().settingsWheel,
-            onPressed: () {
-              Get.to(() => const Einstellungen());
-            },
-          )
-        ],
-      ),
-
-      backgroundColor: AppBackgroundColors().darkBackground,
-      body: ListView (
-        padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
-        children: [
-          AppButtonWithIcon(
-              text: 'Profil anzeigen',
-              icon: AppIcons().profile,
-              color: AppColors().darkPrimaryColor,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilData())); // screen_profileView
-              }
-          ),
-          AppButtonWithIcon(
-              text: 'Gespeicherte Jobs',
-              icon: AppIcons().bookMark,
-              color: AppColors().darkPrimaryColor,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenSavedJobs())); // screen_savedJob
-              }
-          ),
-          AppButtonWithIcon(
-              text: 'Bewerbungen',
-              icon: AppIcons().applicationsSent,
-              color: AppColors().darkPrimaryColor,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenApplications())); // screen_savedJob
-              }
-          ),
-          AppButtonWithIcon(
-              text: 'Einstellungen',
-              icon: AppIcons().settingsWheel,
-              color: AppColors().darkPrimaryColor,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Einstellungen())); // screen_savedJob
-              }
-          ),
-        ],
-      ),
-
-      //------Bottom Navigation------//
-      floatingActionButton: Container(
-        height: 80.0,
-        width: 80.0,
-        child: FloatingActionButton(
-          elevation: 0,
-          child: CircleAvatar(
-            radius: 80.0,
-            backgroundImage: AssetImage(
-              'assets/images/darkJomaLogo.png',
-            ),
-          ),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => ScreenHome()),
-            );
-          },
-        ),
-      ),
-
-      bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 0,
-          onTap: (value) {
-            if (value == 0) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ScreenJobListSearch()),
-              );
-            }
-            if (value == 1) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfilLoader()),
-              );
-            }
-            //if (value == 2) Navigator.of(context).push(...);
-          },
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
           backgroundColor: AppColors().darkPrimaryColor,
-          selectedItemColor: AppColors().white,
-          unselectedItemColor: AppColors().white,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: AppIcons().searchGlass,
-              label: 'Suchen',
+          title: Text(
+            'Profil'.toUpperCase(),
+            style: AppTextStyles.darkH1,
+          ),
+          centerTitle: true,
+        ),
+
+        backgroundColor: AppBackgroundColors().darkBackground,
+        body: ListView (
+          padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
+          children: [
+            AppButtonWithIcon(
+                text: 'Profil anzeigen',
+                icon: AppIcons().profile,
+                color: AppColors().darkPrimaryColor,
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilData())); // screen_profileView
+                }
             ),
-            BottomNavigationBarItem(
-              icon: AppIcons().profile,
-              label: 'Profil',
+            AppButtonWithIcon(
+                text: 'Gespeicherte Jobs',
+                icon: AppIcons().bookMark,
+                color: AppColors().darkPrimaryColor,
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenSavedJobs())); // screen_savedJob
+                }
             ),
-          ]),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            AppButtonWithIcon(
+                text: 'Bewerbungen',
+                icon: AppIcons().applicationsSent,
+                color: AppColors().darkPrimaryColor,
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenApplications())); // screen_savedJob
+                }
+            ),
+            AppButtonWithIcon(
+                text: 'Einstellungen',
+                icon: AppIcons().settingsWheel,
+                color: AppColors().darkPrimaryColor,
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Einstellungen())); // screen_savedJob
+                }
+            ),
+          ],
+        ),
+
+        //------Bottom Navigation------//
+        floatingActionButton: Container(
+          height: 80.0,
+          width: 80.0,
+          child: FloatingActionButton(
+            elevation: 0,
+            child: CircleAvatar(
+              radius: 80.0,
+              backgroundImage: AssetImage(
+                'assets/images/darkJomaLogo.png',
+              ),
+            ),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => ScreenHome()),
+              );
+            },
+          ),
+        ),
+
+        bottomNavigationBar: BottomNavigationBar(
+            currentIndex: 0,
+            onTap: (value) {
+              if (value == 0) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ScreenJobListSearch()),
+                );
+              }
+              if (value == 1) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfilLoader()),
+                );
+              }
+              //if (value == 2) Navigator.of(context).push(...);
+            },
+            backgroundColor: AppColors().darkPrimaryColor,
+            selectedItemColor: AppColors().white,
+            unselectedItemColor: AppColors().white,
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: AppIcons().searchGlass,
+                label: 'Suchen',
+              ),
+              BottomNavigationBarItem(
+                icon: AppIcons().profile,
+                label: 'Profil',
+              ),
+            ]),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      ),
     );
   }
 }
