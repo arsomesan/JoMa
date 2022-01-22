@@ -106,6 +106,7 @@ class ScreenJobListCategory extends StatelessWidget {
                         textAlign: TextAlign.center),
                   );
                 }
+                result.add(const SizedBox(height: 50));
 
                 return Center(
                   child: Column(children: [
