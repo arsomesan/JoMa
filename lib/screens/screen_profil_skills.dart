@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/materials/appbar_replaceable_image.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:joma/materials/button.dart';
 import 'package:joma/materials/card.dart';
 import 'package:joma/materials/checkbox_button.dart';
+import 'package:joma/materials/navbar.dart';
 import 'package:joma/model/profil_model.dart';
 import 'package:joma/model/skill_model.dart';
 import 'package:joma/screens/screen_home.dart';
@@ -134,16 +136,12 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
           ));
         })),
       ),
+
       floatingActionButton: Container(
-        height: 80.0,
-        width: 80.0,
-        child: FloatingActionButton(
-          elevation: 0,
-          child: CircleAvatar(
-            radius: 80.0,
-            backgroundImage: AssetImage(
-              'assets/images/darkJomaLogo.png',
-            ),
+        height: 100.0,
+        width: 100.0,
+        child: IconButton(
+          icon: SvgPicture.asset("assets/images/darkLogo.svg",
           ),
           onPressed: () {
             Navigator.pushReplacement(
@@ -153,37 +151,12 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
           },
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 0,
-          onTap: (value) {
-            if (value == 0) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ScreenJobListSearch()),
-              );
-            }
-            if (value == 1) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfilLoader()),
-              );
-            }
-            //if (value == 2) Navigator.of(context).push(...);
-          },
+
+      bottomNavigationBar: AppNavBar(
           backgroundColor: AppColors().darkPrimaryColor,
-          selectedItemColor: AppColors().darkSecondaryColor,
-          unselectedItemColor: AppColors().white,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: AppIcons().searchGlass,
-              label: 'Suchen',
-            ),
-            BottomNavigationBarItem(
-              icon: AppIcons().profile,
-              label: 'Profil',
-            ),
-          ]),
+          selectedItemColor: AppColors().white,
+          unselectedItemColor: AppColors().white),
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -151,21 +152,20 @@ class ScreenHome extends StatelessWidget {
           ),
         ),
         floatingActionButton: Container(
-          height: 80.0,
-          width: 80.0,
-          child: FloatingActionButton(
-            elevation: 0,
-            child: CircleAvatar(
-              radius: 80.0,
-              backgroundImage: AssetImage(
-                'assets/images/darkJomaLogo.png',
-              ),
+          height: 100.0,
+          width: 100.0,
+          child: IconButton(
+            icon: SvgPicture.asset("assets/images/darkLogo.svg",
             ),
             onPressed: () {
-              //Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()),);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => ScreenHome()),
+              );
             },
           ),
         ),
+
         bottomNavigationBar: AppNavBar(
             backgroundColor: AppColors().darkPrimaryColor,
             selectedItemColor: AppColors().white,

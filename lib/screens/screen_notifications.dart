@@ -1,3 +1,4 @@
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/button.dart';
@@ -105,15 +106,10 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
 
       //------Bottom Navigation------//
       floatingActionButton: Container(
-        height: 80.0,
-        width: 80.0,
-        child: FloatingActionButton(
-          elevation: 0,
-          child: CircleAvatar(
-            radius: 80.0,
-            backgroundImage: AssetImage(
-              'assets/images/darkJomaLogo.png',
-            ),
+        height: 100.0,
+        width: 100.0,
+        child: IconButton(
+          icon: SvgPicture.asset("assets/images/darkLogo.svg",
           ),
           onPressed: () {
             Navigator.pushReplacement(
@@ -126,7 +122,7 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
 
       bottomNavigationBar: AppNavBar(
         backgroundColor: AppColors().darkPrimaryColor,
-        selectedItemColor: AppColors().darkSecondaryColor,
+        selectedItemColor: AppColors().white,
         unselectedItemColor: AppColors().white,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
