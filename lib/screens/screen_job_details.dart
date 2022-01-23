@@ -1,10 +1,12 @@
 // Page-Imports
 
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:joma/controllers/data_controller.dart';
+import 'package:joma/materials/navbar.dart';
 import 'package:joma/model/job_category_model.dart';
 import 'package:joma/model/job_model.dart';
 import 'package:joma/model/skill_model.dart';
@@ -57,15 +59,10 @@ class ScreenJobDetails extends StatelessWidget {
     return Scaffold(
         appBar: appBarBuilder(),
         floatingActionButton: Container(
-          height: 80.0,
-          width: 80.0,
-          child: FloatingActionButton(
-            elevation: 0,
-            child: CircleAvatar(
-              radius: 80.0,
-              backgroundImage: AssetImage(
-                'assets/images/darkJomaLogo.png',
-              ),
+          height: 100.0,
+          width: 100.0,
+          child: IconButton(
+            icon: SvgPicture.asset("assets/images/darkLogo.svg",
             ),
             onPressed: () {
               Navigator.pushReplacement(
@@ -75,37 +72,12 @@ class ScreenJobDetails extends StatelessWidget {
             },
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-            currentIndex: 0,
-            onTap: (value) {
-              if (value == 0) {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ScreenJobListSearch()),
-                );
-              }
-              if (value == 1) {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ProfilLoader()),
-                );
-              }
-              //if (value == 2) Navigator.of(context).push(...);
-            },
-            backgroundColor: currentColor,
-            selectedItemColor: AppColors().darkSecondaryColor,
-            unselectedItemColor: AppColors().white,
-            items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: AppIcons().searchGlass,
-                label: 'Suchen',
-              ),
-              BottomNavigationBarItem(
-                icon: AppIcons().profile,
-                label: 'Profil',
-              ),
-            ]),
+
+        bottomNavigationBar: AppNavBar(
+            backgroundColor: AppColors().darkPrimaryColor,
+            selectedItemColor: AppColors().white,
+            unselectedItemColor: AppColors().white),
+
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: ListView(
           children: [
@@ -484,34 +456,10 @@ Widget titleImageBuilder(Job job) {
 
 // Diese Klasse baut die Bottom-Navigationbar auf
   Widget navBarBuilder(BuildContext context) {
-    return BottomNavigationBar(
-        currentIndex: 0,
-        onTap: (value) {
-          if (value == 0)
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => ScreenJobListSearch()),
-            );
-          if (value == 1)
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const ProfilLoader()),
-            );
-          //if (value == 2) Navigator.of(context).push(...);
-        },
-        backgroundColor: currentColor,
-        selectedItemColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Suchen',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profil',
-          ),
-        ]);
+    return AppNavBar(
+    backgroundColor: AppColors().darkPrimaryColor,
+    selectedItemColor: AppColors().white,
+    unselectedItemColor: AppColors().white);
   }
 
 // ---------- HOME-BUTTON ----------

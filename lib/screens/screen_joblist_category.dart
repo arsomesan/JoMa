@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -6,6 +7,7 @@ import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/materials/appbar_job.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/card.dart';
+import 'package:joma/materials/navbar.dart';
 import 'package:joma/model/job_category_model.dart';
 import 'package:joma/model/job_model.dart';
 import 'package:joma/screens/screen_home.dart';
@@ -122,58 +124,27 @@ class ScreenJobListCategory extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: SizedBox(
-        height: 80.0,
-        width: 80.0,
-        child: FloatingActionButton(
-          elevation: 0,
-          child: const CircleAvatar(
-            radius: 80.0,
-            backgroundImage: AssetImage(
-              'assets/images/darkJomaLogo.png',
-            ),
+
+      floatingActionButton: Container(
+        height: 100.0,
+        width: 100.0,
+        child: IconButton(
+          icon: SvgPicture.asset("assets/images/darkLogo.svg",
           ),
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(
-                builder: (context) => ScreenHome(),
-              ),
+              MaterialPageRoute(builder: (context) => ScreenHome()),
             );
           },
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        onTap: (value) {
-          if (value == 0) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => ScreenJobListSearch()),
-            );
-          }
-          if (value == 1) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const ProfilLoader()),
-            );
-          }
-          //if (value == 2) Navigator.of(context).push(...);
-        },
-        backgroundColor: currentColor,
-        selectedItemColor: AppColors().white,
-        unselectedItemColor: AppColors().white,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: AppIcons().searchGlass,
-            label: 'Suchen',
-          ),
-          BottomNavigationBarItem(
-            icon: AppIcons().profile,
-            label: 'Profil',
-          ),
-        ],
-      ),
+
+      bottomNavigationBar: AppNavBar(
+          backgroundColor: AppColors().darkPrimaryColor,
+          selectedItemColor: AppColors().white,
+          unselectedItemColor: AppColors().white),
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
