@@ -115,7 +115,7 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
                           padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                               const EdgeInsets.fromLTRB(0, 25, 0, 25)),
                           backgroundColor: MaterialStateProperty.all<Color>(
-                              AppColors().darkPrimaryColor),
+                              AppColors().darkSecondaryColor),
                           textStyle: MaterialStateProperty.all<TextStyle>(
                               AppTextStyles.darkButtonText),
                           shape:
@@ -124,7 +124,7 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
                                   borderRadius: BorderRadius.circular(20.0),
                                   side: BorderSide(
                                       color:
-                                      AppColors().darkPrimaryColor))))),
+                                      AppColors().darkSecondaryColor))))),
                 )
               )
 
