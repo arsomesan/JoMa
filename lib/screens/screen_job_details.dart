@@ -205,9 +205,13 @@ Widget titleImageBuilder(Job job) {
               child: Icon(IconDataSolid(
                   int.parse("0x" + data.skills[skillID].icon.toString())))),
           const SizedBox(height: 5),
-          Text(
-            data.skills.elementAt(skillID).title.toString(),
-            style: AppTextStyles.darkMainText,
+          FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text(
+              data.skills.elementAt(skillID).title.toString(),
+              style: AppTextStyles.darkMainText,
+              textAlign: TextAlign.center,
+            ),
           )
         ],
       );
