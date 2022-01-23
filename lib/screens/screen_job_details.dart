@@ -445,19 +445,9 @@ Widget titleImageBuilder(Job job) {
             return Container(
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.symmetric(horizontal: 3.0, vertical: 15.0),
-              //decoration: BoxDecoration(color: Colors.blueGrey),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                      child: Image(
-                        image: NetworkImage(slide.url.toString()),
-                      ),
-                    ),
-                  ),
-                ],
+              decoration: BoxDecoration(color: currentBackgroundColor),
+              child: Image(
+                image: NetworkImage(slide.url.toString()),
               ),
             );
           },
