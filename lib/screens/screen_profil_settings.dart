@@ -588,14 +588,16 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
         ),
       ),
       floatingActionButton: Container(
-        height: 80.0,
-        width: 80.0,
-        child: FloatingActionButton(
-          elevation: 0,
-          child: SvgPicture.asset("assets/images/darkLogo.svg",
+        height: 100.0,
+        width: 100.0,
+        child: IconButton(
+          icon: SvgPicture.asset("assets/images/darkLogo.svg",
           ),
           onPressed: () {
-            Get.off(() => ScreenHome());
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => ScreenHome()),
+            );
           },
         ),
       ),
