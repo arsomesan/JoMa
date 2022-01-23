@@ -2,12 +2,14 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/card.dart';
+import 'package:joma/materials/navbar.dart';
 import 'package:joma/model/job_category_model.dart';
 import 'package:joma/model/job_model.dart';
 import 'package:joma/screens/screen_home.dart';
@@ -65,89 +67,56 @@ class ScreenJobListSearchState extends State<ScreenJobListSearch> {
       _colorRed
     ];
 
-    return Scaffold(
-      backgroundColor: AppBackgroundColors().darkBackground,
-      appBar: AppBar(
-        backgroundColor: AppColors().darkPrimaryColor,
-        title: Text('Alle Jobs'.toUpperCase(), style: AppTextStyles.darkH1),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: AppIcons().settingsWheel,
-            onPressed: () {
-              Get.to(() => const Einstellungen());
-            },
-          )
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            buildSearch(),
-            generateJobCards(context),
-            const SizedBox(height: 50),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        backgroundColor: AppBackgroundColors().darkBackground,
+        appBar: AppBar(
+          backgroundColor: AppColors().darkPrimaryColor,
+          title: Text('Alle Jobs'.toUpperCase(), style: AppTextStyles.darkH1),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: AppIcons().settingsWheel,
+              onPressed: () {
+                Get.to(() => const Einstellungen());
+              },
+            )
           ],
         ),
-      ),
-      floatingActionButton: Container(
-        height: 80.0,
-        width: 80.0,
-        child: FloatingActionButton(
-          elevation: 0,
-          child: CircleAvatar(
-            radius: 80.0,
-            backgroundImage: AssetImage(
-              'assets/images/darkJomaLogo.png',
-            ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              buildSearch(),
+              generateJobCards(context),
+              const SizedBox(height: 50),
+            ],
           ),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => ScreenHome()),
-            );
-          },
         ),
+        floatingActionButton: Container(
+          height: 100.0,
+          width: 100.0,
+          child: IconButton(
+            icon: SvgPicture.asset("assets/images/darkLogo.svg",
+            ),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => ScreenHome()),
+              );
+            },
+          ),
+        ),
+
+        bottomNavigationBar: AppNavBar(
+            backgroundColor: AppColors().darkPrimaryColor,
+            selectedItemColor: AppColors().white,
+            unselectedItemColor: AppColors().white),
+
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 0,
-          onTap: (value) {
-            if (value == 0) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ScreenJobListSearch()),
-              );
-            }
-            if (value == 1) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfilLoader()),
-              );
-            }
-            //if (value == 2) Navigator.of(context).push(...);
-          },
-          backgroundColor: AppColors().darkPrimaryColor,
-          selectedItemColor: AppColors().white,
-          unselectedItemColor: AppColors().white,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: AppIcons().searchGlass,
-              label: 'Suchen',
-            ),
-            BottomNavigationBarItem(
-              icon: AppIcons().profile,
-              label: 'Profil',
-            ),
-          ]),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 

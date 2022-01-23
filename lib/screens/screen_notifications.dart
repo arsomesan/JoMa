@@ -1,4 +1,6 @@
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/button.dart';
 import 'package:joma/materials/checkbox_button.dart';
 import 'package:joma/materials/navbar.dart';
@@ -25,7 +27,7 @@ class ScreenNotifications extends StatefulWidget {
 }
 
 class _ScreenNotificationsState extends State<ScreenNotifications> {
-  bool _isChecked = false;
+  List<bool> _isChecked = [false, false, false, false];
   @override
   void initState() {
     // TODO: implement initState
@@ -38,49 +40,65 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
 
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Mitteilungen'.toUpperCase()),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+      appBar: AppBarReplaceableImage(
+        bgColor: AppBackgroundColors().darkBackground,
+        bgColorBar: AppColors().darkPrimaryColor,
+        color: AppColors().darkPrimaryColor,
+        title: 'Mitteilungen'.toUpperCase(),
+        bild: DecorationImage(
+          image: new AssetImage("assets/icons/walking-solid.png"),
+          fit: BoxFit.cover,
         ),
-        backgroundColor: AppColors().darkPrimaryColor,
+        hoehe: 230,
       ),
       backgroundColor: AppBackgroundColors().darkBackground,
 
       body: ListView(
+        padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
         children: [
           CheckboxButton(
               text: 'Soziales & Hauswirtschaft',
-              value: _isChecked,
+              value: _isChecked[0],
               onChanged: (bool? value) {
                 setState(() {
-                  _isChecked = value!;
+                  _isChecked[0] = value!;
                 });
 
               },
-              icon: Icon(FontAwesomeIcons.tools),
+              icon: AppIcons().blueSection,
           ),
           CheckboxButton(
             text: 'Handwerk & Technik',
-            value: false,
-            onChanged: (bool? value) {},
-            icon: Icon(FontAwesomeIcons.tools),
+            value: _isChecked[1],
+            onChanged: (bool? value) {
+              setState(() {
+                _isChecked[1] = value!;
+              });
+
+            },
+            icon: AppIcons().redSection,
           ),
           CheckboxButton(
             text: 'Service & Lebensmittel',
-            value: false,
-            onChanged: (bool? value) {},
-            icon: Icon(FontAwesomeIcons.tools),
+            value: _isChecked[2],
+            onChanged: (bool? value) {
+              setState(() {
+                _isChecked[2] = value!;
+              });
+
+            },
+            icon: AppIcons().yellowSection,
           ),
           CheckboxButton(
             text: 'Gärtnerei & Landwirtschaft',
-            value: false,
-            onChanged: (bool? value) {},
-            icon: Icon(FontAwesomeIcons.tools),
+            value: _isChecked[3],
+            onChanged: (bool? value) {
+              setState(() {
+                _isChecked[3] = value!;
+              });
+
+            },
+            icon: AppIcons().greenSection,
           )
         ],
       ),
@@ -88,15 +106,10 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
 
       //------Bottom Navigation------//
       floatingActionButton: Container(
-        height: 80.0,
-        width: 80.0,
-        child: FloatingActionButton(
-          elevation: 0,
-          child: CircleAvatar(
-            radius: 80.0,
-            backgroundImage: AssetImage(
-              'assets/images/darkJomaLogo.png',
-            ),
+        height: 100.0,
+        width: 100.0,
+        child: IconButton(
+          icon: SvgPicture.asset("assets/images/darkLogo.svg",
           ),
           onPressed: () {
             Navigator.pushReplacement(
@@ -109,7 +122,7 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
 
       bottomNavigationBar: AppNavBar(
         backgroundColor: AppColors().darkPrimaryColor,
-        selectedItemColor: AppColors().darkSecondaryColor,
+        selectedItemColor: AppColors().white,
         unselectedItemColor: AppColors().white,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

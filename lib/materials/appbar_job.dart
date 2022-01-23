@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/materials/assets.dart';
+import 'package:joma/screens/screen_settings.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
-// Runder Kasten als Klasse //
 
-class RoundRecMain extends StatelessWidget {
+
+
+
+
+class RoundRecJob extends StatelessWidget {
+    Color bgColor;
+    Color bgColorBar;
+    
+    RoundRecJob({
+    required this.bgColor,
+    required this.bgColorBar,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -13,10 +29,10 @@ class RoundRecMain extends StatelessWidget {
           alignment: Alignment.center,
           padding: const EdgeInsets.all(0),
           decoration: BoxDecoration(
-            color: AppColors().darkPrimaryColor,
+            color: bgColorBar,
             border: Border.all(
               width: 5,
-              color: Colors.orangeAccent
+              color: bgColorBar,
             ),
             borderRadius: BorderRadius.vertical(
               top: Radius.zero,
@@ -29,7 +45,7 @@ class RoundRecMain extends StatelessWidget {
           alignment: Alignment.center,
           padding: const EdgeInsets.all(0),
           decoration: BoxDecoration(
-            color: AppColors().darkPrimaryColor,
+            color: bgColorBar,
           ),
         )
       ],
@@ -37,41 +53,17 @@ class RoundRecMain extends StatelessWidget {
   }
 }
 
-// ENDE Runder Kasten als Klasse //
 
-//--------------------- NUTZUNG
-// Appbar kann genutzt werden durch den Auruf: AppBarMainArea();
-// genutzt werden kann sie folgendermaßen:
-// hier ein Beispielsweise
 
-// class _ScreenTest extends State<ScreenTest> {
-//   get title => null;
-//   get color => null;
-//   get bgColor => null;
-//   get bgColorBar => null;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AppBarMainArea(
-//       bgColor: AppBackgroundColors().darkBackground,
-//       bgColorBar: AppColors().darkPrimaryColor,
-//       color: AppColors().darkPrimaryColor,
-//       title: 'Test hi',
-//     );
-//   }
-// }
-
-// AppBarMainArea - normale Appbar am beginn der App //
-
-class AppBarJobArea extends StatelessWidget {
+class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
   final String title; // Titel der Seite in der AppBar
   final Color color; //
   final Color bgColor;
   final Color bgColorBar;
   final VoidCallback onPressed1;
-  final VoidCallback onPressed2;
-
-
+  // final VoidCallback onPressed2;
+  final Icon icon;
+  final double hoehe;
 
   AppBarJobArea({
     required this.title,
@@ -79,39 +71,40 @@ class AppBarJobArea extends StatelessWidget {
     required this.bgColor,
     required this.bgColorBar,
     required this.onPressed1,
-    required this.onPressed2,
+    // required this.onPressed2,
+    required this.icon,
+    required this.hoehe,
   });
 
   @override
+  Size get preferredSize => Size.fromHeight(hoehe);
+
+
+  @override
   Widget build(BuildContext context) {
-    var settings_wheel;
     return SafeArea(
       child: Scaffold(
           backgroundColor: bgColor,
           body: Stack(
             //fit: StackFit.loose,
             children: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.arrow_back), 
-                onPressed: onPressed1),
               Container(
-                height: 255,
+                height: 250,
                 width: double.infinity,
                 color: Colors.transparent,
               ),
-              IconButton(
-                icon: AppIcons().settingsWheel,
-               onPressed: onPressed2),
-              RoundRecMain(),
+              RoundRecJob(
+                bgColor: bgColor, 
+                bgColorBar: bgColorBar,),
               Positioned.fill(
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
                     height: 120,
                     width: 120,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
-                        image: AppLogo().darkLogoAssestImage,
+                        image: Svg("assets/images/darkLogo.svg"),
                         fit: BoxFit.contain,
                       ),
                       //color: Colors.green,
@@ -128,10 +121,31 @@ class AppBarJobArea extends StatelessWidget {
                   child: Text(title,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
                       )),
+                ),
+              ),
+              Positioned.fill(
+                child: Align(
+                    alignment: Alignment.topLeft,
+                    child: IconButton(
+                      icon: AppIcons().backArrow,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    )),
+              ),
+              Positioned.fill(
+                child: Align(
+                    alignment: Alignment.topRight,
+                    child: IconButton(
+                      icon: AppIcons().settingsWheel,
+                      onPressed: () {
+                        Get.to(() => const Einstellungen());
+                      },
+                    )
                 ),
               ),
             ],

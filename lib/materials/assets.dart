@@ -6,6 +6,7 @@ importieren und könnt alles hieraus verwenden, so, wie wir es in Adobe XD vorge
 */
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // ---------- FONT ----------
 
@@ -101,18 +102,18 @@ zum Einbinden:
 class AppIcons {
   // generelle, (fast) auf jeder Seite zu findende Icons
   Icon backArrow = Icon(
-      Icons.arrow_back,
+      FontAwesomeIcons.arrowLeft,
       color: AppColors().white);
   Icon settingsWheel = Icon(
-      Icons.settings,
+      FontAwesomeIcons.cog,
       color: AppColors().white);
 
   // Nav-Bar
   Icon searchGlass = Icon(
-      Icons.search,
+      FontAwesomeIcons.search,
       color: AppColors().white);
   Icon profile = Icon(
-      Icons.person,
+      FontAwesomeIcons.solidUserCircle,
       color: AppColors().white);
 
   // Ansicht wählen
@@ -128,50 +129,50 @@ class AppIcons {
 
   // Home-Screen
   Icon homeRedSection = Icon(
-      Icons.build,
+      FontAwesomeIcons.hammer,
       size: 50.0,
       color: AppColors().white);
   Icon homeGreenSection = Icon(
-      Icons.local_florist,
+      FontAwesomeIcons.tractor,
       size: 50.0,
       color: AppColors().white); // Icons.goat würde auch gehen
   Icon homeBlueSection = Icon(
-      Icons.people,
+      FontAwesomeIcons.handsHelping,
       size: 50.0,
       color: AppColors().white);
   Icon homeYellowSection = Icon(
-      Icons.local_dining,
+      FontAwesomeIcons.hamburger,
       size: 50.0,
       color: AppColors().white);
 
   // auf der jeweiligen Jobbereichsseite
   Icon redSection = Icon(
-      Icons.build,
+      FontAwesomeIcons.hammer,
       color: AppColors().white);
   Icon greenSection = Icon(
-      Icons.local_florist,
+      FontAwesomeIcons.tractor,
       color: AppColors().white); // Icons.goat würde auch gehen
   Icon blueSection = Icon(
-      Icons.people,
+      FontAwesomeIcons.handsHelping,
       color: AppColors().white);
   Icon yellowSection = Icon(
-      Icons.local_dining,
+      FontAwesomeIcons.hamburger,
       color: AppColors().white);
   Icon forwardArrow = Icon(
-      Icons.arrow_forward_outlined,
+      FontAwesomeIcons.arrowRight,
       color: AppColors().white);
 
   // Profil & Settings
   Icon applicationsSent = Icon(
       Icons.work);
   Icon bookMark = Icon(
-      Icons.bookmark);
+      FontAwesomeIcons.solidBookmark);
   Icon notifications = Icon(
       Icons.notifications_active);
   Icon imprint = Icon(
       Icons.speaker_notes);
   Icon privacy = Icon(
-      Icons.security);
+      FontAwesomeIcons.userShield);
 }
 
 // ---------- BUTTON ----------

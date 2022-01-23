@@ -8,18 +8,17 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:joma/controllers/data_controller.dart';
-import 'package:joma/global/glovar.dart';
 import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/button.dart';
+import 'package:joma/materials/navbar.dart';
+import 'package:joma/materials/pop_up.dart';
 import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_data.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_profil_skills.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
-import 'dart:math' as math;
-
 import 'screen_joblist_search.dart';
 
 class ScreenProfilSettings extends StatefulWidget {
@@ -58,6 +57,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
   bool hausnummerCheck = false;
   bool stadtCheck = false;
   bool plzCheck = false;
+  bool isright = false;
 
   @override
   Widget build(BuildContext context) {
@@ -80,20 +80,8 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
           image: NetworkImage(user.bild!),
           fit: BoxFit.cover,
         ),
-        hoehe: 250,
+        hoehe: 230,
       ),
-      /*appBar: AppBar(
-        title: Text("Profil bearbeiten"),
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Get.off(() => ProfilData());
-          },
-        ),
-        backgroundColor: Glovar.white,
-        foregroundColor: Glovar.blackvar,
-      ),*/
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -175,7 +163,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           ),
                         ),
                         hintText: user.vorname!,
-                        hintStyle: TextStyle(color: AppColors().white),
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                       style: TextStyle(color: AppColors().white),
                     ),
@@ -214,7 +202,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           ),
                         ),
                         hintText: user.name!,
-                        hintStyle: TextStyle(color: AppColors().white),
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                       style: TextStyle(color: AppColors().white),
                     ),
@@ -240,9 +228,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                       keyboardType: TextInputType.emailAddress,
                       controller: EmailController,
                       onChanged: (text) {
-                        emailCheck = RegExp(
-                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                            .hasMatch(EmailController.text);
+                        emailCheck = true;
                       },
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
@@ -258,7 +244,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           ),
                         ),
                         hintText: user.kontakt!.email,
-                        hintStyle: TextStyle(color: AppColors().white),
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                       style: TextStyle(color: AppColors().white),
                     ),
@@ -300,7 +286,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           ),
                         ),
                         hintText: user.kontakt!.tel,
-                        hintStyle: TextStyle(color: AppColors().white),
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                       style: TextStyle(color: AppColors().white),
                     ),
@@ -343,7 +329,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                                 ),
                               ),
                               hintText: user.adresse!.strasse,
-                              hintStyle: TextStyle(color: AppColors().white),
+                              hintStyle: TextStyle(color: Colors.grey),
                             ),
                             style: TextStyle(color: AppColors().white),
                           ),
@@ -386,7 +372,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                                     ),
                                     hintText: user.adresse!.hausnummer,
                                     hintStyle:
-                                        TextStyle(color: AppColors().white),
+                                        TextStyle(color: Colors.grey),
                                   ))),
                         ])))
                   ]),
@@ -426,7 +412,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           ),
                         ),
                         hintText: user.adresse!.ort,
-                        hintStyle: TextStyle(color: AppColors().white),
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                       style: TextStyle(color: AppColors().white),
                     ),
@@ -468,7 +454,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           ),
                         ),
                         hintText: user.adresse!.plz,
-                        hintStyle: TextStyle(color: AppColors().white),
+                        hintStyle: TextStyle(color: Colors.grey),
                       ),
                       style: TextStyle(color: AppColors().white),
                     ),
@@ -547,7 +533,16 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           color: AppColors().darkSecondaryColor,
                           onPressed: () {
                             if (emailCheck) {
-                              tmpUser[0].kontakt!.email = EmailController.text;
+
+                              isright = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(EmailController.text);
+                              if(isright){
+                                tmpUser[0].kontakt!.email =
+                                    EmailController.text;
+                              } else {
+                                showDialog(context: context,
+                                    builder: (context) => PopUpAlert(title: "Email nicht korrekt", content: "Die eingegebene Email entspricht nicht dem Email Format!", route: ProfilData(), current: ScreenProfilSettings())
+                                );
+                              }
                             }
                             if (vornameCheck) {
                               tmpUser[0].vorname = VornameController.text;
@@ -572,10 +567,15 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                             if (plzCheck) {
                               tmpUser[0].adresse!.plz = PlzController.text;
                             }
+
                             var lokalusersavetmp = profilToJson(tmpUser);
                             UserSimplePreferences.setUser(
                                 lokalusersavetmp.toString());
-                            Get.off(() => ProfilData());
+
+                            if(emailCheck && isright) Get.off(() => ProfilData());
+                            if(emailCheck != true) Get.off(() => ProfilData());
+
+
                           },
                         ),
                       ),
@@ -588,38 +588,25 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
         ),
       ),
       floatingActionButton: Container(
-        height: 80.0,
-        width: 80.0,
-        child: FloatingActionButton(
-          elevation: 0,
-          child: SvgPicture.asset("assets/images/darkLogo.svg",
+        height: 100.0,
+        width: 100.0,
+        child: IconButton(
+          icon: SvgPicture.asset("assets/images/darkLogo.svg",
           ),
           onPressed: () {
-            Get.off(() => ScreenHome());
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => ScreenHome()),
+            );
           },
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 1,
-          onTap: (value) {
-            if (value == 0) Get.off(() => ScreenJobListSearch());
-            if (value == 1) Get.off(() => ProfilLoader());
-            //);
-            //if (value == 2) Navigator.of(context).push(...);
-          },
+
+      bottomNavigationBar: AppNavBar(
           backgroundColor: AppColors().darkPrimaryColor,
           selectedItemColor: AppColors().white,
-          unselectedItemColor: AppColors().white,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: AppIcons().searchGlass,
-              label: 'Suchen',
-            ),
-            BottomNavigationBarItem(
-              icon: AppIcons().profile,
-              label: 'Profil',
-            ),
-          ]),
+          unselectedItemColor: AppColors().white),
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

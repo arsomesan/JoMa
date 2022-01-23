@@ -10,6 +10,7 @@ import 'package:joma/materials/appbar.dart';
 import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/button.dart';
+import 'package:joma/materials/navbar.dart';
 import 'package:joma/model/profil_model.dart';
 
 import 'package:joma/screens/screen_home.dart';
@@ -43,20 +44,8 @@ class ProfilData extends StatelessWidget {
           image: NetworkImage(user.bild!),
           fit: BoxFit.cover,
         ),
-        hoehe: 250,
+        hoehe: 230,
       ),
-      /*appBar: AppBar(
-          title: const Text("Profil"),
-          centerTitle: true,
-          backgroundColor: Glovar.white,
-          foregroundColor: Glovar.blackvar,
-          actions: [
-            IconButton(
-                icon: const Icon(Icons.settings),
-                onPressed: () {
-                  Get.to(const Einstellungen());
-                }),
-          ]),*/
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -94,7 +83,7 @@ class ProfilData extends StatelessWidget {
               ),
             ),*/
             Container(
-              margin: const EdgeInsets.only(left: 20, top: 30),
+              padding: EdgeInsets.fromLTRB(20, 30, 0, 0),
               child: Column(
                 children: [
                   Align(
@@ -241,38 +230,24 @@ class ProfilData extends StatelessWidget {
         ),
       ),
       floatingActionButton: Container(
-        height: 80.0,
-        width: 80.0,
-        child: FloatingActionButton(
-          elevation: 0,
-          child: SvgPicture.asset("assets/images/darkLogo.svg",
+        height: 100.0,
+        width: 100.0,
+        child: IconButton(
+          icon: SvgPicture.asset("assets/images/darkLogo.svg",
           ),
           onPressed: () {
-            Get.off(() => ScreenHome());
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => ScreenHome()),
+            );
           },
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 1,
-          onTap: (value) {
-            if (value == 0) Get.off(() => ScreenJobListSearch());
-            //if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilLoader()),
-            //);
-            //if (value == 2) Navigator.of(context).push(...);
-          },
+
+      bottomNavigationBar: AppNavBar(
           backgroundColor: AppColors().darkPrimaryColor,
           selectedItemColor: AppColors().white,
-          unselectedItemColor: AppColors().white,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: AppIcons().searchGlass,
-              label: 'Suchen',
-            ),
-            BottomNavigationBarItem(
-              icon: AppIcons().profile,
-              label: 'Profil',
-            ),
-          ]),
+          unselectedItemColor: AppColors().white),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

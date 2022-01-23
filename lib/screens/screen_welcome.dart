@@ -8,6 +8,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/materials/appbar.dart';
 import 'package:joma/materials/button.dart';
+import 'package:joma/screens/screen_credits.dart';
 import 'package:joma/screens/screen_login.dart';
 import 'package:joma/screens/screen_register.dart';
 import 'package:joma/screens/screen_select_view.dart';
@@ -120,11 +121,14 @@ class _ScreenWelcome extends State<ScreenWelcome> {
                 child: RichText(
                   text: TextSpan(children: [
                     TextSpan(
-                        text: 'created by Hochschule Fulda',
+                        text: 'Ein Projekt der Hochschule Fulda',
                         style: TextStyle(color: Colors.white),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            print('Datenschutz.');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ScreenCredits()),
+                            );
                           })
                   ]),
                 )),
