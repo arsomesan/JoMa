@@ -1,7 +1,4 @@
-import 'package:flutter_svg/svg.dart';
-import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/button.dart';
-import 'package:joma/materials/navbar.dart';
 import 'package:joma/screens//screen_settings_datenschutz.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
@@ -23,23 +20,22 @@ class Einstellungen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarReplaceableImage(
-        bgColor: AppBackgroundColors().darkBackground,
-        bgColorBar: AppColors().darkPrimaryColor,
-        color: AppColors().darkPrimaryColor,
-        title: 'Einstellungen'.toUpperCase(),
-        bild: DecorationImage(
-          image: new AssetImage("assets/icons/walking-solid.png"),
-          fit: BoxFit.cover,
-        ),
-        hoehe: 230,
-      ),
+      appBar: AppBar(
+            title: Text('Einstellungen'.toUpperCase(), style: AppTextStyles.darkH1),
+            centerTitle: true,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            backgroundColor: AppColors().darkPrimaryColor,
+          ),
       backgroundColor: AppBackgroundColors().darkBackground,
       body: ListView (
-        padding: EdgeInsets.fromLTRB(0, 50, 0, 50),
         children: [
-          //const SizedBox(height: 15),
-          /*CircleAvatar(
+          const SizedBox(height: 15),
+          CircleAvatar(
             radius: 50,
             backgroundColor: AppColors().darkSecondaryColor,
             child: CircleAvatar(
@@ -51,7 +47,7 @@ class Einstellungen extends StatelessWidget {
                   size: 50),
             ),
           ),
-          const SizedBox(height: 35),*/
+          const SizedBox(height: 35),
           AppButtonWithIcon(
             text: 'Profil bearbeiten',
               icon: AppIcons().profile,
@@ -84,12 +80,11 @@ class Einstellungen extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Impressum()));
               }
           ),
-          AppButton(
+          AppButtonWithIcon(
               text: 'Datenschutz',
-              color: AppColors().darkSecondaryColor,
+              icon: AppIcons().privacy,
+              color: AppColors().darkPrimaryColor,
               onPressed: () {
-                //Navigator.push(context, MaterialPageRoute(builder: (context) => Datenschutz()));
-                // TODO: Klassen Datenschutz kann nicht aufgerufen werden
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Impressum()));
               }
           ),
@@ -105,10 +100,15 @@ class Einstellungen extends StatelessWidget {
 
       //------Bottom Navigation------//
       floatingActionButton: Container(
-        height: 100.0,
-        width: 100.0,
-        child: IconButton(
-          icon: SvgPicture.asset("assets/images/darkLogo.svg",
+        height: 80.0,
+        width: 80.0,
+        child: FloatingActionButton(
+          elevation: 0,
+          child: CircleAvatar(
+            radius: 80.0,
+            backgroundImage: AssetImage(
+              'assets/images/darkJomaLogo.png',
+            ),
           ),
           onPressed: () {
             Navigator.pushReplacement(
@@ -119,11 +119,37 @@ class Einstellungen extends StatelessWidget {
         ),
       ),
 
-      bottomNavigationBar: AppNavBar(
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 0,
+          onTap: (value) {
+            if (value == 0) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ScreenJobListSearch()),
+              );
+            }
+            if (value == 1) {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilLoader()),
+              );
+            }
+            //if (value == 2) Navigator.of(context).push(...);
+          },
           backgroundColor: AppColors().darkPrimaryColor,
           selectedItemColor: AppColors().white,
-          unselectedItemColor: AppColors().white),
-
+          unselectedItemColor: AppColors().white,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: AppIcons().searchGlass,
+              label: 'Suchen',
+            ),
+            BottomNavigationBarItem(
+              icon: AppIcons().profile,
+              label: 'Profil',
+            ),
+          ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
