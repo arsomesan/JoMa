@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:joma/controllers/data_controller.dart';
+import 'package:joma/materials/appbar_job.dart';
 import 'package:joma/materials/navbar.dart';
 import 'package:joma/model/job_category_model.dart';
 import 'package:joma/model/job_model.dart';
@@ -37,6 +38,12 @@ import 'package:joma/materials/button.dart';
 
 class ScreenJobDetails extends StatelessWidget {
   final int? jobID;
+  final _pics = [
+    "assets/icons/hammer-solid.svg",
+    "assets/icons/tractor-solid.svg",
+    "assets/icons/hands-helping-solid.svg",
+    "assets/icons/hamburger-solid.svg"
+  ];
 
   ScreenJobDetails({Key? key, required this.jobID}) : super(key: key);
   final DataController data = Get.find();
@@ -57,7 +64,19 @@ class ScreenJobDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBarBuilder(),
+        backgroundColor: AppColors().white,
+        appBar: AppBarJobArea(
+          bgColor: AppColors().white,
+          bgColorBar: currentColor,
+          circleColor: currentColor,
+          color: currentColor,
+          title: currentJobCategory.title.toString().toUpperCase(),
+          hoehe: 230,
+          imageUrl: _pics[currentJobCategory.id as int],
+          onPressed1: () {
+            Navigator.of(context).pop();
+          },
+        ),
         floatingActionButton: Container(
           height: 100.0,
           width: 100.0,
@@ -382,7 +401,7 @@ Widget titleImageBuilder(Job job) {
           height: 100.0,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-              color: Colors.transparent,
+              color: AppColors().white,
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           child: new Center(
             child: new Text(

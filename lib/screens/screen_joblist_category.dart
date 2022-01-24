@@ -22,6 +22,12 @@ import 'screen_joblist_search.dart';
 
 class ScreenJobListCategory extends StatelessWidget {
   final int categoryID;
+  final _pics = [
+    "assets/icons/hammer-solid.svg",
+    "assets/icons/tractor-solid.svg",
+    "assets/icons/hands-helping-solid.svg",
+    "assets/icons/hamburger-solid.svg"
+  ];
 
   ScreenJobListCategory({Key? key, required this.categoryID}) : super(key: key);
   final DataController data = Get.find();
@@ -38,10 +44,11 @@ class ScreenJobListCategory extends StatelessWidget {
       appBar: AppBarJobArea(
         bgColor: currentBackgroundColor,
         bgColorBar: currentColor,
+        circleColor: currentColor,
         color: currentColor,
-        title: 'Handwerk'.toUpperCase(),
-        hoehe: 200, 
-        icon: AppIcons().redSection,
+        title: data.jobCategories.elementAt(categoryID).title.toString().toUpperCase(),
+        hoehe: 230,
+        imageUrl: _pics[categoryID],
             onPressed1: () {
             Navigator.of(context).pop();
             },

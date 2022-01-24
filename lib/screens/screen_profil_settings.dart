@@ -8,6 +8,7 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:joma/controllers/data_controller.dart';
+import 'package:joma/materials/appbar_job.dart';
 import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/button.dart';
@@ -71,6 +72,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppBackgroundColors().darkBackground,
+
       appBar: AppBarReplaceableImage(
         bgColor: AppBackgroundColors().darkBackground,
         bgColorBar: AppColors().darkPrimaryColor,
@@ -82,6 +84,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
         ),
         hoehe: 230,
       ),
+
       body: SingleChildScrollView(
         child: Column(
           children: [
