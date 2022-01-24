@@ -36,8 +36,16 @@ import 'package:joma/materials/button.dart';
 // FontAwesome-Import (not working atm)
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ScreenJobDetails extends StatelessWidget {
+class ScreenJobDetails extends StatefulWidget {
   final int? jobID;
+
+  ScreenJobDetails({Key? key, required this.jobID}) : super(key: key);
+
+  @override
+  State<ScreenJobDetails> createState() => _ScreenJobDetailsState();
+}
+
+class _ScreenJobDetailsState extends State<ScreenJobDetails> {
   final _pics = [
     "assets/icons/hammer-solid.svg",
     "assets/icons/tractor-solid.svg",
@@ -45,9 +53,9 @@ class ScreenJobDetails extends StatelessWidget {
     "assets/icons/hamburger-solid.svg"
   ];
 
-  ScreenJobDetails({Key? key, required this.jobID}) : super(key: key);
   final DataController data = Get.find();
-  late Job job = data.jobs.elementAt(jobID!);
+
+  late Job job = data.jobs.elementAt(widget.jobID!);
 
   late JobCategory currentJobCategory =
       data.jobCategories.firstWhere((category) => category.id == job.category);
@@ -56,10 +64,13 @@ class ScreenJobDetails extends StatelessWidget {
       .elementAt(currentJobCategory.id as int)
       .colorHex
       .toString()));
+
   late Color currentBackgroundColor = Color(int.parse(data.jobCategories
       .elementAt(currentJobCategory.id as int)
       .backgroundColorHex
       .toString()));
+
+  bool selected = true;
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +113,7 @@ class ScreenJobDetails extends StatelessWidget {
           children: [
             //titleImageBuilder(job),
             titleTextBuilder(context),
+            bookmarkBuilder(),
             carouselSliderBuilder(),
             jobDescriptionBuilder(),
             skillBackgroundBuilder(context),
@@ -125,9 +137,6 @@ class ScreenJobDetails extends StatelessWidget {
         ));
   }
 
-// ---------- APP-BAR ----------
-
-// Dieses Widget baut die App-Bar auf
   PreferredSizeWidget appBarBuilder() {
     return AppBar(
       backgroundColor: currentColor,
@@ -138,24 +147,6 @@ class ScreenJobDetails extends StatelessWidget {
       centerTitle: true,
     );
   }
-
-// ---------- TITELBILD ----------
-/*
-Widget titleImageBuilder(Job job) {
-  return Padding(
-    padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: Image(
-        image: NetworkImage(
-          job.images!.banner.toString(),
-        ),
-      ),
-    ),
-  );
-}
-*/
-// ---------- JOB-BESCHREIBUNG ----------
 
   Widget jobDescriptionBuilder() {
     return Padding(
@@ -170,9 +161,6 @@ Widget titleImageBuilder(Job job) {
     );
   }
 
-// ---------- FÄHIGKEITEN ----------
-
-// Dieses Widget baut eine Reihe von Fähigkeiten auf
   Widget buildSkillCards() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
@@ -188,7 +176,6 @@ Widget titleImageBuilder(Job job) {
     );
   }
 
-// Dieses Widget baut eine einzelne Fähigkeit auf
   Widget buildSkill(int skillID) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -207,7 +194,6 @@ Widget titleImageBuilder(Job job) {
         ],
       );
 
-// Dieses Widget baut einen Kreis als Hintergrund um das Fähigkeits-Icon auf
   Widget buildBox({required Widget child}) => Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
@@ -217,9 +203,6 @@ Widget titleImageBuilder(Job job) {
         child: child,
       );
 
-// ---------- SCHULABSCHLUSS ----------
-
-// Dieses Widget baut die Schulabschluss-Anzeige auf
   Widget graduationBuilder() {
     if (job.requiredGraduation == "") {
       return Container();
@@ -246,7 +229,6 @@ Widget titleImageBuilder(Job job) {
     }
   }
 
-// Dieses Widget baut einen Kreis als Hintergrund um das Schulabschluss-Icon auf
   Widget buildSchoolBox({required Widget child}) => Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
@@ -256,9 +238,6 @@ Widget titleImageBuilder(Job job) {
         child: child,
       );
 
-// ---------- MAP ----------
-
-// Dieses Widget baut (zunächst) eine Karte
   Widget mapBuilder() {
     return Container(
       height: 400,
@@ -292,9 +271,6 @@ Widget titleImageBuilder(Job job) {
     );
   }
 
-// ---------- ADRESSE ----------
-
-// Dieses Widget baut die Adresszeile auf
   Widget adressBuilder() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
@@ -331,7 +307,6 @@ Widget titleImageBuilder(Job job) {
     );
   }
 
-// Dieses Widget baut einen Kreis um das Logo des Unternehmens in der Adresszeile auf
   Widget buildAdressBox({required Widget child}) => Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
@@ -341,9 +316,6 @@ Widget titleImageBuilder(Job job) {
         child: child,
       );
 
-// ---------- DIVIDER ----------
-
-// Dieses Widget baut einen horizontalen Divider auf
   Widget buildHorizontalDivider() {
     return Row(
       children: [
@@ -357,9 +329,6 @@ Widget titleImageBuilder(Job job) {
     );
   }
 
-// ---------- ENTFERNUNG ----------
-
-// Dieses Widget baut den Text für die Entfernung auf
   Widget buildDistanceText() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -375,9 +344,6 @@ Widget titleImageBuilder(Job job) {
     );
   }
 
-// ---------- BEWERBEN-BUTTON ----------
-
-// Dieses Widget baut den Bewerben-Button auf
   Widget buildApplyButton() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(100, 20, 100, 50),
@@ -388,17 +354,14 @@ Widget titleImageBuilder(Job job) {
     );
   }
 
-// ---------- TITEL ----------
-
-// Diese Klasse baut den Titel auf
   Widget titleTextBuilder(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+      padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
       child: Align(
         alignment: Alignment.center,
         child: Container(
           alignment: Alignment.center,
-          height: 100.0,
+          height: 45.0,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               color: AppColors().white,
@@ -414,9 +377,19 @@ Widget titleImageBuilder(Job job) {
     );
   }
 
-// ---------- BILDER-KARUSSELL ----------
+  Widget bookmarkBuilder() {
+    return IconButton(
+      onPressed: () {
+        setState(() {
+          selected = !selected;
+        });
+      },
+      icon: FaIcon(selected ? FontAwesomeIcons.bookmark : FontAwesomeIcons.solidBookmark),
+      color: currentColor,
+      padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 25.0),
+    );
+  }
 
-// Diese Klasse baut den Carousel-Slider auf
   Widget carouselSliderBuilder() {
     return CarouselSlider(
       options: CarouselOptions(
@@ -451,9 +424,6 @@ Widget titleImageBuilder(Job job) {
     );
   }
 
-// ---------- SKILL-BACKGROUND ----------
-
-// Diese Klasse baut den Hintergrund der Fähigkeiten auf
   Widget skillBackgroundBuilder(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
@@ -465,9 +435,6 @@ Widget titleImageBuilder(Job job) {
     );
   }
 
-// ---------- NAV-BAR ----------
-
-// Diese Klasse baut die Bottom-Navigationbar auf
   Widget navBarBuilder(BuildContext context) {
     return AppNavBar(
     backgroundColor: AppColors().darkPrimaryColor,
@@ -475,9 +442,6 @@ Widget titleImageBuilder(Job job) {
     unselectedItemColor: AppColors().white);
   }
 
-// ---------- HOME-BUTTON ----------
-
-// Diese Klasse baut den Home-Button auf
   Widget homeButtonBuilder(BuildContext context) {
     return FloatingActionButton(
       backgroundColor: Colors.black,
