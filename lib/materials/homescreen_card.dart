@@ -28,7 +28,7 @@ class HomeScreenCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(5),
+      padding: const EdgeInsets.all(6),
       width: 150,
       height: 150,
       child: ElevatedButton(
@@ -45,18 +45,19 @@ class HomeScreenCard extends StatelessWidget {
               width: 100,
               height: 100,
               child: Column(
-                mainAxisAlignment: _mainAlignments[startOrEnd],
-                crossAxisAlignment: _crossAlignments[startOrEnd],
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   icon,
+                  SizedBox(height: 2),
                   Text(
                     title,
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontSize: 12,
                     ),
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.center,
                   ),
                 ],
               )),

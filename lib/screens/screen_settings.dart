@@ -5,7 +5,6 @@ import 'package:joma/screens/screen_notifications.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_profil_settings.dart';
 import 'package:joma/screens/screen_select_view.dart';
-import 'package:joma/screens/screen_settings_datenschutz.dart';
 import 'package:joma/screens/screen_settings_impressum.dart';
 import 'package:flutter/material.dart';
 import 'package:joma/materials/assets.dart';

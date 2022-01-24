@@ -13,13 +13,15 @@ import 'package:joma/materials/assets.dart';
 class SelectView extends StatelessWidget {
   final ViewController viewController = Get.put(ViewController());
 
+  SelectView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight:110,
+          toolbarHeight: 110,
           title: Text(
             'Ansicht wählen'.toUpperCase(),
             style: AppTextStyles.darkH1,
@@ -47,7 +49,7 @@ class SelectView extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
-                              margin: EdgeInsets.all(20.0),
+                              margin: const EdgeInsets.all(20.0),
                               child: Icon(
                                 Icons.photo_library,
                                 size: 85,
@@ -60,23 +62,35 @@ class SelectView extends StatelessWidget {
                                 }()),
                               ),
                             ),
-                            Container(
-                              child: Text("NUR BILDER",
-                                  style: TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.bold,
-                                    color: (() {
-                                      if (_.state == 0) {
-                                        return Colors.white;
-                                      } else {
-                                        return AppBackgroundColors()
-                                            .darkBackground;
-                                      }
-                                    }()),
-                                  ),
-                                  textAlign: TextAlign.center),
+                            Text("NUR BILDER",
+                                style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontSize: 23,
+                                  fontWeight: FontWeight.bold,
+                                  color: (() {
+                                    if (_.state == 0) {
+                                      return Colors.white;
+                                    } else {
+                                      return AppBackgroundColors()
+                                          .darkBackground;
+                                    }
+                                  }()),
+                                ),
+                                textAlign: TextAlign.center),
+                            const Spacer(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              //style: EdgeInsets.all(20.0),
+                              children: [
+                                Radio(
+                                    value: 0,
+                                    groupValue: _.state,
+                                    onChanged: (choice) {
+                                      viewController.setView(0);
+                                    }),
+                              ],
                             ),
+                            const SizedBox(width: 20),
                           ],
                         ),
                         color: (() {
@@ -99,7 +113,7 @@ class SelectView extends StatelessWidget {
               GetBuilder<ViewController>(
                 builder: (_) {
                   return Container(
-                  margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                    margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * .20,
                     child: GestureDetector(
@@ -111,7 +125,7 @@ class SelectView extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
-                              margin: EdgeInsets.all(20.0),
+                              margin: const EdgeInsets.all(20.0),
                               child: Icon(
                                 Icons.tag_faces,
                                 size: 85,
@@ -124,48 +138,55 @@ class SelectView extends StatelessWidget {
                                 }()),
                               ),
                             ),
-                            Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    child: Text("EINFACHE",
-                                        style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontSize: 23,
-                                          fontWeight: FontWeight.bold,
-                                          color: (() {
-                                            if (_.state == 1) {
-                                              return Colors.white;
-                                            } else {
-                                              return AppBackgroundColors()
-                                                  .darkBackground;
-                                            }
-                                          }()),
-                                        ),
-                                        textAlign: TextAlign.center),
-                                  ),
-                                  Container(
-                                    child: Text("SPRACHE",
-                                        style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontSize: 23,
-                                          fontWeight: FontWeight.bold,
-                                          color: (() {
-                                            if (_.state == 1) {
-                                              return Colors.white;
-                                            } else {
-                                              return AppBackgroundColors()
-                                                  .darkBackground;
-                                            }
-                                          }()),
-                                        ),
-                                        textAlign: TextAlign.center),
-                                  ),
-                                ],
-                              ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text("LEICHTE",
+                                    style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 23,
+                                      fontWeight: FontWeight.bold,
+                                      color: (() {
+                                        if (_.state == 1) {
+                                          return Colors.white;
+                                        } else {
+                                          return AppBackgroundColors()
+                                              .darkBackground;
+                                        }
+                                      }()),
+                                    ),
+                                    textAlign: TextAlign.center),
+                                Text("SPRACHE",
+                                    style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 23,
+                                      fontWeight: FontWeight.bold,
+                                      color: (() {
+                                        if (_.state == 1) {
+                                          return Colors.white;
+                                        } else {
+                                          return AppBackgroundColors()
+                                              .darkBackground;
+                                        }
+                                      }()),
+                                    ),
+                                    textAlign: TextAlign.center),
+                              ],
                             ),
+                            const Spacer(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Radio(
+                                    value: 1,
+                                    groupValue: _.state,
+                                    onChanged: (choice) {
+                                      viewController.setView(1);
+                                    }),
+                              ],
+                            ),
+                            const SizedBox(width: 20),
                           ],
                         ),
                         color: (() {
@@ -200,7 +221,7 @@ class SelectView extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
-                              margin: EdgeInsets.all(20.0),
+                              margin: const EdgeInsets.all(20.0),
                               child: Icon(
                                 Icons.chat,
                                 size: 85,
@@ -213,23 +234,34 @@ class SelectView extends StatelessWidget {
                                 }()),
                               ),
                             ),
-                            Container(
-                              child: Text("VOLLTEXT",
-                                  style: TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.bold,
-                                    color: (() {
-                                      if (_.state == 2) {
-                                        return Colors.white;
-                                      } else {
-                                        return AppBackgroundColors()
-                                            .darkBackground;
-                                      }
-                                    }()),
-                                  ),
-                                  textAlign: TextAlign.center),
+                            Text("VOLLTEXT",
+                                style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontSize: 23,
+                                  fontWeight: FontWeight.bold,
+                                  color: (() {
+                                    if (_.state == 2) {
+                                      return Colors.white;
+                                    } else {
+                                      return AppBackgroundColors()
+                                          .darkBackground;
+                                    }
+                                  }()),
+                                ),
+                                textAlign: TextAlign.center),
+                            const Spacer(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Radio(
+                                    value: 2,
+                                    groupValue: _.state,
+                                    onChanged: (choice) {
+                                      viewController.setView(2);
+                                    }),
+                              ],
                             ),
+                            const SizedBox(width: 20),
                           ],
                         ),
                         color: (() {
@@ -254,8 +286,10 @@ class SelectView extends StatelessWidget {
                     text: "Weiter",
                     color: AppColors().darkSecondaryColor,
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => ScreenHome()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ScreenHome()));
                     },
                   )),
             ],
@@ -265,3 +299,6 @@ class SelectView extends StatelessWidget {
     );
   }
 }
+
+TextEditingController nameController = TextEditingController();
+
