@@ -6,9 +6,12 @@ import 'package:joma/materials/assets.dart';
 import 'package:get/get.dart';
 import 'package:joma/materials/card.dart';
 import 'package:joma/materials/navbar.dart';
+import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/screen_home.dart';
+import 'package:joma/screens/screen_job_details.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_settings.dart';
+import 'package:joma/utils/user_simple_preferences.dart';
 
 import 'screen_joblist_search.dart';
 
@@ -17,6 +20,13 @@ class ScreenApplications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var remoteUser = profilToJson(data.profile);
+    //Load Profile from Shared Preferences if given. If not load Json Profile
+    var tmpUser = profilFromJson(
+        UserSimplePreferences.getUser() ?? remoteUser.toString());
+    Profil user = tmpUser[0];
+    var jobIndex = 0;
+
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
       appBar: AppBarReplaceableImage(
@@ -37,53 +47,56 @@ class ScreenApplications extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-              child: Text('Hier siehst du die Jobs, auf die du dich beworben hast!',
+              child: Text('Hier siehst du deine gespeicherten Jobs!',
                   style: AppTextStyles.darkH4White,
                   textAlign: TextAlign.center),
             ),
-            const SizedBox(height: 30),
-            AppCardSearch(
-                jobTitle: 'Testjob',
-                jobDescription: 'Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung',
-                color: AppColors().darkYellow,
-                onPressed: () {}
-            ),
-            AppCardSearch(
-                jobTitle: 'Testjob',
-                jobDescription: 'Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung',
-                color: AppColors().darkBlue,
-                onPressed: () {}
-            ),
-            AppCardSearch(
-                jobTitle: 'Testjob',
-                jobDescription: 'Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung',
-                color: AppColors().darkRed,
-                onPressed: () {}
-            ),
-            AppCardSearch(
-                jobTitle: 'Testjob',
-                jobDescription: 'Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung',
-                color: AppColors().darkGreen,
-                onPressed: () {}
-            ),
-            AppCardSearch(
-                jobTitle: 'Testjob',
-                jobDescription: 'Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung',
-                color: AppColors().darkRed,
-                onPressed: () {}
-            ),
-            AppCardSearch(
-                jobTitle: 'Testjob',
-                jobDescription: 'Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung',
-                color: AppColors().darkBlue,
-                onPressed: () {}
-            ),
-            AppCardSearch(
-                jobTitle: 'Testjob',
-                jobDescription: 'Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung Testjobbeschreibung',
-                color: AppColors().darkYellow,
-                onPressed: () {}
-            ),
+            Obx(() {
+              var result = <Widget>[];
+
+              if (user.sentApplications!.length == 0) {
+                result.add(Column(
+                  children: [
+                    Container(
+                        margin: EdgeInsets.only(top: 30),
+                        child: Text("Keine Bewerbungen gesendet.",
+                            style: TextStyle(color: AppColors().white))),
+                    Container(
+                      child: Text(
+                        user.savedJobs!.length.toString() +
+                            " Bewerbungen von " +
+                            data.jobs.length.toString(),
+                        style: TextStyle(color: AppColors().white),
+                      ),
+                    )
+                  ],
+                ));
+              } else {
+                for (int i = 0; i < user.sentApplications!.length; i++) {
+                  var currentJob = data.jobs.elementAt(user.sentApplications![i]);
+                  result.add(AppCardSearch(
+                      jobTitle: currentJob.title.toString(),
+                      jobDescription: currentJob.description!.simple.toString(),
+                      color: Color(int.parse(data.jobCategories
+                          .elementAt(currentJob.category!)
+                          .colorHex
+                          .toString())),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ScreenJobDetails(
+                                      jobID: currentJob.id,
+                                    )));
+                      }));
+                }
+              }
+
+              return Column(
+                children: result,
+              );
+            }),
           ],
         ),
       ),

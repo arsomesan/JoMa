@@ -21,6 +21,7 @@ class Profil {
     this.skills,
     this.notis,
     this.savedJobs,
+    this.sentApplications,
   });
 
   String? name;
@@ -34,6 +35,7 @@ class Profil {
   List<int>? skills;
   List<bool>? notis;
   List<int>? savedJobs;
+  List<int>? sentApplications;
 
   factory Profil.fromJson(Map<String, dynamic> json) => Profil(
     name: json["name"],
@@ -47,6 +49,7 @@ class Profil {
     skills: List<int>.from(json["skills"].map((x) => x)),
     notis: List<bool>.from(json["notis"].map((x) => x)),
     savedJobs: List<int>.from(json["saved_jobs"].map((x) => x)),
+    sentApplications: List<int>.from(json["sent_applications"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
@@ -61,6 +64,7 @@ class Profil {
     "skills": List<dynamic>.from(skills!.map((x) => x)),
     "notis": List<dynamic>.from(notis!.map((x) => x)),
     "saved_jobs": List<dynamic>.from(savedJobs!.map((x) => x)),
+    "sent_applications": List<dynamic>.from(sentApplications!.map((x) => x)),
   };
 }
 
