@@ -1,20 +1,27 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/button.dart';
 import 'package:joma/materials/checkbox_button.dart';
 import 'package:joma/materials/navbar.dart';
+import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens//screen_settings_datenschutz.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_profil_settings.dart';
 import 'package:joma/screens/screen_select_view.dart';
+import 'package:joma/screens/screen_settings.dart';
 import 'package:joma/screens/screen_settings_datenschutz.dart';
 import 'package:joma/screens/screen_settings_impressum.dart';
 import 'package:flutter/material.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/screens/screen_welcome.dart';
+import 'package:joma/utils/user_simple_preferences.dart';
 
 import 'screen_joblist_search.dart';
 
@@ -27,7 +34,6 @@ class ScreenNotifications extends StatefulWidget {
 }
 
 class _ScreenNotificationsState extends State<ScreenNotifications> {
-  List<bool> _isChecked = [false, false, false, false];
   @override
   void initState() {
     // TODO: implement initState
@@ -36,6 +42,15 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
 
   @override
   Widget build(BuildContext context) {
+
+    final DataController data = Get.find();
+//Load Profile from Json
+    var remoteUser = profilToJson(data.profile);
+    //Load Profile from Shared Preferences if given. If not load Json Profile
+    var tmpUser = profilFromJson(UserSimplePreferences.getUser() ?? remoteUser.toString());
+    Profil user = tmpUser[0];
+
+    List<bool> _isChecked = user.notis!;
 
 
 
@@ -62,6 +77,7 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
               onChanged: (bool? value) {
                 setState(() {
                   _isChecked[0] = value!;
+                  saveNotis(_isChecked, tmpUser);
                 });
 
               },
@@ -73,6 +89,8 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
             onChanged: (bool? value) {
               setState(() {
                 _isChecked[1] = value!;
+                saveNotis(_isChecked, tmpUser);
+
               });
 
             },
@@ -84,6 +102,7 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
             onChanged: (bool? value) {
               setState(() {
                 _isChecked[2] = value!;
+                saveNotis(_isChecked, tmpUser);
               });
 
             },
@@ -95,13 +114,45 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
             onChanged: (bool? value) {
               setState(() {
                 _isChecked[3] = value!;
+                saveNotis(_isChecked, tmpUser);
               });
 
             },
             icon: AppIcons().greenSection,
+          ),
+          Container(
+              margin: EdgeInsets.only(top: 30, bottom: 40),
+              padding: EdgeInsets.only(left: 100, right: 100),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.height * 0.25,
+                child: ElevatedButton(
+
+                    onPressed: () {
+                      Get.off(() => const Einstellungen());
+                    },
+                    child: Text(
+                      "Speichern",
+                    ),
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                            const EdgeInsets.fromLTRB(0, 25, 0, 25)),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            AppColors().darkSecondaryColor),
+                        textStyle: MaterialStateProperty.all<TextStyle>(
+                            AppTextStyles.darkButtonText),
+                        shape:
+                        MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                                side: BorderSide(
+                                    color:
+                                    AppColors().darkSecondaryColor))))),
+              )
           )
         ],
       ),
+
+
 
 
       //------Bottom Navigation------//
@@ -129,3 +180,9 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
     );
   }
 }
+
+  void saveNotis(List<bool> _isChecked, List<Profil> tmpUser) {
+    tmpUser[0].notis = _isChecked;
+    var lokalusersavetmp = profilToJson(tmpUser);
+    UserSimplePreferences.setUser(lokalusersavetmp.toString());
+  }
