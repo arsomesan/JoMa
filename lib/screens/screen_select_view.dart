@@ -9,9 +9,14 @@ import 'package:joma/materials/button.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:get/get.dart';
 import 'package:joma/materials/assets.dart';
+import 'package:flutter/material.dart';
+
+enum Choice { bild, einfach,voll }
 
 class SelectView extends StatelessWidget {
   final ViewController viewController = Get.put(ViewController());
+
+  Choice? _character = Choice.bild;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,9 @@ class SelectView extends StatelessWidget {
               //Card1: nur Bilder
               GetBuilder<ViewController>(
                 builder: (_) {
+                Choice? _character = Choice.bild;
                   return Container(
+
                     margin: const EdgeInsets.fromLTRB(10, 20, 10, 10),
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * .20,
@@ -77,6 +84,17 @@ class SelectView extends StatelessWidget {
                                   ),
                                   textAlign: TextAlign.center),
                             ),
+
+                            new Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                new Radio(
+                                  value: 0,
+                                  groupValue: _.state,
+                                 onChanged: (Choice) {}
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                         color: (() {
@@ -98,6 +116,7 @@ class SelectView extends StatelessWidget {
               //Card2: Leichte Sprache
               GetBuilder<ViewController>(
                 builder: (_) {
+                  Choice? _character = Choice.einfach;
                   return Container(
                   margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                     width: MediaQuery.of(context).size.width,
@@ -166,6 +185,16 @@ class SelectView extends StatelessWidget {
                                 ],
                               ),
                             ),
+                            new Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                new Radio(
+                                    value: 1,
+                                    groupValue: _.state,
+                                    onChanged: (Choice) {}
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                         color: (() {
@@ -187,6 +216,7 @@ class SelectView extends StatelessWidget {
               //Card3: Volltext
               GetBuilder<ViewController>(
                 builder: (_) {
+                  Choice? _character = Choice.voll;
                   return Container(
                     margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                     width: MediaQuery.of(context).size.width,
@@ -230,6 +260,16 @@ class SelectView extends StatelessWidget {
                                   ),
                                   textAlign: TextAlign.center),
                             ),
+                            new Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                new Radio(
+                                    value: 2,
+                                    groupValue: _.state,
+                                    onChanged: (Choice) {}
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                         color: (() {
@@ -259,9 +299,42 @@ class SelectView extends StatelessWidget {
                     },
                   )),
             ],
+
           ),
         ),
       ),
     );
   }
+  }
+
+
+  TextEditingController nameController = TextEditingController();
+  int _radioValue = 0;
+
+  void _handleRadioValueChange(int value) {
+    setState(() {
+      _radioValue = value;
+
+      switch (_radioValue) {
+        case 0:
+          break;
+        case 1:
+          break;
+        case 2:
+          break;
+      }
+    });
+  }
+
+void setState(Null Function() param0) {
 }
+
+
+/*
+(Choice) {
+setState(() {
+_character = voll;
+});
+*/
+
+
