@@ -25,7 +25,7 @@ class DataController extends GetxController {
   }
 
   void fetchProfile() async {
-    var profile = await RemoteServices.fetchProfileFromAssets();
+    var profile = await RemoteServices.fetchProfil();
     this.profile.value = profile;
   }
 
@@ -43,5 +43,4 @@ class DataController extends GetxController {
     var skills = await RemoteServices.fetchSkills();
     this.skills.value = skills;
   }
-
 }

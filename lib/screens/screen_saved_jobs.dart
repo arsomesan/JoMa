@@ -20,14 +20,12 @@ class ScreenSavedJobs extends StatelessWidget {
   final DataController data = Get.find();
   @override
   Widget build(BuildContext context) {
-
     var remoteUser = profilToJson(data.profile);
     //Load Profile from Shared Preferences if given. If not load Json Profile
     var tmpUser = profilFromJson(
         UserSimplePreferences.getUser() ?? remoteUser.toString());
     Profil user = tmpUser[0];
     var jobIndex = 0;
-
 
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
@@ -47,31 +45,50 @@ class ScreenSavedJobs extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(50, 0, 50, 50),
           scrollDirection: Axis.vertical,
           children: [
-
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: Text('Hier siehst du deine gespeicherten Jobs!',
-                    style: AppTextStyles.darkH4White,
-                    textAlign: TextAlign.center),
+                  style: AppTextStyles.darkH4White,
+                  textAlign: TextAlign.center),
             ),
             Obx(() {
-
               var result = <Widget>[];
 
-              for(int i = 0; i < data.jobs.length; i++)
-              var currentJob = data.jobs[i];
-                result.add(
-                    AppCardSearch(jobTitle: currentJob.title.toString(), jobDescription: data.jobs[i].description.toString(), color: AppColors().darkSecondaryColor, onPressed: () {})
-                );
-
-
+              if (user.savedJobs!.length == 0) {
+                result.add(Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 30),
+                        child: Text("Keine Jobs gespeichert.",
+                        style: TextStyle(color: AppColors().white))),
+                    Container(
+                      child: Text(
+                        user.savedJobs!.length.toString() +
+                            " Gespeicherte Jobs von " +
+                            data.jobs.length.toString(),
+                        style: TextStyle(color: AppColors().white),
+                      ),
+                    )
+                  ],
+                ));
+              } else {
+                for (int i = 0; i < user.savedJobs!.length; i++) {
+                  var currentJob = data.jobs.elementAt(user.savedJobs![i]);
+                  result.add(AppCardSearch(
+                      jobTitle: currentJob.title.toString(),
+                      jobDescription: currentJob.description!.simple.toString(),
+                      color: Color(int.parse(data.jobCategories
+                          .elementAt(currentJob.category!)
+                          .colorHex
+                          .toString())),
+                      onPressed: () {}));
+                }
+              }
 
               return Column(
                 children: result,
               );
-
             }),
-
           ],
         ),
       ),
@@ -79,7 +96,8 @@ class ScreenSavedJobs extends StatelessWidget {
         height: 100.0,
         width: 100.0,
         child: IconButton(
-          icon: SvgPicture.asset("assets/images/darkLogo.svg",
+          icon: SvgPicture.asset(
+            "assets/images/darkLogo.svg",
           ),
           onPressed: () {
             Navigator.pushReplacement(
@@ -89,12 +107,10 @@ class ScreenSavedJobs extends StatelessWidget {
           },
         ),
       ),
-
       bottomNavigationBar: AppNavBar(
           backgroundColor: AppColors().darkPrimaryColor,
           selectedItemColor: AppColors().white,
           unselectedItemColor: AppColors().white),
-
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

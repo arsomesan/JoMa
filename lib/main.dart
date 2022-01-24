@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       home: Center(
       child: AnimatedSplashScreen(
       splash: SvgPicture.asset("assets/images/darkLogo.svg"),
-      nextScreen: ScreenHome(),
+      nextScreen: ScreenWelcome(),
       splashTransition: SplashTransition.rotationTransition,
       backgroundColor: AppColors().darkPrimaryColor,
       ),
