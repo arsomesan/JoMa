@@ -6,9 +6,11 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/controllers/view_controller.dart';
 import 'package:joma/materials/button.dart';
+import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/screen_joblist_search.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_settings.dart';
+import 'package:joma/utils/user_simple_preferences.dart';
 import 'screen_joblist_category.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/homescreen_card.dart';
@@ -19,6 +21,14 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var remoteUser = profilToJson(data.profile);
+    //Load Profile from Shared Preferences if given. If not load Json Profile
+    var tmpUser = profilFromJson(
+        UserSimplePreferences.getUser() ?? remoteUser.toString());
+    //profile to use
+    Profil user = tmpUser[0];
+    fillBooleanData(data.jobList, user.savedJobs!, data.jobs);
+    fillBooleanData(data.boolList, user.skills!, data.skills);
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -237,5 +247,23 @@ class BackgroundPainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return oldDelegate != this;
+  }
+}
+
+//filling boolean arrays from user simple preferences or remote data
+void fillBooleanData(List<bool> listSave, List<int> listCheck, List<dynamic> org) async {
+  var remoteUser = profilToJson(data.profile);
+  //Load Profile from Shared Preferences if given. If not load Json Profile
+  var tmpUser = profilFromJson(
+      UserSimplePreferences.getUser() ?? remoteUser.toString());
+  //profile to use
+  Profil user = tmpUser[0];
+  for (int i = 0; i < listSave.length; i++) {
+    for (int l = 0; l < listCheck.length; l++) {
+      if (org[i].id == listCheck[l]) {
+        listSave[i] = true;
+        break;
+      }
+    }
   }
 }

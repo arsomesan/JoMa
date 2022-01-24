@@ -32,14 +32,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var remoteUser = profilToJson(data.profile);
-    //Load Profile from Shared Preferences if given. If not load Json Profile
-    var tmpUser = profilFromJson(
-        UserSimplePreferences.getUser() ?? remoteUser.toString());
-    //profile to use
-    Profil user = tmpUser[0];
-    fillBooleanData(data.jobList, user.savedJobs!, data.jobs);
-    fillBooleanData(data.boolList, user.skills!, data.skills);
     return GetMaterialApp(
       title: 'JOMA',
       theme: ThemeData(
@@ -58,28 +50,10 @@ class MyApp extends StatelessWidget {
       
       ),
     );
-    
+
   
 
 
- 
-  }
-}
 
-//filling boolean arrays from user simple preferences or remote data
-void fillBooleanData(List<bool> listSave, List<int> listCheck, List<dynamic> org) async {
-  var remoteUser = profilToJson(data.profile);
-  //Load Profile from Shared Preferences if given. If not load Json Profile
-  var tmpUser = profilFromJson(
-      UserSimplePreferences.getUser() ?? remoteUser.toString());
-  //profile to use
-  Profil user = tmpUser[0];
-  for (int i = 0; i < listSave.length; i++) {
-    for (int l = 0; l < listCheck.length; l++) {
-      if (org[i].id == listCheck[l]) {
-        listSave[i] = true;
-        break;
-      }
-    }
   }
 }
