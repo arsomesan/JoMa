@@ -9,14 +9,11 @@ import 'package:joma/materials/button.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:get/get.dart';
 import 'package:joma/materials/assets.dart';
-import 'package:flutter/material.dart';
-
-enum Choice { bild, einfach, voll }
 
 class SelectView extends StatelessWidget {
   final ViewController viewController = Get.put(ViewController());
 
-  Choice? _character = Choice.bild;
+  SelectView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +36,6 @@ class SelectView extends StatelessWidget {
               //Card1: nur Bilder
               GetBuilder<ViewController>(
                 builder: (_) {
-                  Choice? _character = Choice.bild;
                   return Container(
                     margin: const EdgeInsets.fromLTRB(10, 20, 10, 10),
                     width: MediaQuery.of(context).size.width,
@@ -53,7 +49,7 @@ class SelectView extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
-                              margin: EdgeInsets.all(20.0),
+                              margin: const EdgeInsets.all(20.0),
                               child: Icon(
                                 Icons.photo_library,
                                 size: 85,
@@ -66,35 +62,35 @@ class SelectView extends StatelessWidget {
                                 }()),
                               ),
                             ),
-                            Container(
-                              child: Text("NUR BILDER",
-                                  style: TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.bold,
-                                    color: (() {
-                                      if (_.state == 0) {
-                                        return Colors.white;
-                                      } else {
-                                        return AppBackgroundColors()
-                                            .darkBackground;
-                                      }
-                                    }()),
-                                  ),
-                                  textAlign: TextAlign.center),
-                            ),
-                            Spacer(),
-                            new Row(
+                            Text("NUR BILDER",
+                                style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontSize: 23,
+                                  fontWeight: FontWeight.bold,
+                                  color: (() {
+                                    if (_.state == 0) {
+                                      return Colors.white;
+                                    } else {
+                                      return AppBackgroundColors()
+                                          .darkBackground;
+                                    }
+                                  }()),
+                                ),
+                                textAlign: TextAlign.center),
+                            const Spacer(),
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               //style: EdgeInsets.all(20.0),
                               children: [
-                                new Radio(
+                                Radio(
                                     value: 0,
                                     groupValue: _.state,
-                                    onChanged: (Choice) {}),
+                                    onChanged: (choice) {
+                                      viewController.setView(0);
+                                    }),
                               ],
                             ),
-                            SizedBox(width: 15),
+                            const SizedBox(width: 20),
                           ],
                         ),
                         color: (() {
@@ -116,7 +112,6 @@ class SelectView extends StatelessWidget {
               //Card2: Leichte Sprache
               GetBuilder<ViewController>(
                 builder: (_) {
-                  Choice? _character = Choice.einfach;
                   return Container(
                     margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                     width: MediaQuery.of(context).size.width,
@@ -130,7 +125,7 @@ class SelectView extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
-                              margin: EdgeInsets.all(20.0),
+                              margin: const EdgeInsets.all(20.0),
                               child: Icon(
                                 Icons.tag_faces,
                                 size: 85,
@@ -143,58 +138,55 @@ class SelectView extends StatelessWidget {
                                 }()),
                               ),
                             ),
-                            Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    child: Text("EINFACHE",
-                                        style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontSize: 23,
-                                          fontWeight: FontWeight.bold,
-                                          color: (() {
-                                            if (_.state == 1) {
-                                              return Colors.white;
-                                            } else {
-                                              return AppBackgroundColors()
-                                                  .darkBackground;
-                                            }
-                                          }()),
-                                        ),
-                                        textAlign: TextAlign.center),
-                                  ),
-                                  Container(
-                                    child: Text("SPRACHE",
-                                        style: TextStyle(
-                                          fontFamily: 'Roboto',
-                                          fontSize: 23,
-                                          fontWeight: FontWeight.bold,
-                                          color: (() {
-                                            if (_.state == 1) {
-                                              return Colors.white;
-                                            } else {
-                                              return AppBackgroundColors()
-                                                  .darkBackground;
-                                            }
-                                          }()),
-                                        ),
-                                        textAlign: TextAlign.center),
-                                  ),
-                                ],
-                              ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text("LEICHTE",
+                                    style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 23,
+                                      fontWeight: FontWeight.bold,
+                                      color: (() {
+                                        if (_.state == 1) {
+                                          return Colors.white;
+                                        } else {
+                                          return AppBackgroundColors()
+                                              .darkBackground;
+                                        }
+                                      }()),
+                                    ),
+                                    textAlign: TextAlign.center),
+                                Text("SPRACHE",
+                                    style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 23,
+                                      fontWeight: FontWeight.bold,
+                                      color: (() {
+                                        if (_.state == 1) {
+                                          return Colors.white;
+                                        } else {
+                                          return AppBackgroundColors()
+                                              .darkBackground;
+                                        }
+                                      }()),
+                                    ),
+                                    textAlign: TextAlign.center),
+                              ],
                             ),
-                            Spacer(),
-                            new Row(
+                            const Spacer(),
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                new Radio(
+                                Radio(
                                     value: 1,
                                     groupValue: _.state,
-                                    onChanged: (Choice) {}),
+                                    onChanged: (choice) {
+                                      viewController.setView(1);
+                                    }),
                               ],
-                            ),SizedBox(width: 15),
+                            ),
+                            const SizedBox(width: 20),
                           ],
                         ),
                         color: (() {
@@ -216,7 +208,6 @@ class SelectView extends StatelessWidget {
               //Card3: Volltext
               GetBuilder<ViewController>(
                 builder: (_) {
-                  Choice? _character = Choice.voll;
                   return Container(
                     margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                     width: MediaQuery.of(context).size.width,
@@ -230,7 +221,7 @@ class SelectView extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
-                              margin: EdgeInsets.all(20.0),
+                              margin: const EdgeInsets.all(20.0),
                               child: Icon(
                                 Icons.chat,
                                 size: 85,
@@ -243,33 +234,34 @@ class SelectView extends StatelessWidget {
                                 }()),
                               ),
                             ),
-                            Container(
-                              child: Text("VOLLTEXT",
-                                  style: TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.bold,
-                                    color: (() {
-                                      if (_.state == 2) {
-                                        return Colors.white;
-                                      } else {
-                                        return AppBackgroundColors()
-                                            .darkBackground;
-                                      }
-                                    }()),
-                                  ),
-                                  textAlign: TextAlign.center),
-                            ),
-                            Spacer(),
-                            new Row(
+                            Text("VOLLTEXT",
+                                style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontSize: 23,
+                                  fontWeight: FontWeight.bold,
+                                  color: (() {
+                                    if (_.state == 2) {
+                                      return Colors.white;
+                                    } else {
+                                      return AppBackgroundColors()
+                                          .darkBackground;
+                                    }
+                                  }()),
+                                ),
+                                textAlign: TextAlign.center),
+                            const Spacer(),
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                new Radio(
+                                Radio(
                                     value: 2,
                                     groupValue: _.state,
-                                    onChanged: (Choice) {}),
+                                    onChanged: (choice) {
+                                      viewController.setView(2);
+                                    }),
                               ],
-                            ),SizedBox(width: 15),
+                            ),
+                            const SizedBox(width: 20),
                           ],
                         ),
                         color: (() {
@@ -309,28 +301,4 @@ class SelectView extends StatelessWidget {
 }
 
 TextEditingController nameController = TextEditingController();
-int _radioValue = 0;
 
-void _handleRadioValueChange(int value) {
-  setState(() {
-    _radioValue = value;
-
-    switch (_radioValue) {
-      case 0:
-        break;
-      case 1:
-        break;
-      case 2:
-        break;
-    }
-  });
-}
-
-void setState(Null Function() param0) {}
-
-/*
-(Choice) {
-setState(() {
-_character = voll;
-});
-*/
