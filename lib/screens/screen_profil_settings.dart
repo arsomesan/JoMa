@@ -540,7 +540,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                                     EmailController.text;
                               } else {
                                 showDialog(context: context,
-                                    builder: (context) => PopUpAlert(title: "E-Mail nicht korrekt", content: "Bitte überprüfe die eingegebene E-Mail-Adresse.", route: ProfilData(), current: ScreenProfilSettings())
+                                    builder: (context) => PopUpAlert(title: "E-Mail nicht korrekt", content: "Bitte überprüfe die eingegebene E-Mail-Adresse.", current: ProfilData(), context: context)
                                 );
                               }
                             }
