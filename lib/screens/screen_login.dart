@@ -57,7 +57,6 @@ class _ScreenLogin extends State<ScreenLogin> {
     var tmpUser = profilFromJson(
         UserSimplePreferences.getUser() ?? remoteUser.toString());
     Profil user = tmpUser[0];
-    print(user.name);
 
     bool validate(String email, String pwd) {
       //ToDos: json durchlaufen

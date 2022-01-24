@@ -12,9 +12,16 @@ import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_job_details.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
 
-class ScreenSavedJobs extends StatelessWidget {
+class ScreenSavedJobs extends StatefulWidget {
   ScreenSavedJobs({Key? key}) : super(key: key);
+
+  @override
+  State<ScreenSavedJobs> createState() => _ScreenSavedJobsState();
+}
+
+class _ScreenSavedJobsState extends State<ScreenSavedJobs> {
   final DataController data = Get.find();
+
   @override
   Widget build(BuildContext context) {
     var remoteUser = profilToJson(data.profile);
@@ -74,7 +81,7 @@ class ScreenSavedJobs extends StatelessWidget {
                   var currentJob = data.jobs.elementAt(user.savedJobs![i]);
                   result.add(AppCardSearch(
                       jobTitle: currentJob.title.toString(),
-                      jobDescription: currentJob.description!.simple.toString(),
+                      jobDescription: currentJob.description!.full.toString(),
                       color: Color(int.parse(data.jobCategories
                           .elementAt(currentJob.category!)
                           .colorHex
@@ -86,8 +93,12 @@ class ScreenSavedJobs extends StatelessWidget {
                                 builder: (context) =>
                                     ScreenJobDetails(
                                       jobID: currentJob.id,
-                                    )));
-                      }));
+                                    ),
+                            ),
+                        ).then((value) => setState(() {}));
+                      },
+                  ),
+                  );
                 }
               }
 
