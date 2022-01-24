@@ -33,7 +33,7 @@ class AppButton extends StatelessWidget {
           ),
           style: ButtonStyle(
               padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                  const EdgeInsets.fromLTRB(0, 17, 0, 17)),
+                  const EdgeInsets.fromLTRB(0, 22, 0, 22)),
               backgroundColor: MaterialStateProperty.all<Color>(color),
               textStyle: MaterialStateProperty.all<TextStyle>(
                   AppTextStyles.darkButtonText),
@@ -70,7 +70,7 @@ class AppButtonWithIcon extends StatelessWidget {
             label: Text(text),
               style: ButtonStyle(
                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-                      const EdgeInsets.fromLTRB(0, 15, 0, 15)),
+                      const EdgeInsets.fromLTRB(0, 20, 0, 20)),
                   backgroundColor: MaterialStateProperty.all<Color>(color),
                   textStyle: MaterialStateProperty.all<TextStyle>(
                       AppTextStyles.darkButtonText),

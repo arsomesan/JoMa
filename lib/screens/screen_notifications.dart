@@ -71,6 +71,11 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
       body: ListView(
         padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
         children: [
+          Text(
+            'Werde benachrichtigt,\n sobald neue Jobs verfügbar sind!',
+            textAlign: TextAlign.center,
+            style: AppTextStyles.darkCardTextWhite
+          ),
           CheckboxButton(
               text: 'Soziales & Hauswirtschaft',
               value: _isChecked[0],
