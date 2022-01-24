@@ -49,7 +49,7 @@ class HomeScreenCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   icon,
-                  SizedBox(height: 2),
+                  SizedBox(height: 8),
                   Text(
                     title,
                     style: const TextStyle(

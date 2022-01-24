@@ -1,4 +1,5 @@
 import 'package:flutter_svg/svg.dart';
+import 'package:joma/materials/appbar_job.dart';
 import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/navbar.dart';
 import 'package:joma/screens/screen_home.dart';
@@ -15,16 +16,17 @@ class Datenschutz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarReplaceableImage(
-        bgColor: AppBackgroundColors().darkBackground,
+      appBar: AppBarJobArea(
+        bgColor: Colors.transparent,
         bgColorBar: AppColors().darkPrimaryColor,
-        color: AppColors().darkPrimaryColor,
+        circleColor: AppColors().darkSecondaryColor,
+        color: AppBackgroundColors().darkBackground,
         title: 'Datenschutz'.toUpperCase(),
-        bild: DecorationImage(
-          image: new AssetImage("assets/icons/walking-solid.png"),
-          fit: BoxFit.cover,
-        ),
         hoehe: 230,
+        imageUrl: 'assets/icons/tractor-solid.svg',
+        onPressed1: () {
+          Navigator.of(context).pop();
+        },
       ),
       backgroundColor: AppBackgroundColors().darkBackground,
       body: Center(
