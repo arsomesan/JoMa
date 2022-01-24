@@ -13,6 +13,7 @@ class DataController extends GetxController {
   var skills = List<Skill>.empty().obs;
 
   RxList<bool> boolList = List<bool>.empty().obs;
+  RxList<bool> jobList = List<bool>.empty().obs;
 
 
   @override
@@ -22,6 +23,7 @@ class DataController extends GetxController {
     fetchSkills();
     fetchProfile();
     super.onInit();
+
   }
 
   void fetchProfile() async {
@@ -32,6 +34,8 @@ class DataController extends GetxController {
   void fetchJobs() async {
     var jobs = await RemoteServices.fetchJobs();
     this.jobs.value = jobs;
+    this.jobList =
+        List.filled(jobs.length, false, growable: false).obs;
   }
 
   void fetchJobCategories() async {

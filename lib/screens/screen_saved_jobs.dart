@@ -9,6 +9,7 @@ import 'package:joma/materials/card.dart';
 import 'package:joma/materials/navbar.dart';
 import 'package:joma/model/profil_model.dart';
 import 'package:joma/screens/screen_home.dart';
+import 'package:joma/screens/screen_job_details.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
 
 class ScreenSavedJobs extends StatelessWidget {
@@ -78,7 +79,15 @@ class ScreenSavedJobs extends StatelessWidget {
                           .elementAt(currentJob.category!)
                           .colorHex
                           .toString())),
-                      onPressed: () {}));
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ScreenJobDetails(
+                                      jobID: currentJob.id,
+                                    )));
+                      }));
                 }
               }
 

@@ -10,12 +10,14 @@ import 'package:joma/materials/appbar_job.dart';
 import 'package:joma/materials/navbar.dart';
 import 'package:joma/model/job_category_model.dart';
 import 'package:joma/model/job_model.dart';
+import 'package:joma/model/profil_model.dart';
 import 'package:joma/model/skill_model.dart';
 
 import 'package:joma/materials/card.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/services/remote_services.dart';
+import 'package:joma/utils/user_simple_preferences.dart';
 import 'screen_joblist_search.dart';
 
 // Material-Imports
@@ -70,10 +72,22 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
       .backgroundColorHex
       .toString()));
 
+
+
+
   bool selected = true;
 
   @override
   Widget build(BuildContext context) {
+
+    var remoteUser = profilToJson(data.profile);
+    //Load Profile from Shared Preferences if given. If not load Json Profile
+    var tmpUser = profilFromJson(
+        UserSimplePreferences.getUser() ?? remoteUser.toString());
+    Profil user = tmpUser[0];
+    bool savedData = data.jobList[widget.jobID!];
+    selected = !savedData;
+
     return Scaffold(
         backgroundColor: AppColors().white,
         appBar: AppBarJobArea(
@@ -113,7 +127,7 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
           children: [
             //titleImageBuilder(job),
             titleTextBuilder(context),
-            bookmarkBuilder(),
+            bookmarkBuilder(tmpUser),
             carouselSliderBuilder(),
             jobDescriptionBuilder(),
             skillBackgroundBuilder(context),
@@ -377,11 +391,12 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
     );
   }
 
-  Widget bookmarkBuilder() {
+  Widget bookmarkBuilder(List<Profil> tmpUser) {
     return IconButton(
       onPressed: () {
         setState(() {
-          selected = !selected;
+          data.jobList[widget.jobID!] = selected;
+          saveJobState(data.jobList, tmpUser);
         });
       },
       icon: FaIcon(selected ? FontAwesomeIcons.bookmark : FontAwesomeIcons.solidBookmark),
@@ -454,4 +469,26 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
       },
     );
   }
+}
+
+void saveJobState(RxList<bool> jobList, List<Profil> tmpUser) {
+  int count = 0;
+  for (int i = 0; i < data.jobList.length; i++) {
+    if (data.jobList[i] == true) count++;
+  }
+
+  var savedList = new List.filled(count, 0, growable: false);
+  int before = -1;
+  for (int i = 0; i < savedList.length; i++) {
+    for (int l = 0; l < data.jobList.length; l++) {
+      if (data.jobList[l] == true && l > before) {
+        savedList[i] = l;
+        before = l;
+        break;
+      }
+    }
+  }
+  tmpUser[0].savedJobs = savedList;
+  var lokalusersavetmp = profilToJson(tmpUser);
+  UserSimplePreferences.setUser(lokalusersavetmp.toString());
 }
