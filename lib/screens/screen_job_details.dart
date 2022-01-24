@@ -407,9 +407,20 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
               action: SnackBarAction(
                 label: 'Schließen',
                 textColor: AppColors().white,
-                onPressed: () {
-                  // Code to execute.
-                },
+                onPressed: () {},
+              ),
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: const Text('Der Job wurde aus deinen gespeicherten Jobs entfernt.'),
+              behavior: SnackBarBehavior.floating,
+              backgroundColor: currentColor,
+              action: SnackBarAction(
+                label: 'Schließen',
+                textColor: AppColors().white,
+                onPressed: () {},
               ),
             ),
           );
