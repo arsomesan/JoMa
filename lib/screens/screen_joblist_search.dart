@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:joma/controllers/data_controller.dart';
+import 'package:joma/materials/appbar_job.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/card.dart';
 import 'package:joma/materials/navbar.dart';
@@ -71,18 +72,17 @@ class ScreenJobListSearchState extends State<ScreenJobListSearch> {
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: AppBackgroundColors().darkBackground,
-        appBar: AppBar(
-          backgroundColor: AppColors().darkPrimaryColor,
-          title: Text('Alle Jobs'.toUpperCase(), style: AppTextStyles.darkH1),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              icon: AppIcons().settingsWheel,
-              onPressed: () {
-                Get.to(() => const Einstellungen());
-              },
-            )
-          ],
+        appBar: AppBarJobArea(
+          bgColor: Colors.transparent,
+          bgColorBar: AppColors().darkPrimaryColor,
+          circleColor: AppColors().darkSecondaryColor,
+          color: AppBackgroundColors().darkBackground,
+          title: 'Alle Jobs'.toUpperCase(),
+          hoehe: 230,
+          imageUrl: 'assets/icons/tractor-solid.svg',
+          onPressed1: () {
+            Navigator.of(context).pop();
+          },
         ),
         body: SingleChildScrollView(
           child: Column(

@@ -44,11 +44,11 @@ class ScreenJobListCategory extends StatelessWidget {
       appBar: AppBarJobArea(
         bgColor: currentBackgroundColor,
         bgColorBar: currentColor,
+        circleColor: currentColor,
         color: currentColor,
-        title: 'Handwerk'.toUpperCase(),
+        title: data.jobCategories.elementAt(categoryID).title.toString().toUpperCase(),
         hoehe: 230,
         imageUrl: _pics[categoryID],
-        icon: AppIcons().redSection,
             onPressed1: () {
             Navigator.of(context).pop();
             },

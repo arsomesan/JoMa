@@ -1,3 +1,4 @@
+import 'package:joma/materials/appbar_job.dart';
 import 'package:joma/materials/button.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
@@ -5,6 +6,7 @@ import 'package:joma/screens/screen_notifications.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_profil_settings.dart';
 import 'package:joma/screens/screen_select_view.dart';
+import 'package:joma/screens/screen_settings_datenschutz.dart';
 import 'package:joma/screens/screen_settings_impressum.dart';
 import 'package:flutter/material.dart';
 import 'package:joma/materials/assets.dart';
@@ -18,22 +20,23 @@ class Einstellungen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-            title: Text('Einstellungen'.toUpperCase(), style: AppTextStyles.darkH1),
-            centerTitle: true,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            backgroundColor: AppColors().darkPrimaryColor,
-          ),
+      appBar: AppBarJobArea(
+        bgColor: Colors.transparent,
+        bgColorBar: AppColors().darkPrimaryColor,
+        circleColor: AppColors().darkSecondaryColor,
+        color: AppBackgroundColors().darkBackground,
+        title: 'Einstellungen'.toUpperCase(),
+        hoehe: 230,
+        imageUrl: 'assets/icons/tractor-solid.svg',
+        onPressed1: () {
+          Navigator.of(context).pop();
+        },
+      ),
       backgroundColor: AppBackgroundColors().darkBackground,
       body: ListView (
         children: [
           const SizedBox(height: 15),
-          CircleAvatar(
+          /*CircleAvatar(
             radius: 50,
             backgroundColor: AppColors().darkSecondaryColor,
             child: CircleAvatar(
@@ -44,7 +47,7 @@ class Einstellungen extends StatelessWidget {
                   color: AppColors().darkPrimaryColor,
                   size: 50),
             ),
-          ),
+          ),*/
           const SizedBox(height: 35),
           AppButtonWithIcon(
             text: 'Profil bearbeiten',

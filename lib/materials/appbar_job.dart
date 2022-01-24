@@ -61,10 +61,9 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
   final Color bgColor;
   final Color bgColorBar;
   final VoidCallback onPressed1;
-  // final VoidCallback onPressed2;
-  final Icon icon;
   final double hoehe;
   final String imageUrl;
+  final Color circleColor;
 
   AppBarJobArea({
     required this.title,
@@ -72,10 +71,9 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
     required this.bgColor,
     required this.bgColorBar,
     required this.onPressed1,
-    // required this.onPressed2,
-    required this.icon,
     required this.hoehe,
     required this.imageUrl,
+    required this.circleColor,
   });
 
   @override
@@ -118,7 +116,7 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
                         fit: BoxFit.none,
                       ),
                         border: Border.all(
-                          color: bgColorBar,
+                          color: circleColor,
                           width: 5,
                         )
                       //color: Colors.green,
@@ -132,13 +130,19 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
                 //left: 30,
                 child: Align(
                   alignment: Alignment.center,
-                  child: Text(title,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Container(
+                      width: 300,
+                      child: Text(title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ),
+                  ),
                 ),
               ),
               Positioned.fill(
