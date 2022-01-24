@@ -398,6 +398,22 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
           data.jobList[widget.jobID!] = selected;
           saveJobState(data.jobList, tmpUser);
         });
+        if(selected) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: const Text('Der Job wurde erfolgreich gespeichert.'),
+              behavior: SnackBarBehavior.floating,
+              backgroundColor: currentColor,
+              action: SnackBarAction(
+                label: 'Schließen',
+                textColor: AppColors().white,
+                onPressed: () {
+                  // Code to execute.
+                },
+              ),
+            ),
+          );
+        }
       },
       icon: FaIcon(selected ? FontAwesomeIcons.bookmark : FontAwesomeIcons.solidBookmark),
       color: currentColor,
