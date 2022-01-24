@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-List<Profil> profilFromJson(String str) => List<Profil>.from(json.decode(str).map((x) => Profil.fromJson(x)));
+List<Profil> profilFromJson(String str) => List<Profil>.from(json.decode(utf8.decode(str.runes.toList())).map((x) => Profil.fromJson(x)));
 
 String profilToJson(List<Profil> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 

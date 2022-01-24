@@ -4,6 +4,7 @@ import 'package:joma/model/job_model.dart';
 import 'package:joma/model/profil_model.dart';
 import 'package:joma/model/skill_model.dart';
 import 'package:joma/services/remote_services.dart';
+import 'package:joma/utils/user_simple_preferences.dart';
 
 class DataController extends GetxController {
 
@@ -23,7 +24,6 @@ class DataController extends GetxController {
     fetchSkills();
     fetchProfile();
     super.onInit();
-
   }
 
   void fetchProfile() async {
@@ -34,7 +34,7 @@ class DataController extends GetxController {
   void fetchJobs() async {
     var jobs = await RemoteServices.fetchJobs();
     this.jobs.value = jobs;
-    this.jobList =
+    jobList =
         List.filled(jobs.length, false, growable: false).obs;
   }
 
@@ -46,5 +46,9 @@ class DataController extends GetxController {
   void fetchSkills() async {
     var skills = await RemoteServices.fetchSkills();
     this.skills.value = skills;
+    boolList =
+        List.filled(skills.length, false, growable: false).obs;
   }
+
 }
+

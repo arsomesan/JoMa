@@ -43,19 +43,6 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
     //Load Profile from Shared Preferences if given. If not load Json Profile
     var tmpUser = profilFromJson(
         UserSimplePreferences.getUser() ?? remoteUser.toString());
-    Profil user = tmpUser[0];
-
-    data.boolList =
-        new List.filled(data.skills.length, false, growable: false).obs;
-
-    for (int i = 0; i < data.skills.length; i++) {
-      for (int l = 0; l < user.skills!.length; l++) {
-        if (data.skills[i].id == user.skills![l]) {
-          data.boolList[i] = true;
-          break;
-        }
-      }
-    }
 
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
