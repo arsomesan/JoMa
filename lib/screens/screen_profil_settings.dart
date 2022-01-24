@@ -534,13 +534,13 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                           onPressed: () {
                             if (emailCheck) {
 
-                              isright = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(EmailController.text);
+                              isright = RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?").hasMatch(EmailController.text);
                               if(isright){
                                 tmpUser[0].kontakt!.email =
                                     EmailController.text;
                               } else {
                                 showDialog(context: context,
-                                    builder: (context) => PopUpAlert(title: "E-Mail nicht korrekt", content: "Bitte überprüfe die eingegebene E-Mail-Adresse.", route: ProfilData(), current: ScreenProfilSettings())
+                                    builder: (context) => PopUpAlert(title: "E-Mail nicht korrekt", content: "Bitte überprüfe die eingegebene E-Mail-Adresse.", current: ProfilData(), context: context)
                                 );
                               }
                             }

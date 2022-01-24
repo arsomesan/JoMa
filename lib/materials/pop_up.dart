@@ -7,44 +7,34 @@ import 'package:joma/materials/button.dart';
 class PopUpAlert extends StatelessWidget {
   final String title;
   final String content;
-  final Widget route;
+  final BuildContext context;
   final Widget current;
 
   PopUpAlert({
     required this.title,
     required this.content,
-    required this.route,
+    required this.context,
     required this.current,
   });
 
-  Widget continueButton(Widget route) => TextButton(
-    child: Container(
+  Widget continueButton(BuildContext context) => Container(
       alignment: Alignment.center,
       child: AppButton(text: "Weiter",
           color: AppColors().darkSecondaryColor,
           onPressed: () {
-            Get.off(() => route);
+            Navigator.of(context, rootNavigator: true).pop();
           }
       ),
-    ),
-        onPressed: () {
-          Get.off(() => route);
-        },
       );
 
-  Widget cancelButton(Widget current) => TextButton(
-        child: Container(
+  Widget cancelButton(Widget current) => Container(
           alignment: Alignment.center,
-          child: AppButton(text: "Zurück",
+          child: AppButton(text: "Abbrechen",
               color: AppColors().darkSecondaryColor,
               onPressed: () {
                 Get.off(() => current);
               }
           ),
-        ),
-        onPressed: () {
-          Get.off(() => current);
-        },
       );
 
   @override
@@ -52,7 +42,7 @@ class PopUpAlert extends StatelessWidget {
     return AlertDialog(
       title: Text(
         this.title,
-        style: TextStyle(
+        style: const TextStyle(
             fontFamily: AppFont.mainFont,
             fontSize: 25,
             fontWeight: FontWeight.bold,
@@ -61,10 +51,15 @@ class PopUpAlert extends StatelessWidget {
       ),
       backgroundColor: AppColors().darkPrimaryColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-      actions: [cancelButton(current)],
+      actions: [Row(
+        children: [cancelButton(current),
+          SizedBox(width: 100),
+          continueButton(context)
+        ],
+      )],
       content: Text(
         this.content,
-        style: TextStyle(
+        style: const TextStyle(
             fontFamily: AppFont.mainFont,
             fontSize: 16,
             color: Colors.white
