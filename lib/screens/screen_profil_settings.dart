@@ -375,7 +375,9 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                                     hintText: user.adresse!.hausnummer,
                                     hintStyle:
                                         TextStyle(color: Colors.grey),
-                                  ))),
+                                  ),
+                                style: TextStyle(color: AppColors().white),
+                              )),
                         ])))
                   ]),
                 );
