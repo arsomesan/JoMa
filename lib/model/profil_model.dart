@@ -14,6 +14,7 @@ class Profil {
     this.kontakt,
     this.zugriff,
     this.skills,
+    this.notis,
   });
 
   String? name;
@@ -25,6 +26,8 @@ class Profil {
   Kontakt? kontakt;
   Zugriff? zugriff;
   List<int>? skills;
+  List<bool>? notis;
+
 
   factory Profil.fromJson(Map<String, dynamic> json) => Profil(
     name: json["name"],
@@ -36,6 +39,7 @@ class Profil {
     kontakt: Kontakt.fromJson(json["kontakt"]),
     zugriff: Zugriff.fromJson(json["zugriff"]),
     skills: List<int>.from(json["skills"].map((x) => x)),
+    notis: List<bool>.from(json["notis"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
@@ -48,6 +52,7 @@ class Profil {
     "kontakt": kontakt!.toJson(),
     "zugriff": zugriff!.toJson(),
     "skills": List<dynamic>.from(skills!.map((x) => x)),
+    "notis": List<dynamic>.from(notis!.map((x) => x)),
   };
 }
 

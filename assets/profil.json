@@ -18,48 +18,12 @@
     },
     "zugriff": {
       "datum": "2021-11-23"
-    }
-  },
-  {
-    "name": "Muster",
-    "vorname": "Max",
-    "login": "mustermax",
-    "password": "123456",
-    "bild": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.tenor.com%2Fimages%2F6b6b5eff607c722e56f378f7dd613f58%2Ftenor.gif&f=1&nofb=1",
-    "adresse": {
-      "ort": "Hanau",
-      "plz": "36037",
-      "strasse": "Leipziger Strasse",
-      "hausnummer": "123"
     },
-    "kontakt": {
-      "email": "muster@hs-fulda.de",
-      "tel": "0661 9640 301",
-      "web": "www.mustermax.de"
-    },
-    "zugriff": {
-      "datum": "2021-12-24"
-    }
-  },
-  {
-    "name": "Keucher",
-    "vorname": "Carl",
-    "login": "carlkeucher",
-    "password": "123456",
-    "bild": "https://static.wikia.nocookie.net/nickelodeon/images/f/f7/Jimmy_Neutron_-_Carl.png/revision/latest?cb=20160605152619&path-prefix=de",
-    "adresse": {
-      "ort": "Retroville",
-      "plz": "12345",
-      "strasse": "Keucherstr.",
-      "hausnummer": "123"
-    },
-    "kontakt": {
-      "email": "carl.keucher@gmail.com",
-      "tel": "+49 170 7462302",
-      "web": "www.carlkeucher.de"
-    },
-    "zugriff": {
-      "datum": "2021-12-24"
-    }
+    "skills": [
+      0,1,3,7,9,11
+    ],
+    "notis": [
+      false, false, false, false
+    ]
   }
 ]
