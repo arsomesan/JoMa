@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:flutter/material.dart';
 
-enum Choice { bild, einfach,voll }
+enum Choice { bild, einfach, voll }
 
 class SelectView extends StatelessWidget {
   final ViewController viewController = Get.put(ViewController());
@@ -24,7 +24,7 @@ class SelectView extends StatelessWidget {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight:110,
+          toolbarHeight: 110,
           title: Text(
             'Ansicht wählen'.toUpperCase(),
             style: AppTextStyles.darkH1,
@@ -39,9 +39,8 @@ class SelectView extends StatelessWidget {
               //Card1: nur Bilder
               GetBuilder<ViewController>(
                 builder: (_) {
-                Choice? _character = Choice.bild;
+                  Choice? _character = Choice.bild;
                   return Container(
-
                     margin: const EdgeInsets.fromLTRB(10, 20, 10, 10),
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * .20,
@@ -84,17 +83,18 @@ class SelectView extends StatelessWidget {
                                   ),
                                   textAlign: TextAlign.center),
                             ),
-
+                            Spacer(),
                             new Row(
                               mainAxisAlignment: MainAxisAlignment.end,
+                              //style: EdgeInsets.all(20.0),
                               children: [
                                 new Radio(
-                                  value: 0,
-                                  groupValue: _.state,
-                                 onChanged: (Choice) {}
-                                ),
+                                    value: 0,
+                                    groupValue: _.state,
+                                    onChanged: (Choice) {}),
                               ],
                             ),
+                            SizedBox(width: 15),
                           ],
                         ),
                         color: (() {
@@ -118,7 +118,7 @@ class SelectView extends StatelessWidget {
                 builder: (_) {
                   Choice? _character = Choice.einfach;
                   return Container(
-                  margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                    margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * .20,
                     child: GestureDetector(
@@ -185,16 +185,16 @@ class SelectView extends StatelessWidget {
                                 ],
                               ),
                             ),
+                            Spacer(),
                             new Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 new Radio(
                                     value: 1,
                                     groupValue: _.state,
-                                    onChanged: (Choice) {}
-                                ),
+                                    onChanged: (Choice) {}),
                               ],
-                            ),
+                            ),SizedBox(width: 15),
                           ],
                         ),
                         color: (() {
@@ -260,16 +260,16 @@ class SelectView extends StatelessWidget {
                                   ),
                                   textAlign: TextAlign.center),
                             ),
+                            Spacer(),
                             new Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 new Radio(
                                     value: 2,
                                     groupValue: _.state,
-                                    onChanged: (Choice) {}
-                                ),
+                                    onChanged: (Choice) {}),
                               ],
-                            ),
+                            ),SizedBox(width: 15),
                           ],
                         ),
                         color: (() {
@@ -294,41 +294,39 @@ class SelectView extends StatelessWidget {
                     text: "Weiter",
                     color: AppColors().darkSecondaryColor,
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => ScreenHome()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ScreenHome()));
                     },
                   )),
             ],
-
           ),
         ),
       ),
     );
   }
-  }
-
-
-  TextEditingController nameController = TextEditingController();
-  int _radioValue = 0;
-
-  void _handleRadioValueChange(int value) {
-    setState(() {
-      _radioValue = value;
-
-      switch (_radioValue) {
-        case 0:
-          break;
-        case 1:
-          break;
-        case 2:
-          break;
-      }
-    });
-  }
-
-void setState(Null Function() param0) {
 }
 
+TextEditingController nameController = TextEditingController();
+int _radioValue = 0;
+
+void _handleRadioValueChange(int value) {
+  setState(() {
+    _radioValue = value;
+
+    switch (_radioValue) {
+      case 0:
+        break;
+      case 1:
+        break;
+      case 2:
+        break;
+    }
+  });
+}
+
+void setState(Null Function() param0) {}
 
 /*
 (Choice) {
@@ -336,5 +334,3 @@ setState(() {
 _character = voll;
 });
 */
-
-
