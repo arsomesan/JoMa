@@ -1,5 +1,4 @@
 import 'package:joma/materials/button.dart';
-import 'package:joma/screens//screen_settings_datenschutz.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
 import 'package:joma/screens/screen_notifications.dart';
@@ -85,7 +84,7 @@ class Einstellungen extends StatelessWidget {
               icon: AppIcons().privacy,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Impressum()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Datenschutz()));
               }
           ),
           AppButton(

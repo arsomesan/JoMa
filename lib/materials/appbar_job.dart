@@ -64,6 +64,7 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
   // final VoidCallback onPressed2;
   final Icon icon;
   final double hoehe;
+  final String imageUrl;
 
   AppBarJobArea({
     required this.title,
@@ -74,6 +75,7 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
     // required this.onPressed2,
     required this.icon,
     required this.hoehe,
+    required this.imageUrl,
   });
 
   @override
@@ -89,24 +91,36 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
             //fit: StackFit.loose,
             children: <Widget>[
               Container(
-                height: 250,
+                height: 400,
                 width: double.infinity,
                 color: Colors.transparent,
               ),
               RoundRecJob(
                 bgColor: bgColor, 
                 bgColorBar: bgColorBar,),
+
               Positioned.fill(
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    height: 120,
-                    width: 120,
-                    decoration: const BoxDecoration(
+                    height: 130,
+                    width: 130,
+                    decoration: BoxDecoration(
+                      color: AppColors().white,
+                      shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: Svg("assets/images/darkLogo.svg"),
-                        fit: BoxFit.contain,
+                        image: Svg(imageUrl, size: Size(100, 100)),
+                        scale: 1.3,
+                        colorFilter: ColorFilter.mode(
+                          bgColorBar,
+                          BlendMode.srcIn,
+                        ),
+                        fit: BoxFit.none,
                       ),
+                        border: Border.all(
+                          color: bgColorBar,
+                          width: 5,
+                        )
                       //color: Colors.green,
                     ),
                     //child: AppLogo().darkLogo,
@@ -114,7 +128,7 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               Positioned.fill(
-                top: -100,
+                top: -170,
                 //left: 30,
                 child: Align(
                   alignment: Alignment.center,
