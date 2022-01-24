@@ -1,30 +1,18 @@
 import 'package:flutter_svg/svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/materials/appbar_job.dart';
 import 'package:joma/materials/appbar_replaceable_image.dart';
-import 'package:joma/materials/button.dart';
 import 'package:joma/materials/checkbox_button.dart';
 import 'package:joma/materials/navbar.dart';
 import 'package:joma/model/profil_model.dart';
-import 'package:joma/screens//screen_settings_datenschutz.dart';
 import 'package:joma/screens/screen_home.dart';
-import 'package:joma/screens/screen_login.dart';
-import 'package:joma/screens/screen_profil_loader.dart';
-import 'package:joma/screens/screen_profil_settings.dart';
-import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_settings.dart';
-import 'package:joma/screens/screen_settings_datenschutz.dart';
-import 'package:joma/screens/screen_settings_impressum.dart';
 import 'package:flutter/material.dart';
 import 'package:joma/materials/assets.dart';
-import 'package:joma/screens/screen_welcome.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
-
-import 'screen_joblist_search.dart';
 
 class ScreenNotifications extends StatefulWidget {
   const ScreenNotifications({Key? key}) : super(key: key);

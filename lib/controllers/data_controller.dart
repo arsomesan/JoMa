@@ -43,5 +43,4 @@ class DataController extends GetxController {
     var skills = await RemoteServices.fetchSkills();
     this.skills.value = skills;
   }
-
 }

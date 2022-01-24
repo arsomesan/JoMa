@@ -1,6 +1,11 @@
+// To parse this JSON data, do
+//
+//     final profil = profilFromJson(jsonString);
+
 import 'dart:convert';
 
-List<Profil> profilFromJson(String str) => List<Profil>.from(json.decode(utf8.decode(str.runes.toList())).map((x) => Profil.fromJson(x)));
+List<Profil> profilFromJson(String str) => List<Profil>.from(json.decode(str).map((x) => Profil.fromJson(x)));
+
 String profilToJson(List<Profil> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Profil {
@@ -15,6 +20,7 @@ class Profil {
     this.zugriff,
     this.skills,
     this.notis,
+    this.savedJobs,
   });
 
   String? name;
@@ -27,7 +33,7 @@ class Profil {
   Zugriff? zugriff;
   List<int>? skills;
   List<bool>? notis;
-
+  List<int>? savedJobs;
 
   factory Profil.fromJson(Map<String, dynamic> json) => Profil(
     name: json["name"],
@@ -40,6 +46,7 @@ class Profil {
     zugriff: Zugriff.fromJson(json["zugriff"]),
     skills: List<int>.from(json["skills"].map((x) => x)),
     notis: List<bool>.from(json["notis"].map((x) => x)),
+    savedJobs: List<int>.from(json["saved_jobs"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
@@ -53,6 +60,7 @@ class Profil {
     "zugriff": zugriff!.toJson(),
     "skills": List<dynamic>.from(skills!.map((x) => x)),
     "notis": List<dynamic>.from(notis!.map((x) => x)),
+    "saved_jobs": List<dynamic>.from(savedJobs!.map((x) => x)),
   };
 }
 
