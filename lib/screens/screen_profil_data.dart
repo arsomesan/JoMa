@@ -211,7 +211,6 @@ class ProfilData extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: 35, bottom: 50),
               child: SizedBox(
-                height: 60,
                 width: 160,
                 child: AppButton(
                     text: 'Profil bearbeiten',

@@ -120,7 +120,6 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                     child: Center(
                         child: SizedBox(
                           width: 150,
-                          height: 60,
                       child: AppButton(
                         text: 'Avatar ändern',
                         color: AppColors().darkSecondaryColor,
@@ -527,7 +526,6 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
                       margin: EdgeInsets.fromLTRB(0, 35, 0, 50),
                       child: SizedBox(
                         width: 140,
-                        height: 60,
                         child: AppButton(
                           text: 'Speichern',
                           color: AppColors().darkSecondaryColor,
