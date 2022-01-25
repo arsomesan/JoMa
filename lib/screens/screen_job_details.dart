@@ -344,13 +344,19 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
   }
 
   Widget buildDistanceText() {
+    LatLng antoniusCoords = LatLng(50.5550540, 9.6588151);
+    LatLng jobCoords = LatLng(double.parse(job.coords!.lat!),
+        double.parse(job.coords!.long!));
+    Distance dist = new Distance();
+    double jobDist = dist.as(LengthUnit.Kilometer, antoniusCoords, jobCoords);
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            '10 km entfernt!',
+            '$jobDist Kilometer entfernt!',
             style: AppTextStyles.darkH1,
           )
         ],
