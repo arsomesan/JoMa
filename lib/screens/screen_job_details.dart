@@ -1,5 +1,6 @@
 // Page-Imports
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,7 @@ import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/services/remote_services.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
 import 'screen_joblist_search.dart';
+import 'package:geocoding/geocoding.dart';
 
 // Material-Imports
 import 'package:flutter/material.dart';
@@ -74,11 +76,12 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
 
 
 
-
+  List<double> userCoords = [0,0];
   bool selected = true;
 
   @override
   Widget build(BuildContext context) {
+    var userAdress = getCoords();
 
     var remoteUser = profilToJson(data.profile);
     //Load Profile from Shared Preferences if given. If not load Json Profile
@@ -135,7 +138,7 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
             mapBuilder(),
             adressBuilder(),
             buildHorizontalDivider(),
-            buildDistanceText(),
+            buildDistanceText(userCoords),
             //buildApplyButton(),
             AppButton(
                 text: 'Bewerben',
@@ -278,6 +281,13 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
                     builder: (ctx) =>
                         const Icon(FontAwesomeIcons.mapPin, color: Colors.red),
                   ),
+                  Marker(
+                    width: 80.0,
+                    height: 80.0,
+                    point: LatLng(userCoords[0], userCoords[1]),
+                    builder: (ctx) =>
+                        const Icon(FontAwesomeIcons.home, color: Colors.red),
+                  )
                 ],
               ),
             ],
@@ -343,12 +353,44 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
     );
   }
 
-  Widget buildDistanceText() {
+  void getCoords() async {
+    var remoteUser = profilToJson(data.profile);
+    //Load Profile from Shared Preferences if given. If not load Json Profile
+    var tmpUser = profilFromJson(
+        UserSimplePreferences.getUser() ?? remoteUser.toString());
+    //profile to use
+    Profil user = tmpUser[0];
+    String adresse = user.adresse!.strasse! + " " + user.adresse!.hausnummer! + ", " + user.adresse!.ort!;
+    List<double> userPlace = [0,0];
+    if(kIsWeb) {
+      userPlace = [50.5550540, 9.6588151];
+    } else {
+      List<Location> locations = await locationFromAddress(adresse);
+      Location place = locations[0];
+      userPlace = [place.latitude, place.longitude];
+    }
+    setState(() {
+      userCoords = userPlace;
+    });
+  }
+
+  Widget buildDistanceText(List<double> userAdress) {
+    List<double> userAd = userAdress;
+    LatLng userCoords = LatLng(userAd[0], userAd[1]);
     LatLng antoniusCoords = LatLng(50.5550540, 9.6588151);
     LatLng jobCoords = LatLng(double.parse(job.coords!.lat!),
         double.parse(job.coords!.long!));
     Distance dist = new Distance();
-    double jobDist = dist.as(LengthUnit.Kilometer, antoniusCoords, jobCoords);
+
+    double jobDist = 0;
+    if(kIsWeb) {
+      jobDist = dist.as(LengthUnit.Kilometer, antoniusCoords, jobCoords);
+      print(jobDist);
+    } else {
+      jobDist = dist.as(LengthUnit.Kilometer, userCoords, jobCoords);
+    }
+
+
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
