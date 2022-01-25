@@ -51,7 +51,8 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
         color: AppBackgroundColors().darkBackground,
         title: 'Mitteilungen'.toUpperCase(),
         hoehe: 230,
-        imageUrl: 'assets/icons/tractor-solid.svg',
+        imageUrl: 'assets/icons/notifications_active_black_24dp.svg',
+        // TODO: SVG wird nicht angezeigt??
         onPressed1: () {
           Navigator.of(context).pop();
         },

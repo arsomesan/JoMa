@@ -79,7 +79,7 @@ class ScreenJobListSearchState extends State<ScreenJobListSearch> {
           color: AppBackgroundColors().darkBackground,
           title: 'Alle Jobs'.toUpperCase(),
           hoehe: 230,
-          imageUrl: 'assets/icons/tractor-solid.svg',
+          imageUrl: 'assets/icons/search-solid.svg',
           onPressed1: () {
             Navigator.of(context).pop();
           },

@@ -23,7 +23,7 @@ class Datenschutz extends StatelessWidget {
         color: AppBackgroundColors().darkBackground,
         title: 'Datenschutz'.toUpperCase(),
         hoehe: 230,
-        imageUrl: 'assets/icons/tractor-solid.svg',
+        imageUrl: 'assets/icons/user-shield-solid.svg',
         onPressed1: () {
           Navigator.of(context).pop();
         },

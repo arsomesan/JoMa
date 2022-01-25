@@ -40,7 +40,7 @@ class _ScreenSavedJobsState extends State<ScreenSavedJobs> {
         color: AppBackgroundColors().darkBackground,
         title: 'Gespeicherte Jobs'.toUpperCase(),
         hoehe: 230,
-        imageUrl: 'assets/icons/tractor-solid.svg',
+        imageUrl: 'assets/icons/bookmark-solid.svg',
         onPressed1: () {
           Navigator.of(context).pop();
         },

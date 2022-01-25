@@ -23,7 +23,8 @@ class Impressum extends StatelessWidget {
         color: AppBackgroundColors().darkBackground,
         title: 'Impressum'.toUpperCase(),
         hoehe: 230,
-        imageUrl: 'assets/icons/tractor-solid.svg',
+        imageUrl: 'assets/icons/speaker_notes_black_24dp.svg',
+        //  TODO: SVG wird nicht angezeigt??
         onPressed1: () {
           Navigator.of(context).pop();
         },

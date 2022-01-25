@@ -27,7 +27,7 @@ class Einstellungen extends StatelessWidget {
         color: AppBackgroundColors().darkBackground,
         title: 'Einstellungen'.toUpperCase(),
         hoehe: 230,
-        imageUrl: 'assets/icons/tractor-solid.svg',
+        imageUrl: 'assets/icons/cog-solid.svg',
         onPressed1: () {
           Navigator.of(context).pop();
         },

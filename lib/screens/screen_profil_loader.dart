@@ -48,7 +48,7 @@ class _ProfilLoaderState extends State<ProfilLoader> {
         color: AppBackgroundColors().darkBackground,
         title: 'Profil'.toUpperCase(),
         hoehe: 230,
-        imageUrl: 'assets/icons/tractor-solid.svg',
+        imageUrl: 'assets/icons/user-circle-solid.svg',
         onPressed1: () {
           Navigator.of(context).pop();
         },

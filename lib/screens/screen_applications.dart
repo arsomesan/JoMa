@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:joma/materials/appbar_job.dart';
 import 'package:joma/materials/appbar_replaceable_image.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:get/get.dart';
@@ -29,16 +30,18 @@ class ScreenApplications extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
-      appBar: AppBarReplaceableImage(
-        bgColor: AppBackgroundColors().darkBackground,
+      appBar: AppBarJobArea(
+        bgColor: Colors.transparent,
         bgColorBar: AppColors().darkPrimaryColor,
-        color: AppColors().darkPrimaryColor,
+        circleColor: AppColors().darkSecondaryColor,
+        color: AppBackgroundColors().darkBackground,
         title: 'Bewerbungen'.toUpperCase(),
-        bild: DecorationImage(
-          image: new AssetImage("assets/icons/walking-solid.png"),
-          fit: BoxFit.cover,
-        ),
         hoehe: 230,
+        imageUrl: 'assets/icons/work_black_24dp.svg',
+        //  TODO: SVG wird nicht angezeigt??
+        onPressed1: () {
+          Navigator.of(context).pop();
+        },
       ),
       body: Center(
         child: ListView(
