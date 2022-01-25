@@ -45,6 +45,7 @@ Wir sind ergeizig an der Sache dran und hoffen, mit dieser App Menschen mit beso
 - shared_preferences: ^2.0.9
 - flutter_svg: ^1.0.2
 - flutter_svg_provider: ^1.0.1
+- geocoding: ^2.0.2
 
 ## Assets
 - assets/
