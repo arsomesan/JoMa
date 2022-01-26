@@ -81,7 +81,7 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
 
   @override
   Widget build(BuildContext context) {
-    var userAdress = getCoords();
+
 
     var remoteUser = profilToJson(data.profile);
     //Load Profile from Shared Preferences if given. If not load Json Profile
@@ -92,6 +92,7 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
     selected = !savedData;
 
     return Scaffold(
+
         backgroundColor: AppColors().white,
         appBar: AppBarJobArea(
           bgColor: AppColors().white,
@@ -138,7 +139,7 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
             mapBuilder(),
             adressBuilder(),
             buildHorizontalDivider(),
-            buildDistanceText(userCoords),
+            buildDistanceText(),
             //buildApplyButton(),
             AppButton(
                 text: 'Bewerben',
@@ -374,21 +375,17 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
     });
   }
 
-  Widget buildDistanceText(List<double> userAdress) {
-    List<double> userAd = userAdress;
-    LatLng userCoords = LatLng(userAd[0], userAd[1]);
+
+  Widget buildDistanceText() {
+    //getCoords();
+    LatLng userCoord = LatLng(userCoords[0], userCoords[1]);
     LatLng antoniusCoords = LatLng(50.5550540, 9.6588151);
     LatLng jobCoords = LatLng(double.parse(job.coords!.lat!),
         double.parse(job.coords!.long!));
     Distance dist = new Distance();
 
     double jobDist = 0;
-    if(kIsWeb) {
-      jobDist = dist.as(LengthUnit.Kilometer, antoniusCoords, jobCoords);
-      print(jobDist);
-    } else {
-      jobDist = dist.as(LengthUnit.Kilometer, userCoords, jobCoords);
-    }
+    jobDist = dist.as(LengthUnit.Kilometer, userCoord, jobCoords);
 
 
 
