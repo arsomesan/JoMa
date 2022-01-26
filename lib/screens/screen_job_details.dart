@@ -57,6 +57,12 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
     "assets/icons/hamburger-solid.svg"
   ];
 
+  @override
+  void initState() {
+    getCoords();
+    super.initState();
+  }
+
   final DataController data = Get.find();
 
   late Job job = data.jobs.elementAt(widget.jobID!);
@@ -377,7 +383,6 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
 
 
   Widget buildDistanceText() {
-    //getCoords();
     LatLng userCoord = LatLng(userCoords[0], userCoords[1]);
     LatLng antoniusCoords = LatLng(50.5550540, 9.6588151);
     LatLng jobCoords = LatLng(double.parse(job.coords!.lat!),
