@@ -27,7 +27,6 @@ class _ScreenLogin extends State<ScreenLogin> {
   late Future<List<Profil>> futureProfil;
   final DataController data = Get.find();
 
-    
   @override
   void initState() {
     super.initState();
@@ -51,7 +50,7 @@ class _ScreenLogin extends State<ScreenLogin> {
 
   @override
   Widget build(BuildContext context) {
- //Load Profile from Json
+    //Load Profile from Json
     var remoteUser = profilToJson(data.profile);
     //Load Profile from Shared Preferences if given. If not load Json Profile
     var tmpUser = profilFromJson(
@@ -60,7 +59,7 @@ class _ScreenLogin extends State<ScreenLogin> {
 
     bool validate(String email, String pwd) {
       //ToDos: json durchlaufen
-      if(user.kontakt!.email == email && user.password == pwd) {
+      if (user.kontakt!.email == email && user.password == pwd) {
         String? emailTmp = user.kontakt!.email;
         String? pwdTmp = user.password;
         if (emailTmp == emailController.text &&
@@ -68,12 +67,10 @@ class _ScreenLogin extends State<ScreenLogin> {
           print("Login erfolgreich");
           return true;
         }
-      }   
-    print("Login nicht erfolgreich");
-    return false;
-  }
-
-
+      }
+      print("Login nicht erfolgreich");
+      return false;
+    }
 
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
@@ -91,6 +88,17 @@ class _ScreenLogin extends State<ScreenLogin> {
           //style:AppTextStyles.darkH1,
         ),
         Container(
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
+            child: RichText(
+              text: TextSpan(children: const [
+                TextSpan(
+                  text: 'E-Mail',
+                  style: AppTextStyles.darkH4,
+                )
+              ]),
+            )),
+        Container(
             color: AppColors().white,
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.fromLTRB(10, 05, 10, 05),
@@ -105,8 +113,21 @@ class _ScreenLogin extends State<ScreenLogin> {
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'E-Mail',
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                 ))),
+        Container(
+            alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+            child: RichText(
+              text: TextSpan(children: const [
+                TextSpan(
+                  text: 'Passwort',
+                  style: AppTextStyles.darkH4,
+                )
+              ]),
+            )),
         Container(
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.fromLTRB(10, 05, 10, 05),
@@ -117,8 +138,9 @@ class _ScreenLogin extends State<ScreenLogin> {
                   obscureText: _obscurePwd,
                   controller: passwordController,
                   decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
+                    border: OutlineInputBorder(),
                     labelText: 'Passwort',
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                     suffixIcon: IconButton(
                         icon: Icon(_obscurePwd
                             ? Icons.visibility
