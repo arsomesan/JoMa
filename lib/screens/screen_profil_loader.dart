@@ -110,9 +110,10 @@ class _ProfilLoaderState extends State<ProfilLoader> {
       ),
 
       bottomNavigationBar: AppNavBar(
-          backgroundColor: AppColors().darkPrimaryColor,
-          selectedItemColor: AppColors().white,
-          unselectedItemColor: AppColors().white),
+        backgroundColor: AppColors().darkPrimaryColor,
+        selectedItemColor: AppBackgroundColors().darkBackground,
+        unselectedItemColor: AppColors().white,
+       ),
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );

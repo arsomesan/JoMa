@@ -178,8 +178,9 @@ class ScreenHome extends StatelessWidget {
 
         bottomNavigationBar: AppNavBar(
             backgroundColor: AppColors().darkPrimaryColor,
-            selectedItemColor: AppColors().white,
-            unselectedItemColor: AppColors().white),
+            selectedItemColor: AppBackgroundColors().darkBackground,
+            unselectedItemColor: AppBackgroundColors().darkBackground,
+        ),
         /*bottomNavigationBar: BottomNavigationBar(
             currentIndex: 0,
             onTap: (value) {

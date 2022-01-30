@@ -111,9 +111,10 @@ class ScreenJobListSearchState extends State<ScreenJobListSearch> {
         ),
 
         bottomNavigationBar: AppNavBar(
-            backgroundColor: AppColors().darkPrimaryColor,
-            selectedItemColor: AppColors().white,
-            unselectedItemColor: AppColors().white),
+          backgroundColor: AppColors().darkPrimaryColor,
+          selectedItemColor: AppColors().white,
+          unselectedItemColor: AppBackgroundColors().darkBackground,
+         ),
 
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),

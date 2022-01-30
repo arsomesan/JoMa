@@ -12,27 +12,28 @@ class AppNavBar extends StatelessWidget {
   final Color unselectedItemColor;
   //final VoidCallback onTab;
 
-  AppNavBar({required this.backgroundColor, required this.selectedItemColor, required this.unselectedItemColor});
+  AppNavBar({required this.backgroundColor, required this.selectedItemColor, required this.unselectedItemColor });
 
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-        currentIndex: 0,
         onTap: (value) {
           if (value == 0) {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ScreenJobListSearch()),
-            );
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ScreenJobListSearch()));
           }
           if (value == 1) {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilLoader()),
-            );
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilLoader()));
           }
           //if (value == 2) Navigator.of(context).push(...);
         },
+
+        currentIndex: 0,
+        selectedItemColor: selectedItemColor, //Suche
+        unselectedItemColor: unselectedItemColor, //Profil
         backgroundColor: backgroundColor,
-        selectedItemColor: selectedItemColor,
-        unselectedItemColor: unselectedItemColor,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: AppIcons().searchGlass,
@@ -45,8 +46,5 @@ class AppNavBar extends StatelessWidget {
         ]
     );
   }
-
-
-
-
 }
+

@@ -110,11 +110,9 @@ class AppIcons {
 
   // Nav-Bar
   Icon searchGlass = Icon(
-      FontAwesomeIcons.search,
-      color: AppColors().white);
+      FontAwesomeIcons.search);
   Icon profile = Icon(
-      FontAwesomeIcons.solidUserCircle,
-      color: AppColors().white);
+      FontAwesomeIcons.solidUserCircle);
 
   // Ansicht wählen
   Icon nurBilder = Icon(

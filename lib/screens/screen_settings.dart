@@ -139,8 +139,9 @@ class Einstellungen extends StatelessWidget {
             //if (value == 2) Navigator.of(context).push(...);
           },
           backgroundColor: AppColors().darkPrimaryColor,
-          selectedItemColor: AppColors().white,
+          selectedItemColor: AppBackgroundColors().darkBackground,
           unselectedItemColor: AppColors().white,
+
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: AppIcons().searchGlass,

@@ -169,7 +169,7 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
 
       bottomNavigationBar: AppNavBar(
         backgroundColor: AppColors().darkPrimaryColor,
-        selectedItemColor: AppColors().white,
+        selectedItemColor: AppBackgroundColors().darkBackground,
         unselectedItemColor: AppColors().white,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

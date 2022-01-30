@@ -128,9 +128,10 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
         ),
 
         bottomNavigationBar: AppNavBar(
-            backgroundColor: AppColors().darkPrimaryColor,
-            selectedItemColor: AppColors().white,
-            unselectedItemColor: AppColors().white),
+          backgroundColor: currentColor,
+          selectedItemColor: AppColors().white,
+          unselectedItemColor: AppColors().white,
+          ),
 
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: ListView(
@@ -529,9 +530,10 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
 
   Widget navBarBuilder(BuildContext context) {
     return AppNavBar(
-    backgroundColor: AppColors().darkPrimaryColor,
-    selectedItemColor: AppColors().white,
-    unselectedItemColor: AppColors().white);
+      backgroundColor: AppColors().darkPrimaryColor,
+      selectedItemColor: AppBackgroundColors().darkBackground,
+      unselectedItemColor: AppBackgroundColors().darkBackground,
+     );
   }
 
   Widget homeButtonBuilder(BuildContext context) {
