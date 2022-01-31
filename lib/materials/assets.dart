@@ -165,6 +165,8 @@ class AppIcons {
       Icons.work);
   Icon bookMark = Icon(
       FontAwesomeIcons.solidBookmark);
+  Icon ansichtIcon = Icon(
+      Icons.list_alt);
   Icon notifications = Icon(
       Icons.notifications_active);
   Icon imprint = Icon(

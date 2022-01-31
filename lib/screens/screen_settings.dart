@@ -59,7 +59,7 @@ class Einstellungen extends StatelessWidget {
           ),
           AppButtonWithIcon(
               text: 'Ansicht wählen',
-              icon: AppIcons().settingsWheel,
+              icon: AppIcons().ansichtIcon,
               color: AppColors().darkPrimaryColor,
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => SelectView()));
