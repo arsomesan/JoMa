@@ -107,7 +107,7 @@ class ScreenJobListCategory extends StatelessWidget {
                                     )));
                       }));
                 }
-                if (result.length <= 2) {
+                if (result.length <= 1) {
                   result.add(
                     const Text(
                         "Zur Zeit sind leider keine Jobangebote für diese Kategorie vorhanden.",
