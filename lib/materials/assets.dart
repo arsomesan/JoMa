@@ -166,6 +166,8 @@ class AppIcons {
   Icon bookMark = Icon(
       FontAwesomeIcons.solidBookmark,
       color: AppColors().white);
+  Icon ansichtIcon = Icon(
+      Icons.list_alt);
   Icon notifications = Icon(
       FontAwesomeIcons.solidBell,
       color: AppColors().white);
