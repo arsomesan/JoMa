@@ -164,9 +164,11 @@ class AppIcons {
   Icon applicationsSent = Icon(
       Icons.work);
   Icon bookMark = Icon(
-      FontAwesomeIcons.solidBookmark);
+      FontAwesomeIcons.solidBookmark,
+      color: AppColors().white);
   Icon notifications = Icon(
-      Icons.notifications_active);
+      FontAwesomeIcons.solidBell,
+      color: AppColors().white);
   Icon imprint = Icon(
       Icons.speaker_notes);
   Icon privacy = Icon(
