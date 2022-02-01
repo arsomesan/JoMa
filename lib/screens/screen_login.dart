@@ -11,6 +11,7 @@ import 'package:joma/controllers/data_controller.dart';
 import 'package:joma/materials/appbar.dart';
 import 'package:joma/materials/button.dart';
 import 'package:joma/model/profil_model.dart';
+import 'package:joma/screens/screen_password_reset.dart';
 import 'package:joma/screens/screen_select_view.dart';
 import 'package:joma/screens/screen_test.dart'; //Json
 import 'package:joma/materials/assets.dart';
@@ -177,7 +178,10 @@ class _ScreenLogin extends State<ScreenLogin> {
                     style: TextStyle(color: Colors.white),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        print('Account erstellen.');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ScreenPasswordReset()),
+                        );
                       })
               ]),
             )),
