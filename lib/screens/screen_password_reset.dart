@@ -31,7 +31,7 @@ class _ScreenPasswordResetState extends State<ScreenPasswordReset> {
                     bgColor: AppBackgroundColors().darkBackground,
                     bgColorBar: AppColors().darkPrimaryColor,
                     color: AppColors().darkPrimaryColor,
-                    title: 'Passwort\n vergessen'.toUpperCase()
+                    title: 'Passwort\n ändern'.toUpperCase()
                 ),
               ),
               Container(
@@ -40,7 +40,7 @@ class _ScreenPasswordResetState extends State<ScreenPasswordReset> {
                   child: RichText(
                     text: TextSpan(children: const [
                       TextSpan(
-                        text: 'E-Mail',
+                        text: 'Altes Passwort',
                         style: AppTextStyles.darkH4White,
                       )
                     ]),
@@ -52,16 +52,24 @@ class _ScreenPasswordResetState extends State<ScreenPasswordReset> {
                 child: Padding(
                   padding: EdgeInsets.all(0),
                   child: TextField(
-                    keyboardType: TextInputType.emailAddress,
-                    style: TextStyle(
-                      backgroundColor: AppColors().white
-                    ),
-                    controller: emailController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'E-Mail',
-                      floatingLabelBehavior: FloatingLabelBehavior.never
-                    ),
+                      obscureText: _obscurePwd,
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Altes Passwort',
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          suffixIcon: IconButton(
+                            icon: Icon(_obscurePwd
+                                ? Icons.visibility
+                                : Icons.visibility_off
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscurePwd = !_obscurePwd;
+                              });
+                            },
+                          )
+                      )
                   ),
                 ),
               ),
@@ -72,7 +80,7 @@ class _ScreenPasswordResetState extends State<ScreenPasswordReset> {
                   child: RichText(
                     text: TextSpan(children: const [
                       TextSpan(
-                        text: 'Passwort',
+                        text: 'Neues Passwort',
                         style: AppTextStyles.darkH4White,
                       )
                     ]),
@@ -89,7 +97,7 @@ class _ScreenPasswordResetState extends State<ScreenPasswordReset> {
                     controller: passwordController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Passwort',
+                      labelText: 'Neues Passwort',
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       suffixIcon: IconButton(
                         icon: Icon(_obscurePwd
@@ -112,7 +120,7 @@ class _ScreenPasswordResetState extends State<ScreenPasswordReset> {
                   child: RichText(
                     text: TextSpan(children: const [
                       TextSpan(
-                        text: 'Passwort wiederholen',
+                        text: 'Neues Passwort wiederholen',
                         style: AppTextStyles.darkH4White,
                       )
                     ]),
@@ -129,7 +137,7 @@ class _ScreenPasswordResetState extends State<ScreenPasswordReset> {
                       controller: passwordController,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Passwort wiederholen',
+                          labelText: 'Neues Passwort wiederholen',
                           floatingLabelBehavior: FloatingLabelBehavior.never,
                           suffixIcon: IconButton(
                             icon: Icon(_obscurePwd
@@ -149,7 +157,7 @@ class _ScreenPasswordResetState extends State<ScreenPasswordReset> {
                 width: MediaQuery.of(context).size.width,
                 margin: const EdgeInsets.fromLTRB(0, 60, 0, 02),
                 child: AppButton(
-                  text: 'Passwort aktualisieren',
+                  text: 'Passwort ändern',
                   color: AppColors().darkSecondaryColor,
                   onPressed: () {
                   }

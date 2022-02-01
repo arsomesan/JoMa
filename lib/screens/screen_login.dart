@@ -178,10 +178,7 @@ class _ScreenLogin extends State<ScreenLogin> {
                     style: TextStyle(color: Colors.white),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ScreenPasswordReset()),
-                        );
+                        print('Account erstellen.');
                       })
               ]),
             )),

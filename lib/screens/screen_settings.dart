@@ -3,6 +3,7 @@ import 'package:joma/materials/button.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_login.dart';
 import 'package:joma/screens/screen_notifications.dart';
+import 'package:joma/screens/screen_password_reset.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/screens/screen_profil_settings.dart';
 import 'package:joma/screens/screen_select_view.dart';
@@ -56,6 +57,14 @@ class Einstellungen extends StatelessWidget {
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenProfilSettings()));
             }
+          ),
+          AppButtonWithIcon(
+            text: 'Passwort ändern',
+            icon: AppIcons().privacy,
+            color: AppColors().darkPrimaryColor,
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenPasswordReset()));
+            },
           ),
           AppButtonWithIcon(
               text: 'Ansicht wählen',
