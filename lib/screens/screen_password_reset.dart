@@ -222,8 +222,6 @@ class _ScreenPasswordResetState extends State<ScreenPasswordReset> {
                       );
                     }
 
-                    print(oldPass); print(newPass);
-
                   }
                 )
               ),
