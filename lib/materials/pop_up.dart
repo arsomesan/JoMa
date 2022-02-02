@@ -19,8 +19,8 @@ class PopUpAlert extends StatelessWidget {
 
   Widget continueButton(BuildContext context) => Container(
       alignment: Alignment.center,
-      child: AppButton(text: "Weiter",
-          color: AppColors().darkSecondaryColor,
+      child: TextButton( child: Text( "Weiter",
+      style: TextStyle(color: AppColors().darkSecondaryColor),),
           onPressed: () {
             Navigator.of(context, rootNavigator: true).pop();
           }
@@ -29,8 +29,9 @@ class PopUpAlert extends StatelessWidget {
 
   Widget cancelButton(Widget current) => Container(
           alignment: Alignment.center,
-          child: AppButton(text: "Abbrechen",
-              color: AppColors().darkSecondaryColor,
+          child: TextButton(
+              child: Text( "Abbrechen",
+              style: TextStyle(color: AppColors().darkSecondaryColor)),
               onPressed: () {
                 Get.off(() => current);
               }
@@ -52,7 +53,7 @@ class PopUpAlert extends StatelessWidget {
       backgroundColor: AppColors().darkPrimaryColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       actions: [Row(
-        children: [cancelButton(current),
+        children: [SizedBox(width: 10), cancelButton(current),
           SizedBox(width: 100),
           continueButton(context)
         ],
