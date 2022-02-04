@@ -51,96 +51,97 @@ class ScreenHome extends StatelessWidget {
           ],
         ),
         extendBodyBehindAppBar: true,
-        body: CustomPaint(
-          painter: BackgroundPainter(),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(height: 130),
-                Stack(children: [
-                  Container(
-                    alignment: Alignment.center,
-                    child: RotationTransition(
-                      turns: AlwaysStoppedAnimation(45 / 360),
-                      child: Container(
-                        width: 300,
-                        height: 300,
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              top: 0,
-                              left: 0,
-                              child: HomeScreenCard(
-                                elevatedButtonRoute: () {
-                                  Get.to(
-                                      () => ScreenJobListCategory(categoryID: 0));
-                                },
-                                color: AppColors().darkRed,
-                                icon: AppIcons().homeRedSection,
-                                title: 'TECHNIK\nHANDWERK',
-                                startOrEnd: 1,
+        body: SingleChildScrollView(
+          child: CustomPaint(
+            painter: BackgroundPainter(),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(height: 130),
+                  Stack(children: [
+                    Container(
+                      alignment: Alignment.center,
+                      child: RotationTransition(
+                        turns: AlwaysStoppedAnimation(45 / 360),
+                        child: Container(
+                          width: 300,
+                          height: 300,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                top: 0,
+                                left: 0,
+                                child: HomeScreenCard(
+                                  elevatedButtonRoute: () {
+                                    Get.to(() =>
+                                        ScreenJobListCategory(categoryID: 0));
+                                  },
+                                  color: AppColors().darkRed,
+                                  icon: AppIcons().homeRedSection,
+                                  title: 'TECHNIK\nHANDWERK',
+                                  startOrEnd: 1,
+                                ),
                               ),
-                            ),
-                            Positioned(
-                              top: 0,
-                              left: 150,
-                              child: HomeScreenCard(
-                                elevatedButtonRoute: () {
-                                  Get.to(
-                                      () => ScreenJobListCategory(categoryID: 1));
-                                },
-                                color: AppColors().darkGreen,
-                                icon: AppIcons().homeGreenSection,
-                                title: 'GÄRTNEREI\nLANDWIRT-\nSCHAFT',
-                                startOrEnd: 0,
+                              Positioned(
+                                top: 0,
+                                left: 150,
+                                child: HomeScreenCard(
+                                  elevatedButtonRoute: () {
+                                    Get.to(() =>
+                                        ScreenJobListCategory(categoryID: 1));
+                                  },
+                                  color: AppColors().darkGreen,
+                                  icon: AppIcons().homeGreenSection,
+                                  title: 'GÄRTNEREI\nLANDWIRT-\nSCHAFT',
+                                  startOrEnd: 0,
+                                ),
                               ),
-                            ),
-                            Positioned(
-                              top: 150,
-                              left: 0,
-                              child: HomeScreenCard(
-                                elevatedButtonRoute: () {
-                                  Get.to(
-                                      () => ScreenJobListCategory(categoryID: 2));
-                                },
-                                color: AppColors().darkBlue,
-                                icon: AppIcons().homeBlueSection,
-                                title: 'SOZIALES\nHAUSWIRT-\nSCHAFT',
-                                startOrEnd: 0,
+                              Positioned(
+                                top: 150,
+                                left: 0,
+                                child: HomeScreenCard(
+                                  elevatedButtonRoute: () {
+                                    Get.to(() =>
+                                        ScreenJobListCategory(categoryID: 2));
+                                  },
+                                  color: AppColors().darkBlue,
+                                  icon: AppIcons().homeBlueSection,
+                                  title: 'SOZIALES\nHAUSWIRT-\nSCHAFT',
+                                  startOrEnd: 0,
+                                ),
                               ),
-                            ),
-                            Positioned(
-                              top: 150,
-                              left: 150,
-                              child: HomeScreenCard(
-                                elevatedButtonRoute: () {
-                                  Get.to(
-                                      () => ScreenJobListCategory(categoryID: 3));
-                                },
-                                color: AppColors().darkYellow,
-                                icon: AppIcons().homeYellowSection,
-                                title: 'SERVICE\nLEBENSMITTEL',
-                                startOrEnd: 1,
+                              Positioned(
+                                top: 150,
+                                left: 150,
+                                child: HomeScreenCard(
+                                  elevatedButtonRoute: () {
+                                    Get.to(() =>
+                                        ScreenJobListCategory(categoryID: 3));
+                                  },
+                                  color: AppColors().darkYellow,
+                                  icon: AppIcons().homeYellowSection,
+                                  title: 'SERVICE\nLEBENSMITTEL',
+                                  startOrEnd: 1,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
+                  ]),
+                  Container(height: 90),
+                  const Text(
+                    "UNSICHER?",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 27,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ]),
-                Container(height: 90),
-                const Text(
-                  "UNSICHER?",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 27,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Container(height: 15),
-                ElevatedButton(
+                  Container(height: 15),
+                  ElevatedButton(
                     onPressed: () {
                       Get.to(() => ScreenJobListCategory(categoryID: 0));
                     },
@@ -156,8 +157,11 @@ class ScreenHome extends StatelessWidget {
                         color: Colors.black,
                         fontSize: 17,
                       ),
-                    )),
-              ],
+                    ),
+                  ),
+                  Container(height: 50),
+                ],
+              ),
             ),
           ),
         ),
@@ -165,7 +169,8 @@ class ScreenHome extends StatelessWidget {
           height: 100.0,
           width: 100.0,
           child: IconButton(
-            icon: SvgPicture.asset("assets/images/darkLogo.svg",
+            icon: SvgPicture.asset(
+              "assets/images/darkLogo.svg",
             ),
             onPressed: () {
               Navigator.pushReplacement(
@@ -175,11 +180,10 @@ class ScreenHome extends StatelessWidget {
             },
           ),
         ),
-
         bottomNavigationBar: AppNavBar(
-            backgroundColor: AppColors().darkPrimaryColor,
-            selectedItemColor: AppBackgroundColors().darkBackground,
-            unselectedItemColor: AppBackgroundColors().darkBackground,
+          backgroundColor: AppColors().darkPrimaryColor,
+          selectedItemColor: AppBackgroundColors().darkBackground,
+          unselectedItemColor: AppBackgroundColors().darkBackground,
         ),
         /*bottomNavigationBar: BottomNavigationBar(
             currentIndex: 0,
@@ -252,11 +256,12 @@ class BackgroundPainter extends CustomPainter {
 }
 
 //filling boolean arrays from user simple preferences or remote data
-void fillBooleanData(List<bool> listSave, List<int> listCheck, List<dynamic> org) async {
+void fillBooleanData(
+    List<bool> listSave, List<int> listCheck, List<dynamic> org) async {
   var remoteUser = profilToJson(data.profile);
   //Load Profile from Shared Preferences if given. If not load Json Profile
-  var tmpUser = profilFromJson(
-      UserSimplePreferences.getUser() ?? remoteUser.toString());
+  var tmpUser =
+      profilFromJson(UserSimplePreferences.getUser() ?? remoteUser.toString());
   //profile to use
   Profil user = tmpUser[0];
   for (int i = 0; i < listSave.length; i++) {

@@ -105,6 +105,7 @@ class Einstellungen extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenWelcome()));
               }
           ),
+          Container(height: 50),
         ],
       ),
 
