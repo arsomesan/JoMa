@@ -225,6 +225,7 @@ class _ScreenPasswordResetState extends State<ScreenPasswordReset> {
                   }
                 )
               ),
+              AppButton(text: "Abbrechen", color: AppColors().darkPrimaryColor, onPressed: Navigator.of(context).pop),
             ]),
       ),
     );

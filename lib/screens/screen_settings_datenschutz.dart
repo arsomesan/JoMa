@@ -17,6 +17,7 @@ class Datenschutz extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarJobArea(
+        blocked: 0,
         bgColor: Colors.transparent,
         bgColorBar: AppColors().darkPrimaryColor,
         circleColor: AppColors().darkSecondaryColor,

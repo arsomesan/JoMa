@@ -141,10 +141,10 @@ class _ScreenRegister extends State<ScreenRegister> {
                 ))),
         Container(
             width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.fromLTRB(0, 90, 0, 02),
+            margin: const EdgeInsets.fromLTRB(0, 50, 0, 02),
             child: AppButton(
               text: 'Registrieren',
-              color: AppColors().darkPrimaryColor,
+              color: AppColors().darkSecondaryColor,
               onPressed: () {
                 if (validate(emailController.text, passwordController.text)) {
                   Navigator.push(
@@ -154,6 +154,13 @@ class _ScreenRegister extends State<ScreenRegister> {
                 }
               },
             )),
+        AppButton(
+          text: "Zurück",
+          color: AppColors().darkPrimaryColor,
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.fromLTRB(30, 15, 30, 10),

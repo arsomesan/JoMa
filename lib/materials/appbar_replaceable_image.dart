@@ -122,6 +122,7 @@ class AppBarReplaceableImage extends StatelessWidget implements PreferredSizeWid
                     alignment: Alignment.topLeft,
                     child: IconButton(
                       icon: AppIcons().backArrow,
+                      color: AppColors().white,
                       onPressed: () {
                         Navigator.of(context).pop();
                       },

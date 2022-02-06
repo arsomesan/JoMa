@@ -73,6 +73,7 @@ class ScreenJobListSearchState extends State<ScreenJobListSearch> {
       child: Scaffold(
         backgroundColor: AppBackgroundColors().darkBackground,
         appBar: AppBarJobArea(
+          blocked: 1,
           bgColor: Colors.transparent,
           bgColorBar: AppColors().darkPrimaryColor,
           circleColor: AppColors().darkSecondaryColor,
@@ -81,7 +82,7 @@ class ScreenJobListSearchState extends State<ScreenJobListSearch> {
           hoehe: 230,
           imageUrl: 'assets/icons/search-solid.svg',
           onPressed1: () {
-            Navigator.of(context).pop();
+           //
           },
         ),
         body: SingleChildScrollView(

@@ -42,6 +42,7 @@ class _ProfilLoaderState extends State<ProfilLoader> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarJobArea(
+        blocked: 1,
         bgColor: Colors.transparent,
         bgColorBar: AppColors().darkPrimaryColor,
         circleColor: AppColors().darkSecondaryColor,
@@ -50,7 +51,7 @@ class _ProfilLoaderState extends State<ProfilLoader> {
         hoehe: 230,
         imageUrl: 'assets/icons/user-circle-solid.svg',
         onPressed1: () {
-          Navigator.of(context).pop();
+
         },
       ),
 

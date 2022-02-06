@@ -47,6 +47,7 @@ class _ScreenProfilSkillsState extends State<ScreenProfilSkills> {
     return Scaffold(
       backgroundColor: AppBackgroundColors().darkBackground,
       appBar: AppBarJobArea(
+        blocked: 0,
         bgColor: Colors.transparent,
         bgColorBar: AppColors().darkPrimaryColor,
         circleColor: AppColors().darkSecondaryColor,

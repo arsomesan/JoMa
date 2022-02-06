@@ -6,16 +6,11 @@ import 'package:joma/materials/assets.dart';
 import 'package:joma/screens/screen_settings.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
-
-
-
-
-
 class RoundRecJob extends StatelessWidget {
-    Color bgColor;
-    Color bgColorBar;
-    
-    RoundRecJob({
+  Color bgColor;
+  Color bgColorBar;
+
+  RoundRecJob({
     required this.bgColor,
     required this.bgColorBar,
   });
@@ -41,7 +36,7 @@ class RoundRecJob extends StatelessWidget {
           ),
         ),
         Container(
-          height: 200-70,
+          height: 200 - 70,
           alignment: Alignment.center,
           padding: const EdgeInsets.all(0),
           decoration: BoxDecoration(
@@ -53,10 +48,8 @@ class RoundRecJob extends StatelessWidget {
   }
 }
 
-
-
 class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
-  final String title; // Titel der Seite in der AppBar
+  final String title;
   final Color color; //
   final Color bgColor;
   final Color bgColorBar;
@@ -64,6 +57,8 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
   final double hoehe;
   final String imageUrl;
   final Color circleColor;
+  final int blocked;
+
 
   AppBarJobArea({
     required this.title,
@@ -74,19 +69,27 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
     required this.hoehe,
     required this.imageUrl,
     required this.circleColor,
+    required this.blocked,
   });
 
   @override
   Size get preferredSize => Size.fromHeight(hoehe);
 
-
   @override
   Widget build(BuildContext context) {
+    var blockedColor;
+    if (blocked == 0)
+    {
+      blockedColor = AppColors().white;
+    }
+    else {
+      blockedColor = bgColorBar;
+    };
+
     return SafeArea(
       child: Scaffold(
           backgroundColor: bgColor,
           body: Stack(
-            //fit: StackFit.loose,
             children: <Widget>[
               Container(
                 height: 400,
@@ -94,9 +97,9 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
                 color: Colors.transparent,
               ),
               RoundRecJob(
-                bgColor: bgColor, 
-                bgColorBar: bgColorBar,),
-
+                bgColor: bgColor,
+                bgColorBar: bgColorBar,
+              ),
               Positioned.fill(
                 child: Align(
                   alignment: Alignment.bottomCenter,
@@ -104,23 +107,23 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
                     height: 130,
                     width: 130,
                     decoration: BoxDecoration(
-                      color: AppColors().white,
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: Svg(imageUrl, size: Size(100, 100)),
-                        scale: 1.3,
-                        colorFilter: ColorFilter.mode(
-                          bgColorBar,
-                          BlendMode.srcIn,
+                        color: AppColors().white,
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: Svg(imageUrl, size: Size(100, 100)),
+                          scale: 1.3,
+                          colorFilter: ColorFilter.mode(
+                            bgColorBar,
+                            BlendMode.srcIn,
+                          ),
+                          fit: BoxFit.none,
                         ),
-                        fit: BoxFit.none,
-                      ),
                         border: Border.all(
                           color: circleColor,
                           width: 5,
                         )
-                      //color: Colors.green,
-                    ),
+                        //color: Colors.green,
+                        ),
                     //child: AppLogo().darkLogo,
                   ),
                 ),
@@ -147,13 +150,13 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
               ),
               Positioned.fill(
                 child: Align(
-                    alignment: Alignment.topLeft,
-                    child: IconButton(
-                      icon: AppIcons().backArrow,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    )),
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                    icon: AppIcons().backArrow,
+                    color: blockedColor,
+                    onPressed: onPressed1,
+                  ),
+                ),
               ),
               Positioned.fill(
                 child: Align(
@@ -163,8 +166,7 @@ class AppBarJobArea extends StatelessWidget implements PreferredSizeWidget {
                       onPressed: () {
                         Get.to(() => const Einstellungen());
                       },
-                    )
-                ),
+                    )),
               ),
             ],
           )),

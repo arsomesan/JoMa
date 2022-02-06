@@ -32,13 +32,13 @@ class ScreenApplications extends StatelessWidget {
       backgroundColor: AppBackgroundColors().darkBackground,
       appBar: AppBarJobArea(
         bgColor: Colors.transparent,
+        blocked: 0,
         bgColorBar: AppColors().darkPrimaryColor,
         circleColor: AppColors().darkSecondaryColor,
         color: AppBackgroundColors().darkBackground,
         title: 'Bewerbungen'.toUpperCase(),
         hoehe: 230,
         imageUrl: 'assets/icons/work_black_24dp.svg',
-        //  TODO: SVG wird nicht angezeigt??
         onPressed1: () {
           Navigator.of(context).pop();
         },

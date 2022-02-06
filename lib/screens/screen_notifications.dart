@@ -45,6 +45,7 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
 
     return Scaffold(
       appBar: AppBarJobArea(
+        blocked: 0,
         bgColor: Colors.transparent,
         bgColorBar: AppColors().darkPrimaryColor,
         circleColor: AppColors().darkSecondaryColor,
@@ -52,7 +53,6 @@ class _ScreenNotificationsState extends State<ScreenNotifications> {
         title: 'Mitteilungen'.toUpperCase(),
         hoehe: 230,
         imageUrl: 'assets/icons/notifications_active_black_24dp.svg',
-        // TODO: SVG wird nicht angezeigt??
         onPressed1: () {
           Navigator.of(context).pop();
         },

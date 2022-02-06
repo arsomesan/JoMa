@@ -103,7 +103,8 @@ class AppIcons {
   // generelle, (fast) auf jeder Seite zu findende Icons
   Icon backArrow = Icon(
       FontAwesomeIcons.arrowLeft,
-      color: AppColors().white);
+      //color: AppColors().white
+  );
   Icon settingsWheel = Icon(
       FontAwesomeIcons.cog,
       color: AppColors().white);

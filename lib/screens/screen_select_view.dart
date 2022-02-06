@@ -21,6 +21,7 @@ class SelectView extends StatelessWidget {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           toolbarHeight: 110,
           title: Text(
             'Ansicht wählen'.toUpperCase(),

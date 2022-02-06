@@ -101,6 +101,7 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
 
         backgroundColor: AppColors().white,
         appBar: AppBarJobArea(
+          blocked: 0,
           bgColor: AppColors().white,
           bgColorBar: currentColor,
           circleColor: currentColor,

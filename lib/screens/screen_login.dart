@@ -36,6 +36,7 @@ class _ScreenLogin extends State<ScreenLogin> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   Color loginButtonColor = AppColors().darkPrimaryColor;
+
   //Color skipButtonColor = const Color(0xFFA1A1A1);
   bool _obscurePwd = true;
 
@@ -155,10 +156,10 @@ class _ScreenLogin extends State<ScreenLogin> {
                 ))),
         Container(
             width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.fromLTRB(0, 190, 0, 02),
+            margin: const EdgeInsets.fromLTRB(0, 50, 0, 2),
             child: AppButton(
               text: 'Anmelden',
-              color: AppColors().darkPrimaryColor,
+              color: AppColors().darkSecondaryColor,
               onPressed: () {
                 if (validate(emailController.text, passwordController.text)) {
                   Navigator.push(
@@ -168,6 +169,13 @@ class _ScreenLogin extends State<ScreenLogin> {
                 }
               },
             )),
+        AppButton(
+          text: "Zurück",
+          color: AppColors().darkPrimaryColor,
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.fromLTRB(30, 15, 30, 10),
@@ -179,6 +187,7 @@ class _ScreenLogin extends State<ScreenLogin> {
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
                         print('Account erstellen.');
+                        // TODO: passwort vergessen screen
                       })
               ]),
             )),

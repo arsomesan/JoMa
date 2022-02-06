@@ -42,6 +42,7 @@ class ScreenJobListCategory extends StatelessWidget {
     return Scaffold(
       backgroundColor: currentBackgroundColor,
       appBar: AppBarJobArea(
+        blocked: 0,
         bgColor: currentBackgroundColor,
         bgColorBar: currentColor,
         circleColor: currentColor,

@@ -17,6 +17,7 @@ class Impressum extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarJobArea(
+        blocked: 0,
         bgColor: Colors.transparent,
         bgColorBar: AppColors().darkPrimaryColor,
         circleColor: AppColors().darkSecondaryColor,
@@ -24,7 +25,6 @@ class Impressum extends StatelessWidget {
         title: 'Impressum'.toUpperCase(),
         hoehe: 230,
         imageUrl: 'assets/icons/speaker_notes_black_24dp.svg',
-        //  TODO: SVG wird nicht angezeigt??
         onPressed1: () {
           Navigator.of(context).pop();
         },
