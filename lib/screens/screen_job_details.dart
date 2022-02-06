@@ -40,6 +40,10 @@ import 'package:joma/materials/button.dart';
 // FontAwesome-Import (not working atm)
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+// PDF import
+import 'dart:io';
+import 'package:pdf/widgets.dart' as pw;
+
 class ScreenJobDetails extends StatefulWidget {
   final int? jobID;
 
@@ -153,6 +157,7 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
                 text: 'Bewerben',
                 color: AppColors().darkSecondaryColor,
                 onPressed: () {
+                  //File pdf = generatePDF() as File;
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ScreenHome()));
                 }),
@@ -162,6 +167,25 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
           ],
         ));
   }
+
+
+  Future<File> generatePDF() async {
+    final pdf = pw.Document();
+    pdf.addPage(
+        pw.Page(
+          build: (pw.Context context) => pw.Center(
+            child: pw.Text('Hello World!'),
+          ),
+        ),
+    );
+
+
+        final file = File('example.pdf');
+         await file.writeAsBytes(await pdf.save());
+         print(file.absolute);
+         return file;
+  }
+
 
   PreferredSizeWidget appBarBuilder() {
     return AppBar(
