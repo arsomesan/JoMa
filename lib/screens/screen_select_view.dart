@@ -86,6 +86,7 @@ class SelectView extends StatelessWidget {
                                 children: [
                                   Radio(
                                       value: 0,
+                                      activeColor: Colors.orange,
                                       groupValue: _.state,
                                       onChanged: (choice) {
                                         viewController.setView(0);
@@ -182,6 +183,7 @@ class SelectView extends StatelessWidget {
                                 children: [
                                   Radio(
                                       value: 1,
+                                      activeColor: Colors.orange,
                                       groupValue: _.state,
                                       onChanged: (choice) {
                                         viewController.setView(1);
@@ -257,6 +259,7 @@ class SelectView extends StatelessWidget {
                                 children: [
                                   Radio(
                                       value: 2,
+                                      activeColor: Colors.orange,
                                       groupValue: _.state,
                                       onChanged: (choice) {
                                         viewController.setView(2);
