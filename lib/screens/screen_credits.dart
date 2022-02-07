@@ -87,11 +87,14 @@ class ScreenCredits extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-            child: Text(
-              'Hochschule Fulda\n'
-                  'University of Applied Sciences',
-              textAlign: TextAlign.center,
-              style: AppTextStyles.darkH4White,
+            child: GestureDetector(
+              onTap: _launchURL,
+              child: Text(
+                'Hochschule Fulda\n'
+                    'University of Applied Sciences',
+                textAlign: TextAlign.center,
+                style: AppTextStyles.darkH4White,
+              ),
             ),
           )
         ],
@@ -100,7 +103,7 @@ class ScreenCredits extends StatelessWidget {
   }
 }
 
-_launchURL() async {
+void _launchURL() async {
   const url = 'https://www.hs-fulda.de/';
   if (!await launch(url)) throw 'Could not launch $url';
 }
