@@ -120,8 +120,8 @@ class ScreenApplications extends StatelessWidget {
 
       bottomNavigationBar: AppNavBar(
     backgroundColor: AppColors().darkPrimaryColor,
-    selectedItemColor: AppBackgroundColors().darkBackground,
-    unselectedItemColor: AppColors().white,
+    selectedItemColor: AppColors().white,
+    unselectedItemColor: AppBackgroundColors().darkBackground,
     ),
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
