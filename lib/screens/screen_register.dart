@@ -21,10 +21,12 @@ class ScreenRegister extends StatefulWidget {
 
 class _ScreenRegister extends State<ScreenRegister> {
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordController_1 = TextEditingController();
+  TextEditingController passwordController_2 = TextEditingController();
   Color loginButtonColor = AppColors().darkPrimaryColor;
   Color registerButtonColor = AppColors().darkSecondaryColor;
-  bool _obscurePwd = true;
+  bool _obscurePwd_1 = true;
+  bool _obscurePwd_2 = true;
 
   List _items = [];
 
@@ -36,22 +38,6 @@ class _ScreenRegister extends State<ScreenRegister> {
     });
   }
 
-  bool validate(String email, String pwd) {
-    readJson();
-    if (_items.isNotEmpty) {
-      for (int i = 0; i < _items.length; i++) {
-        String emailTmp = _items[i]['email'].toString();
-        String pwdTmp = _items[i]['pwd'].toString();
-        if (emailTmp == emailController.text &&
-            pwdTmp == passwordController.text) {
-          print("Registrieren erfolgreich");
-          return true;
-        }
-      }
-    }
-    print("Registrieren nicht erfolgreich");
-    return false;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,18 +86,18 @@ class _ScreenRegister extends State<ScreenRegister> {
             child: Padding(
                 padding: EdgeInsets.all(0),
                 child: TextField(
-                  obscureText: _obscurePwd,
-                  controller: passwordController,
+                  obscureText: _obscurePwd_1,
+                  controller: passwordController_1,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     labelText: 'Passwort',
                     suffixIcon: IconButton(
-                        icon: Icon(_obscurePwd
+                        icon: Icon(_obscurePwd_1
                             ? Icons.visibility
                             : Icons.visibility_off),
                         onPressed: () {
                           setState(() {
-                            _obscurePwd = !_obscurePwd;
+                            _obscurePwd_1 = !_obscurePwd_1;
                           });
                         }),
                   ),
@@ -123,18 +109,18 @@ class _ScreenRegister extends State<ScreenRegister> {
             child: Padding(
                 padding: EdgeInsets.all(0),
                 child: TextField(
-                  obscureText: _obscurePwd,
-                  controller: passwordController,
+                  obscureText: _obscurePwd_2,
+                  controller: passwordController_2,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     labelText: 'Passwort wiederholen',
                     suffixIcon: IconButton(
-                        icon: Icon(_obscurePwd
+                        icon: Icon(_obscurePwd_2
                             ? Icons.visibility
                             : Icons.visibility_off),
                         onPressed: () {
                           setState(() {
-                            _obscurePwd = !_obscurePwd;
+                            _obscurePwd_2 = !_obscurePwd_2;
                           });
                         }),
                   ),
@@ -146,12 +132,7 @@ class _ScreenRegister extends State<ScreenRegister> {
               text: 'Registrieren',
               color: AppColors().darkSecondaryColor,
               onPressed: () {
-                if (validate(emailController.text, passwordController.text)) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SelectView()),
-                  );
-                }
+                print('registriert');
               },
             )),
         AppButton(
