@@ -150,8 +150,8 @@ class ScreenJobListCategory extends StatelessWidget {
 
       bottomNavigationBar: AppNavBar(
         backgroundColor: currentColor,
-        selectedItemColor: AppColors().white,
-        unselectedItemColor: AppColors().white,
+        selectedItemColor: AppBackgroundColors().darkBackground,
+        unselectedItemColor: AppBackgroundColors().darkBackground,
         ),
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
