@@ -48,6 +48,7 @@ dependencies:
   latlong2: ^0.8.0
   latlng: any
   flutter_map: any
+  url_launcher: ^6.0.18
 
   animated_splash_screen: ^1.1.0
   json_annotation: ^4.3.0
