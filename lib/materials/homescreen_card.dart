@@ -29,8 +29,8 @@ class HomeScreenCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(6),
-      width: 150,
-      height: 150,
+      width: 137.5,
+      height: 137.5,
       child: ElevatedButton(
         onPressed: elevatedButtonRoute,
         style: ButtonStyle(
