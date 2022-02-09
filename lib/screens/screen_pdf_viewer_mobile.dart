@@ -9,7 +9,6 @@ import 'package:joma/model/job_model.dart';
 import 'package:joma/screens/pdf_viewer.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/screen_joblist_search.dart';
-import 'package:joma/screens/screen_settings.dart';
 import 'package:native_pdf_view/native_pdf_view.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
