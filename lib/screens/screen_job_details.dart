@@ -1,5 +1,7 @@
 // Page-Imports
 
+import 'dart:typed_data';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -15,10 +17,14 @@ import 'package:joma/model/profil_model.dart';
 import 'package:joma/model/skill_model.dart';
 
 import 'package:joma/materials/card.dart';
+import 'package:joma/screens/pdf_viewer_stub.dart';
 import 'package:joma/screens/screen_home.dart';
+import 'package:joma/screens/pdf_viewer.dart';
+import 'package:joma/screens/screen_pdf_viewer_mobile.dart';
 import 'package:joma/screens/screen_profil_loader.dart';
 import 'package:joma/services/remote_services.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
+import 'package:path_provider/path_provider.dart';
 import 'screen_joblist_search.dart';
 import 'package:geocoding/geocoding.dart';
 
@@ -40,14 +46,11 @@ import 'package:joma/materials/button.dart';
 // FontAwesome-Import (not working atm)
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-// PDF import
-import 'dart:io';
-import 'package:pdf/widgets.dart' as pw;
 
 class ScreenJobDetails extends StatefulWidget {
   final int? jobID;
 
-  ScreenJobDetails({Key? key, required this.jobID}) : super(key: key);
+  const ScreenJobDetails({Key? key, required this.jobID}) : super(key: key);
 
   @override
   State<ScreenJobDetails> createState() => _ScreenJobDetailsState();
@@ -100,6 +103,8 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
     Profil user = tmpUser[0];
     bool savedData = data.jobList[widget.jobID!];
     selected = !savedData;
+
+    data.setCurrentJob(widget.jobID as int);
 
     return Scaffold(
 
@@ -156,10 +161,9 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
             AppButton(
                 text: 'Bewerben',
                 color: AppColors().darkSecondaryColor,
-                onPressed: () {
-                  //File pdf = generatePDF() as File;
+                onPressed: () async {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ScreenHome()));
+                      MaterialPageRoute(builder: (context) => PDFViewer()));
                 }),
             SizedBox(
               height: 50.0,
@@ -168,23 +172,6 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
         ));
   }
 
-
-  Future<File> generatePDF() async {
-    final pdf = pw.Document();
-    pdf.addPage(
-        pw.Page(
-          build: (pw.Context context) => pw.Center(
-            child: pw.Text('Hello World!'),
-          ),
-        ),
-    );
-
-
-        final file = File('example.pdf');
-         await file.writeAsBytes(await pdf.save());
-         print(file.absolute);
-         return file;
-  }
 
 
   PreferredSizeWidget appBarBuilder() {
