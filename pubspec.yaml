@@ -57,6 +57,7 @@ dependencies:
   geocoding: ^2.0.2
   pdf: ^3.7.1
   native_pdf_view: any
+  path_provider: ^2.0.8
 
 dev_dependencies:
   flutter_test:
