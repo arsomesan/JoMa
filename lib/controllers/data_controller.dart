@@ -4,7 +4,6 @@ import 'package:joma/model/job_model.dart';
 import 'package:joma/model/profil_model.dart';
 import 'package:joma/model/skill_model.dart';
 import 'package:joma/services/remote_services.dart';
-import 'package:joma/utils/user_simple_preferences.dart';
 
 class DataController extends GetxController {
 
@@ -16,6 +15,15 @@ class DataController extends GetxController {
   RxList<bool> boolList = List<bool>.empty().obs;
   RxList<bool> jobList = List<bool>.empty().obs;
 
+  RxInt currentJob = 0.obs;
+
+  void setCurrentJob(int jobID) {
+    currentJob.value = jobID;
+  }
+
+  int getCurrentJob() {
+    return currentJob.value;
+  }
 
   @override
   void onInit() {
@@ -51,4 +59,3 @@ class DataController extends GetxController {
   }
 
 }
-
