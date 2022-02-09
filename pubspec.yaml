@@ -112,3 +112,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+# Hotfix for bug in url launcher library, fixed in next version (see https://stackoverflow.com/questions/70992888/flutter-error-no-named-parameter-with-the-name-isvisible-error-on-url-launche)
+dependency_overrides:
+  url_launcher_web: 2.0.6
