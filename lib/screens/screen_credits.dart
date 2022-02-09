@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:joma/materials/assets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ScreenCredits extends StatelessWidget {
 
@@ -72,26 +73,37 @@ class ScreenCredits extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
-            child: Image(
-                image: AssetImage(
-                  'assets/images/Hochschule_Fulda.png',
-                ),
-                height: 100,
-                width: 100
+            child: GestureDetector(
+              //onTap: 'https://www.hs-fulda.de/',
+              onTap: _launchURL,
+              child: Image(
+                  image: AssetImage(
+                    'assets/images/Hochschule_Fulda.png',
+                  ),
+                  height: 100,
+                  width: 100
+              ),
             ),
           ),
           Container(
             padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-            child: Text(
-              'Hochschule Fulda\n'
-                  'University of Applied Sciences',
-              textAlign: TextAlign.center,
-              style: AppTextStyles.darkH4White,
+            child: GestureDetector(
+              onTap: _launchURL,
+              child: Text(
+                'Hochschule Fulda\n'
+                    'University of Applied Sciences',
+                textAlign: TextAlign.center,
+                style: AppTextStyles.darkH4White,
+              ),
             ),
           )
         ],
       ),
     );
   }
+}
 
+void _launchURL() async {
+  const url = 'https://www.hs-fulda.de/';
+  if (!await launch(url)) throw 'Could not launch $url';
 }

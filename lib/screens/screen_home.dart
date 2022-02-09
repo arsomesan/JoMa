@@ -54,111 +54,114 @@ class ScreenHome extends StatelessWidget {
         extendBodyBehindAppBar: true,
         body: CustomPaint(
           painter: BackgroundPainter(),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(height: 130),
-                Stack(children: [
-                  Container(
-                    alignment: Alignment.center,
-                    child: RotationTransition(
-                      turns: AlwaysStoppedAnimation(45 / 360),
-                      child: Container(
-                        width: 300,
-                        height: 300,
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              top: 0,
-                              left: 0,
-                              child: HomeScreenCard(
-                                elevatedButtonRoute: () {
-                                  Get.to(
-                                      () => ScreenJobListCategory(categoryID: 0));
-                                },
-                                color: AppColors().darkRed,
-                                icon: AppIcons().homeRedSection,
-                                title: 'TECHNIK\nHANDWERK',
-                                startOrEnd: 1,
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(height: 200),
+                  Stack(children: [
+                    Container(
+                      alignment: Alignment.center,
+                      child: RotationTransition(
+                        turns: AlwaysStoppedAnimation(45 / 360),
+                        child: Container(
+                          width: 275,
+                          height: 275,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                top: 0,
+                                left: 0,
+                                child: HomeScreenCard(
+                                  elevatedButtonRoute: () {
+                                    Get.to(
+                                        () => ScreenJobListCategory(categoryID: 0));
+                                  },
+                                  color: AppColors().darkRed,
+                                  icon: AppIcons().homeRedSection,
+                                  title: 'TECHNIK &\nHANDWERK',
+                                  startOrEnd: 1,
+                                ),
                               ),
-                            ),
-                            Positioned(
-                              top: 0,
-                              left: 150,
-                              child: HomeScreenCard(
-                                elevatedButtonRoute: () {
-                                  Get.to(
-                                      () => ScreenJobListCategory(categoryID: 1));
-                                },
-                                color: AppColors().darkGreen,
-                                icon: AppIcons().homeGreenSection,
-                                title: 'GÄRTNEREI\nLANDWIRT-\nSCHAFT',
-                                startOrEnd: 0,
+                              Positioned(
+                                top: 0,
+                                left: 137.5,
+                                child: HomeScreenCard(
+                                  elevatedButtonRoute: () {
+                                    Get.to(
+                                        () => ScreenJobListCategory(categoryID: 1));
+                                  },
+                                  color: AppColors().darkGreen,
+                                  icon: AppIcons().homeGreenSection,
+                                  title: 'GÄRTNEREI &\nLANDWIRT-\nSCHAFT',
+                                  startOrEnd: 0,
+                                ),
                               ),
-                            ),
-                            Positioned(
-                              top: 150,
-                              left: 0,
-                              child: HomeScreenCard(
-                                elevatedButtonRoute: () {
-                                  Get.to(
-                                      () => ScreenJobListCategory(categoryID: 2));
-                                },
-                                color: AppColors().darkBlue,
-                                icon: AppIcons().homeBlueSection,
-                                title: 'SOZIALES\nHAUSWIRT-\nSCHAFT',
-                                startOrEnd: 0,
+                              Positioned(
+                                top: 137.5,
+                                left: 0,
+                                child: HomeScreenCard(
+                                  elevatedButtonRoute: () {
+                                    Get.to(
+                                        () => ScreenJobListCategory(categoryID: 2));
+                                  },
+                                  color: AppColors().darkBlue,
+                                  icon: AppIcons().homeBlueSection,
+                                  title: 'SOZIALES &\nHAUSWIRT-\nSCHAFT',
+                                  startOrEnd: 0,
+                                ),
                               ),
-                            ),
-                            Positioned(
-                              top: 150,
-                              left: 150,
-                              child: HomeScreenCard(
-                                elevatedButtonRoute: () {
-                                  Get.to(
-                                      () => ScreenJobListCategory(categoryID: 3));
-                                },
-                                color: AppColors().darkYellow,
-                                icon: AppIcons().homeYellowSection,
-                                title: 'SERVICE\nLEBENSMITTEL',
-                                startOrEnd: 1,
+                              Positioned(
+                                top: 137.5,
+                                left: 137.5,
+                                child: HomeScreenCard(
+                                  elevatedButtonRoute: () {
+                                    Get.to(
+                                        () => ScreenJobListCategory(categoryID: 3));
+                                  },
+                                  color: AppColors().darkYellow,
+                                  icon: AppIcons().homeYellowSection,
+                                  title: 'SERVICE &\nLEBENS-\nMITTEL',
+                                  startOrEnd: 1,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ]),
-                Container(height: 90),
-                const Text(
-                  "UNSICHER?",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 27,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Container(height: 15),
-                ElevatedButton(
-                    onPressed: () {
-                      Get.to(() => ScreenJobListCategory(categoryID: 0));
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 120, vertical: 20),
-                      shape: const StadiumBorder(),
+                  ]),
+                  Container(height: 90),
+                  const Text(
+                    "UNSICHER?",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 27,
+                      fontWeight: FontWeight.bold,
                     ),
-                    child: const Text(
-                      "Wahl-O-Mat",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 17,
+                  ),
+                  Container(height: 15),
+                  ElevatedButton(
+                      onPressed: () {
+                        //Get.to(() => ScreenJobListCategory(categoryID: 0));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 120, vertical: 20),
+                        shape: const StadiumBorder(),
                       ),
-                    )),
-              ],
+                      child: const Text(
+                        "Wahl-O-Mat",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 17,
+                        ),
+                      )),
+                  Container(height: 300),
+                ],
+              ),
             ),
           ),
         ),
@@ -179,8 +182,8 @@ class ScreenHome extends StatelessWidget {
 
         bottomNavigationBar: AppNavBar(
             backgroundColor: AppColors().darkPrimaryColor,
-            selectedItemColor: AppBackgroundColors().darkBackground,
-            unselectedItemColor: AppBackgroundColors().darkBackground,
+            selectedItemColor: AppColors().white,
+            unselectedItemColor: AppColors().white,
         ),
         /*bottomNavigationBar: BottomNavigationBar(
             currentIndex: 0,

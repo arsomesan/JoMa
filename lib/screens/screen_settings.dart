@@ -150,8 +150,8 @@ class Einstellungen extends StatelessWidget {
             //if (value == 2) Navigator.of(context).push(...);
           },
           backgroundColor: AppColors().darkPrimaryColor,
-          selectedItemColor: AppBackgroundColors().darkBackground,
-          unselectedItemColor: AppColors().white,
+          selectedItemColor: AppColors().white,
+          unselectedItemColor: AppBackgroundColors().darkBackground,
 
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(

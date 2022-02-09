@@ -1,6 +1,5 @@
 // Page-Imports
 
-import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,17 +13,11 @@ import 'package:joma/materials/navbar.dart';
 import 'package:joma/model/job_category_model.dart';
 import 'package:joma/model/job_model.dart';
 import 'package:joma/model/profil_model.dart';
-import 'package:joma/model/skill_model.dart';
 
-import 'package:joma/materials/card.dart';
-import 'package:joma/screens/pdf_viewer_stub.dart';
 import 'package:joma/screens/screen_home.dart';
 import 'package:joma/screens/pdf_viewer.dart';
-import 'package:joma/screens/screen_pdf_viewer_mobile.dart';
-import 'package:joma/screens/screen_profil_loader.dart';
-import 'package:joma/services/remote_services.dart';
 import 'package:joma/utils/user_simple_preferences.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'screen_joblist_search.dart';
 import 'package:geocoding/geocoding.dart';
 
@@ -43,8 +36,10 @@ import 'package:latlong2/latlong.dart';
 import 'package:joma/materials/assets.dart';
 import 'package:joma/materials/button.dart';
 
+
 // FontAwesome-Import (not working atm)
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 
 class ScreenJobDetails extends StatefulWidget {
@@ -87,27 +82,22 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
       .backgroundColorHex
       .toString()));
 
-
-
-  List<double> userCoords = [0,0];
+  List<double> userCoords = [0, 0];
   bool selected = true;
 
   @override
   Widget build(BuildContext context) {
-
-
     var remoteUser = profilToJson(data.profile);
     //Load Profile from Shared Preferences if given. If not load Json Profile
     var tmpUser = profilFromJson(
         UserSimplePreferences.getUser() ?? remoteUser.toString());
-    Profil user = tmpUser[0];
+    Profil user = tmpUser[0]; //Wird nicht genutzt ? Warum ? @Adrian ?
     bool savedData = data.jobList[widget.jobID!];
     selected = !savedData;
 
     data.setCurrentJob(widget.jobID as int);
 
     return Scaffold(
-
         backgroundColor: AppColors().white,
         appBar: AppBarJobArea(
           blocked: 0,
@@ -122,11 +112,12 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
             Navigator.of(context).pop();
           },
         ),
-        floatingActionButton: Container(
+        floatingActionButton: SizedBox(
           height: 100.0,
           width: 100.0,
           child: IconButton(
-            icon: SvgPicture.asset("assets/images/darkLogo.svg",
+            icon: SvgPicture.asset(
+              "assets/images/darkLogo.svg",
             ),
             onPressed: () {
               Navigator.pushReplacement(
@@ -136,13 +127,11 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
             },
           ),
         ),
-
         bottomNavigationBar: AppNavBar(
           backgroundColor: currentColor,
           selectedItemColor: AppColors().white,
           unselectedItemColor: AppColors().white,
-          ),
-
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: ListView(
           children: [
@@ -165,7 +154,7 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => PDFViewer()));
                 }),
-            SizedBox(
+            const SizedBox(
               height: 50.0,
             ),
           ],
@@ -187,7 +176,7 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
 
   Widget jobDescriptionBuilder() {
     return Padding(
-      padding: EdgeInsets.fromLTRB(44, 10, 44, 0),
+      padding: const EdgeInsets.fromLTRB(44, 10, 44, 0),
       child: Align(
         alignment: Alignment.center,
         child: Text(
@@ -232,11 +221,11 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
       );
 
   Widget buildBox({required Widget child}) => Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.white,
         ),
-        padding: EdgeInsets.all(7),
+        padding: const EdgeInsets.all(7),
         child: child,
       );
 
@@ -245,14 +234,14 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
       return Container();
     } else {
       return Padding(
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                buildSchoolBox(child: Icon(Icons.school, size: 50)),
+                buildSchoolBox(child: const Icon(Icons.school, size: 50)),
                 const SizedBox(height: 10),
                 Text(
                   job.requiredGraduation.toString(),
@@ -271,47 +260,59 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
           shape: BoxShape.circle,
           color: currentBackgroundColor,
         ),
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: child,
       );
 
   Widget mapBuilder() {
-    return Container(
-      height: 400,
-      child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-          child: FlutterMap(
-            options: MapOptions(
-              center: LatLng(double.parse(job.coords!.lat!),
-                  double.parse(job.coords!.long!)),
-              zoom: 16.0,
-            ),
-            layers: [
-              TileLayerOptions(
-                urlTemplate: "https://a.tile.openstreetmap.de/{z}/{x}/{y}.png",
-                subdomains: ['a', 'b', 'c'],
+    void _launchURL(lat, long) async {
+      String _mapUrl = "http://www.google.com/maps/place/$lat,$long";
+      if (!await launch(_mapUrl)) throw 'Could not launch $_mapUrl';
+    }
+
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: SizedBox(
+        height: 300,
+        child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            child: FlutterMap(
+              options: MapOptions(
+                onTap: (tapPosition, point) {
+                  _launchURL(job.coords!.lat!, job.coords!.long!);
+                },
+                center: LatLng(double.parse(job.coords!.lat!),
+                    double.parse(job.coords!.long!)),
+                zoom: 16.0,
               ),
-              MarkerLayerOptions(
-                markers: [
-                  Marker(
-                    width: 80.0,
-                    height: 80.0,
-                    point: LatLng(double.parse(job.coords!.lat!),
-                        double.parse(job.coords!.long!)),
-                    builder: (ctx) =>
-                        const Icon(FontAwesomeIcons.mapPin, color: Colors.red),
-                  ),
-                  Marker(
-                    width: 80.0,
-                    height: 80.0,
-                    point: LatLng(userCoords[0], userCoords[1]),
-                    builder: (ctx) =>
-                        const Icon(FontAwesomeIcons.home, color: Colors.red),
-                  )
-                ],
-              ),
-            ],
-          )),
+              layers: [
+                TileLayerOptions(
+                  urlTemplate:
+                      "https://a.tile.openstreetmap.de/{z}/{x}/{y}.png",
+                  subdomains: ['a', 'b', 'c'],
+                ),
+                MarkerLayerOptions(
+                  markers: [
+                    Marker(
+                      width: 80.0,
+                      height: 80.0,
+                      point: LatLng(double.parse(job.coords!.lat!),
+                          double.parse(job.coords!.long!)),
+                      builder: (ctx) => const Icon(FontAwesomeIcons.mapPin,
+                          color: Colors.red),
+                    ),
+                    Marker(
+                      width: 80.0,
+                      height: 80.0,
+                      point: LatLng(userCoords[0], userCoords[1]),
+                      builder: (ctx) =>
+                          const Icon(FontAwesomeIcons.home, color: Colors.red),
+                    )
+                  ],
+                ),
+              ],
+            )),
+      ),
     );
   }
 
@@ -356,13 +357,13 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
           shape: BoxShape.circle,
           color: currentBackgroundColor,
         ),
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: child,
       );
 
   Widget buildHorizontalDivider() {
     return Row(
-      children: [
+      children: const [
         Expanded(
           child: Divider(
             color: Colors.black,
@@ -380,9 +381,13 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
         UserSimplePreferences.getUser() ?? remoteUser.toString());
     //profile to use
     Profil user = tmpUser[0];
-    String adresse = user.adresse!.strasse! + " " + user.adresse!.hausnummer! + ", " + user.adresse!.ort!;
-    List<double> userPlace = [0,0];
-    if(kIsWeb) {
+    String adresse = user.adresse!.strasse! +
+        " " +
+        user.adresse!.hausnummer! +
+        ", " +
+        user.adresse!.ort!;
+    List<double> userPlace = [0, 0];
+    if (kIsWeb) {
       userPlace = [50.5550540, 9.6588151];
     } else {
       List<Location> locations = await locationFromAddress(adresse);
@@ -394,18 +399,16 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
     });
   }
 
-
   Widget buildDistanceText() {
     LatLng userCoord = LatLng(userCoords[0], userCoords[1]);
-    LatLng antoniusCoords = LatLng(50.5550540, 9.6588151);
-    LatLng jobCoords = LatLng(double.parse(job.coords!.lat!),
-        double.parse(job.coords!.long!));
-    Distance dist = new Distance();
+    LatLng antoniusCoords = LatLng(50.5550540,
+        9.6588151); //Was ist das und warum wird es nicht genutzt ? Kann das weg ? @Elian
+    LatLng jobCoords =
+        LatLng(double.parse(job.coords!.lat!), double.parse(job.coords!.long!));
+    Distance dist = const Distance();
 
     double jobDist = 0;
     jobDist = dist.as(LengthUnit.Kilometer, userCoord, jobCoords);
-
-
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -426,14 +429,14 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
       padding: const EdgeInsets.fromLTRB(100, 20, 100, 50),
       child: ElevatedButton(
         onPressed: () {},
-        child: Text("Bewerben"),
+        child: const Text("Bewerben"),
       ),
     );
   }
 
   Widget titleTextBuilder(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
       child: Align(
         alignment: Alignment.center,
         child: Container(
@@ -442,9 +445,9 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               color: AppColors().white,
-              borderRadius: BorderRadius.all(Radius.circular(10.0))),
-          child: new Center(
-            child: new Text(
+              borderRadius: const BorderRadius.all(Radius.circular(10.0))),
+          child: Center(
+            child: Text(
               job.title.toString(),
               style: AppTextStyles.darkH2,
             ),
@@ -461,7 +464,7 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
           data.jobList[widget.jobID!] = selected;
           saveJobState(data.jobList, tmpUser);
         });
-        if(selected) {
+        if (selected) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: const Text('Der Job wurde erfolgreich gespeichert.'),
@@ -477,7 +480,8 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: const Text('Der Job wurde aus deinen gespeicherten Jobs entfernt.'),
+              content: const Text(
+                  'Der Job wurde aus deinen gespeicherten Jobs entfernt.'),
               behavior: SnackBarBehavior.floating,
               backgroundColor: currentColor,
               action: SnackBarAction(
@@ -489,7 +493,9 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
           );
         }
       },
-      icon: FaIcon(selected ? FontAwesomeIcons.bookmark : FontAwesomeIcons.solidBookmark),
+      icon: FaIcon(selected
+          ? FontAwesomeIcons.bookmark
+          : FontAwesomeIcons.solidBookmark),
       color: currentColor,
       padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 25.0),
     );
@@ -505,8 +511,8 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
         enableInfiniteScroll: true,
         reverse: false,
         autoPlay: true,
-        autoPlayInterval: Duration(seconds: 3),
-        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        autoPlayInterval: const Duration(seconds: 3),
+        autoPlayAnimationDuration: const Duration(milliseconds: 800),
         autoPlayCurve: Curves.fastOutSlowIn,
         enlargeCenterPage: false,
         //onPageChanged: callbackFunction,
@@ -517,7 +523,8 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
           builder: (BuildContext context) {
             return Container(
               width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.symmetric(horizontal: 3.0, vertical: 15.0),
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 3.0, vertical: 15.0),
               decoration: BoxDecoration(color: currentBackgroundColor),
               child: Image(
                 image: NetworkImage(slide.url.toString()),
@@ -545,13 +552,13 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
       backgroundColor: AppColors().darkPrimaryColor,
       selectedItemColor: AppBackgroundColors().darkBackground,
       unselectedItemColor: AppBackgroundColors().darkBackground,
-     );
+    );
   }
 
   Widget homeButtonBuilder(BuildContext context) {
     return FloatingActionButton(
       backgroundColor: Colors.black,
-      child: Icon(Icons.home),
+      child: const Icon(Icons.home),
       onPressed: () {
         Navigator.pushReplacement(
           context,
@@ -568,7 +575,7 @@ void saveJobState(RxList<bool> jobList, List<Profil> tmpUser) {
     if (data.jobList[i] == true) count++;
   }
 
-  var savedList = new List.filled(count, 0, growable: false);
+  var savedList = List.filled(count, 0, growable: false);
   int before = -1;
   for (int i = 0; i < savedList.length; i++) {
     for (int l = 0; l < data.jobList.length; l++) {

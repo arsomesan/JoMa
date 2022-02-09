@@ -122,7 +122,7 @@ class _ScreenWelcome extends State<ScreenWelcome> {
                   text: TextSpan(children: [
                     TextSpan(
                         text: 'Ein Projekt der Hochschule Fulda',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.white, decoration: TextDecoration.underline),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.push(
