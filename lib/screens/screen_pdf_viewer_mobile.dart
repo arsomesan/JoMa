@@ -102,6 +102,7 @@ class _ScreenPDFViewerMobile extends State<ScreenPDFViewerMobile> {
           ? const Center(child: CircularProgressIndicator())
           : PdfView(
               controller: pdf,
+              scrollDirection: Axis.vertical,
               pageBuilder: (
                 Future<PdfPageImage> pageImage,
                 int index,
