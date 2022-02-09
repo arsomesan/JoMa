@@ -19,6 +19,7 @@ abstract class PDFViewer implements StatefulWidget {
     Job job = data.jobs.elementAt(data.getCurrentJob());
     final doc = pw.Document();
 
+    // TODO: style pdf and add suitable content
     doc.addPage(
       pw.Page(
         build: (pw.Context context) =>
