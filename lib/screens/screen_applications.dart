@@ -50,7 +50,7 @@ class ScreenApplications extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-              child: Text('Hier siehst du deine gespeicherten Jobs!',
+              child: Text('Hier siehst du Jobs für die du dich bereits Beworben hast!',
                   style: AppTextStyles.darkH4White,
                   textAlign: TextAlign.center),
             ),

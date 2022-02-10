@@ -14,6 +14,7 @@ class DataController extends GetxController {
 
   RxList<bool> boolList = List<bool>.empty().obs;
   RxList<bool> jobList = List<bool>.empty().obs;
+  RxList<bool> applicationJobList = List<bool>.empty().obs;
 
   RxInt currentJob = 0.obs;
 
@@ -44,6 +45,7 @@ class DataController extends GetxController {
     this.jobs.value = jobs;
     jobList =
         List.filled(jobs.length, false, growable: false).obs;
+    applicationJobList = List.filled(jobs.length, false, growable: false).obs;
   }
 
   void fetchJobCategories() async {

@@ -151,6 +151,11 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
                 text: 'Bewerben',
                 color: AppColors().darkSecondaryColor,
                 onPressed: () async {
+                  //save jobs with sent application in data structure
+                  data.applicationJobList[widget.jobID!] = true;
+                  //save data structure in shared preferences profile
+                  saveApplicationJobState(data.applicationJobList, tmpUser);
+                  //route to pdfviewer
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => PDFViewer()));
                 }),
@@ -569,17 +574,17 @@ class _ScreenJobDetailsState extends State<ScreenJobDetails> {
   }
 }
 
-void saveJobState(RxList<bool> jobList, List<Profil> tmpUser) {
+void saveJobState(RxList<bool> list, List<Profil> tmpUser) {
   int count = 0;
-  for (int i = 0; i < data.jobList.length; i++) {
-    if (data.jobList[i] == true) count++;
+  for (int i = 0; i < list.length; i++) {
+    if (list[i] == true) count++;
   }
 
   var savedList = List.filled(count, 0, growable: false);
   int before = -1;
   for (int i = 0; i < savedList.length; i++) {
-    for (int l = 0; l < data.jobList.length; l++) {
-      if (data.jobList[l] == true && l > before) {
+    for (int l = 0; l < list.length; l++) {
+      if (list[l] == true && l > before) {
         savedList[i] = l;
         before = l;
         break;
@@ -587,6 +592,28 @@ void saveJobState(RxList<bool> jobList, List<Profil> tmpUser) {
     }
   }
   tmpUser[0].savedJobs = savedList;
+  var lokalusersavetmp = profilToJson(tmpUser);
+  UserSimplePreferences.setUser(lokalusersavetmp.toString());
+}
+
+void saveApplicationJobState(RxList<bool> list, List<Profil> tmpUser) {
+  int count = 0;
+  for (int i = 0; i < list.length; i++) {
+    if (list[i] == true) count++;
+  }
+
+  var savedList = List.filled(count, 0, growable: false);
+  int before = -1;
+  for (int i = 0; i < savedList.length; i++) {
+    for (int l = 0; l < list.length; l++) {
+      if (list[l] == true && l > before) {
+        savedList[i] = l;
+        before = l;
+        break;
+      }
+    }
+  }
+  tmpUser[0].sentApplications = savedList;
   var lokalusersavetmp = profilToJson(tmpUser);
   UserSimplePreferences.setUser(lokalusersavetmp.toString());
 }
