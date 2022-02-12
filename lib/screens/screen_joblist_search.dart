@@ -67,6 +67,7 @@ class ScreenJobListSearchState extends State<ScreenJobListSearch> {
       _colorYellow,
       _colorRed
     ];
+    final bool showFab = MediaQuery.of(context).viewInsets.bottom==0.0; //bool zum FAB verbergen, wenn keyboard geoeffnet wird
 
     return WillPopScope(
       onWillPop: () async => false,
@@ -96,10 +97,11 @@ class ScreenJobListSearchState extends State<ScreenJobListSearch> {
             ],
           ),
         ),
+
         floatingActionButton: Container(
           height: 100.0,
           width: 100.0,
-          child: IconButton(
+          child: showFab?IconButton(
             icon: SvgPicture.asset("assets/images/darkLogo.svg",
             ),
             onPressed: () {
@@ -108,7 +110,7 @@ class ScreenJobListSearchState extends State<ScreenJobListSearch> {
                 MaterialPageRoute(builder: (context) => ScreenHome()),
               );
             },
-          ),
+          ):null,
         ),
 
         bottomNavigationBar: AppNavBar(

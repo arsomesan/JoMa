@@ -62,6 +62,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
 
   @override
   Widget build(BuildContext context) {
+    final bool showFab = MediaQuery.of(context).viewInsets.bottom==0.0; //bool zum FAB verbergen, wenn keyboard geoeffnet wird
     final DataController data = Get.find();
 //Load Profile from Json
     var remoteUser = profilToJson(data.profile);
@@ -593,7 +594,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
       floatingActionButton: Container(
         height: 100.0,
         width: 100.0,
-        child: IconButton(
+        child: showFab?IconButton(
           icon: SvgPicture.asset("assets/images/darkLogo.svg",
           ),
           onPressed: () {
@@ -602,7 +603,7 @@ class _ScreenProfilSettingsState extends State<ScreenProfilSettings> {
               MaterialPageRoute(builder: (context) => ScreenHome()),
             );
           },
-        ),
+        ):null,
       ),
 
       bottomNavigationBar: AppNavBar(
