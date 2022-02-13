@@ -44,8 +44,16 @@ class _ScreenPDFViewerMobile extends State<ScreenPDFViewerMobile> {
 
   void loadDocument(pw.Document doc) async {
     final dir = await getApplicationSupportDirectory();
-    final jobTitle = job.title.toString().replaceAll('/', '').replaceAll('\\', '').replaceAll(' ', '-');
-    final filename = "Bewerbung_" + jobTitle + "_" + DateTime.now().millisecondsSinceEpoch.toString() + ".pdf";
+    final jobTitle = job.title
+        .toString()
+        .replaceAll('/', '')
+        .replaceAll('\\', '')
+        .replaceAll(' ', '-');
+    final filename = "Bewerbung_" +
+        jobTitle +
+        "_" +
+        DateTime.now().millisecondsSinceEpoch.toString() +
+        ".pdf";
     final file = File("${dir.path}/$filename");
     await file.writeAsBytes(await doc.save());
 
@@ -99,27 +107,32 @@ class _ScreenPDFViewerMobile extends State<ScreenPDFViewerMobile> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
-          : PdfView(
-              controller: pdf,
-              scrollDirection: Axis.vertical,
-              pageBuilder: (
-                Future<PdfPageImage> pageImage,
-                int index,
-                PdfDocument document,
-              ) =>
-                  PhotoViewGalleryPageOptions(
-                imageProvider: PdfPageImageProvider(
-                  pageImage,
-                  index,
-                  document.id,
+          : Center(
+            child: Container(
+                padding: const EdgeInsets.only(top: 0),
+                child: PdfView(
+                  controller: pdf,
+                  scrollDirection: Axis.vertical,
+                  pageBuilder: (
+                    Future<PdfPageImage> pageImage,
+                    int index,
+                    PdfDocument document,
+                  ) =>
+                      PhotoViewGalleryPageOptions(
+                    imageProvider: PdfPageImageProvider(
+                      pageImage,
+                      index,
+                      document.id,
+                    ),
+                    minScale: PhotoViewComputedScale.contained * 1,
+                    maxScale: PhotoViewComputedScale.contained * 3.0,
+                    initialScale: PhotoViewComputedScale.contained * 1.0,
+                    heroAttributes:
+                        PhotoViewHeroAttributes(tag: '${document.id}-$index'),
+                  ),
                 ),
-                minScale: PhotoViewComputedScale.contained * 1,
-                maxScale: PhotoViewComputedScale.contained * 3.0,
-                initialScale: PhotoViewComputedScale.contained * 2.0,
-                heroAttributes:
-                    PhotoViewHeroAttributes(tag: '${document.id}-$index'),
               ),
-            ),
+          ),
     );
   }
 }
